@@ -7,15 +7,9 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon_icons/favicon-16x16.png">
   <link rel="manifest" href="favicon_icons/site.webmanifest">
   <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
-  <style type ="text/css" media="screen, print">
-  @font-face {
-    font-family: "Minecraft";
-    src: url("font/webfontkit-20220210-002804/minecraftregular-bmg3-webfont.woff") format("woff"),
-    url("font/webfontkit-20220210-002804/minecraftregular-bmg3-webfont.woff2") format("woff2"),
-    }
-  </style>
+  <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
 </head>
-<body>
+<body style="font-family: minecraftregular">
 
   <p>brooke's pit event website</p>
 
@@ -62,7 +56,7 @@ function addAllColumnHeaders(arr, table) {
   return columnSet;
 }
 
-function ConvertToElapsed(jsonObj) {
+function ConvertToElapsed(jsonObj) { //converts unfunny unix time into seconds until event
     let currentTime = (Date.now());
     for (var i = 0; i < jsonObj.length; ++i) {
     if (jsonObj[i]['timestamp'] >= 1) {

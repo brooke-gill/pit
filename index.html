@@ -60,7 +60,7 @@ function ConvertToElapsed(jsonObj) { //converts unfunny unix time into seconds u
     let currentTime = (Date.now());
     for (var i = 0; i < jsonObj.length; ++i) {
     if (jsonObj[i]['timestamp'] >= 1) {
-        jsonObj[i]['timestamp'] = (jsonObj[i]['timestamp'] - currentTime)/1000;
+        jsonObj[i]['timestamp'] = math.floor(((jsonObj[i]['timestamp'] - currentTime)/1000) + "s");
         console.log("Converted an object. #" + i);
       }
     }

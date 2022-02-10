@@ -59,10 +59,17 @@ function addAllColumnHeaders(arr, table) {
 function ConvertToElapsed(jsonObj) { //converts unfunny unix time into seconds until event
     let currentTime = (Date.now());
     for (var i = 0; i < jsonObj.length; ++i) {
-    if (jsonObj[i]['timestamp'] >= 1) {
-        jsonObj[i]['timestamp'] = (Math.floor(((jsonObj[i]['timestamp'] - currentTime)/1000))+ "s");
+    if ((jsonObj[i]['timestamp'] - currentTime) <= 60000) {
+        jsonObj[i]['timestamp'] = ((Math.floor(((jsonObj[i]['timestamp'] - currentTime)))*1000)+ "s");
         console.log("Converted an object. #" + i);
       }
+    if ((jsonObj[i]['timestamp'] - currentTime) <= 3600000) {
+      jsonObj[i]['timestamp'] = (Math.floor(((jsonObj[i]['timestamp'] - currentTime)/60000))+ "m" + (Math.floor(((jsonObj[i]['timestamp'] - currentTime)/1000) % 60)) + "s"); //creates mm:ss format. this is awful code. please do not judge
+      console.log("Converted an object. #" + i);
+    }
+    else {
+      jsonObj[i]['timestamp'] = (Math.floor(((jsonObj[i]['timestamp'] - currentTime)/3600000))+ "h" + (Math.floor(((jsonObj[i]['timestamp'] - currentTime)/60000) % 60)) + "m"); //creates hh:mm format. this is awful code. please do not judge
+    }
     }
     return(jsonObj);
 }

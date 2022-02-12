@@ -70,7 +70,33 @@ for(var i = 0; i < 100; i++) {
  if(conversion[i]['type'] == "major") {
   document.getElementById('event_' + String(i)).style.fontFamily = "minecraftbold";
  }
- 
+ if(conversion[i]['event'] == "Squads") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#8EBAEC";
+ }
+ if(conversion[i]['event'] == "Beast") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#8EEC94";
+ }
+ if(conversion[i]['event'] == "Pizza") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#ECB38E";
+ }
+ if(conversion[i]['event'] == "Rage Pit") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#EC8E8E";
+ }
+ if(conversion[i]['event'] == "Spire") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#EC8EEC";
+ }
+ if(conversion[i]['event'] == "Robbery") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#ECE98E";
+ }
+ if(conversion[i]['event'] == "Blockhead") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#9191EC";
+ }
+ if(conversion[i]['event'] == "Raffle") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#ECBD8E";
+ }
+ if(conversion[i]['event'] == "Team Deathmatch") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#BA8EEC";
+ }
 }
 }
 const pp_url = 'https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440'
@@ -87,7 +113,7 @@ async function SaveMyGloriousAPI() { //Calls the API exactly once (thanks McPqnd
 
 function UpdateEverything(transformation) { //this plops the stuff in the actual html page
   for(var i = 0; i < 100; i++) { 
-  document.getElementById('event_' + String(i)).textContent = (transformation[i].event + " " + MakeFunTimestamps(transformation[i].timestamp) + " " + transformation[i].type);
+  document.getElementById('event_' + String(i)).textContent = (transformation[i].event + " in " + MakeFunTimestamps(transformation[i].timestamp));
   }
   console.log("Just updated " + (i + 1) + " variables.")
 }

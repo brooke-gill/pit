@@ -40,9 +40,37 @@ return convertible;
 
 function test_zero(conversion) { //adds cute colours
 for(var i = 0; i < 100; i++) { 
- if(conversion[i]['event'] == "Blockhead") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#aaffaa";
+ if(conversion[i]['event'] == "Quick Maths") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#D9D2E9";
  }
+ if(conversion[i]['event'] == "Dragon Egg") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9D2E1";
+ }
+ if(conversion[i]['event'] == "2x Rewards") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#D2E9DD";
+ }
+ if(conversion[i]['event'] == "Care Package") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9E2D2";
+ }
+ if(conversion[i]['event'] == "KOTL") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#D2E9D2";
+ }
+ if(conversion[i]['event'] == "KOTH") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#D2E9E8";
+ }
+ if(conversion[i]['event'] == "Auction") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9DDD2";
+ }
+ if(conversion[i]['event'] == "Giant Cake") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9D2D2";
+ }
+ if(conversion[i]['event'] == "All bounty") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9E3D2";
+ }
+ if(conversion[i]['type'] == "major") {
+  document.getElementById('event_' + String(i)).style.fontFamily = "minecraftbold";
+ }
+ 
 }
 }
 const pp_url = 'https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440'

@@ -14,85 +14,110 @@
   <p>brooke's pit event website</p>
 
 <script>
-var _table_ = document.createElement('table'),
-  _tr_ = document.createElement('tr'),
-  _th_ = document.createElement('th'),
-  _td_ = document.createElement('td');
+for(var i = 0; i < 100; i += 1) { //Make HTML elements
+    var div = document.createElement("div");
+    console.log("I made an element.")
+    div.id = ("event_" + i);
+    div.innerHTML = ("test");
+    div.style.padding = "10px"; 
+    div.style.backgroundColor = "#FFFFFF";
+    div.style.textAlign = "center";
+    document.body.appendChild(div);
+}
 
-// Builds the HTML Table out of myList json data from Ivy restful service.
-function buildHtmlTable(arr) {
-  var table = _table_.cloneNode(false),
-    columns = addAllColumnHeaders(arr, table);
-  for (var i = 0, maxi = arr.length; i < maxi; ++i) {
-    var tr = _tr_.cloneNode(false);
-    for (var j = 0, maxj = columns.length; j < maxj; ++j) {
-      var td = _td_.cloneNode(false);
-      cellValue = arr[i][columns[j]];
-      td.appendChild(document.createTextNode(arr[i][columns[j]] || ''));
-      tr.appendChild(td);
-    }
-    table.appendChild(tr);
+function MakeFunTimestamps(convertible) {
+let currentTime = (Date.now);
+if (convertible - currentTime() <= 60000) {
+    convertible = (((Math.floor(((convertible - currentTime())*100))/100000).toFixed(2)) + "s");
+} else if (convertible - currentTime() <= 3600000) {
+    convertible = ((Math.floor(((convertible - currentTime()))/60000) + "m" + (Math.floor(((convertible - currentTime()))/1000) % 60) + "s"));
+} else if (convertible - currentTime() > 1) {
+    convertible = ((Math.floor(((convertible - currentTime()))/3600000) + "h" + (Math.floor(((convertible - currentTime()))/60000) % 60) + "m"));
+}
+
+return convertible;
+}
+
+function test_zero(conversion) { //adds cute colours
+for(var i = 0; i < 100; i++) { 
+ if(conversion[i]['event'] == "Blockhead") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#aaffaa";
+ }
+}
+}
+const pp_url = 'https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440'
+data_backup = SaveMyGloriousAPI();
+console.log("The data's been called!")
+setInterval(getPitPanda,8);
+
+async function SaveMyGloriousAPI() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
+  const response = await fetch(pp_url);
+  window.data = await response.json();
+  window.data_backup = window.data;
+  console.log("API Called.")
+}
+
+function UpdateEverything(transformation) { //this plops the stuff in the actual html page
+  for(var i = 0; i < 100; i++) { 
+  document.getElementById('event_' + String(i)).textContent = (transformation[i].event + " " + MakeFunTimestamps(transformation[i].timestamp) + " " + transformation[i].type);
   }
-  return table;
+  console.log("Just updated " + (i + 1) + " variables.")
 }
 
-// Adds a header row to the table and returns the set of columns.
-// Need to do union of keys from all records as some records may not contain
-// all records
-function addAllColumnHeaders(arr, table) {
-  var columnSet = [],
-    tr = _tr_.cloneNode(false);
-  for (var i = 0, l = arr.length; i < l; i++) {
-    for (var key in arr[i]) {
-      if (arr[i].hasOwnProperty(key) && columnSet.indexOf(key) === -1) {
-        columnSet.push(key);
-        var th = _th_.cloneNode(false);
-        th.appendChild(document.createTextNode(key));
-        tr.appendChild(th);
-      }
-    }
-  }
-  table.appendChild(tr);
-  return columnSet;
+function getPitPanda() {
+  window.data = window.data_backup;
+  console.log("Found backup.");
+  test_zero(window.data);
+  UpdateEverything(window.data);
+  console.log("Updated values!");
 }
 
-function ConvertToElapsed(jsonObj) { //converts unfunny unix time into seconds until event
-    let currentTime = (Date.now());
-    for (var i = 0; i < jsonObj.length; ++i) {
-    if ((jsonObj[i]['timestamp'] - currentTime) <= 60000) {
-        jsonObj[i]['timestamp'] = (((Math.floor((jsonObj[i]['timestamp'] - currentTime)))/1000)+ "s");
-        console.log("Converted an object. #" + i);
-      }
-    else if ((jsonObj[i]['timestamp'] - currentTime) <= 3600000) {
-      jsonObj[i]['timestamp'] = (Math.floor(((jsonObj[i]['timestamp'] - currentTime)/60000))+ "m" + (Math.floor(((jsonObj[i]['timestamp'] - currentTime)/1000) % 60)) + "s"); //creates mm:ss format. this is awful code. please do not judge
-      console.log("Converted an object. #" + i);
-    }
-    else {
-      jsonObj[i]['timestamp'] = (Math.floor(((jsonObj[i]['timestamp'] - currentTime)/3600000))+ "h" + (Math.floor(((jsonObj[i]['timestamp'] - currentTime)/60000) % 60)) + "m"); //creates hh:mm format. this is awful code. please do not judge
-    }
-    }
-    return(jsonObj);
-}
-setInterval(CheckAPI, 1000);
-function CheckAPI() {
+/* Old code
+
 $.getJSON('https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440', function(data) {
-    let jsonPitPandaEvents = data;
-    document.body.innerHTML = '';
-    let TimestampedData = ConvertToElapsed(jsonPitPandaEvents);
-    document.body.appendChild(buildHtmlTable(TimestampedData));
+   PitPandaBackup = data;
+   jsonPitPandaEvents = PitPandaBackup;
 });
-}
-//function yourFunction(){
-console.log(jsonPitPandaEvents);
-    //setTimeout(yourFunction, 5000);
-//}
 
-yourFunction();
+function ConvertAPIToTable() {
+  document.body.innerHTML = '';
+  jsonPitPandaEvents = PitPandaBackup;
+  console.log("BEFORE: ");
+  console.log(jsonPitPandaEvents);
+
+
+
+  let currentTime = (Date.now);
+    for (var i = 0; i < jsonPitPandaEvents.length; ++i) {
+      if ((jsonPitPandaEvents[i]['timestamp'] - currentTime) <= 60000) {
+        jsonPitPandaEvents[i]['timestamp'] = (((Math.floor((jsonPitPandaEvents[i]['timestamp'] - currentTime)))/1000)+ "s");
+          console.log("Converted an object (<1m) at t=" + currentTime);
+          console.log(jsonPitPandaEvents[i]['timestamp'])
+       }
+      else if ((jsonPitPandaEvents[i]['timestamp'] - currentTime) <= 3600000) {
+        jsonPitPandaEvents[i]['timestamp'] = (Math.floor(((jsonPitPandaEvents[i]['timestamp'] - currentTime)/60000))+ "m" + (Math.floor(((jsonPitPandaEvents[i]['timestamp'] - currentTime)/1000) % 60)) + "s"); //creates mm:ss format. this is awful code. please do not judge
+        console.log("Converted an object (<1h) at t=" + currentTime);
+        console.log(jsonPitPandaEvents[i]['timestamp'])
+      }
+      else {
+        jsonPitPandaEvents[i]['timestamp'] = (Math.floor(((jsonPitPandaEvents[i]['timestamp'] - currentTime)/3600000))+ "h" + (Math.floor(((jsonPitPandaEvents[i]['timestamp'] - currentTime)/60000) % 60)) + "m"); //creates hh:mm format. this is awful code. please do not judge
+       console.log("Converted an object (<1d) at t=" + currentTime);
+       console.log(jsonPitPandaEvents[i]['timestamp'])
+     }
+    }
+
+
+
+
+  console.log("AFTER: ");
+  console.log(jsonPitPandaEvents);
+  document.body.appendChild(buildHtmlTable(jsonPitPandaEvents));
+}
+ConvertAPIToTable();
+*/
   </script>
 
-
-<p>made by brookeafk please follow me on twitter dot com</p>
-
+<p>v0.1</p>
 </body>
 
 </html>

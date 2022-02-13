@@ -8,25 +8,23 @@
   <link rel="manifest" href="favicon_icons/site.webmanifest">
   <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
   <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
+  <title>Hypixel Pit Events Tracker</title>
+  <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
 </head>
 <body style="font-family: minecraftregular">
 
   <p>brooke's pit event website</p>
 
 <script>
-for(var i = 0; i < 100; i += 1) { //Make HTML elements
-    var div = document.createElement("div");
-    console.log("I made an element.")
-    div.id = ("event_" + i);
-    div.innerHTML = ("test");
-    div.style.padding = "10px"; 
-    div.style.backgroundColor = "#FFFFFF";
-    div.style.textAlign = "center";
-    document.body.appendChild(div);
-}
+
+var HiddenEventCount = 0;
+var EventsToLoad = 1;
 
 function MakeFunTimestamps(convertible) {
 let currentTime = (Date.now);
+if (convertible - currentTime() <= 0) {
+  convertible = "Passed!"
+}
 if (convertible - currentTime() <= 60000) {
     convertible = (((Math.floor(((convertible - currentTime())*100))/100000).toFixed(2)) + "s");
 } else if (convertible - currentTime() <= 3600000) {
@@ -39,7 +37,7 @@ return convertible;
 }
 
 function test_zero(conversion) { //adds cute colours
-for(var i = 0; i < 100; i++) { 
+for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
  if(conversion[i]['event'] == "Quick Maths") {
   document.getElementById('event_' + String(i)).style.backgroundColor = "#D9D2E9";
  }
@@ -97,27 +95,49 @@ for(var i = 0; i < 100; i++) {
  if(conversion[i]['event'] == "Team Deathmatch") {
   document.getElementById('event_' + String(i)).style.backgroundColor = "#BA8EEC";
  }
+ console.log(conversion[i]['event'] + " / " + i);
 }
 }
 const pp_url = 'https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440'
-data_backup = SaveMyGloriousAPI();
+data_backup = MakeAPIAndHTML();
 console.log("The data's been called!")
-setInterval(getPitPanda,8);
+setInterval(getPitPanda,30);
 
-async function SaveMyGloriousAPI() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
+async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
   const response = await fetch(pp_url);
   window.data = await response.json();
   window.data_backup = window.data;
+  window.EventsToLoad = Object.keys(window.data).length
+  console.log("Loading events: " + window.EventsToLoad);
   console.log("API Called.")
+  for(var i = 0; i < window.EventsToLoad; i += 1) { //Make HTML elements
+    var div = document.createElement("div");
+    console.log("I made an element.")
+    div.id = ("event_" + i);
+    div.innerHTML = ("[loading event]");
+    div.style.padding = "15px"; 
+    div.style.backgroundColor = "#FFFFFF";
+    div.style.textAlign = "center";
+    div.style.fontSize = "1.5em"
+    document.body.appendChild(div);
 }
+}
+
+
+
 
 function UpdateEverything(transformation) { //this plops the stuff in the actual html page
-  for(var i = 0; i < 100; i++) { 
+  for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
   document.getElementById('event_' + String(i)).textContent = (transformation[i].event + " in " + MakeFunTimestamps(transformation[i].timestamp));
+  if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
+    //document.getElementById('event_' + String(i)).remove();
+    document.getElementById('event_' + String(i)).style.display = "none";
+    window.HiddenEventCount = window.HiddenEventCount + 1; 
   }
-  console.log("Just updated " + (i + 1) + " variables.")
-}
 
+}
+console.log("Just updated " + (i + 1) + " variables.")
+}
 function getPitPanda() {
   window.data = window.data_backup;
   console.log("Found backup.");
@@ -171,7 +191,40 @@ ConvertAPIToTable();
 */
   </script>
 
-<p>v0.1</p>
+<style>
+  a:link {
+    color: #B15AC2;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: #3F2D43;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #E7C2EE;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: #EDDDF0;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+
+  p {
+    font-size: 1.5em
+  }
+  
+  </style>
+<footer>
+<p>v0.1.3</p>
+<p><span style="font-size: 0.8em;">Special thanks to <a href="http://deviantart.com/hextant" target="_blank">Andrew ♡&hearts;</a>,&nbsp;<a href="https://twitter.com/ellwixd" target="_blank">Ellie</a>, <a href="https://twitter.com/oSnapLLL target="_blank"">oSnapL</a>, <a href="https://namemc.com/profile/eff789f9-3c7f-484b-8464-aacbd667846e target="_blank"">1Mad</a>,&nbsp;<a href="https://twitter.com/cutekitty271 target="_blank"">Emma</a>, <a href="https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6 target="_blank"">catweapon</a>, <a href="https://twitter.com/KinderFissa target="_blank"">Twen</a>, <a href="https://vnmm.dev/ target="_blank"">vnmm</a>, and <a href="https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768 target="_blank"">Vermasium </a>for emotional support!</span></p>
+</footer>
 </body>
 
 </html>

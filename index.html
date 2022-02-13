@@ -18,6 +18,7 @@
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
 var version_number = "1.0.9 (alpha)"
+var counter = 0;
 
 function MakeFunTimestamps(convertible) {
 let currentTime = (Date.now);
@@ -154,17 +155,25 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
   document.body.appendChild(q);
 }
 
+function RapidFirst(transformation) { //Makes the first event update much quicker (useful for the <60s countdown.)
+  for(var i = window.HiddenEventCount; i <= window.HiddenEventCount; i++) { 
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
+  if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
+    //document.getElementById('event_' + String(i)).remove();
+    document.getElementById('event_' + String(i)).style.display = "none";
+    window.HiddenEventCount = window.HiddenEventCount + 1; 
+}
+  }
+}
+
 function UpdateEverything(transformation) { //this plops the stuff in the actual html page
-  for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
+  for(var i = window.HiddenEventCount + 1; i < EventsToLoad; i++) { 
   document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
   if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
     //document.getElementById('event_' + String(i)).remove();
     document.getElementById('event_' + String(i)).style.display = "none";
     window.HiddenEventCount = window.HiddenEventCount + 1; 
   }
-
-
-
 }
 }
 
@@ -172,8 +181,14 @@ function UpdateEverything(transformation) { //this plops the stuff in the actual
 function getPitPanda() {
   window.data = window.data_backup;
   test_zero(window.data);
-  UpdateEverything(window.data);
-  console.log("Updated values!");
+  counter = counter + 1;
+  if (counter == 5) {
+    counter = 0;
+    UpdateEverything(window.data);
+    console.log("Updated 2nd-n values.")
+  }
+  RapidFirst(window.data);
+  console.log("Updated 1st value.");
 }
 
   </script>

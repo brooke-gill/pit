@@ -18,6 +18,7 @@
 
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
+var version_number = "1.0.7"
 
 function MakeFunTimestamps(convertible) {
 let currentTime = (Date.now);
@@ -33,6 +34,11 @@ if (convertible - currentTime() <= 60000) {
 }
 
 return convertible;
+}
+
+function TimeOfDay(s) {
+var offset = (new Date().getTimezoneOffset())*-60000;
+return new Date(s + offset).toISOString().slice(-13, -8);
 }
 
 function test_zero(conversion) { //adds cute colours
@@ -100,10 +106,12 @@ for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
  }
 }
 }
+
 const pp_url = 'https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440'
 data_backup = MakeAPIAndHTML();
 console.log("The data's been called!")
 setInterval(getPitPanda,30);
+console.log (process.env.API_KEY);
 
 async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
   const response = await fetch(pp_url);
@@ -119,40 +127,51 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
     div.innerHTML = ("[loading event]");
     div.style.padding = "15px"; 
     div.style.backgroundColor = "#FFFFFF";
-    div.style.textAlign = "center";
+    div.style.textAlign = "left";
     div.style.fontSize = "1.5em"
-    document.body.appendChild(div);
+    div.style.lineHeight = "100%"
+   // div.style.width = "800px";
+
+   // span.style.marginTop = (String(50*i) + "px")
+   // console.log(String($(window).width()*0.5) + "px")
+   // span.style.position = "absolute";
+   // span.style.left = 0;
+   // span.style.right = 0;
+   // linebreak = document.createElement(`br`);
+   // document.body.appendChild(linebreak);
+   document.body.appendChild(div);
 
 }
   var p = document.createElement("p");
   console.log("Added footer.")
+  //p.style.marginTop = (String(50*i) + "px")
   p.id = ("version")
-  p.innerHTML = (`v0.1.6`)
+  p.innerHTML = ("v" + window.version_number);
   document.body.appendChild(p);
   var q = document.createElement("p");
   q.id = ("special_thanks")
-  q.innerHTML = (`<span style="font-size: 0.8em;">Special thanks to <a href="http://deviantart.com/hextant" target="_blank">Andrew ♡</a>,&nbsp;<a href="https://twitter.com/ellwixd" target="_blank">Ellie</a>, <a href="https://twitter.com/oSnapLLL" target="_blank">oSnapL</a>, <a href="https://namemc.com/profile/eff789f9-3c7f-484b-8464-aacbd667846e" target="_blank">1Mad</a>,&nbsp;<a href="https://twitter.com/cutekitty271" target="_blank">Emma</a>, <a href="https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6" target="_blank">catweapon</a>, <a href="https://twitter.com/KinderFissa" target="_blank">Twen</a>, <a href="https://vnmm.dev/"" target="_blank">vnmm</a>, and <a href="https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768" target="_blank">Vermasium</a> for emotional support!</span>`)
+ // q.style.marginTop = (String(50) + "px")
+  q.innerHTML = (`<span style="font-size: 0.8em;">Special thanks to <a href="http://deviantart.com/hextant" target="_blank">Andrew ♡</a>,&nbsp;<a href="https://twitter.com/ellwixd" target="_blank">Ellie</a>, <a href="https://twitter.com/oSnapLLL" target="_blank">oSnapL</a>, <a href="https://namemc.com/profile/eff789f9-3c7f-484b-8464-aacbd667846e" target="_blank">1Mad</a>,&nbsp;<a href="https://twitter.com/cutekitty271" target="_blank">Emma</a>, <a href="https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6" target="_blank">catweapon</a>, <a href="https://twitter.com/KinderFissa" target="_blank">Twen</a>, <a href="https://vnmm.dev/"" target="_blank">vnmm</a>, and <a href="https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768" target="_blank">Vermasium</a> for kind words!</span>`)
   document.body.appendChild(q);
 }
 
-
-
-
 function UpdateEverything(transformation) { //this plops the stuff in the actual html page
   for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
-  document.getElementById('event_' + String(i)).textContent = (transformation[i].event + " in " + MakeFunTimestamps(transformation[i].timestamp));
+  document.getElementById('event_' + String(i)).innerHTML = ("<span>" + MakeFunTimestamps(transformation[i].timestamp) + ": " + transformation[i].event + " (" + TimeOfDay(transformation[i].timestamp) + ") </span>");
   if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
     //document.getElementById('event_' + String(i)).remove();
     document.getElementById('event_' + String(i)).style.display = "none";
     window.HiddenEventCount = window.HiddenEventCount + 1; 
   }
 
+
+
 }
-console.log("Just updated " + (i + 1) + " variables.")
 }
+
+
 function getPitPanda() {
   window.data = window.data_backup;
-  console.log("Found backup.");
   test_zero(window.data);
   UpdateEverything(window.data);
   console.log("Updated values!");

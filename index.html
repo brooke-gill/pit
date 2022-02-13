@@ -12,13 +12,12 @@
   <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
 </head>
 <body style="font-family: minecraftregular" background-color="black">
-<div><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 15px">brookeafk.com</p></div>
-
+<div class="img-with-text"><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 15px">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;">Settings</span></div>
 <script>
 
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
-var version_number = "1.0.8"
+var version_number = "1.0.9 (alpha)"
 
 function MakeFunTimestamps(convertible) {
 let currentTime = (Date.now);
@@ -110,7 +109,7 @@ for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
 const pp_url = 'https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440'
 data_backup = MakeAPIAndHTML();
 console.log("The data's been called!")
-setInterval(getPitPanda,30);
+setInterval(getPitPanda,42);
 console.log (process.env.API_KEY);
 
 async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
@@ -157,7 +156,7 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
 
 function UpdateEverything(transformation) { //this plops the stuff in the actual html page
   for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
-  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraft">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraft"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
   if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
     //document.getElementById('event_' + String(i)).remove();
     document.getElementById('event_' + String(i)).style.display = "none";

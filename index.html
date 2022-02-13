@@ -95,7 +95,10 @@ for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
  if(conversion[i]['event'] == "Team Deathmatch") {
   document.getElementById('event_' + String(i)).style.backgroundColor = "#BA8EEC";
  }
- console.log(conversion[i]['event'] + " / " + i);
+ let currentTime = (Date.now);
+ if (conversion[i]['timestamp'] - currentTime() <= 60000) {
+  document.getElementById('event_'+ String(i)).classList.add("blinktext");
+ }
 }
 }
 const pp_url = 'https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440'
@@ -120,7 +123,17 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
     div.style.textAlign = "center";
     div.style.fontSize = "1.5em"
     document.body.appendChild(div);
+
 }
+  var p = document.createElement("p");
+  console.log("Added footer.")
+  p.id = ("version")
+  p.innerHTML = (`v0.1.5`)
+  document.body.appendChild(p);
+  var q = document.createElement("p");
+  q.id = ("special_thanks")
+  q.innerHTML = (`<span style="font-size: 0.8em;">Special thanks to <a href="http://deviantart.com/hextant" target="_blank">Andrew ♡</a>,&nbsp;<a href="https://twitter.com/ellwixd" target="_blank">Ellie</a>, <a href="https://twitter.com/oSnapLLL" target="_blank">oSnapL</a>, <a href="https://namemc.com/profile/eff789f9-3c7f-484b-8464-aacbd667846e" target="_blank">1Mad</a>,&nbsp;<a href="https://twitter.com/cutekitty271" target="_blank">Emma</a>, <a href="https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6" target="_blank">catweapon</a>, <a href="https://twitter.com/KinderFissa" target="_blank">Twen</a>, <a href="https://vnmm.dev/"" target="_blank">vnmm</a>, and <a href="https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768" target="_blank">Vermasium</a> for emotional support!</span>`)
+  document.body.appendChild(q);
 }
 
 
@@ -146,49 +159,6 @@ function getPitPanda() {
   console.log("Updated values!");
 }
 
-/* Old code
-
-$.getJSON('https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440', function(data) {
-   PitPandaBackup = data;
-   jsonPitPandaEvents = PitPandaBackup;
-});
-
-function ConvertAPIToTable() {
-  document.body.innerHTML = '';
-  jsonPitPandaEvents = PitPandaBackup;
-  console.log("BEFORE: ");
-  console.log(jsonPitPandaEvents);
-
-
-
-  let currentTime = (Date.now);
-    for (var i = 0; i < jsonPitPandaEvents.length; ++i) {
-      if ((jsonPitPandaEvents[i]['timestamp'] - currentTime) <= 60000) {
-        jsonPitPandaEvents[i]['timestamp'] = (((Math.floor((jsonPitPandaEvents[i]['timestamp'] - currentTime)))/1000)+ "s");
-          console.log("Converted an object (<1m) at t=" + currentTime);
-          console.log(jsonPitPandaEvents[i]['timestamp'])
-       }
-      else if ((jsonPitPandaEvents[i]['timestamp'] - currentTime) <= 3600000) {
-        jsonPitPandaEvents[i]['timestamp'] = (Math.floor(((jsonPitPandaEvents[i]['timestamp'] - currentTime)/60000))+ "m" + (Math.floor(((jsonPitPandaEvents[i]['timestamp'] - currentTime)/1000) % 60)) + "s"); //creates mm:ss format. this is awful code. please do not judge
-        console.log("Converted an object (<1h) at t=" + currentTime);
-        console.log(jsonPitPandaEvents[i]['timestamp'])
-      }
-      else {
-        jsonPitPandaEvents[i]['timestamp'] = (Math.floor(((jsonPitPandaEvents[i]['timestamp'] - currentTime)/3600000))+ "h" + (Math.floor(((jsonPitPandaEvents[i]['timestamp'] - currentTime)/60000) % 60)) + "m"); //creates hh:mm format. this is awful code. please do not judge
-       console.log("Converted an object (<1d) at t=" + currentTime);
-       console.log(jsonPitPandaEvents[i]['timestamp'])
-     }
-    }
-
-
-
-
-  console.log("AFTER: ");
-  console.log(jsonPitPandaEvents);
-  document.body.appendChild(buildHtmlTable(jsonPitPandaEvents));
-}
-ConvertAPIToTable();
-*/
   </script>
 
 <style>
@@ -220,11 +190,28 @@ ConvertAPIToTable();
     font-size: 1.5em
   }
   
+  .blinktext {
+	-webkit-animation: blink-text 1000ms linear infinite;
+	-moz-animation: blink-text 1000ms linear infinite;
+	-ms-animation: blink-text 1000ms linear infinite;
+	-o-animation: blink-text 1000ms linear infinite;
+	 animation: blink-text 1000ms linear infinite;
+}
+@keyframes blink-text {
+	0% { color: #FF0000; opacity: 1; }
+	10% { color: #e80000;opacity: 1; }
+	15% { color: #d10000;opacity: 1; }
+	20% { color: #b80000;opacity: 1; }
+	25% { color: #a30000;opacity: 1; }
+	30% { color: #8c0000;opacity: 1; }
+	35% { color: #750000;opacity: 1; }
+	40% { color: #5e0000;opacity: 1; }
+	45% { color: #470000;opacity: 1; }
+	49% { color: #300000;opacity: 1; }
+	50% { color: #190000;opacity: 1; }
+}
   </style>
-<footer>
-<p>v0.1.3</p>
-<p><span style="font-size: 0.8em;">Special thanks to <a href="http://deviantart.com/hextant" target="_blank">Andrew ♡&hearts;</a>,&nbsp;<a href="https://twitter.com/ellwixd" target="_blank">Ellie</a>, <a href="https://twitter.com/oSnapLLL" target="_blank">oSnapL</a>, <a href="https://namemc.com/profile/eff789f9-3c7f-484b-8464-aacbd667846e" target="_blank">1Mad</a>,&nbsp;<a href="https://twitter.com/cutekitty271" target="_blank">Emma</a>, <a href="https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6" target="_blank">catweapon</a>, <a href="https://twitter.com/KinderFissa" target="_blank">Twen</a>, <a href="https://vnmm.dev/"" target="_blank">vnmm</a>, and <a href="https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768" target="_blank">Vermasium </a>for emotional support!</span></p>
-</footer>
+
 </body>
 
 </html>

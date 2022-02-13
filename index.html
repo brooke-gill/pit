@@ -11,7 +11,7 @@
   <title>Hypixel Pit Events Tracker</title>
   <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
 </head>
-<body style="font-family: minecraftregular">
+<body style="font-family: minecraftregular" background-color="black">
 <div><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 15px">brookeafk.com</p></div>
 
 <script>
@@ -101,7 +101,7 @@ for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
   document.getElementById('event_' + String(i)).style.backgroundColor = "#BA8EEC";
  }
  let currentTime = (Date.now);
- if (conversion[i]['timestamp'] - currentTime() <= 60000) {
+ if ((conversion[i]['timestamp'] - currentTime() <= 60000 && (conversion[i]['timestamp'] - currentTime()) % 1000 > 900)) {
   document.getElementById('event_'+ String(i)).classList.add("blinktext");
  }
 }
@@ -157,7 +157,7 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
 
 function UpdateEverything(transformation) { //this plops the stuff in the actual html page
   for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
-  document.getElementById('event_' + String(i)).innerHTML = ("<span>" + MakeFunTimestamps(transformation[i].timestamp) + ": " + transformation[i].event + " (" + TimeOfDay(transformation[i].timestamp) + ") </span>");
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraft">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraft"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
   if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
     //document.getElementById('event_' + String(i)).remove();
     document.getElementById('event_' + String(i)).style.display = "none";

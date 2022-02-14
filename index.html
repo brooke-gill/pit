@@ -12,13 +12,25 @@
   <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
 </head>
 <body style="font-family: minecraftregular" background-color="black">
-<div class="img-with-text"><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 15px">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;">Settings</span></div>
+<div class="img-with-text"><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 15px">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()">Settings</span></div>
+
+<div id="settings-section">
+<p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
+<!--<p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod")'>Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue")'>Time Until Event</span></p>-->
+</div>
+
 <script>
 
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
-var version_number = "1.0.9 (alpha)"
+var version_number = "0.2 (alpha)"
 var counter = 0;
+var settingsOpened = false;
+var NormalText = "#000000";
+
+var theme = "light";
+var showEventToD = "true"; //Time of Day
+var showEventTuE = "true"; //Time until Event
 
 function MakeFunTimestamps(convertible) {
 let currentTime = (Date.now);
@@ -41,68 +53,29 @@ var offset = (new Date().getTimezoneOffset())*-60000;
 return new Date(s + offset).toISOString().slice(-13, -8);
 }
 
+const events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
+const lightColours = ["#D9D2E9","#E9D2E1","#D2E9DD","#E9E2D2","#D2E9D2","#D2E9E8","#E9DDD2","#E9D2D2","#E9E3D2","#8EBAEC","#8EEC94","#ECB38E","#EC8E8E","#EC8EEC","#ECE98E","#9191EC","#ECBD8E","#BA8EEC"]
+const darkColours = ["#321433","#33142b","#143321","#332314","#1e3314","#143333","#332a14","#261433","#2f3314","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
 function test_zero(conversion) { //adds cute colours
 for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
- if(conversion[i]['event'] == "Quick Maths") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#D9D2E9";
- }
- if(conversion[i]['event'] == "Dragon Egg") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9D2E1";
- }
- if(conversion[i]['event'] == "2x Rewards") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#D2E9DD";
- }
- if(conversion[i]['event'] == "Care Package") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9E2D2";
- }
- if(conversion[i]['event'] == "KOTL") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#D2E9D2";
- }
- if(conversion[i]['event'] == "KOTH") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#D2E9E8";
- }
- if(conversion[i]['event'] == "Auction") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9DDD2";
- }
- if(conversion[i]['event'] == "Giant Cake") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9D2D2";
- }
- if(conversion[i]['event'] == "All bounty") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9E3D2";
- }
+  if (window.theme == "light") {
+    document.getElementById('event_' + String(i)).style.backgroundColor =lightColours[events.indexOf(conversion[i]['event'])];
+  }
+  if (window.theme == "dark") {
+    document.getElementById('event_' + String(i)).style.backgroundColor =darkColours[events.indexOf(conversion[i]['event'])];
+  }
  if(conversion[i]['type'] == "major") {
   document.getElementById('event_' + String(i)).style.fontFamily = "minecraftbold";
  }
- if(conversion[i]['event'] == "Squads") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#8EBAEC";
- }
- if(conversion[i]['event'] == "Beast") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#8EEC94";
- }
- if(conversion[i]['event'] == "Pizza") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#ECB38E";
- }
- if(conversion[i]['event'] == "Rage Pit") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#EC8E8E";
- }
- if(conversion[i]['event'] == "Spire") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#EC8EEC";
- }
- if(conversion[i]['event'] == "Robbery") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#ECE98E";
- }
- if(conversion[i]['event'] == "Blockhead") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#9191EC";
- }
- if(conversion[i]['event'] == "Raffle") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#ECBD8E";
- }
- if(conversion[i]['event'] == "Team Deathmatch") {
-  document.getElementById('event_' + String(i)).style.backgroundColor = "#BA8EEC";
- }
+ document.getElementById('event_' + String(i)).style.color = NormalText;
  let currentTime = (Date.now);
- if ((conversion[i]['timestamp'] - currentTime() <= 60000 && (conversion[i]['timestamp'] - currentTime()) % 1000 > 900)) {
-  document.getElementById('event_'+ String(i)).classList.add("blinktext");
+ if ((conversion[i]['timestamp'] - currentTime() <= 60000 && (conversion[i]['timestamp'] - currentTime()) % 1000 > 900) && (theme == "light")) {
+  document.getElementById('event_'+ String(i)).classList.add("blinktext-light");
+  document.getElementById('event_'+ String(i)).classList.remove("blinktext-dark");
+ }
+ if ((conversion[i]['timestamp'] - currentTime() <= 60000 && (conversion[i]['timestamp'] - currentTime()) % 1000 > 900) && (theme == "dark")) {
+  document.getElementById('event_'+ String(i)).classList.add("blinktext-dark");
+  document.getElementById('event_'+ String(i)).classList.remove("blinktext-light");
  }
 }
 }
@@ -110,7 +83,7 @@ for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
 const pp_url = 'https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440'
 data_backup = MakeAPIAndHTML();
 console.log("The data's been called!")
-setInterval(getPitPanda,42);
+setInterval(getPitPanda,40);
 console.log (process.env.API_KEY);
 
 async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
@@ -130,15 +103,6 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
     div.style.textAlign = "left";
     div.style.fontSize = "1.5em"
     div.style.lineHeight = "100%"
-   // div.style.width = "800px";
-
-   // span.style.marginTop = (String(50*i) + "px")
-   // console.log(String($(window).width()*0.5) + "px")
-   // span.style.position = "absolute";
-   // span.style.left = 0;
-   // span.style.right = 0;
-   // linebreak = document.createElement(`br`);
-   // document.body.appendChild(linebreak);
    document.body.appendChild(div);
 
 }
@@ -177,6 +141,59 @@ function UpdateEverything(transformation) { //this plops the stuff in the actual
 }
 }
 
+function SettingsMenu() {
+  if(settingsOpened == false) {
+    document.getElementById('settings').style.color = "#888888";
+    settingsOpened = true;
+    document.getElementById('settings-section').style.display = "block";
+    console.log("set to true");
+  } else if(settingsOpened == true) {
+    document.getElementById('settings').style.color = NormalText;
+    settingsOpened = false;
+    console.log("set to false");
+    document.getElementById('settings-section').style.display = "none";
+  }
+  
+}
+
+function ChangeTheme(themecolour) {
+  window.theme = themecolour;
+  console.log ("Changed theme to " + window.theme);
+  if(themecolour == "light") {
+    NormalText = "#000000";
+    document.getElementById('settings-theme-dark').style.color = "#888888";
+    document.getElementById('settings-theme-light').style.color = NormalText;
+    document.body.style.background = "#FFFFFF";
+    document.querySelectorAll('p').forEach(e => e.style.color = "black");
+  } else if (window.theme == "dark") {
+    NormalText = "#FFFFFF";
+    document.getElementById('settings-theme-light').style.color = "#888888";
+    document.getElementById('settings-theme-dark').style.color = NormalText;
+    document.body.style.background = "#222222";
+    document.querySelectorAll('p').forEach(e => e.style.color = "white");
+  }
+}
+
+function ToggleTimestamps(timestamps) {
+  if (timestamps == "tod") {
+    if(window.showEventToD == true) {
+      window.showEventToD = false;
+      document.getElementById('settings-ts-tod').style.color = "#888888";
+    } else {
+      window.showEventToD = true;
+      document.getElementById('settings-ts-tod').style.color = NormalText;
+    }
+  }
+  if (timestamps == "tue") {
+    if(window.showEventTuE == true) {
+      window.showEventTuE = false;
+      document.getElementById('settings-ts-tue').style.color = "#888888";
+    } else {
+      window.showEventTuE = true;
+      document.getElementById('settings-ts-tue').style.color = NormalText;
+    }
+  }
+}
 
 function getPitPanda() {
   window.data = window.data_backup;
@@ -201,7 +218,7 @@ function getPitPanda() {
   }
   
   a:visited {
-    color: #3F2D43;
+    color: #725279;
     background-color: transparent;
     text-decoration: none;
   }
@@ -222,14 +239,21 @@ function getPitPanda() {
     font-size: 1.5em
   }
   
-  .blinktext {
-	-webkit-animation: blink-text 1000ms linear infinite;
-	-moz-animation: blink-text 1000ms linear infinite;
-	-ms-animation: blink-text 1000ms linear infinite;
-	-o-animation: blink-text 1000ms linear infinite;
-	 animation: blink-text 1000ms linear infinite;
+  .blinktext-light {
+	-webkit-animation: blink-text-light 1000ms linear infinite;
+	-moz-animation: blink-text-light 1000ms linear infinite;
+	-ms-animation: blink-text-light 1000ms linear infinite;
+	-o-animation: blink-text-light 1000ms linear infinite;
+	 animation: blink-text-light 1000ms linear infinite;
 }
-@keyframes blink-text {
+.blinktext-dark {
+	-webkit-animation: blink-text-dark 1000ms linear infinite;
+	-moz-animation: blink-text-dark 1000ms linear infinite;
+	-ms-animation: blink-text-dark 1000ms linear infinite;
+	-o-animation: blink-text-dark 1000ms linear infinite;
+	 animation: blink-text-dark 1000ms linear infinite;
+}
+@keyframes blink-text-light {
 	0% { color: #FF0000; opacity: 1; }
 	10% { color: #e80000;opacity: 1; }
 	15% { color: #d10000;opacity: 1; }
@@ -242,6 +266,25 @@ function getPitPanda() {
 	49% { color: #300000;opacity: 1; }
 	50% { color: #190000;opacity: 1; }
 }
+@keyframes blink-text-dark {
+	0% { color: #FF0000; opacity: 1; }
+	10% { color: #ff1a1a;opacity: 1; }
+	15% { color: #ff3333;opacity: 1; }
+	20% { color: #ff4d4d;opacity: 1; }
+	25% { color: #ff6666;opacity: 1; }
+	30% { color: #ff8080;opacity: 1; }
+	35% { color: #ff9999;opacity: 1; }
+	40% { color: #ffb3b3;opacity: 1; }
+	45% { color: #ffcccc;opacity: 1; }
+	49% { color: #ffe6e6;opacity: 1; }
+	50% { color: #ffffff;opacity: 1; }
+}
+
+#settings-section {
+  display: none;
+  margin-left: 60px;
+}
+
   </style>
 
 </body>

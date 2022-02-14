@@ -16,19 +16,19 @@
 
 <div id="settings-section">
 <p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
-<!--<p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod")'>Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue")'>Time Until Event</span></p>-->
+<!--<p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");'>Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");'>Time Until Event</span></p>-->
 </div>
 
 <script>
 
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
-var version_number = "0.2 (alpha)"
+var version_number = "0.2.1 (alpha)"
 var counter = 0;
 var settingsOpened = false;
 var NormalText = "#000000";
 
-var theme = "light";
+var theme = "dark";
 var showEventToD = "true"; //Time of Day
 var showEventTuE = "true"; //Time until Event
 
@@ -46,6 +46,49 @@ if (convertible - currentTime() <= 60000) {
 }
 
 return convertible;
+}
+
+function ChangeTheme(themecolour) {
+  window.theme = themecolour;
+  console.log ("Changed theme to " + window.theme);
+  if(themecolour == "light") {
+    NormalText = "#000000";
+    document.getElementById('settings-theme-dark').style.color = "#888888";
+    document.getElementById('settings-theme-light').style.color = NormalText;
+    document.body.style.background = "#FFFFFF";
+    document.querySelectorAll('p').forEach(e => e.style.color = "black");
+    document.getElementById('settings').style.color = NormalText;
+  } else if (window.theme == "dark") {
+    NormalText = "#FFFFFF";
+    document.getElementById('settings-theme-light').style.color = "#888888";
+    document.getElementById('settings-theme-dark').style.color = NormalText;
+    document.getElementById('settings').style.color = NormalText;
+    document.body.style.background = "#222222";
+    document.querySelectorAll('p').forEach(e => e.style.color = "white");
+  }
+}
+
+ChangeTheme(theme);
+
+function ToggleTimestamps(timestamps) {
+  if (timestamps == "tod") {
+    if(window.showEventToD == true) {
+      window.showEventToD = false;
+      document.getElementById('settings-ts-tod').style.color = "#888888";
+    } else if (2==2) {
+      window.showEventToD = true;
+      document.getElementById('settings-ts-tod').style.color = NormalText;
+    }
+  }
+  if (timestamps == "tue") {
+    if(window.showEventTuE == true) {
+      window.showEventTuE = false;
+      document.getElementById('settings-ts-tue').style.color = "#888888";
+    } else if (5==5) {
+      window.showEventTuE = true;
+      document.getElementById('settings-ts-tue').style.color = NormalText;
+    }
+  }
 }
 
 function TimeOfDay(s) {
@@ -99,7 +142,7 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
     div.id = ("event_" + i);
     div.innerHTML = ("[loading event]");
     div.style.padding = "15px"; 
-    div.style.backgroundColor = "#FFFFFF";
+    div.style.backgroundColor = "#222222";
     div.style.textAlign = "left";
     div.style.fontSize = "1.5em"
     div.style.lineHeight = "100%"
@@ -154,45 +197,6 @@ function SettingsMenu() {
     document.getElementById('settings-section').style.display = "none";
   }
   
-}
-
-function ChangeTheme(themecolour) {
-  window.theme = themecolour;
-  console.log ("Changed theme to " + window.theme);
-  if(themecolour == "light") {
-    NormalText = "#000000";
-    document.getElementById('settings-theme-dark').style.color = "#888888";
-    document.getElementById('settings-theme-light').style.color = NormalText;
-    document.body.style.background = "#FFFFFF";
-    document.querySelectorAll('p').forEach(e => e.style.color = "black");
-  } else if (window.theme == "dark") {
-    NormalText = "#FFFFFF";
-    document.getElementById('settings-theme-light').style.color = "#888888";
-    document.getElementById('settings-theme-dark').style.color = NormalText;
-    document.body.style.background = "#222222";
-    document.querySelectorAll('p').forEach(e => e.style.color = "white");
-  }
-}
-
-function ToggleTimestamps(timestamps) {
-  if (timestamps == "tod") {
-    if(window.showEventToD == true) {
-      window.showEventToD = false;
-      document.getElementById('settings-ts-tod').style.color = "#888888";
-    } else {
-      window.showEventToD = true;
-      document.getElementById('settings-ts-tod').style.color = NormalText;
-    }
-  }
-  if (timestamps == "tue") {
-    if(window.showEventTuE == true) {
-      window.showEventTuE = false;
-      document.getElementById('settings-ts-tue').style.color = "#888888";
-    } else {
-      window.showEventTuE = true;
-      document.getElementById('settings-ts-tue').style.color = NormalText;
-    }
-  }
 }
 
 function getPitPanda() {

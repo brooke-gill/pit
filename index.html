@@ -16,21 +16,21 @@
 
 <div id="settings-section">
 <p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
-<!--<p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");'>Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");'>Time Until Event</span></p>-->
+<p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span></p>
 </div>
 
 <script>
 
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
-var version_number = "0.2.1 (alpha)"
+var version_number = "0.2.3 (alpha)"
 var counter = 4;
 var settingsOpened = false;
 var NormalText = "#000000";
 
 var theme = "dark";
-var showEventToD = "true"; //Time of Day
-var showEventTuE = "true"; //Time until Event
+var showEventToD = true; //Time of Day
+var showEventTuE = true; //Time until Event
 
 document.getElementById('settings').style.color = NormalText;
 
@@ -59,19 +59,28 @@ function ChangeTheme(themecolour) {
     document.getElementById('settings-theme-light').style.color = NormalText;
     document.body.style.background = "#FFFFFF";
     document.querySelectorAll('p').forEach(e => e.style.color = "black");
-    document.getElementById('settings').style.color = "#888888";
     document.getElementById('settings-theme-dark').classList.add("hand_cursor");
     document.getElementById('settings-theme-light').classList.remove("hand_cursor");
   } else if (window.theme == "dark") {
     NormalText = "#FFFFFF";
     document.getElementById('settings-theme-light').style.color = "#888888";
     document.getElementById('settings-theme-dark').style.color = NormalText;
-    document.getElementById('settings').style.color = "#888888";
     document.body.style.background = "#222222";
     document.querySelectorAll('p').forEach(e => e.style.color = "white");
     document.getElementById('settings-theme-dark').classList.remove("hand_cursor");
     document.getElementById('settings-theme-light').classList.add("hand_cursor");
   }
+  if (showEventToD == true) {
+    document.getElementById('settings-ts-tod').style.color = NormalText;
+  } else {
+    document.getElementById('settings-ts-tod').style.color = "#888888";
+  }
+  if (showEventTuE == true) {
+    document.getElementById('settings-ts-tue').style.color = NormalText;
+  } else {
+    document.getElementById('settings-ts-tue').style.color = "#888888";
+  }
+  document.getElementById('settings').style.color = "#888888";
 }
 
 ChangeTheme(theme); //called again later (to make sure)
@@ -170,21 +179,36 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
 }
 
 
-function RapidFirst(transformation) { //Makes the first event update much quicker (useful for the <60s countdown.)
+function RapidFirst(transformation) { //this plops the stuff in the actual html page
   for(var i = window.HiddenEventCount; i <= window.HiddenEventCount; i++) { 
+  if (showEventToD == true && showEventTuE == true) {
   document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
+  } else if (showEventToD == true && showEventTuE == false) {
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
+  } else if (showEventToD == false && showEventTuE == true) {
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + TimeOfDay(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
+  } else if (showEventToD == false && showEventTuE == false) {
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + transformation[i].event + `</span>`);
+  }
   if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
     //document.getElementById('event_' + String(i)).remove();
     document.getElementById('event_' + String(i)).style.display = "none";
     window.HiddenEventCount = window.HiddenEventCount + 1; 
-    console.log(config1); 
-}
   }
+}
 }
 
 function UpdateEverything(transformation) { //this plops the stuff in the actual html page
   for(var i = window.HiddenEventCount + 1; i < EventsToLoad; i++) { 
+  if (showEventToD == true && showEventTuE == true) {
   document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
+  } else if (showEventToD == true && showEventTuE == false) {
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
+  } else if (showEventToD == false && showEventTuE == true) {
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + TimeOfDay(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
+  } else if (showEventToD == false && showEventTuE == false) {
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + transformation[i].event + `</span>`);
+  }
   if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
     //document.getElementById('event_' + String(i)).remove();
     document.getElementById('event_' + String(i)).style.display = "none";

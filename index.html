@@ -12,7 +12,7 @@
   <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
 </head>
 <body style="font-family: minecraftregular" background-color="black">
-<div class="img-with-text"><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 15px">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()">Settings</span></div>
+  <div class="img-with-text"><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 8px">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()" class="hand_cursor">View Settings</span></div>
 
 <div id="settings-section">
 <p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
@@ -24,13 +24,15 @@
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
 var version_number = "0.2.1 (alpha)"
-var counter = 0;
+var counter = 4;
 var settingsOpened = false;
 var NormalText = "#000000";
 
 var theme = "dark";
 var showEventToD = "true"; //Time of Day
 var showEventTuE = "true"; //Time until Event
+
+document.getElementById('settings').style.color = NormalText;
 
 function MakeFunTimestamps(convertible) {
 let currentTime = (Date.now);
@@ -57,36 +59,40 @@ function ChangeTheme(themecolour) {
     document.getElementById('settings-theme-light').style.color = NormalText;
     document.body.style.background = "#FFFFFF";
     document.querySelectorAll('p').forEach(e => e.style.color = "black");
-    document.getElementById('settings').style.color = NormalText;
+    document.getElementById('settings').style.color = "#888888";
+    document.getElementById('settings-theme-dark').classList.add("hand_cursor");
+    document.getElementById('settings-theme-light').classList.remove("hand_cursor");
   } else if (window.theme == "dark") {
     NormalText = "#FFFFFF";
     document.getElementById('settings-theme-light').style.color = "#888888";
     document.getElementById('settings-theme-dark').style.color = NormalText;
-    document.getElementById('settings').style.color = NormalText;
+    document.getElementById('settings').style.color = "#888888";
     document.body.style.background = "#222222";
     document.querySelectorAll('p').forEach(e => e.style.color = "white");
+    document.getElementById('settings-theme-dark').classList.remove("hand_cursor");
+    document.getElementById('settings-theme-light').classList.add("hand_cursor");
   }
 }
 
-ChangeTheme(theme);
+ChangeTheme(theme); //called again later (to make sure)
 
 function ToggleTimestamps(timestamps) {
   if (timestamps == "tod") {
     if(window.showEventToD == true) {
-      window.showEventToD = false;
       document.getElementById('settings-ts-tod').style.color = "#888888";
-    } else if (2==2) {
-      window.showEventToD = true;
+      window.showEventToD = false;
+    } else {
       document.getElementById('settings-ts-tod').style.color = NormalText;
+      window.showEventToD = true;
     }
   }
   if (timestamps == "tue") {
     if(window.showEventTuE == true) {
-      window.showEventTuE = false;
       document.getElementById('settings-ts-tue').style.color = "#888888";
-    } else if (5==5) {
-      window.showEventTuE = true;
+      window.showEventTuE = false;
+    } else {
       document.getElementById('settings-ts-tue').style.color = NormalText;
+      window.showEventTuE = true;
     }
   }
 }
@@ -127,7 +133,7 @@ const pp_url = 'https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8f
 data_backup = MakeAPIAndHTML();
 console.log("The data's been called!")
 setInterval(getPitPanda,40);
-console.log (process.env.API_KEY);
+//console.log (${{ secrets.PITPANDA_API_KEY }});
 
 async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
   const response = await fetch(pp_url);
@@ -158,9 +164,11 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
   var q = document.createElement("p");
   q.id = ("special_thanks")
  // q.style.marginTop = (String(50) + "px")
-  q.innerHTML = (`<span style="font-size: 0.8em;">Special thanks to <a href="http://deviantart.com/hextant" target="_blank">Andrew ♡</a>,&nbsp;<a href="https://twitter.com/ellwixd" target="_blank">Ellie</a>, <a href="https://twitter.com/oSnapLLL" target="_blank">oSnapL</a>, <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">1Mad</a>,&nbsp;<a href="https://twitter.com/cutekitty271" target="_blank">Emma</a>, <a href="https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6" target="_blank">catweapon</a>, <a href="https://twitter.com/KinderFissa" target="_blank">Twen</a>, <a href="https://vnmm.dev/"" target="_blank">vnmm</a>, and <a href="https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768" target="_blank">Vermasium</a> for kind words!</span>`)
+  q.innerHTML = (`<span style="font-size: 0.8em;">Special thanks to <a href="http://deviantart.com/hextant" target="_blank">Andrew ♡</a>,&nbsp;<a href="https://twitter.com/ellwixd" target="_blank">Ellie</a>, <a href="https://twitter.com/oSnapLLL" target="_blank">oSnapL</a>, <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">1Mad</a>,&nbsp;<a href="https://twitter.com/cutekitty271" target="_blank">Emma</a>, <a href="https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6" target="_blank">catweapon</a>, <a href="https://twitter.com/KinderFissa" target="_blank">Twen</a>, <a href="https://twitter.com/c4pshypixel" target="_blank">C4PS</a>, <a href="https://vnmm.dev/"" target="_blank">vnmm</a>, and <a href="https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768" target="_blank">Vermasium</a> for kind words!</span>`)
   document.body.appendChild(q);
+  ChangeTheme(theme); //just again to make sure 
 }
+
 
 function RapidFirst(transformation) { //Makes the first event update much quicker (useful for the <60s countdown.)
   for(var i = window.HiddenEventCount; i <= window.HiddenEventCount; i++) { 
@@ -169,6 +177,7 @@ function RapidFirst(transformation) { //Makes the first event update much quicke
     //document.getElementById('event_' + String(i)).remove();
     document.getElementById('event_' + String(i)).style.display = "none";
     window.HiddenEventCount = window.HiddenEventCount + 1; 
+    console.log(config1); 
 }
   }
 }
@@ -271,17 +280,21 @@ function getPitPanda() {
 	50% { color: #190000;opacity: 1; }
 }
 @keyframes blink-text-dark {
-	0% { color: #FF0000; opacity: 1; }
-	10% { color: #ff1a1a;opacity: 1; }
-	15% { color: #ff3333;opacity: 1; }
-	20% { color: #ff4d4d;opacity: 1; }
-	25% { color: #ff6666;opacity: 1; }
-	30% { color: #ff8080;opacity: 1; }
-	35% { color: #ff9999;opacity: 1; }
-	40% { color: #ffb3b3;opacity: 1; }
-	45% { color: #ffcccc;opacity: 1; }
-	49% { color: #ffe6e6;opacity: 1; }
+	0% { color: #c00000; opacity: 1; }
+	10% { color: #c51a1a;opacity: 1; }
+	15% { color: #ca3333;opacity: 1; }
+	20% { color: #cf4d4d;opacity: 1; }
+	25% { color: #d56666;opacity: 1; }
+	30% { color: #da8080;opacity: 1; }
+	35% { color: #e59999;opacity: 1; }
+	40% { color: #eab3b3;opacity: 1; }
+	45% { color: #f5cccc;opacity: 1; }
+	49% { color: #fae6e6;opacity: 1; }
 	50% { color: #ffffff;opacity: 1; }
+}
+
+.hand_cursor {
+  cursor: pointer;
 }
 
 #settings-section {

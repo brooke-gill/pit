@@ -12,13 +12,14 @@
   <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
 </head>
 <body style="font-family: minecraftregular" background-color="black">
-  <div class="img-with-text"><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 8px">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()" class="hand_cursor">View Settings</span></div>
+  <div class="img-with-text" display=""><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 8px">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()" class="hand_cursor">View Settings</span>
+  </div>
 
 <div id="settings-section">
 <p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
 <p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span></p>
+<p style="font-size:15px"><span>Flashing pre-event: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
 </div>
-
 <script>
 
 var HiddenEventCount = 0;
@@ -27,6 +28,7 @@ var version_number = "0.2.3 (alpha)"
 var counter = 4;
 var settingsOpened = false;
 var NormalText = "#000000";
+var EventFlashSec = 60;
 
 var theme = "dark";
 var showEventToD = true; //Time of Day
@@ -106,6 +108,39 @@ function ToggleTimestamps(timestamps) {
   }
 }
 
+function EventFlash(seconds) {
+  window.EventFlashSec = seconds;
+  for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
+    document.getElementById('event_'+ String(i)).classList.remove("blinktext-light");
+    document.getElementById('event_'+ String(i)).classList.remove("blinktext-dark");
+  }
+  if(seconds == 60) {
+    document.getElementById('settings-flash-60').style.color = NormalText;
+    document.getElementById('settings-flash-30').style.color = "#888888";
+    document.getElementById('settings-flash-10').style.color = "#888888";
+    document.getElementById('settings-flash-0').style.color = "#888888"; 
+  }
+  if(seconds == 30) {
+    document.getElementById('settings-flash-30').style.color = NormalText;
+    document.getElementById('settings-flash-60').style.color = "#888888";
+    document.getElementById('settings-flash-10').style.color = "#888888";
+    document.getElementById('settings-flash-0').style.color = "#888888"; 
+  }
+  if(seconds == 10) {
+    document.getElementById('settings-flash-10').style.color = NormalText;
+    document.getElementById('settings-flash-30').style.color = "#888888";
+    document.getElementById('settings-flash-60').style.color = "#888888";
+    document.getElementById('settings-flash-0').style.color = "#888888"; 
+  }
+  if(seconds == -10) {
+    document.getElementById('settings-flash-0').style.color = NormalText;
+    document.getElementById('settings-flash-30').style.color = "#888888";
+    document.getElementById('settings-flash-10').style.color = "#888888";
+    document.getElementById('settings-flash-60').style.color = "#888888"; 
+  }
+  
+}
+
 function TimeOfDay(s) {
 var offset = (new Date().getTimezoneOffset())*-60000;
 return new Date(s + offset).toISOString().slice(-13, -8);
@@ -127,11 +162,11 @@ for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
  }
  document.getElementById('event_' + String(i)).style.color = NormalText;
  let currentTime = (Date.now);
- if ((conversion[i]['timestamp'] - currentTime() <= 60000 && (conversion[i]['timestamp'] - currentTime()) % 1000 > 900) && (theme == "light")) {
+ if ((conversion[i]['timestamp'] - currentTime() <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime()) % 1000 > 900) && (theme == "light")) {
   document.getElementById('event_'+ String(i)).classList.add("blinktext-light");
   document.getElementById('event_'+ String(i)).classList.remove("blinktext-dark");
  }
- if ((conversion[i]['timestamp'] - currentTime() <= 60000 && (conversion[i]['timestamp'] - currentTime()) % 1000 > 900) && (theme == "dark")) {
+ if ((conversion[i]['timestamp'] - currentTime() <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime()) % 1000 > 900) && (theme == "dark")) {
   document.getElementById('event_'+ String(i)).classList.add("blinktext-dark");
   document.getElementById('event_'+ String(i)).classList.remove("blinktext-light");
  }
@@ -176,6 +211,7 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
   q.innerHTML = (`<span style="font-size: 0.8em;">Special thanks to <a href="http://deviantart.com/hextant" target="_blank">Andrew ♡</a>,&nbsp;<a href="https://twitter.com/ellwixd" target="_blank">Ellie</a>, <a href="https://twitter.com/oSnapLLL" target="_blank">oSnapL</a>, <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">1Mad</a>,&nbsp;<a href="https://twitter.com/cutekitty271" target="_blank">Emma</a>, <a href="https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6" target="_blank">catweapon</a>, <a href="https://twitter.com/KinderFissa" target="_blank">Twen</a>, <a href="https://twitter.com/c4pshypixel" target="_blank">C4PS</a>, <a href="https://vnmm.dev/"" target="_blank">vnmm</a>, and <a href="https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768" target="_blank">Vermasium</a> for kind words!</span>`)
   document.body.appendChild(q);
   ChangeTheme(theme); //just again to make sure 
+  EventFlash(60); //setting everything up!
 }
 
 
@@ -183,16 +219,18 @@ function RapidFirst(transformation) { //this plops the stuff in the actual html 
   for(var i = window.HiddenEventCount; i <= window.HiddenEventCount; i++) { 
   if (showEventToD == true && showEventTuE == true) {
   document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
-  } else if (showEventToD == true && showEventTuE == false) {
-  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
   } else if (showEventToD == false && showEventTuE == true) {
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
+  } else if (showEventToD == true && showEventTuE == false) {
   document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + TimeOfDay(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
   } else if (showEventToD == false && showEventTuE == false) {
   document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + transformation[i].event + `</span>`);
   }
   if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
     //document.getElementById('event_' + String(i)).remove();
-    document.getElementById('event_' + String(i)).style.display = "none";
+    for(var j = 0; j <= i; j++) {
+      document.getElementById('event_' + String(j)).style.display = "none"; //This should get rid of some bugs with events not hiding.
+    }
     window.HiddenEventCount = window.HiddenEventCount + 1; 
   }
 }
@@ -202,12 +240,12 @@ function UpdateEverything(transformation) { //this plops the stuff in the actual
   for(var i = window.HiddenEventCount + 1; i < EventsToLoad; i++) { 
   if (showEventToD == true && showEventTuE == true) {
   document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
-  } else if (showEventToD == true && showEventTuE == false) {
-  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
   } else if (showEventToD == false && showEventTuE == true) {
+  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
+  } else if (showEventToD == true && showEventTuE == false) {
   document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + TimeOfDay(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
   } else if (showEventToD == false && showEventTuE == false) {
-  document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + transformation[i].event + `</span>`);
+  document.getElementById('event_' + String(i)).innerHTML = (`<span>` + transformation[i].event + `</span>`);
   }
   if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
     //document.getElementById('event_' + String(i)).remove();

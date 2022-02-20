@@ -19,51 +19,64 @@
 <p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
 <p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span></p>
 <p style="font-size:15px"><span>Flashing pre-event: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
-<div id="notifications-major" style="display: block; position: absolute; top: -40px; left: 400px; font-size: 15px; color: #FFFFFF;">
-  <div id="visible-Pizza" onclick='VisibilityToggle("Pizza")' class="hand_cursor">Pizza</div>
-  <div id="visible-Raffle" onclick='VisibilityToggle("Raffle")' class="hand_cursor">Raffle</div>
-  <div id="visible-Squads" onclick='VisibilityToggle("Squads")' class="hand_cursor">Squads</div>
-  <div id="visible-Blockhead" onclick='VisibilityToggle("Blockhead")' class="hand_cursor">Blockhead</div>
-  <div id="visible-Spire" onclick='VisibilityToggle("Spire")' class="hand_cursor">Spire</div>
-  <div id="visible-Robbery" onclick='VisibilityToggle("Robbery")' class="hand_cursor">Robbery</div>
-  <div id="visible-TeamDeathmatch" onclick='VisibilityToggle("Team Deathmatch")' class="hand_cursor">Team Deathmatch</div>
-  <div id="visible-RagePit" onclick='VisibilityToggle("Rage Pit")' class="hand_cursor">Rage Pit</div>
-  <div id="visible-Beast" onclick='VisibilityToggle("Beast")' class="hand_cursor">Beast</div>
+<p style="font-size:15px"><span>Event notifications: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
+
+<div id="notifications-major" style="display: block; position: absolute; top: -50px; left: 400px; font-size: 15px; color: #FFFFFF;">
+  <div><span id="visible-Pizza" onclick='VisibilityToggle("Pizza")' class="hand_cursor">Pizza</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Pizza" onclick='NotifToggle("Pizza")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-Raffle" onclick='VisibilityToggle("Raffle")' class="hand_cursor">Raffle</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Raffle" onclick='NotifToggle("Raffle")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-Squads" onclick='VisibilityToggle("Squads")' class="hand_cursor">Squads</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Squads" onclick='NotifToggle("Squads")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-Blockhead" onclick='VisibilityToggle("Blockhead")' class="hand_cursor">Blockhead</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Blockhead" onclick='NotifToggle("Blockhead")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-Spire" onclick='VisibilityToggle("Spire")' class="hand_cursor">Spire</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Spire" onclick='NotifToggle("Spire")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-Robbery" onclick='VisibilityToggle("Robbery")' class="hand_cursor">Robbery</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Robbery" onclick='NotifToggle("Robbery")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-TeamDeathmatch" onclick='VisibilityToggle("Team Deathmatch")' class="hand_cursor">Team Deathmatch</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-TeamDeathmatch" onclick='NotifToggle("Team Deathmatch")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-RagePit" onclick='VisibilityToggle("Rage Pit")' class="hand_cursor">Rage Pit</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-RagePit" onclick='NotifToggle("Rage Pit")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-Beast" onclick='VisibilityToggle("Beast")' class="hand_cursor">Beast</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Beast" onclick='NotifToggle("Beast")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
 </div>
-<div id="notifications-minor" style="display: block; position: absolute; top: -40px; left: 550px; font-size: 15px; color: #FFFFFF;">
-<div id="visible-DragonEgg" onclick='VisibilityToggle("Dragon Egg")' class="hand_cursor">Dragon Egg</div>
-<div id="visible-KOTH" onclick='VisibilityToggle("KOTH")' class="hand_cursor">KOTH</div>
-<div id="visible-KOTL" onclick='VisibilityToggle("KOTL")' class="hand_cursor">KOTL</div>
-<div id="visible-2xRewards" onclick='VisibilityToggle("2x Rewards")' class="hand_cursor">2x Rewards</div>
-<div id="visible-CarePackage" onclick='VisibilityToggle("Care Package")' class="hand_cursor">Care Package</div>
-<div id="visible-Auction" onclick='VisibilityToggle("Auction")' class="hand_cursor">Auction</div>
-<div id="visible-QuickMaths" onclick='VisibilityToggle("Quick Maths")' class="hand_cursor">Quick Maths</div>
-<div id="visible-GiantCake" onclick='VisibilityToggle("Giant Cake")' class="hand_cursor">Giant Cake</div>
-<div id="visible-Allbounty" onclick='VisibilityToggle("All bounty")' class="hand_cursor">All bounty</div>
+<div id="notifications-minor" style="display: block; position: absolute; top: -50px; left: 550px; font-size: 15px; color: #FFFFFF;">
+  <div><span id="visible-DragonEgg" onclick='VisibilityToggle("Dragon Egg")' class="hand_cursor">Dragon Egg</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-DragonEgg" onclick='NotifToggle("Dragon Egg")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-KOTH" onclick='VisibilityToggle("KOTH")' class="hand_cursor">KOTH</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-KOTH" onclick='NotifToggle("KOTH")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-KOTL" onclick='VisibilityToggle("KOTL")' class="hand_cursor">KOTL</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-KOTL" onclick='NotifToggle("KOTL")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-2xRewards" onclick='VisibilityToggle("2x Rewards")' class="hand_cursor">2x Rewards</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-2xRewards" onclick='NotifToggle("2x Rewards")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-CarePackage" onclick='VisibilityToggle("Care Package")' class="hand_cursor">Care Package</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-CarePackage" onclick='NotifToggle("Care Package")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-Auction" onclick='VisibilityToggle("Auction")' class="hand_cursor">Auction</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Auction" onclick='NotifToggle("Auction")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-QuickMaths" onclick='VisibilityToggle("Quick Maths")' class="hand_cursor">Quick Maths</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-QuickMaths" onclick='NotifToggle("Quick Maths")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-GiantCake" onclick='VisibilityToggle("Giant Cake")' class="hand_cursor">Giant Cake</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-GiantCake" onclick='NotifToggle("Giant Cake")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <div><span id="visible-Allbounty" onclick='VisibilityToggle("All bounty")' class="hand_cursor">All bounty</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Allbounty" onclick='NotifToggle("All bounty")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <br><div id="select-all" style="color: #ffffff;" onclick='SelectOnly("major")' class="hand_cursor">Majors Only</div>
+  <div id="select-all" style="color: #ffffff;" onclick='SelectOnly("minor")' class="hand_cursor">Minors Only</div>
+  <div id="select-all" style="color: #ff7777;" onclick='SelectOnly("nothing")' class="hand_cursor">Deselect All</div>
 </div>
 </div>
 <script>
 
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
-var version_number = "0.2.5 (alpha)"
+var version_number = "0.4.0"
 var counter = 4;
 var settingsOpened = false;
 var NormalText = "#000000";
 var EventFlashSec = 60;
+var AudioTimer = -10;
 var DoesStuffExist = false;
+
 
 var theme = "dark";
 var showEventToD = true; //Time of Day
 var showEventTuE = true; //Time until Event
 var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
+var AudioEvents = [];
 
 var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Counter + Good Spreadsheet","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is fucking incredible","your gsheet is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","very simple and great colors"]
-var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux"]
+var praise_names = ["Andrew &hearts;","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux"]
 var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://namemc.com/profile/43206ea4-cc28-40ad-8a29-390e8e4d634e"]
-  
+var event_sound = new Audio("event_arriving.mp3");
+
+var events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
+var eventsNoSpaces = ["QuickMaths","DragonEgg","2xRewards","CarePackage","KOTL","KOTH","Auction","GiantCake","Allbounty","Squads","Beast","Pizza","RagePit","Spire","Robbery","Blockhead","Raffle","TeamDeathmatch"]
+
 
 document.getElementById('settings').style.color = NormalText;
+document.cookie = "username=John Smith; expires=Sun, 20 Dec 2022 12:00:00 UTC; path=/";
 
 function MakeFunTimestamps(convertible) {
 let currentTime = (Date.now);
@@ -80,7 +93,6 @@ if (convertible - currentTime() <= 60000) {
 
 return convertible;
 }
-
 
 function EventFlash(seconds) {
   window.EventFlashSec = seconds;
@@ -113,6 +125,36 @@ function EventFlash(seconds) {
     document.getElementById('settings-flash-60').style.color = "#888888"; 
   }
   
+}
+
+function SetAudio(seconds) {
+  window.AudioTimer = seconds;
+  console.log("Audio timer set to " + AudioTimer + " seconds.")
+  if(seconds == 300) {
+    document.getElementById('audio-300').style.color = NormalText;
+    document.getElementById('audio-180').style.color = "#888888";
+    document.getElementById('audio-60').style.color = "#888888";
+    document.getElementById('audio-0').style.color = "#888888"; 
+  }
+  if(seconds == 180) {
+    document.getElementById('audio-180').style.color = NormalText;
+    document.getElementById('audio-300').style.color = "#888888";
+    document.getElementById('audio-60').style.color = "#888888";
+    document.getElementById('audio-0').style.color = "#888888"; 
+  }
+  if(seconds == 60) {
+    document.getElementById('audio-60').style.color = NormalText;
+    document.getElementById('audio-180').style.color = "#888888";
+    document.getElementById('audio-300').style.color = "#888888";
+    document.getElementById('audio-0').style.color = "#888888"; 
+  }
+  if(seconds == -10) {
+    document.getElementById('audio-0').style.color = NormalText;
+    document.getElementById('audio-180').style.color = "#888888";
+    document.getElementById('audio-60').style.color = "#888888";
+    document.getElementById('audio-300').style.color = "#888888"; 
+  }
+
 }
 
 function ChangeTheme(themecolour) {
@@ -148,7 +190,22 @@ function ChangeTheme(themecolour) {
   document.getElementById('settings').style.color = "#888888";
   if (DoesStuffExist == true) {
     EventFlash(window.EventFlashSec);
-    console.log("yo")
+    SetAudio(window.AudioTimer);
+    console.log("Stuff exists. Updating event flashes and audio.")
+  }
+  for(var i = 1; i <= window.eventsNoSpaces.length; i++) {
+    if(VisibleEvents.includes(events[i - 1])) { //if the event is visible...
+      document.getElementById('visible-'+ eventsNoSpaces[i - 1]).style.color = NormalText;
+    } else {
+      document.getElementById('visible-'+ eventsNoSpaces[i - 1]).style.color = "#888888";
+    }
+  }
+  for(var i = 1; i <= window.eventsNoSpaces.length; i++) {
+    if(AudioEvents.includes(events[i - 1])) { //if the event is audible...
+      document.getElementById('notif-'+ eventsNoSpaces[i - 1]).style.fill = NormalText;
+    } else {
+      document.getElementById('notif-'+ eventsNoSpaces[i - 1]).style.fill = "#888888";
+    }
   }
 }
 
@@ -175,7 +232,41 @@ function ToggleTimestamps(timestamps) {
   }
 }
 
+function SelectOnly(event_type) {
+  if(event_type == "minor") {
+  for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
+      if (window.data[i]['type'] == "major") {
+      document.getElementById('event_' + String(i)).style.display = "none";
+      console.log("hehe")
+      }
+      if (window.data[i]['type'] == "minor") {
+      document.getElementById('event_' + String(i)).style.display = "block";
+      console.log("hehe")
+      }
+      window.VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty"];
+    }
+  } else if(event_type == "major") {
+    for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
+      if (window.data[i]['type'] == "minor") {
+      document.getElementById('event_' + String(i)).style.display = "none";
+      console.log("hehe")
+      }
+      if (window.data[i]['type'] == "major") {
+      document.getElementById('event_' + String(i)).style.display = "block";
+      console.log("hehe")
+      }
+      window.VisibleEvents = ["Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
+    }
 
+  } else if(event_type == "nothing") {
+  window.VisibleEvents = [];
+  window.AudioEvents = [];
+  for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
+      document.getElementById('event_' + String(i)).style.display = "none";
+    }
+  }
+  ChangeTheme(theme);
+}
 
 function GeneratePraise() {
   const randomElement = [Math.floor(Math.random() * praise_quotes.length)];
@@ -187,9 +278,9 @@ var offset = (new Date().getTimezoneOffset())*-60000;
 return new Date(s + offset).toISOString().slice(-13, -8);
 }
 
-const events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
 const lightColours = ["#D9D2E9","#E9D2E1","#D2E9DD","#E9E2D2","#D2E9D2","#D2E9E8","#E9DDD2","#E9D2D2","#E9E3D2","#8EBAEC","#8EEC94","#ECB38E","#EC8E8E","#EC8EEC","#ECE98E","#9191EC","#ECBD8E","#BA8EEC"]
 const darkColours = ["#321433","#33142b","#143321","#332314","#1e3314","#143333","#332a14","#261433","#2f3314","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
+
 function test_zero(conversion) { //adds cute colours
 for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
   if (window.theme == "light") {
@@ -253,9 +344,18 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
   document.body.appendChild(q);
   ChangeTheme(theme); //just again to make sure 
   EventFlash(60); //setting everything up!
+  SetAudio(-10);
   DoesStuffExist = true;
 }
 
+function AudioChecker() {
+  let currentTime = (Date.now);
+  for(var i = window.HiddenEventCount; i <= window.HiddenEventCount + 3; i++) {
+    if (window.AudioEvents.includes(window.data[i]['event'])  && window.data[i]['timestamp'] - currentTime() <= (AudioTimer * 1000 + 1000) && window.data[i]['timestamp'] - currentTime() >= (AudioTimer * 1000 - 1000)) {
+    event_sound.play();
+ }
+}
+}
 
 function RapidFirst(transformation) { //this plops the stuff in the actual html page
   for(var i = window.HiddenEventCount; i <= window.HiddenEventCount; i++) { 
@@ -290,7 +390,7 @@ function UpdateEverything(transformation) { //this plops the stuff in the actual
   } else if (showEventToD == false && showEventTuE == false) {
   document.getElementById('event_' + String(i)).innerHTML = (`<span>` + transformation[i].event + `</span>`);
   }
-  if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
+  if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) { //in an ideal world this should NEVER be called but js can be weird as hell sometimes
     //document.getElementById('event_' + String(i)).remove();
     document.getElementById('event_' + String(i)).style.display = "none";
     window.HiddenEventCount = window.HiddenEventCount + 1; 
@@ -299,7 +399,6 @@ function UpdateEverything(transformation) { //this plops the stuff in the actual
 }
 
 function VisibilityToggle(toggle) {
-  console.log(window.VisibleEvents);
   if (window.VisibleEvents.includes(toggle)) {
     const index = window.VisibleEvents.indexOf(toggle);
     if (index > -1) {
@@ -319,8 +418,26 @@ function VisibilityToggle(toggle) {
       document.getElementById('event_' + String(i)).style.display = "block";
     }
     }
-  console.log(window.VisibleEvents);
   }
+  console.log("List of events that are visible:")
+  console.log(window.VisibleEvents);
+}
+
+function NotifToggle(toggle) {
+  if (window.AudioEvents.includes(toggle)) {
+    const index = window.AudioEvents.indexOf(toggle);
+    if (index > -1) {
+      window.AudioEvents.splice(index, 1);
+      document.getElementById('notif-' + toggle.replace(/\s/g, '')).style.fill = "#888888";
+    }
+  } else {
+    window.AudioEvents.push(toggle);
+    document.getElementById('notif-' + toggle.replace(/\s/g, '')).style.fill = NormalText;
+    for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
+    }
+}
+  console.log("List of events that a sound will play for:")
+  console.log(window.AudioEvents);
 }
 
 function SettingsMenu() {
@@ -346,6 +463,7 @@ function getPitPanda() {
     counter = 0;
     UpdateEverything(window.data);
     console.log("Updated 2nd-n values.")
+    AudioChecker();
   }
   RapidFirst(window.data);
   console.log("Updated 1st value.");

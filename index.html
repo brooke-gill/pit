@@ -31,6 +31,7 @@
   <div><span id="visible-TeamDeathmatch" onclick='VisibilityToggle("Team Deathmatch")' class="hand_cursor">Team Deathmatch</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-TeamDeathmatch" onclick='NotifToggle("Team Deathmatch")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
   <div><span id="visible-RagePit" onclick='VisibilityToggle("Rage Pit")' class="hand_cursor">Rage Pit</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-RagePit" onclick='NotifToggle("Rage Pit")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
   <div><span id="visible-Beast" onclick='VisibilityToggle("Beast")' class="hand_cursor">Beast</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Beast" onclick='NotifToggle("Beast")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+  <br><div id="test-audio" style="color: #ffffff;" onclick='TestAudio()' class="hand_cursor">Preview Audio</div>
 </div>
 <div id="notifications-minor" style="display: block; position: absolute; top: -50px; left: 550px; font-size: 15px; color: #FFFFFF;">
   <div><span id="visible-DragonEgg" onclick='VisibilityToggle("Dragon Egg")' class="hand_cursor">Dragon Egg</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-DragonEgg" onclick='NotifToggle("Dragon Egg")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
@@ -155,6 +156,11 @@ function SetAudio(seconds) {
     document.getElementById('audio-300').style.color = "#888888"; 
   }
 
+}
+
+function TestAudio() {
+  event_sound.play();
+  event_sound.currentTime = 0;
 }
 
 function ChangeTheme(themecolour) {

@@ -2,6 +2,7 @@
 <html>
 <head>
   <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript" src="config1.js"></script> 
   <link rel="apple-touch-icon" sizes="180x180" href="favicon_icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon_icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon_icons/favicon-16x16.png">
@@ -11,6 +12,7 @@
   <title>Hypixel Pit Events Tracker</title>
   <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
 </head>
+
 <body style="font-family: minecraftregular" background-color="black">
   <div class="img-with-text" display=""><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 8px">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()" class="hand_cursor">View Settings</span>
   </div>
@@ -19,7 +21,7 @@
 <p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
 <p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span></p>
 <p style="font-size:15px"><span>Flashing pre-event: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
-<p style="font-size:15px"><span>Event notifications: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
+<p style="font-size:15px"><span>Event reminder sound: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
 
 <div id="notifications-major" style="display: block; position: absolute; top: -50px; left: 400px; font-size: 15px; color: #FFFFFF;">
   <div><span id="visible-Pizza" onclick='VisibilityToggle("Pizza")' class="hand_cursor">Pizza</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Pizza" onclick='NotifToggle("Pizza")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
@@ -77,7 +79,7 @@ var eventsNoSpaces = ["QuickMaths","DragonEgg","2xRewards","CarePackage","KOTL",
 
 
 document.getElementById('settings').style.color = NormalText;
-document.cookie = "username=John Smith; expires=Sun, 20 Dec 2022 12:00:00 UTC; path=/";
+//document.cookie = "username=John Smith; expires=Sun, 20 Dec 2022 12:00:00 UTC; path=/";
 
 function MakeFunTimestamps(convertible) {
 let currentTime = (Date.now);
@@ -275,7 +277,11 @@ function SelectOnly(event_type) {
 }
 
 function GeneratePraise() {
-  const randomElement = [Math.floor(Math.random() * praise_quotes.length)];
+  const randomElement = [Math.floor(Math.random() * (praise_quotes.length + 3)) - 3]; //adds slight bias to quote #0
+  console.log(randomElement);
+  if(randomElement <= -1) {
+    randomElement[0] = 0;
+  }
   return (`"` + praise_quotes[randomElement] + `" -<a href="` + praise_urls[randomElement] + `" target="_blank">` + praise_names[randomElement] + `</a>`);
 }
 
@@ -311,11 +317,10 @@ for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
 }
 }
 
-const pp_url = 'https://events.mcpqndq.dev/?key=a2cca262-f36c-4b6a-a666-d99a7a8ff440'
+const pp_url = ('https://events.mcpqndq.dev/?key=' + config1);
 data_backup = MakeAPIAndHTML();
 console.log("The data's been called!")
 setInterval(getPitPanda,40);
-//console.log (${{ secrets.PITPANDA_API_KEY }});
 
 async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
   const response = await fetch(pp_url);

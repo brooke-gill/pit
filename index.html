@@ -62,7 +62,7 @@
 
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
-var version_number = "0.4.9 #2"
+var version_number = "0.4.9 #2-and-a-half"
 var counter = 4;
 var settingsOpened = false;
 var NormalText = "#000000";
@@ -452,7 +452,7 @@ function RapidFirst(transformation) { //this plops the stuff in the actual html 
       document.getElementById('event_' + String(j)).style.display = "none"; //This should get rid of some bugs with events not hiding.
     }
     window.HiddenEventCount = window.HiddenEventCount + 1; 
-    DemolitionTime = (Date.now() + (VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000)
+    DemolitionTime = (window.data[HiddenEventCount - 1]['timestamp'] + (VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000)
     console.log(DemolitionTime);
     TimeOfEventStart = Date.now();
     console.log(TimeOfEventStart);

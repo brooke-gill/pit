@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+  <!DOCTYPE HTML>
 <html>
 <head>
   <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -14,7 +14,7 @@
 
 <body style="font-family: minecraftregular" background-color="black" class="unselectable">
 
-  <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 450px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center">Current events will <br> show up here.</div>
+  <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 450px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center">Current events will<br>show up here.</div>
 
 
   <div class="img-with-text" display=""><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" draggable="false" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 8px" id="brookeafk-com">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()" class="hand_cursor">View Settings</span>
@@ -26,7 +26,7 @@
 <div id="settings-section" style="display: none; position: relative; bottom: 40px;">
 <p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
 <p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='ToggleTimestamps("dnc");' class="hand_cursor">Day-Night Cycle</span></p>
-<p style="font-size:15px"><span>Flashing pre-event: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
+<p style="font-size:15px"><span id="settings-flashing">Flashing pre-event: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
 <p style="font-size:15px"><span>Event reminder sound: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
 <p style="font-size:15px"><span>Palette: </span><span id="settings-palette-0" onclick='ChangePalette(0)'>Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)'>Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)'>Theme 2</span></p> 
 
@@ -64,7 +64,7 @@
 
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
-var version_number = "0.5.1"
+var version_number = "0.5.2"
 var counter = 4;
 var settingsOpened = false;
 var NormalText = "#000000";
@@ -82,13 +82,14 @@ var showEventDNC = true; //Day-night cycle
 var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
 var AudioEvents = [];
 
-var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is fucking incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","very simple and great colors","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com"]
-var praise_names = ["Andrew &hearts;","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano"]
-var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon"]
+var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is fucking incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","very simple and great colors","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`i find your website really useful`]
+var praise_names = ["Andrew &hearts;","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha"]
+var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f"]
 var AllSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder']
 var event_sound = new Audio("event_arriving.mp3");
 event_sound.volume = 0.2;
 var ok_ids = []
+var WithoutVar = ""
 
 var events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
 var eventsNoSpaces = ["QuickMaths","DragonEgg","2xRewards","CarePackage","KOTL","KOTH","Auction","GiantCake","Allbounty","Squads","Beast","Pizza","RagePit","Spire","Robbery","Blockhead","Raffle","TeamDeathmatch"]
@@ -100,7 +101,20 @@ var TimeOfEventStart = 0;
 var YW1vbmd1cw = "YTJjY2EyNjItZjM2Yy00YjZhLWE2NjYtZDk5YTdhOGZmNDQw";
 
 //events that I know work: all bounty, dragon egg, 2x rewards, uh .,
-
+if(document.body.clientWidth < 800) {
+  document.getElementById("brookeafk-com").innerText = "mobile website"
+  document.getElementById("settings-ts-dnc").innerText = "Day-Night"
+  document.getElementById("settings-ts-tue").innerText = "Until Event"
+  document.getElementById("settings-flashing").innerText = "Flash: "
+  console.log("Damn, that's a tiny screen. Better accomodate.")
+  document.getElementById("current-event").setAttribute("id","replacement")
+  document.getElementById("brookeafk-com").setAttribute("id","current-event")
+  document.getElementById("replacement").setAttribute("id","brookeafk-com")
+  document.getElementById("current-event").innerHTML = "brookeafk.com (mobile)"
+  document.getElementById("brookeafk-com").innerHTML = ""
+  document.getElementById("current-event").style.width = "200px"
+  WithoutVar = "brookeafk.com"
+}
 
 document.getElementById('settings').style.color = NormalText;
 //document.cookie = "username=John Smith; expires=Sun, 20 Dec 2022 12:00:00 UTC; path=/";
@@ -156,6 +170,7 @@ function EventFlash(seconds) {
 }
 
 function DayNightCycle() { //OPTIMIZE THIS please add variable that's like "when the day is dark please do not call the svg again please"
+//I will not >:)
   let CurrentTime = Date.now();
   let DayTime = CurrentTime % 2160000/1000;
   if(DayTime < 1440) {
@@ -383,14 +398,14 @@ return new Date(s + offset).toISOString().slice(-13, -8);
 }
 
 var lightColours0 = ["#D9D2E9","#E9D2E1","#D2E9DD","#E9E2D2","#D2E9D2","#D2E9E8","#E9DDD2","#E9D2D2","#E9E3D2","#8EBAEC","#8EEC94","#ECB38E","#EC8E8E","#EC8EEC","#ECE98E","#9191EC","#ECBD8E","#BA8EEC"]
-var darkColours0 = ["#321433","#33142b","#143321","#332314","#1e3314","#143333","#332a14","#261433","#2f3314","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
+var darkColours0 = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
 
 var lightColours2 = ["#FFAEBC","#E29CB4","#B4F8C8","#E4D4B4","#F1CBB0","#A0E7E5","#F4F4CC","#C5E3F2","#FBE7C6","#14C2DD","#C7F954","#FCC27C","#FF6F61","#64ABD1","#FDD55E","#5CB7D4","#EEB968","#81599F",]
 var darkColours2 = ["#003A61","#194475","#2E4180","#323275","#0E2F82","#305B8C","#315F82","#196B82","#02636E","#0ACF87","#2CB8AE","#219CD1","#438BDE","#1B96DE","#2BB5BA","#25AACF","#2D82D6","#4BD6B8",]
 var darkColours1 = ["#4F2561","#3D2C5C","#782C91","#8C3A81","#70287D","#504178","#402459","#AB1B7D","#661563","#DE8F10","#FA9E0A","#DB7821","#D19D49","#E84E3C","#E6C853","#ED7C2B","#CF8D32","#E3DD30",] 
 var lightColours1 = ["#F7E497","#E3DC7B","#D9C755","#EBC86A","#F7C997","#EDD368","#F2B583","#EDD09D","#EB8773","#AB419B","#C2619E","#D93FB7","#B83DB3","#E038A3","#C71C60","#D45BA1","#E84179","#E344E0",]
 
-const pp_url = ('https://events.mcpqndq.dev/?key=' + atob(YW1vbmd1cw));
+const pp_url = ('https://events.mcpqndq.dev');
 data_backup = MakeAPIAndHTML();
 getPitPanda();
 console.log("The data's been called!");
@@ -425,7 +440,7 @@ async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq f
   console.log("Added footer.");
   //p.style.marginTop = (String(50*i) + "px")
   p.id = ("version")
-  p.innerHTML = (`<span style="position:relative; left: 10px;">` + "v" + window.version_number + "</span>");
+  p.innerHTML = (`<span style="position:relative; left: 10px;">` + "v" + window.version_number + ` (with help from <a href="https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f" target="_blank" rel="noopener">Ticha</a>) </span>`);
   document.body.appendChild(p);
   var q = document.createElement("p");
   q.id = ("special_thanks")
@@ -538,6 +553,9 @@ function URLToSettings() {
     showEventToD = here.searchParams.get('timestamps').charAt(0);
     showEventTuE = here.searchParams.get('timestamps').charAt(1);
     showEventDNC = here.searchParams.get('timestamps').charAt(2);
+    if (showEventDNC == false) {
+      document.getElementById("day-night-border").style.display = "none";
+    }
     SettingsSelectedEvents = parseInt(here.searchParams.get('visible'));
     SettingsNotifyEvents = parseInt(here.searchParams.get('notifs'));
 
@@ -691,7 +709,7 @@ function CurrentEvent() {
     }
   } else if (HiddenEventCount > 0 && DemolitionTime - currentTime() <= 0) {
     //document.getElementById("current-event").style.display = "none";
-    document.getElementById("current-event").innerHTML = "";
+    document.getElementById("current-event").innerHTML = WithoutVar;
   }
 }
 

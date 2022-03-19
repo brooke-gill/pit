@@ -28,7 +28,7 @@
 <p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='ToggleTimestamps("dnc");' class="hand_cursor">Day-Night Cycle</span></p>
 <p style="font-size:15px"><span id="settings-flashing">Flashing pre-event: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
 <p style="font-size:15px"><span>Event reminder sound: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
-<p style="font-size:15px"><span>Palette: </span><span id="settings-palette-0" onclick='ChangePalette(0)'>Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)'>Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)'>Theme 2</span></p> 
+<p style="font-size:15px"><span>Palette: </span><span id="settings-palette-0" onclick='ChangePalette(0)'>Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)'>Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)'>Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)'>Theme 3</span></p> 
 
 <div id="notifications-major" style="display: block; position: absolute; top: -50px; right: 200px; text-align: right; font-size: 15px; color: #FFFFFF;">
   <div><span id="visible-Pizza" onclick='VisibilityToggle("Pizza")' class="hand_cursor">Pizza</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Pizza" onclick='NotifToggle("Pizza")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
@@ -64,7 +64,7 @@
 
 var HiddenEventCount = 0;
 var EventsToLoad = 1;
-var version_number = "0.5.2"
+var version_number = "0.5.2.1"
 var counter = 4;
 var settingsOpened = false;
 var NormalText = "#000000";
@@ -82,9 +82,10 @@ var showEventDNC = true; //Day-night cycle
 var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
 var AudioEvents = [];
 
-var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is fucking incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","very simple and great colors","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`i find your website really useful`]
+var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is fucking incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","very simple and great colors","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`i find your website really useful, specially when i have the game closed`]
 var praise_names = ["Andrew &hearts;","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha"]
 var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f"]
+//Note: Jojo's cock is seven inches (18cm) long. I've been forced to write this, unfortunately. Sorry that you had to read this.
 var AllSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder']
 var event_sound = new Audio("event_arriving.mp3");
 event_sound.volume = 0.2;
@@ -241,9 +242,10 @@ function ChangeTheme(themecolour) {
     document.querySelectorAll('p').forEach(e => e.style.color = "black");
     document.getElementById('settings-theme-dark').classList.add("hand_cursor");
     document.getElementById('settings-theme-light').classList.remove("hand_cursor");
-    document.getElementById('settings-palette-0').innerHTML = ("Original");
+    document.getElementById('settings-palette-0').innerHTML = ("Default");
     document.getElementById('settings-palette-1').innerHTML = ("Sunset");
     document.getElementById('settings-palette-2').innerHTML = ("Beachside");
+    document.getElementById('settings-palette-3').innerHTML = ("Bubblegum");
   } else if (window.theme == "dark") {
     NormalText = "#FFFFFF";
     document.getElementById('settings-theme-light').style.color = "#888888";
@@ -252,9 +254,10 @@ function ChangeTheme(themecolour) {
     document.querySelectorAll('p').forEach(e => e.style.color = "white");
     document.getElementById('settings-theme-dark').classList.remove("hand_cursor");
     document.getElementById('settings-theme-light').classList.add("hand_cursor");
-    document.getElementById('settings-palette-0').innerHTML = ("Original");
+    document.getElementById('settings-palette-0').innerHTML = ("Default");
     document.getElementById('settings-palette-1').innerHTML = ("Sunrise");
     document.getElementById('settings-palette-2').innerHTML = ("Ocean");
+    document.getElementById('settings-palette-3').innerHTML = ("Alpha");
   }
   document.getElementById('day-svg').style.fill = NormalText;
   document.getElementById('settings').style.color = "#888888";
@@ -331,6 +334,7 @@ function ChangePalette(changeThePalette) {
   document.getElementById('settings-palette-0').style.color = "#888888";
   document.getElementById('settings-palette-1').style.color = "#888888";
   document.getElementById('settings-palette-2').style.color = "#888888";
+  document.getElementById('settings-palette-3').style.color = "#888888";
   document.getElementById('settings-palette-' + Palette).style.color = NormalText;
 }
 
@@ -404,6 +408,8 @@ var lightColours2 = ["#FFAEBC","#E29CB4","#B4F8C8","#E4D4B4","#F1CBB0","#A0E7E5"
 var darkColours2 = ["#003A61","#194475","#2E4180","#323275","#0E2F82","#305B8C","#315F82","#196B82","#02636E","#0ACF87","#2CB8AE","#219CD1","#438BDE","#1B96DE","#2BB5BA","#25AACF","#2D82D6","#4BD6B8",]
 var darkColours1 = ["#4F2561","#3D2C5C","#782C91","#8C3A81","#70287D","#504178","#402459","#AB1B7D","#661563","#DE8F10","#FA9E0A","#DB7821","#D19D49","#E84E3C","#E6C853","#ED7C2B","#CF8D32","#E3DD30",] 
 var lightColours1 = ["#F7E497","#E3DC7B","#D9C755","#EBC86A","#F7C997","#EDD368","#F2B583","#EDD09D","#EB8773","#AB419B","#C2619E","#D93FB7","#B83DB3","#E038A3","#C71C60","#D45BA1","#E84179","#E344E0",]
+var darkColours3 = ["#321433","#33142b","#143321","#332314","#1e3314","#143333","#332a14","#261433","#2f3314","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
+var lightColours3 = ["#FE9FBF","#F2C4CD","#ffaed7","#F2A2C0","#FF9DBB","#FF92B9","#ECAFB7","#FFC6DA","#FEA8C5","#D98FC5","#BF5AA4","#E68DCF","#E08FCA","#E884CC","#C15BA7","#E78CD1","#DC87BE","#CF6EB1"]
 
 const pp_url = ('https://events.mcpqndq.dev');
 data_backup = MakeAPIAndHTML();

@@ -98,7 +98,6 @@
   var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC"]
   //Note: Jojo's cock is seven inches (18cm) long. I've been forced to write this, unfortunately. Sorry that you had to read this.
   var AllSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio']
-  var greeting = ['Hey there— ','Get ready— ','Hurry up! ']
   var event_sound = new Audio("event_arriving.mp3");
   event_sound.volume = 0.2;
   var ok_ids = []
@@ -585,7 +584,8 @@
       } else {
         var minute_s = "minutes"
       }
-      var notification = new Notification(greeting[Math.floor(Math.random()*greeting.length)] + window.data[i]['event'] + " is starting in " + NotifTimer/60 + " " + minute_s +"!", {body: "", icon: "3457688aa57c4d71ab9d22b04f9160db.png"});
+      //—
+      var notification = new Notification("", {body: "Hey— " + window.data[i]['event'] + " is starting in " + NotifTimer/60 + " " + minute_s +"!", icon: "3457688aa57c4d71ab9d22b04f9160db.png"});
       time1 = Date.now()
       }
       }
@@ -604,7 +604,7 @@
     } else if (showEventToD == true && showEventTuE == false) {
     document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + TimeOfDay(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: minecraftregular"> </span>`);
     } else if (showEventToD == false && showEventTuE == false) {
-    document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">f` + transformation[i].event + `</span>`);
+    document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: minecraftregular">` + transformation[i].event + `</span>`);
     }
     if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
       //document.getElementById('event_' + String(i)).remove();
@@ -722,6 +722,10 @@
       AudioEvents = [];
       var leadingZeroes = (num, places) => String(num).padStart(places, '0')
       var number = here.searchParams.get('visible');
+
+      if(number == "0") {
+        document.getElementById('alert-noevents').style.display = "block";
+      }
       var BinaryEvents = (leadingZeroes(parseInt(number).toString(2),events.length));
       console.log(BinaryEvents)
       for(i = 0; i < events.length; i++) {

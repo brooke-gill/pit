@@ -33,7 +33,7 @@
   <br>
   <span style="font-size: large; visibility: hidden;" class="m7" id="pleasewait">Please wait up to 12 seconds.</span>
   <br><br><br><br>
-  <span style="font-size: large" class="m7">Hypixel Pit XP Tracker - Made by <a href="https://brookeafk.com"><span class="md" style="text-decoration: none">BrookeAFK</span></a></span>
+  <span style="font-size: large" class="m7">Hypixel Pit XP Tracker - Made by <a href="https://brookeafk.com" target="_blank"><span class="md" style="text-decoration: none">BrookeAFK</span></a></span>
 
 
 </center>
@@ -76,7 +76,7 @@ if(here.searchParams.get('ign') == null) {
 } else {
     user = here.searchParams.get('ign')
 }
-    document.getElementById('target').innerHTML = user;
+    document.getElementById('target').innerHTML = `<a href="https://pitpanda.rocks/players/` + user + `" target="_blank"><span class="m7">` + user + `</span></a>`;
     console.log(window.user)
     CheckAPI()
     CheckAPI2()
@@ -432,5 +432,29 @@ document.getElementById('fake').innerHTML = Math.round(realxp)
     color: #fff;
     font-family: minecraftbold
 }
+
+a:link {
+      color: #B15AC2;
+      background-color: transparent;
+      text-decoration: none;
+    }
+    
+    a:visited {
+      color: #725279;
+      background-color: transparent;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      color: #E7C2EE;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+    
+    a:active {
+      color: #EDDDF0;
+      background-color: transparent;
+      text-decoration: underline;
+    }
 </style>
 </html>

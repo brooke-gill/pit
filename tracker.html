@@ -4,7 +4,7 @@
   <head>
     <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-
+    <title>Hypixel Pit Player Tracker</title>
   </head>
 <body style="font-family: minecraftregular; background: #222;">
   <center>
@@ -61,6 +61,7 @@ var nextlevelxp = 0;
 var next10levelxp = 0;
 var menuopen = 0;
 var nextprestigecolor = 0;
+var prefix = 0;
 var nextlevelcolor = 0;
 
 var calcxp = 0;
@@ -68,6 +69,7 @@ var calcprestige = 0;
 
 var numberofupdates = 0;
 var whattoput = 0;
+var rankcolor = "7";
 
 let here = new URL(window.location.href);
 console.log(here.searchParams.get('ign'))
@@ -79,7 +81,6 @@ if(here.searchParams.get('ign') == null) {
     document.getElementById('target').innerHTML = `<a href="https://pitpanda.rocks/players/` + user + `" target="_blank"><span class="m7">` + user + `</span></a>`;
     console.log(window.user)
     CheckAPI()
-    CheckAPI2()
     setInterval(CheckAPI2, 6000);
     setInterval(XPHour, 125)
     setInterval(Increment, 62)
@@ -140,8 +141,8 @@ document.getElementById('xp').innerHTML = (window.fakexp.toLocaleString("en-US")
     //console.log("")
 
 
-    console.log("Prestige: " + prestige)
-    console.log("Level: " + level)
+    //console.log("Prestige: " + prestige)
+    //console.log("Level: " + level)
 document.getElementById('level').innerHTML = ("[" + convertToRoman(prestige) + "-" + level + "]");
 
 prestigecolors = ['7','9','e','6','c','5','d','f','b','1','2','3']
@@ -171,6 +172,48 @@ document.getElementById('level').innerHTML = `<span class=m` + myprestigecolor +
     let json6 = data;
     console.log(json6.player.stats.Pit.profile.xp)
     xp = json6.player.stats.Pit.profile.xp
+    let packageRank = json6.player.packageRank;
+    let newPackageRank = json6.player.newPackageRank;
+    let monthlyPackageRank = json6.player.monthlyPackageRank;
+    let rank = json6.player.rank;
+    let prefix = json6.player.prefix;
+    //console.log(prefix +  "/" + rank + "/" + monthlyPackageRank + "/" + newPackageRank + "/" + packageRank);
+    if(prefix == undefined || prefix == "NaN") {
+        //console.log("prefix is undefined")
+        if(rank == undefined) {
+            //console.log("rank is undefined")
+            if(monthlyPackageRank == undefined || monthlyPackageRank == "NONE") {
+                //console.log("monthly package rank is undefined")
+                if(newPackageRank == undefined) {
+                    //console.log("new package rank is undefined")
+                    if(packageRank == undefined) {
+                        //console.log("package rank is undefined")
+
+                    }
+                } else {
+                    if(newPackageRank == "VIP" || newPackageRank == "VIP_PLUS") {
+                        rankcolor = "a"
+                    } else if(newPackageRank == "MVP" || newPackageRank == "MVP_PLUS") {
+                        rankcolor = "b"
+                    }
+                }
+            } else {
+                if(monthlyPackageRank == "SUPERSTAR") {
+                    rankcolor = "6"
+                }
+            }
+        } else {
+            if(rank == "ADMIN") {
+                rankcolor = "c"
+            } else if (rank == "GAME_MASTER") {
+                rankcolor = "2"
+            }
+        }
+    } else {
+        rankcolor = prefix.charAt(1);
+    }
+    console.log(prefix)
+    document.getElementById('target').innerHTML = `<a href="https://pitpanda.rocks/players/` + user + `" target="_blank"><span class="m` + rankcolor + `">` + user + `</span></a>`;
     if(realxp != xp) {
     oldxp = realxp
     numberofupdates = numberofupdates + 1;

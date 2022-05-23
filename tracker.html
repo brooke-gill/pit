@@ -4,7 +4,7 @@
   <head>
     <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <title>Hypixel Pit Player Tracker</title>
+    <title>Hypixel Pit Events Tracker</title>
   </head>
 <body style="font-family: minecraftregular; background: #222;">
   <center>
@@ -26,9 +26,9 @@
   <span style="font-size: large" id="time_10level" class="m7"></span>
   <br>
   <span style="font-size: large" id="time_prestige" class="m7"></span>
-  <br>
-  <br>
-  <br>
+  <br><br>
+  <span style="font-size: large" id="brackets" class="m7">[<span id="rainbowprogress" style="display: none" class="rainbow_text_animated">||||||||||||||||||||||||||||||||||||||||||||||||||</span><span id="progress" class="m8"><span id="progress_0">|</span><span id="progress_1">|</span><span id="progress_2">|</span><span id="progress_3">|</span><span id="progress_4">|</span><span id="progress_5">|</span><span id="progress_6">|</span><span id="progress_7">|</span><span id="progress_8">|</span><span id="progress_9">|</span><span id="progress_10">|</span><span id="progress_11">|</span><span id="progress_12">|</span><span id="progress_13">|</span><span id="progress_14">|</span><span id="progress_15">|</span><span id="progress_16">|</span><span id="progress_17">|</span><span id="progress_18">|</span><span id="progress_19">|</span><span id="progress_20">|</span><span id="progress_21">|</span><span id="progress_22">|</span><span id="progress_23">|</span><span id="progress_24">|</span><span id="progress_25">|</span><span id="progress_26">|</span><span id="progress_27">|</span><span id="progress_28">|</span><span id="progress_29">|</span><span id="progress_30">|</span><span id="progress_31">|</span><span id="progress_32">|</span><span id="progress_33">|</span><span id="progress_34">|</span><span id="progress_35">|</span><span id="progress_36">|</span><span id="progress_37">|</span><span id="progress_38">|</span><span id="progress_39">|</span><span id="progress_40">|</span><span id="progress_41">|</span><span id="progress_42">|</span><span id="progress_43">|</span><span id="progress_44">|</span><span id="progress_45">|</span><span id="progress_46">|</span><span id="progress_47">|</span><span id="progress_48">|</span><span id="progress_49">|</span></span>]</span> <span style="font-size: large" id="percentage" class="m6"></span>
+  <br><br>
   <span style="font-size: large" class="m7"><span>Currently tracking </span><span id="target" class="md"></span>  |  <span id="change" style="cursor:pointer" onclick="ChangeIGN()" class="ma">Click here to change</span></span>
   <br>
   <span style="font-size: large; visibility: hidden;" class="m7" id="pleasewait">Please wait up to 12 seconds.</span>
@@ -43,6 +43,9 @@ prestiges = [100, 110, 120, 130, 140, 150, 175, 200, 250, 300, 400, 500, 600, 70
 //prestige_xp = [65935, 138458, 217580, 303290, 395599, 494496, 609869, 741739, 906571, 1104376, 1368116, 1697791, 2093401, 2554946, 3082426, 3675841, 4335191, 5126411, 6049501, 7104461, 8291291, 9609991, 11192431, 13038611, 15148531, 17522191, 20159591, 23126666, 26423416, 31368541, 37962041, 44621476, 51280911, 57940346, 64599781, 71259216, ]
 prestige_xp = [65950,138510,217680,303430,395760,494700,610140,742040,906930,1104780,1368580,1698330,2094030,2555680,3083280,3676830,4336330,5127730,6051030,7106230,8293330,9612330,11195130,13041730,15152130,17526330,20164330,23132080,26429580,31375830,37970830,44631780,51292730,57953680,64614630,71275580,84465580,104250580,130630580,163605580,213068080,279018080,361455580,460380580,575793080,707693080,905543080,1235293080,1894793080,5192293080,11787293080]
 prestige = 0
+
+progress_colors = ["2", "a", "e", "e", "6", "6", "6", "6", "6", "c", "c", "c", "c", "c", "c", "4", "4", "4", "4", "4", "4", "4", "5", "5", "5", "5", "5", "5", "5", "5", "d", "d", "d", "d", "d", "d", "d", "d", "d", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "b",]
+
 level = 0
 var startingxp = 0 
 var currentxp = 0
@@ -63,7 +66,9 @@ var menuopen = 0;
 var nextprestigecolor = 0;
 var prefix = 0;
 var nextlevelcolor = 0;
+var percentage = 0;
 
+var counter = 0;
 var calcxp = 0;
 var calcprestige = 0;
 
@@ -151,6 +156,9 @@ myprestigecolor = prestigecolors[((Math.floor((prestige+5)/5)))]
 if(prestige == 0) {
     myprestigecolor = prestigecolors[0]
 }
+document.getElementById('brackets').className = ""
+document.getElementById('brackets').classList.add("m" + myprestigecolor)
+
 mylevelcolor = levelcolors[Math.floor(level/10)]
 if(prestige == 0) {
   document.getElementById('level').innerHTML = `<span class=m` + myprestigecolor +`>[</span><span class=m` + mylevelcolor + `>` + level + `</span><span class=` + "m" + myprestigecolor +`>]</span>`
@@ -328,8 +336,32 @@ if(level < 109) {
     document.getElementById('time_10level').innerHTML = ""
 }
     document.getElementById('time_prestige').innerHTML = ((prestige_xp[prestige] - fakexp).toLocaleString("en-US") + ` XP until </span><span class="m` + nextprestigecolor + `">[</span><span class="me">` + convertToRoman(prestige + 1) + `</span><span class="m` + nextprestigecolor + `">] </span><span class="m6">` + toTimestamp((prestige_xp[prestige] - fakexp)/(((fakexp - startingxp)*3600000)/(currenttime - startingtime)) * 3600))
+    
+    if(prestige == 0) {
+    percentage = ((fakexp * 100)/(prestige_xp[prestige]))
+    document.getElementById('percentage').innerHTML = percentage.toFixed(2) + "%"
+    } else {
+    percentage = (((fakexp - prestige_xp[prestige - 1]) * 100)/(prestige_xp[prestige] - prestige_xp[prestige - 1]))
+    document.getElementById('percentage').innerHTML = percentage.toFixed(2) + "%"
 }
 
+counter = counter + 1
+if (counter == 10) {
+    counter = 0;
+if(percentage >= 100) {
+    document.getElementById('progress').style.display = "none"
+document.getElementById('rainbowprogress').style.display = "inline"
+
+} else { 
+document.getElementById('progress').style.display = "inline"
+document.getElementById('rainbowprogress').style.display = "none"
+for(l = 0; l < ((percentage - 2) / 2); l++) {
+document.getElementById('progress_' + l).className = ""
+document.getElementById('progress_' + l).classList.add("m" + progress_colors[l])
+}
+}
+}
+}
 function XPHour() {
 currenttime = Date.now()
 if(startingxp != 0 && startingtime != 0) {
@@ -499,5 +531,25 @@ a:link {
       background-color: transparent;
       text-decoration: underline;
     }
+
+
+    .rainbow_text_animated {
+    background: linear-gradient(to right, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 12s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
 </style>
 </html>

@@ -4,7 +4,12 @@
   <head>
     <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <title>Hypixel Pit Events Tracker</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_icons/favicon-16x16.png">
+    <link rel="manifest" href="favicon_icons/site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
+    <title>Hypixel Pit Player Tracker</title>
   </head>
 <body style="font-family: minecraftregular; background: #222;">
   <center>
@@ -86,7 +91,7 @@ if(here.searchParams.get('ign') == null) {
     document.getElementById('target').innerHTML = `<a href="https://pitpanda.rocks/players/` + user + `" target="_blank"><span class="m7">` + user + `</span></a>`;
     console.log(window.user)
     CheckAPI()
-    setInterval(CheckAPI2, 6000);
+    setInterval(CheckAPI2, 10000);
     setInterval(XPHour, 125)
     setInterval(Increment, 62)
     function CheckAPI() {
@@ -112,14 +117,12 @@ if(here.searchParams.get('ign') == null) {
 }
 
 function toTimestamp(duration) {
-if (duration <= 3600) {
+    if(duration == Infinity || !(duration > 0)) {
+          return("")
+      } else if (duration <= 3600) {
       return ((Math.floor(((duration))/60) + "m" + (Math.floor((duration)) % 60) + "s"));
   } else if (duration > 1) {
-      if(duration == Infinity) {
-          return("")
-      } else {
       return ((Math.floor((duration)/3600) + "h" + (Math.floor((duration)/60) % 60) + "m"));
-      }
   }
 }
 
@@ -355,10 +358,11 @@ document.getElementById('rainbowprogress').style.display = "inline"
 } else { 
 document.getElementById('progress').style.display = "inline"
 document.getElementById('rainbowprogress').style.display = "none"
-for(l = 0; l < ((percentage - 2) / 2); l++) {
+for(l = 0; l <= 49; l++) {
 document.getElementById('progress_' + l).className = ""
+if(l < ((percentage - 2) / 2)) {
 document.getElementById('progress_' + l).classList.add("m" + progress_colors[l])
-}
+} }
 }
 }
 }

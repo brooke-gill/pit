@@ -36,7 +36,7 @@
   <br><br>
   <span style="font-size: large" class="m7"><span>Currently tracking </span><span id="target" class="md"></span>  |  <span id="change" style="cursor:pointer" onclick="ChangeIGN()" class="ma">Click here to change</span></span>
   <br>
-  <span style="font-size: large; visibility: hidden;" class="m7" id="pleasewait">Please wait up to 12 seconds.</span>
+  <span style="font-size: large; visibility: hidden;" class="m7" id="pleasewait">Please wait...</span>
   <br><br><br><br>
   <span style="font-size: large" class="m7">Hypixel Pit XP Tracker - Made by <a href="https://brookeafk.com" target="_blank"><span class="md" style="text-decoration: none">BrookeAFK</span></a></span>
 
@@ -99,6 +99,7 @@ if(here.searchParams.get('ign') == null) {
     let json5 = data;
     console.log(json5.data.player.id)
     window.uuid = json5.data.player.id
+    CheckAPI2();
     });
     }
 

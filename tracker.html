@@ -150,7 +150,7 @@ document.getElementById('xp').innerHTML = (window.fakexp.toLocaleString("en-US")
 
     //console.log("Prestige: " + prestige)
     //console.log("Level: " + level)
-document.getElementById('level').innerHTML = ("[" + convertToRoman(prestige) + "-" + level + "]");
+document.getElementById('level').innerHTML = ("[" + convertToRoman(prestige) + `-<span style="font-size: xx-large">` + level + "</span>]");
 
 prestigecolors = ['7','9','e','6','c','5','d','f','b','1','2','3']
 levelcolors = ['7','9','3','2','a','e','b6','bc','b4','b5','bd','bf','bb']

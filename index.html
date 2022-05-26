@@ -22,7 +22,7 @@
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center">Current events will<br>show up here.</div>
   
   
-    <div class="img-with-text" display=""><img src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" draggable="false" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 8px" id="brookeafk-com">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()" class="hand_cursor">View Settings</span>
+    <div class="img-with-text" display=""><img id="logo" src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" draggable="false" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 8px" id="brookeafk-com">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()" class="hand_cursor">View Settings</span>
     </div>
   
     <div style="background: #314; padding: 5px; width: 120px; height: 32px; position: absolute; left: 300px; top: 24px; border-radius: 25px; display:flex; align-items: center; vertical-align:center; justify-content: center;
@@ -556,6 +556,7 @@
   var lightColours3 = ["#FE9FBF","#F2C4CD","#ffaed7","#F2A2C0","#FF9DBB","#FF92B9","#ECAFB7","#FFC6DA","#FEA8C5","#D98FC5","#BF5AA4","#E68DCF","#E08FCA","#E884CC","#C15BA7","#E78CD1","#DC87BE","#CF6EB1"]
   var darkColours3 = ["#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222",'#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229',]
   var darkColoursVermasium = ["#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#394066","#394066","#394066","#394066","#394066","#394066","#394066","#394066","#394066"]
+  var darkColoursIDAKOI = ["#1B2440","#BF372A","#453561","#65213C","#19213C","#29314C","#101628","#101D2F","#601F39","#D98943","#E9879E","#C54129","#E6C302","#C54129","#C5A510","#D2A829","#B4971E","#D68941"]
 
 
   const pp_url = ('https://events.mcpqndq.dev'); //stands for "Pit Panda"
@@ -959,6 +960,10 @@
   }
   
   function CuteColors(conversion) { //adds cute colours
+  if(window.Palette.length > 1) {
+    document.getElementById('logo').src = ("https://mc-heads.net/avatar/" + window.Palette + "/100")
+    window.theme = "dark";
+  }
   if(window.theme == "light") {
     var TheRightArrayToFindTheColours = window["lightColours" + Palette];
   }

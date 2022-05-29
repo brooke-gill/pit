@@ -121,7 +121,10 @@
   var IsItACountdown = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">QUICK MATHS!</span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #aa00aa; font-family: ` + CorrectBold + `;">DRAGON EGG</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffaa00; font-family: ` + CorrectBold + `;">CARE PACKAGE</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">AUCTION!</span><br><span style="color: #AAAAAA; font-family:` + CorrectFont + `">Check auctioneer or chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> EVERYONE GETS A BOUNTY!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
   var DemolitionTime = 15;
   var TimeOfEventStart = 0;
-  
+
+  //var eventsES = ["Matemáticas Rápidas","Huevo de Dragón","2x Recompensas","Paquete Auxiliar","RDLE","RDLC","Subasta","Tarta Gigante","Recompensa","Escuadrones","Bestia","Pizza","Furia Pit","Chapitel","Robo","Blockhead","Raffle","Deathmatch por Equipos"]
+  //var IsItACountdownES = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡MATEMÁTICAS RÁPIDAS!</span> <span style="color: #AAAAAA;">Los 5 primeros jugadores que respondan recibirán</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span><br><span style="color: #aa00aa; font-family: ` + CorrectBold + `;">HUEVO DE DRAGÓN</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span><br><span style="color: #ffaa00; font-family: ` + CorrectBold + `;">PAQUETE AUXILIAR</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">SUBASTA!</span><br><span style="color: #AAAAAA; font-family:` + CorrectFont + `">Compruebe el subastador o el chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span><br><span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> ¡TODOS RECIBEN UNA RECOMPENSA!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
+
   //events that I know work: all bounty, dragon egg, 2x rewards, uh .,
   if(document.body.clientWidth < 800) {
     document.getElementById("brookeafk-com").innerText = "mobile website"
@@ -559,6 +562,7 @@
   var darkColours3 = ["#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222",'#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229',]
   var darkColoursVermasium = ["#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#394066","#394066","#394066","#394066","#394066","#394066","#394066","#394066","#394066"]
   var darkColoursIDAKOI = ["#1B2440","#BF372A","#453561","#65213C","#19213C","#29314C","#101628","#101D2F","#601F39","#D98943","#E9879E","#C54129","#E6C302","#C54129","#C5A510","#D2A829","#B4971E","#D68941"]
+  var darkColoursswuxx = ["#61123e","#000000","#61123e","#000000","#61123e","#61123e","#61123e","#61123e","#61123e","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000"]
 
 
   const pp_url = ('https://events.mcpqndq.dev'); //stands for "Pit Panda"
@@ -589,7 +593,7 @@
   }
     var o = document.createElement("p");
     o.id = "made_with_love";
-    o.innerHTML = (`<span style="position:relative; left: 10px;">Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a></span>`);
+    o.innerHTML = (`<span style="position:relative; left: 10px;">McPqndq says that he "Can't fix [the issue] rn idk". My apologies for the downtime. -<a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a></span>`);
     document.body.appendChild(o);
   
     var p = document.createElement("p");
@@ -1115,6 +1119,26 @@
       -ms-user-select: none;
       user-select: none;
   }
+
+  .rainbow_text_animated {
+    background: linear-gradient(to right, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 12s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
+
     </style>
   
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"6ee9d8195eaa7e2c","version":"2021.12.0","r":1,"token":"7ae79fbdb6224da3a02aeec2ac9658a6","si":100}' crossorigin="anonymous"></script>

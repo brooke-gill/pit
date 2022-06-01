@@ -20,9 +20,6 @@ $(function(){
 <span class="body">
   <table class="item body">
     <tr>
-      <td class="tableheader">Gold</td>
-    </tr>
-    <tr>
       <td style="text-align: center"><img src="./images/gold_kill_recap.png" width="100%"></td>
     </tr>
     <tr>
@@ -36,22 +33,24 @@ $(function(){
 <br><span>The following are some ways players obtain gold and increase their gold-earning rate:</span>
 <ul style="list-style-type: square;" class="body">
 <li>Killing players with a <strong>bounty</strong> will award the killer with the bounty.</li>
-<li>Placing in the top twenty players in <strong>major events</strong> will award the killer with the bounty.</li>
+<li>Placing in the top twenty players in <strong>major events</strong> will give a player several thousand gold.</li>
+<li>For new players, minor events such as <strong>Giant Cake</strong>, <strong>King of the Ladder</strong>, <strong>Dragon Egg</strong>, and <strong>King of the Hill</strong> are great ways to obtain small amounts of gold.</li>
+<li>Mystic sword enchants such as <strong>Moctezuma</strong> and <strong>Gold Boost</strong> were made to increase players' gold output.</li>
 <li><strong>Gold Boost</strong> is an upgrade purchasable at level 10. Each tier grants an additional +10% more gold from kills and ingots.</li>
-<li><strong>Conglomerate</strong> is a perk unlocked in the Renown Shop. It removes the ability to earn XP, transmuting every XP earned into 0.20g.</li>
+<li><strong>Conglomerate</strong> is a perk unlocked in the Renown Shop. Unlocked at prestige <span class="me">VIII</span>, it removes the ability to earn XP, transmuting every XP earned into 0.20g.</li>
 
 <li>The <strong>Highlander</strong> Megastreak grants the user +110% gold from all kills and the ability to earn one's bounty after dying. It is a Renown upgrade available at prestige <span class="me">VII</span>.</li>
 <li>Renown upgrades such as <strong>Renown Gold Boost</strong>, <strong>Celebrity</strong>, and <strong>Co-op Cat</strong> are extremely useful for increasing a player's gold output.</li>
 
 </ul>
-<span>In order to prestige, a player needs to have grinded a certain amount of gold. This does not necessarily mean that the player needs to have that amount of gold in their inventory; the gold simply needs to have been earned at any point during the prestige.</span><br><span>Actions such as trading do not count towards the gold requirement.</span><br>
-<br>
+<span>In order to prestige, a player needs to have grinded a certain amount of gold. This does not necessarily mean that the player needs to have that amount of gold in their inventory; the gold simply needs to have been earned at any point during the prestige.</span><br><span>Actions such as trading do not count towards the gold requirement.</span>
+<br><br>
 
 <span id='showtable' onclick="Table()" style="cursor: pointer"><i>[Show Gold Requirement Table]</i></span>
 
-<table id='gold-table' class="body" style="text-align: center; visibility: collapse;"><tr><td>Prestige</td><td>Gold Requirement</td></tr><tr><td>I</td><td>10,000</td></tr><tr><td>II</td><td>20,000</td></tr><tr><td>III</td><td>20,000</td></tr><tr><td>IV</td><td>20,000</td></tr><tr><td>V</td><td>30,000</td></tr><tr><td>VI</td><td>35,000</td></tr><tr><td>VII</td><td>40,000</td></tr><tr><td>VIII</td><td>45,000</td></tr><tr><td>IX</td><td>50,000</td></tr><tr><td>X</td><td>60,000</td></tr><tr><td>XI</td><td>70,000</td></tr><tr><td>XII</td><td>80,000</td></tr><tr><td>XIII</td><td>90,000</td></tr><tr><td>XIV</td><td>100,000</td></tr><tr><td>XV</td><td>125,000</td></tr><tr><td>XVI</td><td>150,000</td></tr><tr><td>XVII</td><td>175,000</td></tr><tr><td>XVIII</td><td>200,000</td></tr><tr><td>XIX</td><td>250,000</td></tr><tr><td>XX</td><td>300,000</td></tr><tr><td>XXI</td><td>350,000</td></tr><tr><td>XXII</td><td>400,000</td></tr><tr><td>XXIII</td><td>500,000</td></tr><tr><td>XXIV</td><td>600,000</td></tr><tr><td>XXV</td><td>700,000</td></tr><tr><td>XXVI</td><td>800,000</td></tr><tr><td>XXVII</td><td>900,000</td></tr><tr><td>XXVIII</td><td>1,000,000</td></tr><tr><td>XXIX</td><td>1,000,000</td></tr><tr><td>XXX</td><td>1,000,000</td></tr><tr><td>XXXI</td><td>1,000,000</td></tr><tr><td>XXXII</td><td>1,000,000</td></tr><tr><td>XXXIII</td><td>1,000,000</td></tr><tr><td>XXXIV</td><td>1,000,000</td></tr><tr><td>XXXV</td><td>1,000,000</td></tr><tr><td>XXXVI</td><td>2,000,000</td></tr><tr><td>XXXVII</td><td>2,000,000</td></tr><tr><td>XXXVIII</td><td>2,000,000</td></tr><tr><td>XXXIX</td><td>2,000,000</td></tr><tr><td>XL</td><td>2,000,000</td></tr><tr><td>XLI</td><td>2,000,000</td></tr><tr><td>XLII</td><td>2,000,000</td></tr><tr><td>XLIII</td><td>2,000,000</td></tr><tr><td>XLIV</td><td>2,000,000</td></tr><tr><td>XLV</td><td>2,000,000</td></tr><tr><td>XLVI</td><td>2,000,000</td></tr><tr><td>XLVII</td><td>2,000,000</td></tr><tr><td>XLVIII</td><td>2,000,000</td></tr><tr><td>XLIX</td><td>2,000,000</td></tr><tr><td>L</td><td>2,000,000</td></tr><tr><td>LI</td><td>2,000,000</td></tr></table><br><br>
+<table id='gold-table' class="body" style="text-align: center; visibility: collapse;"><tr><td>Prestige</td><td>Gold Requirement</td></tr><tr><td>I</td><td>10,000</td></tr><tr><td>II</td><td>20,000</td></tr><tr><td>III</td><td>20,000</td></tr><tr><td>IV</td><td>20,000</td></tr><tr><td>V</td><td>30,000</td></tr><tr><td>VI</td><td>35,000</td></tr><tr><td>VII</td><td>40,000</td></tr><tr><td>VIII</td><td>45,000</td></tr><tr><td>IX</td><td>50,000</td></tr><tr><td>X</td><td>60,000</td></tr><tr><td>XI</td><td>70,000</td></tr><tr><td>XII</td><td>80,000</td></tr><tr><td>XIII</td><td>90,000</td></tr><tr><td>XIV</td><td>100,000</td></tr><tr><td>XV</td><td>125,000</td></tr><tr><td>XVI</td><td>150,000</td></tr><tr><td>XVII</td><td>175,000</td></tr><tr><td>XVIII</td><td>200,000</td></tr><tr><td>XIX</td><td>250,000</td></tr><tr><td>XX</td><td>300,000</td></tr><tr><td>XXI</td><td>350,000</td></tr><tr><td>XXII</td><td>400,000</td></tr><tr><td>XXIII</td><td>500,000</td></tr><tr><td>XXIV</td><td>600,000</td></tr><tr><td>XXV</td><td>700,000</td></tr><tr><td>XXVI</td><td>800,000</td></tr><tr><td>XXVII</td><td>900,000</td></tr><tr><td>XXVIII</td><td>1,000,000</td></tr><tr><td>XXIX</td><td>1,000,000</td></tr><tr><td>XXX</td><td>1,000,000</td></tr><tr><td>XXXI</td><td>1,000,000</td></tr><tr><td>XXXII</td><td>1,000,000</td></tr><tr><td>XXXIII</td><td>1,000,000</td></tr><tr><td>XXXIV</td><td>1,000,000</td></tr><tr><td>XXXV</td><td>1,000,000</td></tr><tr><td>XXXVI</td><td>2,000,000</td></tr><tr><td>XXXVII</td><td>2,000,000</td></tr><tr><td>XXXVIII</td><td>2,000,000</td></tr><tr><td>XXXIX</td><td>2,000,000</td></tr><tr><td>XL</td><td>2,000,000</td></tr><tr><td>XLI</td><td>2,000,000</td></tr><tr><td>XLII</td><td>2,000,000</td></tr><tr><td>XLIII</td><td>2,000,000</td></tr><tr><td>XLIV</td><td>2,000,000</td></tr><tr><td>XLV</td><td>2,000,000</td></tr><tr><td>XLVI</td><td>2,000,000</td></tr><tr><td>XLVII</td><td>2,000,000</td></tr><tr><td>XLVIII</td><td>2,000,000</td></tr><tr><td>XLIX</td><td>2,000,000</td></tr><tr><td>L</td><td>2,000,000</td></tr><br></table>
 
-
+<span>Players are able to trade up to 50,000 gold per day. Additionally, gold can also be used to purchase shop items, perks, upgrades, and items from Auction events.</span><br><br>
 <span class="section">Trivia</span><br>
 <span>Before <a href="https://hypixel.net/threads/the-pit-1-0-5-tryhard-patch.4667681/" target="_blank" rel="noopener noreferrer">The Pit 0.1.5</a>, gold requirements were extremely high, requiring as much as 18,480,000g grinded to prestige. The gold requirements for all prestiges are now capped at 2,000,000g each.</span><br>
 </span></div>

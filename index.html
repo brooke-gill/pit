@@ -122,8 +122,10 @@
   var DemolitionTime = 15;
   var TimeOfEventStart = 0;
 
-  //var eventsES = ["Matemáticas Rápidas","Huevo de Dragón","2x Recompensas","Paquete Auxiliar","RDLE","RDLC","Subasta","Tarta Gigante","Recompensa","Escuadrones","Bestia","Pizza","Furia Pit","Chapitel","Robo","Blockhead","Raffle","Deathmatch por Equipos"]
-  //var IsItACountdownES = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡MATEMÁTICAS RÁPIDAS!</span> <span style="color: #AAAAAA;">Los 5 primeros jugadores que respondan recibirán</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span><br><span style="color: #aa00aa; font-family: ` + CorrectBold + `;">HUEVO DE DRAGÓN</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span><br><span style="color: #ffaa00; font-family: ` + CorrectBold + `;">PAQUETE AUXILIAR</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">SUBASTA!</span><br><span style="color: #AAAAAA; font-family:` + CorrectFont + `">Compruebe el subastador o el chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span><br><span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> ¡TODOS RECIBEN UNA RECOMPENSA!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
+  var eventsES = ["Matemáticas Rápidas","Huevo de Dragón","2x Recompensas","Paquete Auxiliar","RDLE","RDLC","Subasta","Tarta Gigante","Recompensa","Escuadrones","Bestia","Pizza","Furia Pit","Chapitel","Robo","Blockhead","Raffle","Deathmatch por Equipos"]
+  var IsItACountdownES = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡MATEMÁTICAS RÁPIDAS!</span> <span style="color: #AAAAAA;">Los 5 primeros jugadores que respondan recibirán</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span><br><span style="color: #aa00aa; font-family: ` + CorrectBold + `;">HUEVO DE DRAGÓN</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span><br><span style="color: #ffaa00; font-family: ` + CorrectBold + `;">PAQUETE AUXILIAR</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">SUBASTA!</span><br><span style="color: #AAAAAA; font-family:` + CorrectFont + `">Compruebe el subastador o el chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span><br><span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> ¡TODOS RECIBEN UNA RECOMPENSA!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
+
+  var all_text = ["MINOR EVENT!","MAJOR EVENT!","Starting in ","Ending in "]
 
   //events that I know work: all bounty, dragon egg, 2x rewards, uh .,
   if(document.body.clientWidth < 800) {
@@ -593,7 +595,7 @@
   }
     var o = document.createElement("p");
     o.id = "made_with_love";
-    o.innerHTML = (`<span style="position:relative; left: 10px;">McPqndq says that he "Can't fix [the issue] rn idk". My apologies for the downtime. -<a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a></span>`);
+    o.innerHTML = (`<span style="position:relative; left: 10px;">Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a></span>`);
     document.body.appendChild(o);
   
     var p = document.createElement("p");
@@ -874,20 +876,20 @@
           //console.log(((VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) /* should return like "480000" (8m) in most cases */ - 180000)
           if (currentTime() >= 180000 + TimeOfEventStart) {
             document.getElementById("current-event").innerHTML =
-              `<span style="color: #aa00aa; font-family: ` + CorrectBold + `;">MAJOR EVENT!</span> <span style="color:` +
+              `<span style="color: #aa00aa; font-family: ` + CorrectBold + `;">` + all_text[1] + `</span> <span style="color:` +
               correctColourCode +
               `; font-family: ` + CorrectBold + `;">` +
               window.data[HiddenEventCount - 1]["event"].toUpperCase() +
-              `!</span><br><span style="color: #aaaaaa;">Ending in <span style="color: #55ff55;">` +
+              `!</span><br><span style="color: #aaaaaa;">` + all_text[3] + `<span style="color: #55ff55;">` +
               AboutMe(DemolitionTime - currentTime()) +
               `</span></span>`;
           } else {
             document.getElementById("current-event").innerHTML =
-              `<span style="color: #aa00aa; font-family: ` + CorrectBold + `;">MAJOR EVENT!</span> <span style="color:` +
+              `<span style="color: #aa00aa; font-family: ` + CorrectBold + `;">` + all_text[1] + `</span> <span style="color:` +
               correctColourCode +
               `; font-family: ` + CorrectBold + `;">` +
               window.data[HiddenEventCount - 1]["event"].toUpperCase() +
-              `!</span><br><span style="color: #aaaaaa;">Starting in <span style="color: #55ff55;">` +
+              `!</span><br><span style="color: #aaaaaa;">` + all_text[2] + `<span style="color: #55ff55;">` +
               AboutMe(TimeOfEventStart + 180000 - currentTime()) +
               `</span></span>`;
             console.log("major + countdown");
@@ -900,11 +902,11 @@
       } else if (recentEventData["type"] == "minor") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
           document.getElementById("current-event").innerHTML =
-            `<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span> <span style="color:` +
+            `<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">` + all_text[0] + `</span> <span style="color:` +
             correctColourCode +
             `; font-family: ` + CorrectBold + `;">` +
             window.data[HiddenEventCount - 1]["event"].toUpperCase() +
-            `!</span><br><span style="color: #aaaaaa;">Ending in <span style="color: #55ff55;">` +
+            `!</span><br><span style="color: #aaaaaa;">` + all_text[3] + `<span style="color: #55ff55;">` +
             result +
             `</span></span>`;
           console.log("minor + countdown");

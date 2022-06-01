@@ -34,6 +34,10 @@ body {
     color: #aaa
   }
 
+  .center {
+    text-align: center;
+  }
+
   .item { 
     outline: 1px solid white;
     width: 20%;

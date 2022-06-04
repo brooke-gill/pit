@@ -38,6 +38,10 @@ body {
     text-align: center;
   }
 
+  .italic {
+    font-style: italic;
+  }
+
   .item { 
     outline: 1px solid white;
     width: 20%;
@@ -56,6 +60,10 @@ body {
   table,th,td {
   border:1px solid white;
   padding: 5px;
+}
+
+.invisible_fill {
+  background-color: #361a1d;
 }
 
   .box {

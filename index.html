@@ -14,6 +14,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
     <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
     <title>Hypixel Pit Events Tracker</title>
+    <script src="emergency.js"></script>
+
     <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
   </head>
   
@@ -72,7 +74,7 @@
   </div>
   
   <script>
-  
+
   var HiddenEventCount = 0;
   var EventsToLoad = 1;
   var version_number = `0.6.1 |&nbsp;&nbsp;</span><span style="color: #b48ae7">T</span><span style="color: #b589e5">H</span><span style="color: #b788e3">A</span><span style="color: #b887e1">N</span><span style="color: #b986de">K</span><span style="color: #ba85dc"> </span><span style="color: #bc85da">Y</span><span style="color: #bd84d8">O</span><span style="color: #be83d6">U</span><span style="color: #bf82d4"> </span><span style="color: #c181d2">f</span><span style="color: #c280d0">o</span><span style="color: #c37fcd">r</span><span style="color: #c47ecb"> </span><span style="color: #c67dc9">3</span><span style="color: #c77cc7">0</span><span style="color: #c87cc5">,</span><span style="color: #ca7bc3">0</span><span style="color: #cb7ac1">0</span><span style="color: #cc79be">0</span><span style="color: #cd78bc"> </span><span style="color: #cf77ba">p</span><span style="color: #d076b8">a</span><span style="color: #d175b6">g</span><span style="color: #d274b4">e</span><span style="color: #d473b2">v</span><span style="color: #d573b0">i</span><span style="color: #d672ad">e</span><span style="color: #d771ab">w</span><span style="color: #d970a9">s</span><span style="color: #da6fa7">!`
@@ -566,16 +568,29 @@
   var darkColoursIDAKOI = ["#1B2440","#BF372A","#453561","#65213C","#19213C","#29314C","#101628","#101D2F","#601F39","#D98943","#E9879E","#C54129","#E6C302","#C54129","#C5A510","#D2A829","#B4971E","#D68941"]
   var darkColoursswuxx = ["#61123e","#000000","#61123e","#000000","#61123e","#61123e","#61123e","#61123e","#61123e","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000"]
 
-
-  const pp_url = ('https://raw.githubusercontent.com/brooke-gill/pit/main/emergency.txt'); //stands for "Pit Panda"
+  var emergency = true;
+  var pp_url = ""
+  console.log(emergency)
+  if(emergency) {
+    pp_url = ('https://raw.githubusercontent.com/brooke-gill/pit/main/emergency.txt'); //emergency text!
+  }
+  if(emergency == false) {
+    pp_url = ('https://events.mcpqndq.dev'); //stands for "Pit Panda"
+    console.log("no emergency here!")
+  }
   data_backup = MakeAPIAndHTML();
   getPitPanda();
   console.log("The data's been called!");
   setInterval(getPitPanda,40);
   
   async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
+    if(emergency == false) {
     const response = await fetch(pp_url);
     window.data = await response.json();
+    }
+    if(emergency == true) {
+    window.data = await window.emergency_data;
+    }
     window.data_backup = window.data;
     window.EventsToLoad = Object.keys(window.data).length
     console.log("Loading events: " + window.EventsToLoad);
@@ -873,6 +888,7 @@
       if (recentEventData["type"] == "major") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
           console.log(DemolitionTime - currentTime());
+          console.log(TimeOfEventStart)
           //console.log(((VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) /* should return like "480000" (8m) in most cases */ - 180000)
           if (currentTime() >= 180000 + TimeOfEventStart) {
             document.getElementById("current-event").innerHTML =

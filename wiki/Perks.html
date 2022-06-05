@@ -43,46 +43,46 @@ $(function(){
     <tr style="font-weight: bold; position: sticky; top: 0" class="invisible_fill">
         <td>Name</td><td>Cost</td><td>Reqs.</td><td>Description</td>
     </tr>
-    <tr>
+    <tr id="GoldenHeads" name="GoldenHeads">
         <td>Golden Heads</td><td><span class="m6">500g</td><td>[<span class="m9">10</span>]</td><td>Earned golden apples turn into golden heads. Golden heads provide 1 second of Speed, 2 seconds of Regeneration II, and <span class="me">3&hearts;</span> of absorption.</td>
     </tr>
-    <tr>
+    <tr id="FishingRod" name="FishingRod">
         <td>Fishing Rod</td><td><span class="m6">1,000g</td><td>[<span class="m9">10</span>]</td><td>Spawn with a fishing rod.</td>
     </tr>
-    <tr>
+    <tr id="LavaBucket" name="LavaBucket">
         <td>Lava Bucket</td><td><span class="m6">1,000g</td><td>[<span class="m9">10</span>]</td><td>Spawn with a lava bucket. Damage dealt with the lava in the bucket will count towards kills and assists. It cannot be placed in the very center of the Pit area.</td>
     </tr>
-    <tr>
+    <tr id="Strength-Chaining" name="Strength-Chaining">
         <td>Strength-Chaining</td><td><span class="m6">2,000g</td><td>[<span class="m3">20</span>]</td><td>Deal +8% damage for 7 seconds when you get a kill. If you get another kill within the 7 seconds, restart the timer and add another 8% damage. This effect is capped at 5 kills (+40% damage).</td>
     </tr>
-    <tr>
+    <tr id="SafetyFirst" name="SafetyFirst">
         <td>Safety First</td><td><span class="m6">3,000g</td><td>[<span class="m3">20</span>]</td><td>Spawn with a chainmail helmet (1 armor bar).</td>
     </tr>
-    <tr>
+    <tr id="Mineman" name="Mineman">
         <td>Mineman</td><td><span class="m6">3,000g</td><td>[<span class="m2">30</span>]</td><td>Spawn with 24 cobblestone and a diamond pickaxe (efficiency IV). Killing players gives +3 cobblestone.</td>
     </tr>
-    <tr>
+    <tr id="Bonk" name="Bonk">
         <td>Bonk!</td><td><span class="m6">2,000g</td><td>[<span class="m2">35</span>]</td><td>The first hit per life you receive from a player is blocked and grants Resistance I for 2 seconds.</td>
     </tr>
-    <tr>
+    <tr id="Trickle-down" name="Trickle-down">
         <td>Trickle-down</td><td><span class="m6">1,000g</td><td>[<span class="ma">40</span>]</td><td>Gold ingots heal 2&hearts; and give 10 gold instead of 2. Trickle-down is affected by Pebble, but not any form of Gold Boost.</td>
     </tr>
-    <tr>
+    <tr id="LuckyDiamond" name="LuckyDiamond">
         <td>Lucky Diamond</td><td><span class="m6">4,000g</td><td>[<span class="ma">40</span>]</td><td>30% chance to upgrade dropped iron armor pieces from kills to diamond. Upgraded pieces warp straight to the killers inventory; helmets are excluded from the Lucky Diamond perk.</td>
     </tr>
-    <tr>
+    <tr id="Spammer" name="Spammer">
         <td>Spammer</td><td><span class="m6">4,000g</td><td>[<span class="ma">40</span>]</td><td>Get 3 arrows when hitting a player with an arrow. Additionally, Spammer triples the base gold reward on targets the user shot an arrow in and gives +2 gold on assists.</td>
     </tr>
-    <tr>
+    <tr id="BountyHunter" name="BountyHunter">
         <td>Bounty Hunter</td><td><span class="m6">2,000g</td><td>[<span class="me">50</span>]</td><td>Assists now give "shares" of bounties. Deal +1% damage for every 100 gold of the victim's bounty.</td>
     </tr>
-    <tr>
+    <tr id="Streaker" name="Streaker">
         <td>Streaker</td><td><span class="m6">8,000g</td><td>[<span class="me">50</span>]</td><td>When kill streaking, triple the streaking XP bonus earned on each kill.</td>
     </tr>
-    <tr>
+    <tr id="Gladiator" name="Gladiator">
         <td>Gladiator</td><td><span class="m6">4,000g</td><td>[<span class="m6"><strong>60</strong></span>]</td><td>Receive -3% damage for every player in a 12-block radius. This perk only activates with 3 or more players in the range and caps at 10 players (-30%).</td>
     </tr>
-    <tr>
+    <tr id="Vampire" name="Vampire">
         <td>Vampire</td><td><span class="m6">4,000g</td><td>[<span class="m6"><strong>60</strong></span>]</td><td>Don't earn golden apples; instead, heal 0.5&hearts; on every critial hit (1.5&hearts; on an arrow critical hit), and get Regeneration for 8 seconds on kill.</td>
     </tr>
 </table><br>
@@ -93,44 +93,44 @@ $(function(){
     <tr style="font-weight: bold; position: sticky; top: 0" class="invisible_fill">
         <td>Name</td><td>Cost</td><td>Reqs.</td><td>Description</td>
     </tr>
-    <tr>
+    <tr id="Overheal" name="Overheal">
         <td>Overheal</td><td><span class="m6">6,000g</span> / <span class="me">10 Renown</span> </td><td><span class="m9">I</span> & [<span class="mc"><strong>70</strong></span>]</td><td>Double item healing limits; for instance, up to four Golden Heads can be stored in a player's inventory instead of the usual two.</td>
     </tr>
-    <tr>
+    <tr id="Barbarian" name="Barbarian">
         <td>Barbarian</td><td><span class="m6">3,000g</span> / <span class="me">10 Renown</span> </td><td><span class="m9">II</span> & [<span class="m2">30</span>]</td><td>Replaces the player's swords with axes. Unlike vanilla Minecraft, axes deal 0.5&hearts; more damage than their sword counterparts. This causes a diamond axe, obtained with the Barbarian perk and a diamond sword, to be the strongest unenchanted weapon in the entire game.</td>
     </tr>
-    <tr>
+    <tr id="Dirty" name="Dirty">
         <td>Dirty</td><td><span class="m6">8,000g</span> / <span class="me">15 Renown</span> </td><td><span class="m9">II</span> & [<span class="m4"><strong>80</strong></span>]</td><td>Gain Resistance II for 4 seconds on kill.</td>
     </tr>
-    <tr>
+    <tr id="Rambo" name="Rambo">
         <td>Rambo</td><td><span class="m6">6,000g</span> / <span class="me">15 Renown</span> </td><td><span class="m9">III</span> & [<span class="mc"><strong>70</strong></span>]</td><td>When killing players, instead of earning golden apples, heal to full health.Maximum health is decreased to 8&hearts;.</td>
     </tr>
-    <tr>
+    <tr id="Olympus" name="Olympus">
         <td>Olympus</td><td><span class="m6">6,000g</span> / <span class="me">20 Renown</span> </td><td><span class="m9">IV</span> & [<span class="mc"><strong>70</strong></span>]</td><td>When killing players, receive an Olympus Potion which gives Speed for 24 seconds, Regeneration III for 10 seconds, Resistance II for 4 seconds, and <span class="mb">27 XP</span>. The XP is affected by XP Boost but not <a href="King_of_the_Hill.html">King of the Hill</a> or the 2x Rewards event.</td>
     </tr>
-    <tr>
+    <tr id="AssistanttotheStreaker" name="AssistanttotheStreaker">
         <td>Assistant (to the) Streaker</td><td><span class="m6">8,000g</span> / <span class="me">20 Renown</span> </td><td><span class="me">V</span> & [<span class="me">50</span>]</td><td>Assists count their participation towards killstreaks. For example, a 43% assist would increase a player's killstreak by 0.43.</td>
     </tr>
-    <tr>
+    <tr id="FirstStrike" name="FirstStrike">
         <td>First Strike</td><td><span class="m6">8,000g</span> / <span class="me">25 Renown</span> </td><td><span class="me">V</span> & [<span class="m4"><strong>80</strong></span>]</td><td>The first hit on a player deals +35% damage and grants the user Speed for 5 seconds.</td>
     </tr>
-    <tr>
+    <tr id="Co-opCat" name="Co-opCat">
         <td>Co-op Cat</td><td><span class="m6">6,000g</span> / <span class="me">10 Renown</span> </td><td><span class="me">VI</span> & [<span class="me">50</span>]</td><td>Receieve +50% more XP and +50% more gold on all assists.</td>
     </tr>
-    <tr>
+    <tr id="Marathon" name="Marathon">
         <td>Marathon</td><td><span class="m6">8,000g</span> / <span class="me">20 Renown</span> </td><td><span class="me">VI</span> & [<span class="m5"><strong>90</strong></span>]</td><td>Unable to wear boots. While the user has speed, they will deal +18% more damage and receive -18% damage.</td>
     </tr>
-    <tr>
-        <td id="Soup" name="Soup">Soup</td><td><span class="m6">8,000g</span> / <span class="me">30 Renown</span> </td><td><span class="me">VII</span> & [<span class="m5"><strong>90</strong></span>]</td><td>Instead of a golden apple, receive a Tasty Soup when killing a player. Tasty Soup gives Speed for 7 seconds, 1.5&hearts; of Instant Health, <span class="me">1&hearts;</span> of absorption, and increases the damage of the user's next hit by +15%. Additionally, earn Soup every assist, granting 5 seconds of Regeneration II, 7 seconds of Speed, and increases the damage of the user's next hit by +15%.</td>
+    <tr id="Soup" name="Soup">
+        <td>Soup</td><td><span class="m6">8,000g</span> / <span class="me">30 Renown</span> </td><td><span class="me">VII</span> & [<span class="m5"><strong>90</strong></span>]</td><td>Instead of a golden apple, receive a Tasty Soup when killing a player. Tasty Soup gives Speed for 7 seconds, 1.5&hearts; of Instant Health, <span class="me">1&hearts;</span> of absorption, and increases the damage of the user's next hit by +15%. Additionally, earn Soup every assist, granting 5 seconds of Regeneration II, 7 seconds of Speed, and increases the damage of the user's next hit by +15%.</td>
     </tr>
     <tr id="Recon" name="Recon">
         <td>Recon</td><td><span class="m6">6,000g</span> / <span class="me">20 Renown</span> </td><td><span class="me">VII</span> & [<span class="m6"><strong>60</strong></span>]</td><td>Every fourth arrow shot at someone rewards the user with +40 XP and deals +50% damage.</td>
     </tr>
-    <tr>
+    <tr id="Conglomerate" name="Conglomerate">
         <td>Conglomerate</td><td><span class="m6">20,000g</span> / <span class="me">40 Renown</span> </td><td><span class="me">VIII</span> & [<span class="m6">50</span>]</td><td>Kills and assists no longer grant XP. 20% of the XP that would have been earned is converted to gold.</td>
     </tr>
     <tr>
-    <td id="KungFu" name="KungFu">Kung Fu Knowledge</td><td><span class="m6">10,000g</span> / <span class="me">40 Renown</span> </td><td><span class="me">IX</span> & [<span class="md"><strong>100</strong></span>]</td><td>The user can no longer use swords. Instead, their fists deal slightly more damage than an iron sword. Every fourth hit on an individual player grants Speed II for 5 seconds.</td>
+    <td id="KungFuKnowledge" name="KungFuKnowledge">Kung Fu Knowledge</td><td><span class="m6">10,000g</span> / <span class="me">40 Renown</span> </td><td><span class="me">IX</span> & [<span class="md"><strong>100</strong></span>]</td><td>The user can no longer use swords. Instead, their fists deal slightly more damage than an iron sword. Every fourth hit on an individual player grants Speed II for 5 seconds.</td>
     </tr>
     <tr id="Thick" name="Thick">
         <td>Thick</a></td><td><span class="m6">10,000g</span> / <span class="me">45 Renown</span> </td><td><span class="m6">XI</span> & [<span class="m5"><strong>90</strong></span>]</td><td>Increases maximum health by 2&hearts;.</td>

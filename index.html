@@ -222,7 +222,7 @@
   function DayNightCycle() { //OPTIMIZE THIS please add variable that's like "when the day is dark please do not call the svg again please"
   //I will not >:)
     let CurrentTime = Date.now();
-    let DayTime = CurrentTime % 2160000/1000;
+    let DayTime = ((CurrentTime + 10000) % 2160000)/1000; //10-second offset
     if(DayTime < 1440) {
       //console.log("The day ends in " + (1440 - DayTime) + " seconds.")
       document.getElementById("day-night").innerHTML = (AboutMe((1440 - DayTime)*1000) + "&nbsp;");

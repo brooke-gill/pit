@@ -52,6 +52,15 @@ body {
 
 }
 
+.item30 { /* 30% of the screen */
+  outline: 1px solid white;
+  width: 30%;
+  float: right;
+  margin: 10px;
+  border:1px solid white;
+
+}
+
   .tableheader {
     font-size: 25px;
     font-weight: bold;

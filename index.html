@@ -587,6 +587,8 @@
     window.data = await response.json();
     }
     if(emergency == true) {
+    window.localStorage.clear(); //attempts to clear the local storage to allow reloading to work
+    localStorage.clear();
     window.data = await window.emergency_data;
     }
     window.data_backup = window.data;

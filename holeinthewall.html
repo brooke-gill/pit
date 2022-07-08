@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="unselectable">
+<center><span id="block-0" class="block" onclick="Clicked(0)">█&nbsp;</span><span id="block-1" class="block" onclick="Clicked(1)">█&nbsp;</span><span id="block-2" class="block" onclick="Clicked(2)">█&nbsp;</span><span id="block-3" class="block" onclick="Clicked(3)">█&nbsp;</span><span id="block-4" class="block" onclick="Clicked(4)">█&nbsp;</span><span id="block-5" class="block" onclick="Clicked(5)">█&nbsp;</span><span id="block-6" class="block" onclick="Clicked(6)">█&nbsp;</span><br><span id="block-7" class="block" onclick="Clicked(7)">█&nbsp;</span><span id="block-8" class="block" onclick="Clicked(8)">█&nbsp;</span><span id="block-9" class="block" onclick="Clicked(9)">█&nbsp;</span><span id="block-10" class="block" onclick="Clicked(10)">█&nbsp;</span><span id="block-11" class="block" onclick="Clicked(11)">█&nbsp;</span><span id="block-12" class="block" onclick="Clicked(12)">█&nbsp;</span><span id="block-13" class="block" onclick="Clicked(13)">█&nbsp;</span><br><span id="block-14" class="block" onclick="Clicked(14)">█&nbsp;</span><span id="block-15" class="block" onclick="Clicked(15)">█&nbsp;</span><span id="block-16" class="block" onclick="Clicked(16)">█&nbsp;</span><span id="block-17" class="block" onclick="Clicked(17)">█&nbsp;</span><span id="block-18" class="block" onclick="Clicked(18)">█&nbsp;</span><span id="block-19" class="block" onclick="Clicked(19)">█&nbsp;</span><span id="block-20" class="block" onclick="Clicked(20)">█&nbsp;</span><br><span id="block-21" class="block" onclick="Clicked(21)">█&nbsp;</span><span id="block-22" class="block" onclick="Clicked(22)">█&nbsp;</span><span id="block-23" class="block" onclick="Clicked(23)">█&nbsp;</span><span id="block-24" class="block" onclick="Clicked(24)">█&nbsp;</span><span id="block-25" class="block" onclick="Clicked(25)">█&nbsp;</span><span id="block-26" class="block" onclick="Clicked(26)">█&nbsp;</span><span id="block-27" class="block" onclick="Clicked(27)">█&nbsp;</span><br><span id="timer"></span><br><span id='results'></span></center>
+
+<script>
+var tiles = []
+var remainingtiles = []
+
+var tileson = []
+var startertiles = [0, 1, 2, 3, 4, 5, 6, 7, 13, 14, 20, 21, 22, 23, 24, 25, 26, 27]
+var adjacent0 = [1, 7]
+var adjacent1 = [0, 2, 8]
+var adjacent2 = [1, 3, 9]
+var adjacent3 = [2, 4, 10]
+var adjacent4 = [3, 5, 11]
+var adjacent5 = [4, 6, 12]
+var adjacent6 = [5, 13]
+var adjacent7 = [0, 8, 14]
+var adjacent8 = [1, 7, 9, 15]
+var adjacent9 = [2, 8, 10, 16]
+var adjacent10 = [3, 9, 11, 17]
+var adjacent11 = [4, 10, 12, 18]
+var adjacent12 = [5, 11, 13, 19]
+var adjacent13 = [6, 12, 20]
+var adjacent14 = [7, 15, 21]
+var adjacent15 = [8, 14, 16, 22]
+var adjacent16 = [9, 15, 17, 23]
+var adjacent17 = [10, 16, 18, 24]
+var adjacent18 = [11, 17, 19, 25]
+var adjacent19 = [12, 18, 20, 26]
+var adjacent20 = [13, 19, 27]
+var adjacent21 = [14, 22]
+var adjacent22 = [15, 21, 23]
+var adjacent23 = [16, 22, 24]
+var adjacent24 = [17, 23, 25]
+var adjacent25 = [18, 24, 26]
+var adjacent26 = [19, 25, 27]
+var adjacent27 = [20, 26]
+
+var gamestart = 0
+var keyword = false
+var round = 1
+var colours = ["fff","4444ff","f97306","c20078","9a0eea","01ff07","c79fef","aaff32","0165fc","ff81c0","e50000","fe01b1","aaa662","d5b60a","040273","607c8e","fffe7a","40a368","703be7","fd3c06","f10c45","76cd26","bc13fe","e17701","e03fd8","7b0323"]
+
+function checkDuplicates(num) {
+for(j = 0; j < (tiles.length - 1); j++) {
+if(tiles[j] == tiles[num]) {
+    console.log("Dupe! Item " + j + " and " + num + " are duplicated. (" + tiles[j] + " = " + tiles[num] + `)`)
+tiles[num] = Math.floor(Math.random() * 28)
+    console.log("Changing item " + num + " to " + tiles[num] + "...")
+checkDuplicates(num);
+}
+}
+}
+
+for(i = 0; i <= 7; i++) {
+tiles[i] = Math.floor(Math.random() * 28)
+checkDuplicates(i);
+}
+var remainingtiles = tiles.slice();
+RoundStart()
+
+for(k = 0; k <= 7; k++) {
+    document.getElementById('block-' + tiles[k]).style.color = ("#" + colours[round])
+}
+
+
+
+function Clicked(tilenumber) {
+if(tileson.includes(tilenumber)) {
+    console.log(remainingtiles + ": the remaining tiles")
+    console.log(tilenumber + "^")
+    if(tiles.includes(tilenumber)) {
+        tileson.splice(tileson.indexOf(tilenumber), 1)
+        document.getElementById('block-' + tilenumber).style.color = ("#" + colours[round])
+        document.getElementById('block-' + tilenumber).classList.remove('blink_text')
+        if(remainingtiles.includes(tilenumber)) {
+
+        } else{
+        remainingtiles.push(tilenumber)
+        }
+    } else {
+        tileson.splice(tileson.indexOf(tilenumber), 1)
+        document.getElementById('block-' + tilenumber).style.color = "#000"
+        document.getElementById('block-' + tilenumber).classList.remove('blink_text')
+    }
+} else {
+if(startertiles.includes(tilenumber)) {
+    if(true) {
+        tileson.push(tilenumber)
+        console.log("Clicked a starter tile: " + tileson)
+        document.getElementById('block-' + tilenumber).style.color = "#888"
+        if(tiles.includes(tilenumber)) {
+        const index = remainingtiles.indexOf(tilenumber);
+        if (index > -1) {
+            remainingtiles.splice(index, 1)
+        }
+        document.getElementById('block-' + tilenumber).style.color = "#CC6"
+        document.getElementById('block-' + tilenumber).classList.add('blink_text')
+        }
+    }
+} else {
+    keyword = false;
+    console.log("List of tiles on: " + tileson)
+    for(l = 0; l < tileson.length; l++) {
+        console.log(window["adjacent" + tileson[l]] + " are the adjacent tiles.")
+        if((window["adjacent" + tileson[l]]).includes(tilenumber)) {
+            console.log(tilenumber + " found in " + tileson[l] + "'s adjacent tiles!")
+            keyword = true
+        }
+    }
+    if(keyword == true) {
+        tileson.push(tilenumber)
+        document.getElementById('block-' + tilenumber).style.color = "#888"
+        if(tiles.includes(tilenumber)) {
+        remainingtiles.splice(remainingtiles.indexOf(tilenumber), 1)
+        document.getElementById('block-' + tilenumber).style.color = "#CC6"
+        document.getElementById('block-' + tilenumber).classList.add('blink_text')
+        }
+    }
+}
+}
+console.log(remainingtiles + " :)")
+}
+
+function ResetRound() {
+
+tiles = []
+remainingtiles = []
+tileson = []
+gamestart = 0
+keyword = false
+round = round + 1;
+
+
+for(b = 0; b <= 27; b++) {
+document.getElementById('block-' + b).classList.remove('blink_text')
+document.getElementById('block-' + b).style.color = "#000"
+console.log("removed blink text")
+}
+
+
+for(i = 0; i <= 7; i++) {
+tiles[i] = Math.floor(Math.random() * 28)
+checkDuplicates(i);
+}
+remainingtiles = tiles.slice();
+console.log("DOES THIS WORK " + remainingtiles)
+
+for(k = 0; k <= 7; k++) {
+    document.getElementById('block-' + tiles[k]).style.color = ("#" + colours[round])
+}
+
+
+    RoundStart()
+}
+
+
+function RoundStart() {
+    gamestart = Date.now()
+    gameend = gamestart + (10500 - (round * 500))
+}
+
+function GameTimer() {
+    console.log(remainingtiles + ": remaining tiles")
+document.getElementById('timer').innerText = "Round " + round + " / " + ((gameend - Date.now()) / 1000).toFixed(2) + "s"
+
+for(m = 0; m < tileson.length; m++) {
+if(remainingtiles.includes(tileson[m])) {
+    remainingtiles.splice(remainingtiles.indexOf(tileson[m]), 1)
+    console.log("Removed duplicated (" + tileson[m] + ").")
+}
+}
+
+if(gameend - Date.now() < 0) {
+    document.getElementById('timer').innerText = "Defeat..."
+    document.getElementById('results').innerText = "You made it to round " + round + "." 
+} else if(remainingtiles.length == 0 && tileson.length == 8) {
+   document.getElementById('timer').innerText = "Victory!"
+   console.log("Victory!")
+   ResetRound()
+}
+
+}
+
+setInterval(GameTimer, 81);
+console.log(tiles)
+
+</script>
+
+<style>
+    .block {
+        font-size: xx-large;
+    }
+
+    .blink_text {
+    animation:0.5s blinker linear infinite;
+    -webkit-animation:0.5s blinker linear infinite;
+    -moz-animation:0.5s blinker linear infinite;
+}
+
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+
+.unselectable {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+  }
+</style>
+<html>

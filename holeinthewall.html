@@ -36,7 +36,11 @@ var adjacent24 = [17, 23, 25]
 var adjacent25 = [18, 24, 26]
 var adjacent26 = [19, 25, 27]
 var adjacent27 = [20, 26]
+var clickcount = 0;
+var ost = new Audio("gaming.mp3");
+  ost.volume = 0.2;
 
+var roundlengths = [10000, 20000, 15000, 12000, 10000, 9000, 8500, 8000, 7500, 7000, 6500, 6000, 5500, 5200, 4900, 4600, 4300, 4000, 3800, 3600, 3400, 3200, 3000, 3000, 3000, 3000, 3000]
 var gamestart = 0
 var keyword = false
 var round = 1
@@ -46,7 +50,12 @@ function checkDuplicates(num) {
 for(j = 0; j < (tiles.length - 1); j++) {
 if(tiles[j] == tiles[num]) {
     console.log("Dupe! Item " + j + " and " + num + " are duplicated. (" + tiles[j] + " = " + tiles[num] + `)`)
+//tiles[num] = Math.floor(Math.random() * 28)
+if(round == 2) {
 tiles[num] = Math.floor(Math.random() * 28)
+} else {
+tiles[num] = Math.floor(Math.random() * 20) + 7
+}
     console.log("Changing item " + num + " to " + tiles[num] + "...")
 checkDuplicates(num);
 }
@@ -54,7 +63,12 @@ checkDuplicates(num);
 }
 
 for(i = 0; i <= 7; i++) {
+//tiles[i] = Math.floor(Math.random() * 28)
+if(round == 2) {
 tiles[i] = Math.floor(Math.random() * 28)
+} else {
+tiles[i] = Math.floor(Math.random() * 20) + 7
+}
 checkDuplicates(i);
 }
 var remainingtiles = tiles.slice();
@@ -67,6 +81,13 @@ for(k = 0; k <= 7; k++) {
 
 
 function Clicked(tilenumber) {
+clickcount += 1
+if (clickcount == 1) {
+ost.play();
+ost.currentTime = 0;
+gamestart = Date.now()
+gameend = gamestart + roundlengths[round]
+}
 if(tileson.includes(tilenumber)) {
     console.log(remainingtiles + ": the remaining tiles")
     console.log(tilenumber + "^")
@@ -141,7 +162,13 @@ console.log("removed blink text")
 
 
 for(i = 0; i <= 7; i++) {
+//tiles[i] = Math.floor(Math.random() * 28)
+
+if(round == 2) {
 tiles[i] = Math.floor(Math.random() * 28)
+} else {
+tiles[i] = Math.floor(Math.random() * 20) + 7
+}
 checkDuplicates(i);
 }
 remainingtiles = tiles.slice();
@@ -157,8 +184,13 @@ for(k = 0; k <= 7; k++) {
 
 
 function RoundStart() {
+    if(clickcount > 0) {
     gamestart = Date.now()
-    gameend = gamestart + (10500 - (round * 500))
+    gameend = gamestart + roundlengths[round]
+    } else {
+    document.getElementById('timer').innerText = "Click on the grid to start!"
+    document.getElementById('results').innerText = "Made by BrookeAFK for adjective_n0un"
+    }
 }
 
 function GameTimer() {
@@ -173,6 +205,7 @@ if(remainingtiles.includes(tileson[m])) {
 }
 
 if(gameend - Date.now() < 0) {
+    ost.pause();
     document.getElementById('timer').innerText = "Defeat..."
     document.getElementById('results').innerText = "You made it to round " + round + "." 
 } else if(remainingtiles.length == 0 && tileson.length == 8) {

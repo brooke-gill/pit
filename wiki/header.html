@@ -7,7 +7,7 @@
 <br>
 </div>
 
-<span style="background-color: aliceblue;">
+<span id="partofsearch" >
 <input type="text" id="myInput" onkeyup="Filter()" style="display: none; float:right; margin: 0px 100px 0px 0px;" placeholder="Search for articles..."><br><br>
 <ul id="aUL" style="display: none; list-style-type: square; float: right; background-color:#4a2328; border-radius: 15px; padding: 20px 50px 20px 50px; margin: 0px 100px 0px 0px;"></ul>
 </span>
@@ -88,9 +88,11 @@ function Search() {
     if(searchclicked == 0) {
     document.getElementById('myInput').style.display = "block"
     document.getElementById('aUL').style.display = "block"
+    document.getElementById('partofsearch').style.display = "block"
     searchclicked = 1;
     Filter()
     } else {
+    document.getElementById('partofsearch').style.display = "none"
     document.getElementById('myInput').style.display = "none"
     document.getElementById('aUL').style.display = "none"
     searchclicked = 0;

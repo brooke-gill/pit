@@ -327,7 +327,6 @@
       document.getElementById('desktop-on').style.color = NormalText;
       document.getElementById('desktop-off').style.color = "#888888";
       document.getElementById('alert-notypes').style.display = 'none';
-                                            // Let's check if the browser supports notifications
                                             if (!("Notification" in window)) {
                                               document.getElementById('desktop-on').innerHTML = "Your browser doesn't support this!"
                                             }
@@ -337,16 +336,13 @@
                                               tog = 0;
                                             }
 
-                                            // Let's check whether notification permissions have already been granted
                                             else if (Notification.permission === "granted") {
                                               console.log("Notifications were already enabled!")
                                             }
 
-                                            // Otherwise, we need to ask the user for permission
                                             else if (Notification.permission !== "denied") {
                                               document.getElementById('desktop-on').innerHTML = "Accept notifications!"
                                               Notification.requestPermission().then(function (permission) {
-                                                // If the user accepts, let's create a notification
                                                 if (permission === "granted") {
                                                   console.log("Notifications enabled!")
                                                   document.getElementById('desktop-on').innerHTML = "On"
@@ -629,12 +625,6 @@
     document.body.appendChild(q);
     ChangeTheme(theme); //just again to make sure 
     //console.log("Seems like your screen's " + document.body.clientWidth + " pixels wide.");
-
-    $.getJSON("https://api.countapi.xyz/hit/brookeafk.com/visits", function(response) {
-    $("#version").html(`<span style="position:relative; left: 10px; color: #adc422; font-family: minecraftbold">` + (response.value + 212178 /*visits before 11 July*/).toLocaleString("en-US") + `<span style="color: #bdd140; font-family: minecraftregular"> pageviews and counting!</span></span>`);
-  });
-
-
     DoesStuffExist = true;
     URLToSettings()
   }

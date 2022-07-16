@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="stylesheet.css">
+<script src="pages.js"></script>
+<div class="box">
+<span class="body" style="text-align:center">The Hypixel Pit Wiki</span>
+
+<span id="search" class="body" style="float:right; cursor: pointer;" onmouseover="mouseOver()" onmouseout="mouseOut()" onclick="Search()"><span>Search </span><span style="font-family: Material;">search</span></span>
+<br>
+</div>
+
+<span style="background-color: aliceblue;">
+<input type="text" id="myInput" onkeyup="Filter()" style="display: none; float:right; margin: 0px 100px 0px 0px;" placeholder="Search for articles..."><br><br>
+<ul id="aUL" style="display: none; list-style-type: square; float: right; background-color:#4a2328; border-radius: 15px; padding: 20px 50px 20px 50px; margin: 0px 100px 0px 0px;"></ul>
+</span>
+<script>
+var searchclicked = 0;
+var topitem = 0;
+var replace = {' ':'_', "'":""}
+var numberofvisibleitems = 0
+var numberofhiddenitemsbecauseof5itemlimit = 0
+
+for(var i = 0; i < window.pages.length; i += 1) {
+    console.log("doing thing")
+    var fulllist = document.getElementById('aUL')
+    var list = document.createElement("li")
+      var ahref = document.createElement("a");
+      ahref.textContent = window.pages[i];
+      ahref.id = ("link_" + i);
+      ahref.setAttribute('href', window.pages[i].replace(/[ ']/g, m => replace[m]));
+      list.appendChild(ahref);
+      fulllist.appendChild(list);
+      console.log(list)
+  }
+
+function mouseOver() {
+  document.getElementById("search").style.color = "#a83994";
+}
+
+function mouseOut() {
+  document.getElementById("search").style.color = "#FFF";
+}
+
+function Filter() {
+numberofvisibleitems = 0;
+numberofhiddenitemsbecauseof5itemlimit = 0;
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('myInput');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("aUL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    document.getElementById('link_' + i).style.color = ""
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+      numberofvisibleitems += 1;
+      if(numberofvisibleitems == 1) {
+        topitem = i;
+        document.getElementById('link_' + i).style.color = "#FFFF99"
+      }
+    } else {
+      li[i].style.display = "none";
+    }
+
+    if (numberofvisibleitems > 5) {
+        console.log("Item hidden due to limit.")
+        li[i].style.display = "none";
+        numberofhiddenitemsbecauseof5itemlimit += 1;
+    }
+  }
+}
+
+
+var input = document.getElementById("myInput");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    console.log("click")
+    event.preventDefault();
+    document.getElementById('link_' + topitem).click();
+  }
+});
+
+
+function Search() {
+    if(searchclicked == 0) {
+    document.getElementById('myInput').style.display = "block"
+    document.getElementById('aUL').style.display = "block"
+    searchclicked = 1;
+    Filter()
+    } else {
+    document.getElementById('myInput').style.display = "none"
+    document.getElementById('aUL').style.display = "none"
+    searchclicked = 0;
+    }
+}
+</script>
+
+<style>
+input[type="text"]
+{
+    font-size:15px;
+    font-family: Roboto;
+    color: rebeccapurple
+}

@@ -1,7 +1,8 @@
 <html>
 <head>
 <link rel="stylesheet" href="stylesheet.css">
-<title></title>
+<title>The Hypixel Pit Wiki</title>
+<script src="pages.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script> 
 $(function(){
@@ -11,43 +12,40 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="box">
 <div id="header"></div>
+<div class="box">
 <center>
 <p class="header">The Unofficial Hypixel Pit Wiki</p>
 
 <span class="body"><b class="me">WELCOME!</b> Thank you for visiting the Hypixel Pit Wiki!<br>
-Currently containing <span class="md">3</span> articles:</span><br><br>
+Currently containing <span class="md" id="articles">a lot of</span> articles:</span><br><br>
 </center>
-<ul style="list-style-type: square; column-count: 3; display: flex;" class="body">
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
-  <li>Lorem Ipsum</li>
+<ul style="list-style-type: square; column-count: 4;" class="body" id="listofarticles">
   
 </ul>
 <br>
 </div>
 <div id="footer"></div>
 
+<script>
+  
+var replace = {' ':'_', "'":""}
+
+for(var i = 0; i < window.pages.length; i += 1) {
+    console.log("doing thing")
+    var fulllist = document.getElementById('listofarticles')
+    var list = document.createElement("li")
+      var ahref = document.createElement("a");
+      ahref.textContent = window.pages[i];
+      ahref.id = ("link_" + i);
+      ahref.setAttribute('href', window.pages[i].replace(/[ ']/g, m => replace[m]));
+      list.appendChild(ahref);
+      fulllist.appendChild(list);
+      console.log(list)
+      document.getElementById('articles').innerText = i + 1
+
+  }
+</script>
 </body>
 
 </html>

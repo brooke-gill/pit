@@ -37,14 +37,14 @@ $(function(){
 <span class="subheader">From the <a href="./">Hypixel Pit Wiki</a></span>
 <hr>
 <span><strong>Perks</strong> are upgrades players can purchase to get minor buffs during combat.<br>
-<span>Perks can be purchased from the Upgrades NPC starting at <a href="Level.html">level</a> 10. Additional perk slots are unlocked at levels 35 and 70, with a fourth perk slot being purchaseable at level 100 with the Extra Perk Slot Renown upgrade unlocked at prestige <span class="m9">III</span>.</span><br><br>
+<span>Perks can be purchased from the Upgrades NPC starting at <a href="Level">level</a> 10. Additional perk slots are unlocked at levels 35 and 70, with a fourth perk slot being purchaseable at level 100 with the Extra Perk Slot Renown upgrade unlocked at prestige <span class="m9">III</span>.</span><br><br>
 
 <table class="body">
     <tr style="font-weight: bold; position: sticky; top: 0" class="invisible_fill">
         <td>Name</td><td>Cost</td><td>Reqs.</td><td>Description</td>
     </tr>
     <tr id="GoldenHeads" name="GoldenHeads">
-        <td>Golden Heads</td><td><span class="m6">500g</td><td>[<span class="m9">10</span>]</td><td>Earned golden apples turn into golden heads. Golden heads provide 8 seconds of Speed I, 5 seconds of Regeneration II, and <span class="me">3&hearts;</span> of Absorption.</td>
+        <td>Golden Heads</td><td><span class="m6">500g</td><td>[<span class="m9">10</span>]</td><td>Earned golden apples turn into golden heads. Golden heads provide Speed I (0:08), Regeneration II (0:05), and <span class="me">3&hearts;</span> of Absorption.</td>
     </tr>
     <tr id="FishingRod" name="FishingRod">
         <td>Fishing Rod</td><td><span class="m6">1,000g</td><td>[<span class="m9">10</span>]</td><td>Spawn with a fishing rod.</td>
@@ -62,7 +62,7 @@ $(function(){
         <td>Mineman</td><td><span class="m6">3,000g</td><td>[<span class="m2">30</span>]</td><td>Spawn with 24 cobblestone and a diamond pickaxe (efficiency IV). Killing players gives +3 cobblestone.</td>
     </tr>
     <tr id="Bonk" name="Bonk">
-        <td>Bonk!</td><td><span class="m6">2,000g</td><td>[<span class="m2">35</span>]</td><td>The first hit per life you receive from a player is blocked and grants Resistance I for 2 seconds.</td>
+        <td>Bonk!</td><td><span class="m6">2,000g</td><td>[<span class="m2">35</span>]</td><td>The first hit per life you receive from a player is blocked and grants Resistance I (0:02).</td>
     </tr>
     <tr id="Trickle-down" name="Trickle-down">
         <td>Trickle-down</td><td><span class="m6">1,000g</td><td>[<span class="ma">40</span>]</td><td>Gold ingots heal 2&hearts; and give 10 gold instead of 2. Trickle-down is affected by Pebble, but not any form of Gold Boost.</td>
@@ -83,11 +83,11 @@ $(function(){
         <td>Gladiator</td><td><span class="m6">4,000g</td><td>[<span class="m6"><strong>60</strong></span>]</td><td>Receive -3% damage for every player in a 12-block radius. This perk only activates with 3 or more players in the range and caps at 10 players (-30%).</td>
     </tr>
     <tr id="Vampire" name="Vampire">
-        <td>Vampire</td><td><span class="m6">4,000g</td><td>[<span class="m6"><strong>60</strong></span>]</td><td>Don't earn golden apples; instead, heal 0.5&hearts; on every critial hit (1.5&hearts; on an arrow critical hit), and get Regeneration for 8 seconds on kill.</td>
+        <td>Vampire</td><td><span class="m6">4,000g</td><td>[<span class="m6"><strong>60</strong></span>]</td><td>Don't earn golden apples; instead, heal 0.5&hearts; on every critial hit (1.5&hearts; on an arrow critical hit), and get Regeneration I (0:08) on kill.</td>
     </tr>
 </table><br>
 
-<span>Additionally, another fourteen perks can be purchased with Renown. While purchasing the perk with Renown needs to only be done once, the perk must be purchased with gold every prestige. Players will need to reach a specific <a href="prestige.html">prestige</a> before unlocking these perks; this is shown in the "Requirements" column of the table.</span><br>
+<span>Additionally, another fourteen perks can be purchased with Renown. While purchasing the perk with Renown needs to only be done once, the perk must be purchased with gold every prestige. Players will need to reach a specific <a href="Prestige">prestige</a> before unlocking these perks; this is shown in the "Requirements" column of the table.</span><br>
 <br>
 <table class="body">
     <tr style="font-weight: bold; position: sticky; top: 0" class="invisible_fill">
@@ -100,19 +100,19 @@ $(function(){
         <td>Barbarian</td><td><span class="m6">3,000g</span> / <span class="me">10 Renown</span> </td><td><span class="m9">II</span> & [<span class="m2">30</span>]</td><td>Replaces the player's swords with axes. Unlike vanilla Minecraft, axes deal 0.5&hearts; more damage than their sword counterparts. This causes a diamond axe, obtained with the Barbarian perk and a diamond sword, to be the strongest unenchanted weapon in the entire game.</td>
     </tr>
     <tr id="Dirty" name="Dirty">
-        <td>Dirty</td><td><span class="m6">8,000g</span> / <span class="me">15 Renown</span> </td><td><span class="m9">II</span> & [<span class="m4"><strong>80</strong></span>]</td><td>Gain Resistance II for 4 seconds on kill.</td>
+        <td>Dirty</td><td><span class="m6">8,000g</span> / <span class="me">15 Renown</span> </td><td><span class="m9">II</span> & [<span class="m4"><strong>80</strong></span>]</td><td>Gain Resistance II (0:04) on kill.</td>
     </tr>
     <tr id="Rambo" name="Rambo">
         <td>Rambo</td><td><span class="m6">6,000g</span> / <span class="me">15 Renown</span> </td><td><span class="m9">III</span> & [<span class="mc"><strong>70</strong></span>]</td><td>When killing players, instead of earning golden apples, heal to full health.Maximum health is decreased by 2&hearts;.</td>
     </tr>
     <tr id="Olympus" name="Olympus">
-        <td>Olympus</td><td><span class="m6">6,000g</span> / <span class="me">20 Renown</span> </td><td><span class="m9">IV</span> & [<span class="mc"><strong>70</strong></span>]</td><td>When killing players, receive an Olympus Potion which gives Speed for 24 seconds, Regeneration III for 10 seconds, Resistance II for 4 seconds, and <span class="mb">27 XP</span>. The XP is affected by XP Boost but not <a href="King_of_the_Hill.html">King of the Hill</a> or the 2x Rewards event.</td>
+        <td>Olympus</td><td><span class="m6">6,000g</span> / <span class="me">20 Renown</span> </td><td><span class="m9">IV</span> & [<span class="mc"><strong>70</strong></span>]</td><td>When killing players, receive an Olympus Potion which gives Speed I (0:24), Regeneration III (0:10), Resistance II (0:04), and <span class="mb">27 XP</span>. The XP is affected by XP Boost but not <a href="King_of_the_Hill.html">King of the Hill</a> or the 2x Rewards event.</td>
     </tr>
     <tr id="AssistanttotheStreaker" name="AssistanttotheStreaker">
         <td>Assistant (to the) Streaker</td><td><span class="m6">8,000g</span> / <span class="me">20 Renown</span> </td><td><span class="me">V</span> & [<span class="me">50</span>]</td><td>Assists count their participation towards killstreaks. For example, a 43% assist would increase a player's killstreak by 0.43.</td>
     </tr>
     <tr id="FirstStrike" name="FirstStrike">
-        <td>First Strike</td><td><span class="m6">8,000g</span> / <span class="me">25 Renown</span> </td><td><span class="me">V</span> & [<span class="m4"><strong>80</strong></span>]</td><td>The first hit on a player deals +35% damage and grants the user Speed for 5 seconds.</td>
+        <td>First Strike</td><td><span class="m6">8,000g</span> / <span class="me">25 Renown</span> </td><td><span class="me">V</span> & [<span class="m4"><strong>80</strong></span>]</td><td>The first hit on a player deals +35% damage and grants the user Speed I (0:05).</td>
     </tr>
     <tr id="Co-opCat" name="Co-opCat">
         <td>Co-op Cat</td><td><span class="m6">6,000g</span> / <span class="me">10 Renown</span> </td><td><span class="me">VI</span> & [<span class="me">50</span>]</td><td>Receive +50% more XP and +50% more gold on all assists.</td>
@@ -121,7 +121,7 @@ $(function(){
         <td>Marathon</td><td><span class="m6">8,000g</span> / <span class="me">20 Renown</span> </td><td><span class="me">VI</span> & [<span class="m5"><strong>90</strong></span>]</td><td>Unable to wear boots. While the user has speed, they will deal +18% more damage and receive -18% damage.</td>
     </tr>
     <tr id="Soup" name="Soup">
-        <td>Soup</td><td><span class="m6">8,000g</span> / <span class="me">30 Renown</span> </td><td><span class="me">VII</span> & [<span class="m5"><strong>90</strong></span>]</td><td>Instead of a golden apple, receive a Tasty Soup when killing a player. Tasty Soup gives Speed for 7 seconds, 1.5&hearts; of Instant Health, <span class="me">1&hearts;</span> of Absorption, and increases the damage of the user's next hit by +15%. Additionally, earn Soup every assist, granting <span class="me">1&hearts;</span> of Absorption, 5 seconds of Regeneration II, 7 seconds of Speed, and increases the damage of the user's next hit by +15%. Can hold up to four soups.</td>
+        <td>Soup</td><td><span class="m6">8,000g</span> / <span class="me">30 Renown</span> </td><td><span class="me">VII</span> & [<span class="m5"><strong>90</strong></span>]</td><td>Instead of a golden apple, receive a Tasty Soup when killing a player. Tasty Soup gives Speed I (0:07), 1.5&hearts; of Instant Health, <span class="me">1&hearts;</span> of Absorption, and increases the damage of the user's next hit by +15%. Additionally, earn Soup every assist, granting <span class="me">1&hearts;</span> of Absorption, Regeneration II (0:05), Speed I (0:07), and increases the damage of the user's next hit by +15%. Can hold up to four soups.</td>
     </tr>
     <tr id="Recon" name="Recon">
         <td>Recon</td><td><span class="m6">6,000g</span> / <span class="me">20 Renown</span> </td><td><span class="me">VII</span> & [<span class="m6"><strong>60</strong></span>]</td><td>Every fourth arrow shot at someone rewards the user with +40 XP and deals +50% damage.</td>
@@ -130,7 +130,7 @@ $(function(){
         <td>Conglomerate</td><td><span class="m6">20,000g</span> / <span class="me">40 Renown</span> </td><td><span class="me">VIII</span> & [<span class="m6">50</span>]</td><td>Kills and assists no longer grant XP. 20% of the XP that would have been earned is converted to gold.</td>
     </tr>
     <tr>
-    <td id="KungFuKnowledge" name="KungFuKnowledge">Kung Fu Knowledge</td><td><span class="m6">10,000g</span> / <span class="me">40 Renown</span> </td><td><span class="me">IX</span> & [<span class="md"><strong>100</strong></span>]</td><td>The user can no longer use swords. Instead, their fists deal 7.4 damage; slightly more than an iron sword. Any held item negates this damage boost. Every fourth hit on an individual player grants Speed II for 5 seconds.</td>
+    <td id="KungFuKnowledge" name="KungFuKnowledge">Kung Fu Knowledge</td><td><span class="m6">10,000g</span> / <span class="me">40 Renown</span> </td><td><span class="me">IX</span> & [<span class="md"><strong>100</strong></span>]</td><td>The user can no longer use swords. Instead, their fists deal 7.4 damage; slightly more than an iron sword. Any held item negates this damage boost. Every fourth hit on an individual player grants Speed II (0:05).</td>
     </tr>
     <tr id="Thick" name="Thick">
         <td>Thick</a></td><td><span class="m6">10,000g</span> / <span class="me">45 Renown</span> </td><td><span class="m6">XI</span> & [<span class="m5"><strong>90</strong></span>]</td><td>Increases maximum health by 2&hearts;.</td>

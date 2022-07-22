@@ -194,5 +194,5 @@ a:active {
   position: absolute;
   transform: translateY(-50vh);
 }
-/*td img {display: block;}
+td img {display: block;   margin-left: auto; margin-right: auto;}
 

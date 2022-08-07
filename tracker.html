@@ -89,7 +89,7 @@ if(here.searchParams.get('ign') == null) {
     document.getElementById('target').innerHTML = `<a href="https://pitpanda.rocks/players/` + user + `" target="_blank"><span class="m7">` + user + `</span></a>`;
     console.log(window.user)
     CheckAPI()
-    setInterval(CheckAPI2, 10000);
+    setInterval(CheckAPI2, 20000);
     setInterval(XPHour, 125)
     setInterval(Increment, 62)
     function CheckAPI() {
@@ -178,50 +178,12 @@ document.getElementById('level').innerHTML = `<span class=m` + myprestigecolor +
     }
     if(menuopen < 1) {
     document.getElementById('pleasewait').style.visibility = "hidden";
-    $.getJSON(('https://api.hypixel.net/player?key=f3bb6b73-081e-43ef-a198-861e5c11ac16&uuid=' + window.uuid), function(data) {
+    $.getJSON(('https://api.slothpixel.me/api/players/' + window.uuid), function(data) {
     let json6 = data;
-    console.log(json6.player.stats.Pit.profile.xp)
-    xp = json6.player.stats.Pit.profile.xp
-    let packageRank = json6.player.packageRank;
-    let newPackageRank = json6.player.newPackageRank;
-    let monthlyPackageRank = json6.player.monthlyPackageRank;
-    let rank = json6.player.rank;
-    let prefix = json6.player.prefix;
-    //console.log(prefix +  "/" + rank + "/" + monthlyPackageRank + "/" + newPackageRank + "/" + packageRank);
-    if(prefix == undefined || prefix == "NaN") {
-        //console.log("prefix is undefined")
-        if(rank == undefined) {
-            //console.log("rank is undefined")
-            if(monthlyPackageRank == undefined || monthlyPackageRank == "NONE") {
-                //console.log("monthly package rank is undefined")
-                if(newPackageRank == undefined) {
-                    //console.log("new package rank is undefined")
-                    if(packageRank == undefined) {
-                        //console.log("package rank is undefined")
-
-                    }
-                } else {
-                    if(newPackageRank == "VIP" || newPackageRank == "VIP_PLUS") {
-                        rankcolor = "a"
-                    } else if(newPackageRank == "MVP" || newPackageRank == "MVP_PLUS") {
-                        rankcolor = "b"
-                    }
-                }
-            } else {
-                if(monthlyPackageRank == "SUPERSTAR") {
-                    rankcolor = "6"
-                }
-            }
-        } else {
-            if(rank == "ADMIN") {
-                rankcolor = "c"
-            } else if (rank == "GAME_MASTER") {
-                rankcolor = "2"
-            }
-        }
-    } else {
-        rankcolor = prefix.charAt(1);
-    }
+    console.log(json6.stats.Pit.xp)
+    xp = json6.stats.Pit.xp
+    let packageRank = json6.stats.rank;
+    rankcolor = "d";
     console.log(prefix)
     document.getElementById('target').innerHTML = `<a href="https://pitpanda.rocks/players/` + user + `" target="_blank"><span class="m` + rankcolor + `">` + user + `</span></a>`;
     if(realxp != xp) {
@@ -238,7 +200,7 @@ document.getElementById('level').innerHTML = `<span class=m` + myprestigecolor +
     startingtime = Date.now()
     }
     if(currentxp != realxp) {
-    console.log(realxp + " does not equal " + json6.player.stats.Pit.profile.xp)
+    console.log(realxp + " does not equal " + json6.stats.Pit.xp)
     console.log("Data has been updated after " + ((Date.now() - lastupdated) / 1000) + "s.")
     lastupdated = Date.now()
 
@@ -393,7 +355,7 @@ console.log(fakexp + " = " + oldxp + " + (" + currentxp + " - " + oldxp + ") * (
 fakexp = realxp
 UpdateStuff();
 }
-document.getElementById('fake').innerHTML = Math.round(realxp)
+document.getElementById('fake').innerHTML = (Math.round(realxp).toLocaleString("en-US") + " XP")
 }}
 </script>
 </body>

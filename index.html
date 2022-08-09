@@ -1011,7 +1011,7 @@
     document.getElementById('event_' + String(i)).style.fontFamily = CorrectBoldStyleless;
     document.getElementById('event_' + String(i)).style.fontWeight = RealWeight;
    }
-   let currentTime = (Date.now());
+   let currentTime = (Date.now() + offset);
    if ((conversion[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "light")) {
     document.getElementById('event_'+ String(i)).classList.add("blinktext-light");
     document.getElementById('event_'+ String(i)).classList.remove("blinktext-dark");  

@@ -17,7 +17,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
     <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
     <title>Hypixel Pit Events Tracker</title>
-    <script src="emergency.js?v=99"></script>
+    <script src="emergency.js?v=100"></script>
 
     <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
   </head>
@@ -80,7 +80,7 @@
 
   var HiddenEventCount = 0;
   var EventsToLoad = 1;
-  var version_number = `0.6.4e |&nbsp;&nbsp;</span><span style="color: #ae55c3">Check out the <a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</span>`
+  var version_number = `0.6.5e |&nbsp;&nbsp;</span><span style="color: #ae55c3">Check out the <a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</span>`
   var counter = 4;
   var settingsOpened = false;
   var NormalText = "#000000";
@@ -97,6 +97,7 @@
   var CorrectBold = "minecraftregular; font-weight: bold";
   var CorrectBoldStyleless = "minecraftbold";
   var RealWeight = 400;
+  var offset = 0;
 
   document.body.style.fontFamily = CorrectFont;
 
@@ -149,18 +150,18 @@
   }
   
   document.getElementById('settings').style.color = NormalText;
-  
+
   function MakeFunTimestamps(convertible) {
-  let currentTime = (Date.now);
-  if (convertible - currentTime() <= 0) {
+  let currentTime = (Date.now() + offset);
+  if (convertible - currentTime <= 0) {
     convertible = "Passed!"
   }
-  if (convertible - currentTime() <= 60000) {
-      convertible = (((Math.floor(((convertible - currentTime())*100))/100000).toFixed(2)) + "s");
-  } else if (convertible - currentTime() <= 3600000) {
-      convertible = ((Math.floor(((convertible - currentTime()))/60000) + "m" + (Math.floor(((convertible - currentTime()))/1000) % 60) + "s"));
-  } else if (convertible - currentTime() > 1) {
-      convertible = ((Math.floor(((convertible - currentTime()))/3600000) + "h" + (Math.floor(((convertible - currentTime()))/60000) % 60) + "m"));
+  if (convertible - currentTime <= 60000) {
+      convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + "s");
+  } else if (convertible - currentTime <= 3600000) {
+      convertible = ((Math.floor(((convertible - currentTime))/60000) + "m" + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
+  } else if (convertible - currentTime > 1) {
+      convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h" + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
   }
   
   return convertible;
@@ -224,7 +225,7 @@
   
   function DayNightCycle() { //OPTIMIZE THIS please add variable that's like "when the day is dark please do not call the svg again please"
   //I will not >:)
-    let CurrentTime = Date.now();
+    let CurrentTime = Date.now()  + offset;
     let DayTime = ((CurrentTime + 10000) % 2160000)/1000; //10-second offset
     if(DayTime < 1440) {
       //console.log("The day ends in " + (1440 - DayTime) + " seconds.")
@@ -632,23 +633,22 @@
   }
   
   function AudioChecker() {
-    let currentTime = (Date.now);
+    let currentTime = (Date.now() + offset);
     if(DoesStuffExist == true) {
     for(var i = window.HiddenEventCount; i <= window.HiddenEventCount + 3; i++) {
-      if (window.AudioEvents.includes(window.data[i]['event'])  && window.data[i]['timestamp'] - currentTime() <= (NotifTimer * 1000 + 1000) && window.data[i]['timestamp'] - currentTime() >= (NotifTimer * 1000 - 1000)) {
+      if (window.AudioEvents.includes(window.data[i]['event'])  && window.data[i]['timestamp'] - currentTime <= (NotifTimer * 1000 + 1000) && window.data[i]['timestamp'] - currentTime >= (NotifTimer * 1000 - 1000)) {
       if(SettingsAudioNotifs == 1) {
       event_sound.play();
       }
       if(SettingsDesktopNotifs == 1) {
-      if(Date.now() > time1 + 10000) { //if it's been more than 10 seconds since the last notification
+      if(Date.now() + offset > time1 + 10000) { //if it's been more than 10 seconds since the last notification
       if (NotifTimer == 60) {
         var minute_s = "minute"
       } else {
         var minute_s = "minutes"
       }
-      //—
       var notification = new Notification("", {body: "Hey— " + window.data[i]['event'] + " is starting in " + NotifTimer/60 + " " + minute_s +"!", icon: "3457688aa57c4d71ab9d22b04f9160db.png"});
-      time1 = Date.now()
+      time1 = Date.now() + offset
       }
       }
    }
@@ -676,7 +676,7 @@
       window.HiddenEventCount = window.HiddenEventCount + 1; 
       DemolitionTime = (window.data[HiddenEventCount - 1]['timestamp'] + (VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000)
       console.log(DemolitionTime);
-      TimeOfEventStart = Date.now();
+      TimeOfEventStart = Date.now() + offset;
       console.log(TimeOfEventStart);
       document.getElementById("current-event").style.display = "block";
       document.getElementById('special_thanks').innerHTML = GeneratePraise()
@@ -738,6 +738,9 @@
   
   function URLToSettings() {
       let here = new URL(window.location.href);
+      if(here.searchParams.get('offset') !== null) {
+        offset = here.searchParams.get('offset') * 60000
+      }
       if(here.searchParams.get('reminder') == null || here.searchParams.get('flashing') == null || here.searchParams.get('palette') == null || here.searchParams.get('theme') == null || here.searchParams.get('timestamps') == null || here.searchParams.get('visible') == null || here.searchParams.get('notifs') == null || here.searchParams.get('desktop') == null || here.searchParams.get('font') == null) {
           console.log("No settings :fear:")
           ChangeFont('minecraftregular');
@@ -878,27 +881,27 @@
   }
   
   function CurrentEvent() {
-    let currentTime = Date.now;
+    let currentTime = Date.now() + offset;
   
-    if (HiddenEventCount > 0 && DemolitionTime - currentTime() >= 0) {
-      var result = AboutMe(DemolitionTime - currentTime());
+    if (HiddenEventCount > 0 && DemolitionTime - currentTime >= 0) {
+      var result = AboutMe(DemolitionTime - currentTime);
       console.log(result);
       let recentEventData = window.data[HiddenEventCount - 1];
       let correctColourCode =
         trueEventColours[events.indexOf(recentEventData["event"])];
       if (recentEventData["type"] == "major") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
-          console.log(DemolitionTime - currentTime());
+          console.log(DemolitionTime - currentTime);
           console.log(TimeOfEventStart)
           //console.log(((VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) /* should return like "480000" (8m) in most cases */ - 180000)
-          if (currentTime() >= 180000 + TimeOfEventStart) {
+          if (currentTime >= 180000 + TimeOfEventStart) {
             document.getElementById("current-event").innerHTML =
               `<span style="color: #aa00aa; font-family: ` + CorrectBold + `;">` + all_text[1] + `</span> <span style="color:` +
               correctColourCode +
               `; font-family: ` + CorrectBold + `;">` +
               window.data[HiddenEventCount - 1]["event"].toUpperCase() +
               `!</span><br><span style="color: #aaaaaa;">` + all_text[3] + `<span style="color: #55ff55;">` +
-              AboutMe(DemolitionTime - currentTime()) +
+              AboutMe(DemolitionTime - currentTime) +
               `</span></span>`;
           } else {
             document.getElementById("current-event").innerHTML =
@@ -907,7 +910,7 @@
               `; font-family: ` + CorrectBold + `;">` +
               window.data[HiddenEventCount - 1]["event"].toUpperCase() +
               `!</span><br><span style="color: #aaaaaa;">` + all_text[2] + `<span style="color: #55ff55;">` +
-              AboutMe(TimeOfEventStart + 180000 - currentTime()) +
+              AboutMe(TimeOfEventStart + 180000 - currentTime) +
               `</span></span>`;
             console.log("major + countdown");
           }
@@ -933,7 +936,7 @@
           console.log("minor, no countdown");
         }
       }
-    } else if (HiddenEventCount > 0 && DemolitionTime - currentTime() <= 0) {
+    } else if (HiddenEventCount > 0 && DemolitionTime - currentTime <= 0) {
       //document.getElementById("current-event").style.display = "none";
       document.getElementById("current-event").innerHTML = WithoutVar;
     }
@@ -1008,12 +1011,12 @@
     document.getElementById('event_' + String(i)).style.fontFamily = CorrectBoldStyleless;
     document.getElementById('event_' + String(i)).style.fontWeight = RealWeight;
    }
-   let currentTime = (Date.now);
-   if ((conversion[i]['timestamp'] - currentTime() <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime()) % 1000 > 900) && (theme == "light")) {
+   let currentTime = (Date.now());
+   if ((conversion[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "light")) {
     document.getElementById('event_'+ String(i)).classList.add("blinktext-light");
     document.getElementById('event_'+ String(i)).classList.remove("blinktext-dark");  
    }
-   if ((conversion[i]['timestamp'] - currentTime() <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime()) % 1000 > 900) && (theme == "dark")) {
+   if ((conversion[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "dark")) {
     document.getElementById('event_'+ String(i)).classList.add("blinktext-dark");
     document.getElementById('event_'+ String(i)).classList.remove("blinktext-light");
    }

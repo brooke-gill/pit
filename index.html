@@ -635,7 +635,7 @@
   function AudioChecker() {
     let currentTime = (Date.now() + offset);
     if(DoesStuffExist == true) {
-    for(var i = window.HiddenEventCount; i <= window.HiddenEventCount + 3; i++) {
+    for(var i = window.HiddenEventCount; i <= window.HiddenEventCount + 3 && i < EventsToLoad; i++) {
       if (window.AudioEvents.includes(window.data[i]['event'])  && window.data[i]['timestamp'] - currentTime <= (NotifTimer * 1000 + 1000) && window.data[i]['timestamp'] - currentTime >= (NotifTimer * 1000 - 1000)) {
       if(SettingsAudioNotifs == 1) {
       event_sound.play();
@@ -658,7 +658,7 @@
   function RapidFirst(transformation) { //this plops the stuff in the actual html page
   if (DoesStuffExist == true) {
     HasStuffLoaded = true; //looks like the stuff has loaded
-    for(var i = window.HiddenEventCount; i <= window.HiddenEventCount; i++) { 
+    for(var i = window.HiddenEventCount; i <= window.HiddenEventCount && i < EventsToLoad; i++) { 
     if (showEventToD == true && showEventTuE == true) {
     document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: ` + CorrectFont + `">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: ` + CorrectFont + `"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
     } else if (showEventToD == false && showEventTuE == true) {

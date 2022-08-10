@@ -626,6 +626,12 @@
    // q.style.marginTop = (String(50) + "px")
     q.innerHTML = (`<span style="position:relative; left: 10px;">` + GeneratePraise() + "</span>");
     document.body.appendChild(q);
+
+    var r = document.createElement("p");
+    r.id = "special_thanks";
+    r.innerHTML = (`<span style="position:relative; left: 10px;">Thank you to <a href="https://github.com/Clipi-12" target="_blank" rel="noopener">Clipi-12</a> for fixing a bug!</span>`);
+    document.body.appendChild(r);
+
     ChangeTheme(theme); //just again to make sure 
     //console.log("Seems like your screen's " + document.body.clientWidth + " pixels wide.");
     DoesStuffExist = true;

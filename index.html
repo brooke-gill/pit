@@ -17,7 +17,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
     <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
     <title>Hypixel Pit Events Tracker</title>
-    <script src="emergency.js?v=107"></script>
+    <script src="emergency.js?v=108"></script>
 
     <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
   </head>
@@ -74,6 +74,7 @@
     <br><div id="save" style="color: #8888ff;" onclick='SaveSettings()' class="hand_cursor">Save Settings</div>
   
   </div>
+  <!-- <br><span><span style="color: #f55; font-family: minecraftbold">SORRY!</span> There will be a temporary outage on August 23rd between approximately 07:00 and 16:00 Pacific Time (I won't have access to my computer.)<br>My apologies for the downtime.</span> -->
   </div>
   
   <script>
@@ -584,14 +585,18 @@
   setInterval(getPitPanda,40);
   
   async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
-    if(emergency == false) {
-    const response = await fetch(pp_url);
-    window.data = await response.json();
-    }
     if(emergency == true) {
     window.localStorage.clear(); //attempts to clear the local storage to allow reloading to work
     localStorage.clear();
     window.data = await window.emergency_data;
+    /*if(Object.keys(data).length == 0) {
+      console.log("oh no")
+      emergency = false;
+    }*/
+    }
+    if(emergency == false) {
+    const response = await fetch(pp_url);
+    window.data = await response.json();
     }
     window.data_backup = window.data;
     window.EventsToLoad = Object.keys(window.data).length

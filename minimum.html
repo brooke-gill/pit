@@ -1,0 +1,102 @@
+<!--
+  "Bare Minimum" example of brookeafk.com. All settings were removed. This code is to display a single event.
+  Could be useful for devs (or anyone else) wanting to understand my code. Created for the homepage of https://pit.wiki.
+-->
+  <!DOCTYPE HTML>
+  <html>
+  <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
+    <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
+    <title>BrookeAFK Minimum Mode</title>
+    <script src="emergency.js?v=21"></script>
+
+    <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
+  </head>
+  
+  <body>
+  <script>
+
+  var HiddenEventCount = 0;
+  var DoesStuffExist = false;
+  var offset = 0;
+  var speed = 0; // Only exists on minimum. Used to determine how fast the function should be called.
+  var counter = 0;
+  
+  function MakeFunTimestamps(convertible) {
+  let currentTime = (Date.now() + offset);
+  if (convertible - currentTime <= 0) {
+    convertible = "Passed!"
+  }
+  if (convertible - currentTime <= 60000) {
+      convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + "s");
+  } else if (convertible - currentTime <= 3600000) {
+      convertible = ((Math.floor(((convertible - currentTime))/60000) + "m " + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
+  } else if (convertible - currentTime > 1) {
+      convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h " + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
+  }
+  return convertible;
+  }
+
+  function TimeOfDay(s) {
+  var offset = (new Date().getTimezoneOffset())*-60000;
+  return new Date(s + offset).toISOString().slice(-13, -8);
+  }
+
+  var emergency = true;
+  var pp_url = ""
+  if(emergency == false) {
+    pp_url = ('https://events.mcpqndq.dev'); //stands for "Pit Panda"
+  }
+  data_backup = MakeAPIAndHTML();
+  setInterval(getPitPanda,40);
+  
+  async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
+    if(emergency == true) {
+    window.localStorage.clear(); //attempts to clear the local storage to allow reloading to work
+    localStorage.clear();
+    window.data = await window.emergency_data;
+    }
+    if(emergency == false) {
+    const response = await fetch(pp_url);
+    window.data = await response.json();
+    }
+    window.data_backup = window.data;
+    window.EventsToLoad = Object.keys(window.data).length;
+      var div = document.createElement("div");
+      div.id = ("event_0");
+      document.body.appendChild(div);
+      DoesStuffExist = true;
+  }
+  
+  function RapidFirst(transformation) {
+  let currentTime = (Date.now() + offset);
+  if (DoesStuffExist == true) {
+    HasStuffLoaded = true;
+    document.getElementById('event_0').innerHTML = (`<span>` + transformation[HiddenEventCount].event + " in " + MakeFunTimestamps(transformation[HiddenEventCount].timestamp) + `  (` + TimeOfDay(transformation[HiddenEventCount].timestamp) + " local time)</span>");
+    console.log(transformation[HiddenEventCount].timestamp - currentTime)
+    if((transformation[HiddenEventCount].timestamp - currentTime) > 60000) {
+        speed = 0;
+    } else {
+        speed = 1;
+    }
+    if(MakeFunTimestamps(transformation[HiddenEventCount].timestamp) == "Passed!" && !!document.getElementById('event_0') == true) {
+      window.HiddenEventCount = window.HiddenEventCount + 1; 
+    }}}
+  
+  function getPitPanda() {
+    if(speed == 0) {
+        counter += 1;
+        if(counter == 5) {
+            counter = 0;
+            RapidFirst(window.data);
+        }
+    } else if(speed == 1) {
+        RapidFirst(window.data);
+    }
+  }
+    </script>
+    </body>
+  </html>

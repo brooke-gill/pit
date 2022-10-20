@@ -1,59 +1,5 @@
 <html>
 <head>
-<link rel="stylesheet" href="stylesheet.css">
 <meta http-equiv="Refresh" content="0; url='https://pit.wiki'" />
-<title>The Hypixel Pit Wiki</title>
-<script src="pages.js"></script>
-<meta name="description" content="">
-<meta name="author" content="BrookeAFK">
-<meta name="keywords" content="Hypixel Pit Wiki, Hypixel Pit, Hypixel, The Unofficial Hypixel Pit Wiki">
-<link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-<link rel="manifest" href="./favicon/site.webmanifest">
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<script> 
-$(function(){
-  $("#header").load("header.html"); 
-  $("#footer").load("footer.html"); 
-});
-</script>
 </head>
-<body>
-<div id="header"></div>
-<div class="box">
-<center>
-<p class="header">The Unofficial Hypixel Pit Wiki</p>
-
-<span class="body"><b class="me">WELCOME!</b> Thank you for visiting the Hypixel Pit Wiki!<br>
-Currently containing <span class="md" id="articles">a lot of</span> articles:</span><br><br>
-</center>
-<ul style="list-style-type: square; column-count: 4;" class="body" id="listofarticles">
-  
-</ul>
-<br>
-</div>
-<div id="footer"></div>
-
-<script>
-  
-var replace = {' ':'_', "'":""}
-
-for(var i = 0; i < window.pages.length; i += 1) {
-    console.log("doing thing")
-    var fulllist = document.getElementById('listofarticles')
-    var list = document.createElement("li")
-      var ahref = document.createElement("a");
-      ahref.textContent = window.pages[i];
-      ahref.id = ("link_" + i);
-      ahref.setAttribute('href', window.pages[i].replace(/[ ']/g, m => replace[m]));
-      list.appendChild(ahref);
-      fulllist.appendChild(list);
-      console.log(list)
-      document.getElementById('articles').innerText = i + 1
-
-  }
-</script>
-</body>
-
 </html>

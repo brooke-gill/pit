@@ -17,8 +17,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
     <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
     <title>Hypixel Pit Events Tracker</title>
-    <script src="emergency.js?v=29"></script>
-    <script src="control.js?v=0"></script>
+    <script src="emergency.js?v=1"></script>
+    <script src="control.js?v=1"></script>
     <meta name="theme-color" content="#ffbbff">
     <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
   </head>
@@ -77,12 +77,18 @@
   </div>
 
   </div>
-  
+
+  <span id="events"></span>
+
+  <p style="position:relative; left: 10px;" id="madewithlove">Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a></p>
+  <p id="version" style="position: relative; left: 10px;"></p>
+  <p id="special_thanks"><span style="position: relative; left: 10px;"></span></p>
+
   <script>
 
   var HiddenEventCount = 0;
   var EventsToLoad = 1;
-  var version_number = `0.6.7e |&nbsp;&nbsp;</span><span style="color: #ae55c3">Check out the <a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</span>`
+  var version_number = `v0.6.7e |&nbsp;<span style="color: #ae55c3">Check out the <a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</span>`
   var counter = 4;
   var settingsOpened = false;
   var NormalText = "#000000";
@@ -102,6 +108,7 @@
   var offset = 0;
 
   document.body.style.fontFamily = CorrectFont;
+  document.getElementById('version').innerHTML = version_number;
 
   var time1 = 0; // time since last desktop notif
   
@@ -576,6 +583,7 @@
   var darkColoursMaleffect = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
 
   if( typeof emergency === 'undefined'){ // if the connection to control.js failed
+    console.log("Wah!")
     emergency = false; // this is essentially the "emergency" for the emergency variable. Ridiculous.
   }
   var pp_url = ""
@@ -618,26 +626,9 @@
       div.style.textAlign = "left";
       div.style.fontSize = "1.5em"
       div.style.lineHeight = "100%"
-     document.body.appendChild(div);
-  
+     document.getElementById('events').appendChild(div);
   }
-    var o = document.createElement("p");
-    o.id = "made_with_love";
-    o.innerHTML = (`<span style="position:relative; left: 10px;">Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a></span>`);
-    document.body.appendChild(o);
-  
-    var p = document.createElement("p");
-    console.log("Added footer.");
-    //p.style.marginTop = (String(50*i) + "px")
-    p.id = ("version")
-    p.innerHTML = (`<span style="position:relative; left: 10px;">` + "v" + window.version_number + `</span>`);
-    document.body.appendChild(p);
-    var q = document.createElement("p");
-    q.id = ("special_thanks")
-   // q.style.marginTop = (String(50) + "px")
-    q.innerHTML = (`<span style="position:relative; left: 10px;"></span>`);
-    document.body.appendChild(q);
-
+  document.getElementById('special_thanks').innerHTML = `<span style="position:relative; left: 10px;">` + GeneratePraise() + `</span>` 
     ChangeTheme(theme); //just again to make sure 
     //console.log("Seems like your screen's " + document.body.clientWidth + " pixels wide.");
     DoesStuffExist = true;

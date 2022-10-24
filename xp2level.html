@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_icons/favicon-16x16.png" />
+    <link rel="manifest" href="favicon_icons/site.webmanifest" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Hypixel Pit Player Tracker</title>
+</head>
+
+<body style="font-family: Inter; background: #252525">
+
+    <div style="text-align: center">
+        <br />
+        <br />
+        <span class="massiver pf"><span>Currently tracking </span><span id="target" class="p6"><u></u></span></span></span>&nbsp;&nbsp;&nbsp;<img src="https://mc-heads.net/avatar/3457688aa57c4d71ab9d22b04f9160db/100" width="20" id="face" style="display: none;"><br>
+        <span class="large pf"><span style="font-family: Roboto Mono" id="elapsed"></span> elapsed &mdash; last update <span style="font-family: Roboto Mono" id="lastupdate"></span> ago</span>
+        <span class="large"><span id="gain" class="mb"></span> <span id="hour" class="ma"></span></span>
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+
+    <div class="bigstats">
+        <p class="big xp" id="bigxp">+361,338</p><p class="subtitle-x">XP • <span class="p3 w600 small adjustup"><span class="pb w700" id="xphourdisplay"></span> XP/hour</span></p>
+        <p class="big gold" id="biggold">+38</p><p class="subtitle-g">gold • <span class="p6 w600 small adjustup"><span class="pe w700" id="goldhourdisplay"></span> gold/hour</span></p>
+        <p class="big kills" id="bigkills">+0</p><p class="subtitle-k">kills • <span class="p4 w600 small adjustup"><span class="pc w700" id="killshourdisplay"></span> kills/hour</span></p>
+    </div>
+
+    <div class="levels">
+        <p class="massiver" style="text-align: center"><span id="xp-display" class="pb" style="font-family: Minecraft">Loading</span><span class="mf"> &mdash; </span><span
+                id="level" class="pb">Please wait a few seconds.</span></span><br>
+        <div class="meter"><span style="width: 14%; z-index: -4;" id="progressbar"></p></div>
+
+        <br>
+
+        <span id="metertext" class="w900 p8 italic medium metertext"></span>
+                  
+
+        <span id="total_level"><span id="left_level" class="pf massive"></span> <i class="pa massive right" id="time_level"></i></span>
+        <br />
+        <span id="total_10level"><span id="left_10level" class="pf massive"></span> <i class="pa massive right" id="time_10level"></i></span>
+        <br />
+        <span id="total_prestige"><span id="left_prestige" class="pf massive"></span> <i class="pa massive right" id="time_prestige"></i></span>
+        <br /><br>
+    </div>
+
+        <span style="font-size: large; visibility: hidden" class="m7" id="pleasewait">Please wait...</span>
+
+    <div class="block block1">
+        <span class="p7 massive w500"><span class="pf w700" id="stat0">as</span> assists</span><br>
+        <span class="p7 massive w500"><span class="pf w700" id="stat1">as</span> deaths</span><br>
+        <span class="p7 massive w500"><span class="pf w700" id="stat2">as</span> damage dealt</span><br>
+        <span class="p7 massive w500"><span class="pf w700" id="stat3">as</span> sword hits</span><br>
+    </div>
+    
+    <div class="block block2">
+        <span class="p7 massive w500"><span class="pf w700" id="stat4">as</span> left clicks</span><br>
+        <span class="p7 massive w500"><span class="pf w700" id="stat5">as</span> mystics enchanted</span><br>
+        <span class="p7 massive w500"><span class="pf w700" id="stat6">as</span> blocks broken</span><br>
+        <span class="p7 massive w500"><span class="pf w700" id="stat7">as</span> arrow hits</span><br>
+    </div>
+
+    <div class="block block3">
+        <span class="p7 massive w500"><span class="pf w700" id="stat8">as</span> renown</span><br>
+        <span class="p7 massive w500"><span class="pf w700" id="stat9">as</span> kill-death ratio</span><br>
+        <span class="p7 massive w500"><span class="pf w700" id="stat10">as</span> fished items</span><br>
+        <span class="p7 massive w500"><span class="pf w700" id="stat11">as</span> chat messages</span><br>
+    </div>
+
+    <span style="font-size: large" class="m7">Hypixel Pit XP Tracker - Made by
+        <a href="https://brookeafk.com" target="_blank"><span class="md"
+                style="text-decoration: none">BrookeAFK</span></a></span>
+    <script>
+        xp_map = [15, 30, 50, 75, 125, 300, 600, 800, 900, 1000, 1200, 1500, 0];
+        prestiges = [
+            100, 110, 120, 130, 140, 150, 175, 200, 250, 300, 400, 500, 600, 700,
+            800, 900, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 2800, 3200, 3600,
+            4000, 4500, 5000, 7500, 10000, 10100, 10100, 10100, 10100, 10100, 20000,
+            30000, 40000, 50000, 75000, 100000, 125000, 150000, 175000, 200000,
+            300000, 500000, 1000000, 5000000, 10000000,
+        ];
+
+        prestige_xp = [
+            65950, 138510, 217680, 303430, 395760, 494700, 610140, 742040, 906930,
+            1104780, 1368580, 1698330, 2094030, 2555680, 3083280, 3676830, 4336330,
+            5127730, 6051030, 7106230, 8293330, 9612330, 11195130, 13041730,
+            15152130, 17526330, 20164330, 23132080, 26429580, 31375830, 37970830,
+            44631780, 51292730, 57953680, 64614630, 71275580, 84465580, 104250580,
+            130630580, 163605580, 213068080, 279018080, 361455580, 460380580,
+            575793080, 707693080, 905543080, 1235293080, 1894793080, 5192293080,
+            11787293080,
+        ];
+
+        var prestige = 0;
+        var level = 0;
+
+        progress_colors = [ "2", "a", "e", "e", "6", "6", "6", "6", "6", "c", "c", "c", "c", "c", "c", "4", "4", "4", "4", "4", "4", "4", "5", "5", "5", "5", "5", "5", "5", "5", "d", "d", "d", "d", "d", "d", "d", "d", "d", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "b", ];
+        prestigecolors = [ "7", "9", "e", "6", "c", "5", "d", "f", "b", "1", "0", "3", ];
+        levelcolors = [ "7", "9", "3", "2", "a", "e", "b6", "bc", "b4", "b5", "bd", "bf", "bb", ];
+
+        important_stats = [["profile","xp"], ["pit_stats_ptl","cash_earned"], ["pit_stats_ptl","kills"], ["profile","last_save"], ["pit_stats_ptl","assists"], ["pit_stats_ptl","deaths"], ["pit_stats_ptl","damage_dealt"], ["pit_stats_ptl","sword_hits"], ["pit_stats_ptl","left_clicks"], "mystics_enchanted", ["pit_stats_ptl","blocks_broken"], ["pit_stats_ptl","arrow_hits"], ["profile","renown"], "kdr", ["pit_stats_ptl","fished_anything"], ["pit_stats_ptl","chat_messages"],];
+
+        startingplayerstats = []
+        playerstats = []
+        prevplayerstats = []
+        interpolateplayerstats = []
+
+        various_displays = ['total_level','total_10level','total_prestige']
+
+        important_stats_names = ["XP", "gold", "kills", "last save", "assists", "deaths", "damage dealt", "sword hits", "left clicks", "mystics enchanted", "blocks broken", "arrow hits", "renown", "kill-death ratio", "fished items", "chat messages"];
+        
+
+        var startingtime = Date.now();
+        var currenttime = 0;
+        var uuid_connect = false;
+        var done = false;
+        var flag = false;
+        var lastupdated = 0; //Unix time of last update
+  
+        var elapsed = 0;
+        var difference = 0;
+     
+        var menuopen = 0;
+        var nextprestigecolor = 0;
+        var prefix = 0;
+        var nextlevelcolor = 0;
+        var percentage = 0;
+
+        var counter = 0;
+        var calcprestige = 0;
+
+        var numberofupdates = 0;
+        var whattoput = 0;
+        var rankcolor = "7";
+
+        var xp = 0;
+        var startingxp = 0;
+
+        var iterations = 0;
+
+        let here = new URL(window.location.href);
+        console.log(here.searchParams.get("ign"));
+        if (here.searchParams.get("ign") == null) {
+            user = "BrookeAFK";
+        } else {
+            user = here.searchParams.get("ign");
+        }
+        console.log(window.user);
+        Setup();
+        setInterval(CheckAPI, 20000);
+        setInterval(XPHour, 125);
+        setInterval(UpdateDisplay, 62);
+        
+        function Setup() {
+            $.getJSON(
+                "https://playerdb.co/api/player/minecraft/" + window.user,
+                function (data) {
+                    let json5 = data;
+                    console.log(json5.data.player.id);
+                    window.uuid = json5.data.player.id;
+                    document.getElementById("face").src="https://mc-heads.net/avatar/" + window.uuid + "/100/";
+                    document.getElementById("face").style.display = 'inline'
+                    CheckAPI();
+                }
+            );
+        }
+
+        function convertToRoman(num) {
+            var roman = {
+                M: 1000,
+                CM: 900,
+                D: 500,
+                CD: 400,
+                C: 100,
+                XC: 90,
+                L: 50,
+                XL: 40,
+                X: 10,
+                IX: 9,
+                V: 5,
+                IV: 4,
+                I: 1,
+            };
+            var str = "";
+
+            for (var i of Object.keys(roman)) {
+                var q = Math.floor(num / roman[i]);
+                num -= q * roman[i];
+                str += i.repeat(q);
+            }
+            return str;
+        }
+
+        function toTimestamp(duration) {
+            if (duration == Infinity || !(duration > 0)) {
+                return "";
+            } else if (duration <= 3600) {
+                return (
+                    Math.floor(duration / 60) + "m" + (Math.floor(duration) % 60) + "s"
+                );
+            } else if (duration > 1) {
+                return (
+                    Math.floor(duration / 3600) +
+                    "h" +
+                    (Math.floor(duration / 60) % 60) +
+                    "m"
+                );
+            }
+        }
+
+        function prestigeColor(prestige) {
+            if(prestige == 0) {
+                return prestigecolors[0];
+            } else {
+                return prestigecolors[Math.floor(prestige / 5) + 1];
+            }
+        }
+
+        function xpToLevel(experience, data_type) {
+            x_prestige = 0;
+            x_level = 120;
+            x_120level = 0;
+
+            /* Data Types:
+                0: Unformatted      - "[I-26]"
+                1: HTML             - "<span class="m9"> ..."
+                2: Just prestige    - 1
+                3: Just level       - 26
+                4: [120] of pres XP - 138510
+            */
+
+            for (; x_prestige < 50; x_prestige++) {
+                if (experience <= prestige_xp[x_prestige]) {
+                    break;
+                }
+            }
+
+            x_120level = prestige_xp[x_prestige];
+
+            while (x_120level > experience) {
+                //console.log(x_120level - experience);
+                x_level = x_level - 1;
+                x_120level = x_120level - Math.ceil((xp_map[Math.floor(x_level / 10)] * prestiges[x_prestige]) / 100);
+            }
+
+            x_levelcolor = levelcolors[Math.floor(x_level / 10)]
+
+            x_prestigecolor = prestigeColor(x_prestige);
+
+            if(data_type == 2) {
+                return x_prestige;
+            } else if(data_type == 3) {
+                return x_level;
+            } else if(x_prestige == 0) {
+                if(data_type == 0) {
+                    return "[" + x_level + "]";
+                } else if(data_type == 1) {
+                    return `<span class="m7">` + `[<span class="m` + x_levelcolor + `">` + x_level + `</span>]</span>`;
+                }
+
+            } else {
+                if(data_type == 0) {
+                    return "[" + convertToRoman(x_prestige) + "-" + x_level + "]" 
+                } else {
+                    return `<span class="m` + x_prestigecolor + `">[<span class="me">` + convertToRoman(x_prestige) + `</span>-<span class="m` + x_levelcolor + `">` + x_level + `</span>]</span>`
+                }
+            }
+            //return "[" + x_prestige + "-" + x_level + "]";
+        }
+
+        function UpdateStuff() {
+            document.getElementById("level").innerHTML = xpToLevel(xp, 1);
+        }
+
+function isUndefined(value) {
+    if(value == undefined) {
+        return 0;
+    } else {
+        return value;
+    }
+}
+
+function CheckAPI() {
+    document.getElementById("pleasewait").style.visibility = "hidden";
+    $.getJSON(
+        "https://api.hypixel.net/player?key=f3bb6b73081e43efa198861e5c11ac16&uuid=" + window.uuid,
+        function (data) {
+            let json6 = data;
+            var currentplayerstats = [];
+
+            for(i = 0; i < important_stats.length; i++) {
+                if(important_stats[i].length == 2) {
+                    var thevalue = json6['player']['stats']['Pit'][important_stats[i][0]][important_stats[i][1]];
+                } else {
+                    if(important_stats[i] == "mystics_enchanted") {
+                        var thevalue = isUndefined(json6['player']['stats']['Pit']['pit_stats_ptl']['enchanted_tier1']) + isUndefined(json6['player']['stats']['Pit']['pit_stats_ptl']['enchanted_tier2']) + isUndefined(json6['player']['stats']['Pit']['pit_stats_ptl']['enchanted_tier3']);
+                    } else if(important_stats[i] == "kdr") {
+                        var thevalue = 999; //probably close enough
+                    }
+                }
+                user = json6['player']['displayname']
+                console.log(thevalue + " " + important_stats_names[i]);
+                if (thevalue == undefined) {
+                    currentplayerstats[i] = 0;
+                } else {
+                    currentplayerstats[i] = thevalue;
+                }
+            }
+
+            if(playerstats.length == 0) {
+                console.log('First time!')
+                prevplayerstats = currentplayerstats; // maybe remove?
+                startingplayerstats = currentplayerstats;
+            }
+
+            if(playerstats[3] != currentplayerstats[3]) { // if last save is the same & previous player stats actually exist
+                if(playerstats.length > 0) {
+                    prevplayerstats = playerstats // allows room for new player stats
+                }
+                playerstats = currentplayerstats;
+                console.log("it didn't equal")
+            }
+
+            xp = playerstats[0];
+
+            console.log(prefix);
+            document.getElementById("target").innerHTML =
+                `<span class="pd" onclick="changeUser()" style="cursor: pointer"><u>` + user + `</u></span>`;
+            
+        }
+    );
+}
+
+function Next(level, type) {
+    //console.log("next was called with args " + level + " and " + type)
+    if(type == 0) { // return array of levels
+        if(level == 120) return [null, null, null]
+        if(level > 108) return [level + 1, null, 120]
+        if(level % 10 == 9) return [level + 1, level + 11, 120]
+        if(level >= 0) return [level + 1, Math.ceil((level + 1) / 10) * 10, 120]
+    } else if(type == 1) { // return array of colour codes
+        if(level >= 120) return [null, null, null]
+        if(level >= 109) return [levelcolors[Math.floor((level + 1) / 10)], null, "bb"]
+        if(level % 10 == 9) return [levelcolors[Math.floor((level + 1) / 10)], levelcolors[Math.floor((level + 11) / 10)], "bb"]
+        if(level >= 0) return [levelcolors[Math.floor((level + 1) / 10)], levelcolors[Math.floor((Math.ceil((level + 1) / 10) * 10) / 10)], "bb"]
+    }
+}
+
+function secTime(seconds) {
+    if(seconds < 3600) {
+        return ((Math.floor(seconds / 60).toString()).padStart(2, "0") + ":" + (Math.floor(seconds % 60).toString()).padStart(2, "0"))
+    } else {
+        return (((Math.floor(seconds / 3600).toString()).padStart(2, "0")) + ":" + ((Math.floor((seconds / 60) % 60).toString()).padStart(2, "0") + ":" + ((Math.floor(seconds) % 60).toString()).padStart(2, "0")))
+    }
+}
+
+function addComma(number) {
+    return (number.toLocaleString());
+}
+
+function isNeg(number) {
+    if (number > 0) return "+"
+    if (number < 0) return "-"
+    if (number == 0) return ""
+}
+
+function funRound(number, withplusminus) {
+    round = Math.round(number);
+
+    if(round == -0) round = 0;
+    if(withplusminus == true) round = isNeg(round) + addComma(round)
+    else round = addComma(round)
+
+    return round
+}
+
+        function ChangeIGN() {
+            newIGN = document.getElementById('textIGN').value
+            let here = new URL(window.location.href);
+            here.searchParams.delete("ign");
+            here.searchParams.append("ign", newIGN);
+            window.location = here;
+        }
+
+        function TimeUntil() {
+            
+
+        }
+
+        function XPat(pres, level) {
+            total_xp = 0;
+            total_xp += prestige_xp[pres]
+            //console.log(total_xp)
+
+            for(lev = 120; lev >= level; lev--) {
+                total_xp = total_xp - Math.ceil((xp_map[Math.floor(lev / 10)] * prestiges[pres]) / 100);
+                //console.log(total_xp + " - " + Math.ceil((xp_map[Math.floor(lev / 10)] * prestiges[pres]) / 100))
+            }
+
+            return total_xp;
+        }
+
+        function XPHour(xp) {
+            currenttime = Date.now();
+            if (startingxp != 0 && startingtime != 0) {
+                console.log((currenttime - startingtime) / 1000 + " seconds elapsed");
+                console.log((xp - startingxp) + " xp gained");
+            
+                return(xp / ((currenttime - startingtime) / 3600000))
+            }
+        }
+
+        function Interpolate(start, end, length, duration) { // value at start, value at end, total length, current duration through
+            if(length <= duration) return end
+            if(duration < length) return (end * (duration / length) + (start * ((length - duration) / length)))
+        }
+
+        function StatPerHour(statistic, starting) {
+            //console.log((statistic - starting) + "/" + ((Date.now() - startingtime) / 3600000))
+            return (statistic - starting) / ((Date.now() - startingtime) / 3600000)
+        }
+
+        function secWords(seconds) {
+            if(seconds < 60) return Math.floor(seconds) + " sec";
+            if(seconds < 3600) return Math.floor(seconds / 60) + " min, " + Math.floor(seconds) % 60 + " sec";
+            if(seconds < 360000) return Math.floor(seconds / 3600) + " hr, " + Math.floor(seconds / 60) % 60 + " min"
+            if(seconds > 0) return Math.floor(seconds / 3600) + " hr"
+            return ((Math.floor(seconds / 60).toString()).padStart(2, "0") + ":" + (Math.floor(seconds % 60).toString()).padStart(2, "0"))
+        }
+
+        function timeLeft(xpleft) {
+            return secWords(xpleft / xphour * 3600)
+        }
+
+        // xpToLevel guide:
+        //      2: prestige
+        //      3: level
+
+        // Next guide:
+        //      0: numerical level
+        //      1: colour code
+
+        //      [0]: next level
+        //      [1]: next 10th level
+        //      [2]: the prestige
+
+        // XPat guide:
+        //      (prestige, level)
+
+        function UpdateDisplay() {
+            for(j = 0; j < important_stats.length; j++) {
+                interpolateplayerstats[j] = Math.round(Interpolate(prevplayerstats[j], playerstats[j], 180, (Date.now() - playerstats[3]) / 1000))
+            }
+
+            interxp = interpolateplayerstats[0];
+
+            u_prestige = xpToLevel(interxp, 2);
+            u_level = xpToLevel(interxp, 3);
+
+            document.getElementById('xp-display').innerHTML = xpToLevel(interxp, 1);
+
+            document.getElementById('level').innerHTML = (`<span class="w700">` + addComma(interxp) + `</span><span class="w400"> XP</span>`)
+            document.getElementById('elapsed').innerHTML = secTime((Date.now() - startingtime) / 1000)
+
+            for(i = 0; i < various_displays.length; i++) {            
+            if((Next(u_level, 1)[i]) == null) document.getElementById(various_displays[i]).style.display = "none";
+            else document.getElementById(various_displays[i]).style.display = "inline";
+            }
+
+            document.getElementById('lastupdate').innerHTML = secTime((Date.now() - playerstats[3]) / 1000)
+            document.getElementById('left_level').innerHTML = `level <span class="p` + Next(u_level, 1)[0] + `"> ` + Next(u_level, 0)[0] + `</span> in ` + `<span class="pb w600">` + addComma(XPat(u_prestige, Next(u_level, 0)[0]) - interxp) + `<span class="w500"> XP</span></span>`
+            document.getElementById('left_10level').innerHTML = `level <span class="p` + Next(u_level, 1)[1] + `"> ` + Next(u_level, 0)[1] + `</span> in ` + `<span class="pb w600">` + addComma(XPat(u_prestige, Next(u_level, 0)[1]) - interxp) + `<span class="w500"> XP</span></span>`
+            document.getElementById('left_prestige').innerHTML = `prestige <span class="w700 p` + prestigeColor(u_prestige + 1) + `"> ` + convertToRoman(u_prestige + 1) + `</span> in ` + `<span class="pb w600">` + addComma(XPat(u_prestige, Next(u_level, 0)[2]) - interxp) + `<span class="w500"> XP</span></span>`
+
+            if (xpToLevel(xp, 2) == 0) percentage = interxp / 65950;
+            else (percentage = 1 - (((XPat(u_prestige, 120)) - interxp) / ((XPat(u_prestige, 120)) - (XPat(u_prestige - 1, 120)))))
+            document.getElementById('progressbar').style.width = (percentage * 100).toFixed(2) + "%";
+            document.getElementById('metertext').innerText = (percentage * 100).toFixed(2) + "%";
+
+            if (percentage > 0.833) document.getElementById('metertext').style.left = (0.833 * 550) + "px"
+            else document.getElementById('metertext').style.left = ((percentage * 550) + 15) + "px" // moves the text
+
+            xphour = StatPerHour(interxp, startingplayerstats[0]);
+            goldhour = StatPerHour(interpolateplayerstats[1], startingplayerstats[1]);
+            killshour = StatPerHour(interpolateplayerstats[2], startingplayerstats[2]);
+
+            document.getElementById('xphourdisplay').innerText = funRound(xphour);
+            document.getElementById('goldhourdisplay').innerText = funRound(goldhour);
+            document.getElementById('killshourdisplay').innerText = funRound(killshour);
+
+            for(i = 0; i < (important_stats.length - 4); i++) {
+                document.getElementById('stat' + i).innerText = addComma(interpolateplayerstats[i + 4] - startingplayerstats[i + 4]);
+            }
+
+            document.getElementById('time_level').innerHTML = timeLeft(XPat(xpToLevel(interxp, 2), Next(xpToLevel(interxp, 3), 0)[0]) - interxp);
+            document.getElementById('time_10level').innerHTML = timeLeft(XPat(xpToLevel(interxp, 2), Next(xpToLevel(interxp, 3), 0)[1]) - interxp);
+            document.getElementById('time_prestige').innerHTML = timeLeft(XPat(xpToLevel(interxp, 2), Next(xpToLevel(interxp, 3), 0)[2]) - interxp);
+
+            document.getElementById('bigxp').innerText = (funRound(Interpolate(prevplayerstats[0], playerstats[0], 180, (Date.now() - playerstats[3]) / 1000) - startingplayerstats[0]))
+            document.getElementById('biggold').innerText = (funRound(Interpolate(prevplayerstats[1], playerstats[1], 180, (Date.now() - playerstats[3]) / 1000) - startingplayerstats[1]))
+            document.getElementById('bigkills').innerText = funRound(Interpolate(prevplayerstats[2], playerstats[2], 180, (Date.now() - playerstats[3   ]) / 1000) - startingplayerstats[2])
+        }
+    </script>
+</body>
+
+<style>
+    * {
+        font-variant-numeric: tabular-nums;
+    }
+
+    .m0 {
+        color: #000;
+    }
+
+    .m1 {
+        color: #00a;
+    }
+
+    .m2 {
+        color: #0a0;
+    }
+
+    .m3 {
+        color: #0aa;
+    }
+
+    .m4 {
+        color: #a00;
+    }
+
+    .m5 {
+        color: #a0a;
+    }
+
+    .m6 {
+        color: #fa0;
+    }
+
+    .m7 {
+        color: #aaa;
+    }
+
+    .m8 {
+        color: #555;
+    }
+
+    .m9 {
+        color: #55f;
+    }
+
+    .ma {
+        color: #5f5;
+    }
+
+    .mb {
+        color: #5ff;
+    }
+
+    .mc {
+        color: #f55;
+    }
+
+    .md {
+        color: #f5f;
+    }
+
+    .me {
+        color: #ff5;
+    }
+
+    .mf {
+        color: #fff;
+    }
+
+    .mb0 {
+        color: #000;
+    }
+
+    .mb1 {
+        color: #00a;
+        font-weight: bold;
+    }
+
+    .mb2 {
+        color: #0a0;
+        font-weight: bold;
+    }
+
+    .mb3 {
+        color: #0aa;
+        font-weight: bold;
+    }
+
+    .mb4 {
+        color: #a00;
+        font-weight: bold;
+    }
+
+    .mb5 {
+        color: #a0a;
+        font-weight: bold;
+    }
+
+    .mb6 {
+        color: #fa0;
+        font-weight: bold;
+    }
+
+    .mb7 {
+        color: #555;
+        font-weight: bold;
+    }
+
+    .mb8 {
+        color: #aaa;
+        font-weight: bold;
+    }
+
+    .mb9 {
+        color: #55f;
+        font-weight: bold;
+    }
+
+    .mba {
+        color: #5f5;
+        font-weight: bold;
+    }
+
+    .mbb {
+        color: #5ff;
+        font-weight: bold;
+    }
+
+    .mbc {
+        color: #f55;
+        font-weight: bold;
+    }
+
+    .mbd {
+        color: #f5f;
+        font-weight: bold;
+    }
+
+    .mbe {
+        color: #ff5;
+        font-weight: bold;
+    }
+
+    .mbf {
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .p0 {
+        color: #000;
+    }
+
+    .p1 {
+        color: #2b2b8f;
+    }
+
+    .p2 {
+        color: #1d7032;
+    }
+
+    .p3 {
+        color: #2e736f;
+    }
+
+    .p4 {
+        color: #904848;
+    }
+
+    .p5 {
+        color: #702f70;
+    }
+
+    .p6 {
+        color: #ca9837;
+    }
+
+    .p7 {
+        color: #9b9b9b;
+    }
+
+    .p8 {
+        color: #6d6d6d;
+    }
+
+    .p9 {
+        color: #4f4fa0;
+    }
+
+    .pa {
+        color: #64bc64;
+    }
+
+    .pb {
+        color: #67c6c6;
+    }
+
+    .pc {
+        color: #ca5353;
+    }
+
+    .pd {
+        color: #c852c8;
+    }
+
+    .pe {
+        color: #d1d161;
+    }
+
+    .pf {
+        color: #eeeeee;
+    }
+
+    .pb0 {
+        color: #000000;
+    font-weight: bold;
+
+    }
+
+    .pb1 {
+        color: #2b2b8f;
+    font-weight: bold;
+
+    }
+
+    .pb2 {
+        color: #1d7032;
+    font-weight: bold;
+
+    }
+
+    .pb3 {
+        color: #2e736f;
+    font-weight: bold;
+
+    }
+
+    .pb4 {
+        color: #904848;
+    font-weight: bold;
+
+    }
+
+    .pb5 {
+        color: #702f70;
+    font-weight: bold;
+
+    }
+
+    .pb6 {
+        color: #ca9837;
+    font-weight: bold;
+
+    }
+
+    .pb7 {
+        color: #9b9b9b;
+    font-weight: bold;
+
+    }
+
+    .pb8 {
+        color: #6d6d6d;
+    font-weight: bold;
+
+    }
+
+    .pb9 {
+        color: #4f4fa0;
+    font-weight: bold;
+
+    }
+
+    .pba {
+        color: #64bc64;
+    font-weight: bold;
+
+    }
+
+    .pbb {
+        color: #67c6c6;
+    font-weight: bold;
+
+    }
+
+    .pbc {
+        color: #ca5353;
+    font-weight: bold;
+
+    }
+
+    .pbd {
+        color: #c852c8;
+    font-weight: bold;
+
+    }
+
+    .pbe {
+        color: #d1d161;
+    font-weight: bold;
+
+    }
+
+    .pbf {
+        color: #eeeeee;
+    font-weight: bold;
+    }    
+
+    .italic {
+        font-style: italic;
+    }
+
+    .levels {
+        position: absolute;
+        right: 15%;
+        top: 200px;
+        width: fit-content;
+    }
+
+    .adjustup {
+        position: relative;
+        bottom: 4px;
+    }
+
+    .block {
+        position: relative;
+    }
+    
+    .block1 {
+        left: 15%;
+        top: -90px;
+    }
+
+    .block2 {
+        left: 35%;
+        top: -205px;
+    }
+
+    .block3 {
+        left: 55%;
+        top: -320px;
+    }
+
+    .metertext {
+        position: absolute;
+        top: 93px;
+        left: 70px;
+        z-index: 3;
+        background-color: rgba(37, 37, 37, 1);
+        border-radius: 90px;
+        padding: 3px;
+    }
+
+    a:link {
+        color: #b15ac2;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: #725279;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #e7c2ee;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+
+    a:active {
+        color: #edddf0;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+
+    .gargantuan {
+        font-size: 30px;
+    }
+
+    .massiver {
+        font-size: 28px;
+    }
+
+    .massive {
+        font-size: 24px;
+    }
+
+    .large {
+        font-size: 20px;
+    }
+
+    .medium {
+        font-size: 18px;
+    }
+
+    .small {
+        font-size: 16px;
+    }
+
+    .right {
+        right: 0px;
+        text-align: right;
+        position: absolute;
+    }
+
+    .rainbow_text_animated {
+        background: linear-gradient(to right,
+                #f55,
+                #fa0,
+                #ff5,
+                #5f5,
+                #5ff,
+                #f5f,
+                #f55,
+                #fa0,
+                #ff5,
+                #5f5,
+                #5ff,
+                #f5f,
+                #f55,
+                #fa0,
+                #ff5,
+                #5f5,
+                #5ff,
+                #f5f,
+                #f55,
+                #fa0,
+                #ff5,
+                #5f5,
+                #5ff,
+                #f5f,
+                #f55);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: rainbow_animation 12s ease-in-out infinite;
+        background-size: 400% 100%;
+    }
+
+    .w100 {
+        font-weight: 100;
+    }
+    .w200 {
+        font-weight: 200;
+    }
+    .w300 {
+        font-weight: 300;
+    }
+    .w400 {
+        font-weight: 400;
+    }
+    .w500 {
+        font-weight: 500;
+    }
+    .w600 {
+        font-weight: 600;
+    }
+    .w700 {
+        font-weight: 700;
+    }
+    .w800 {
+        font-weight: 800;
+    }
+    .w900 {
+        font-weight: 900;
+    }
+
+    .bigstats {
+        width: fit-content;
+        position: relative;
+        left: 15%;
+        bottom: 50px;
+        line-height: 1em;
+    }
+
+    .big {
+        font-size: 50px;
+        font-weight: 700;
+    }
+
+    .xp {
+        color: #44bdbd;
+    }
+
+    .gold {
+        color: #bd800f;
+
+    }
+
+    .kills {
+        color: #bd4444;
+    }
+
+    .subtitle-x {
+        font-size: 30px;
+        position: relative;
+        top: -20px;
+        font-weight: 500;
+        color: #266363;
+    }
+
+    .subtitle-g {
+        font-size: 30px;
+        position: relative;
+        top: -20px;
+        font-weight: 500;
+        color: #877249;
+    }
+
+    .subtitle-k {
+        font-size: 30px;
+        position: relative;
+        top: -20px;
+        font-weight: 500;
+        color: #8d3636;
+    }
+
+    @keyframes rainbow_animation {
+
+        0%,
+        100% {
+            background-position: 0 0;
+        }
+
+        50% {
+            background-position: 100% 0;
+        }
+    }
+
+    input[type=text] {
+        padding: 5px;
+        font-size: 16px;
+        text-align: center;
+        margin: 8px 0;
+        box-sizing: border-box;
+        font-family: minecraft;
+        color: #fff;
+        background-color: #252525;
+    }
+
+    @font-face {
+        font-family: Minecraft;
+        src: url(./font/MinecraftRegular.otf);
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: Minecraft;
+        src: url(./font/MinecraftBold.otf);
+        font-weight: bold;
+    }
+
+    @font-face {
+        font-family: Inter;
+        src: url(./font/Inter-VariableFont_slnt\,wght.ttf);
+    }
+    
+    @font-face {
+        font-family: Roboto Mono;
+        src: url(./font/RobotoMono-Regular.ttf);
+    }
+
+    /* Many thanks to Chris Coyier for portions of the progress bar code.
+
+    Copyright (c) 2022 by Chris Coyier  (https://codepen.io/chriscoyier/pen/eYBOvJB)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+    */
+
+.meter {
+  box-sizing: content-box;
+  height: 30px;
+  position: relative;
+  border-radius: 25px;
+  outline: 6px solid #2d2d2d;
+  padding: 0px;
+  width: 550px;
+}
+.meter > span {
+  display: block;
+  height: 100%;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #00bbbb;
+  position: relative;
+  overflow: hidden;
+}
+.meter > span:after,
+.animate > span > span {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: linear-gradient(
+    -45deg,
+    #252525 25%,
+    transparent 25%,
+    transparent 50%,
+    #252525 50%,
+    #252525 75%,
+    transparent 75%,
+    transparent
+  );
+  z-index: 1;
+  background-size: 50px 50px;
+  animation: move 1.5s linear infinite;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  overflow: hidden;
+}
+
+.animate > span:after {
+  display: none;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+</style>
+
+</html>

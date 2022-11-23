@@ -31,15 +31,16 @@
     </div>
 
     <div class="bigstats">
-        <p class="big xp" id="bigxp">+361,338</p><p class="subtitle-x">XP • <span class="p3 w600 small adjustup"><span class="pb w700" id="xphourdisplay"></span> XP/hour</span></p>
-        <p class="big gold" id="biggold">+38</p><p class="subtitle-g">gold • <span class="p6 w600 small adjustup"><span class="pe w700" id="goldhourdisplay"></span> gold/hour</span></p>
-        <p class="big kills" id="bigkills">+0</p><p class="subtitle-k">kills • <span class="p4 w600 small adjustup"><span class="pc w700" id="killshourdisplay"></span> kills/hour</span></p>
+        <p class="big xp" id="bigxp">+361,338</p><p class="subtitle-s px">XP • <span class="px w600 small adjustup"><span class="pb w700" id="xphourdisplay"></span> XP/hour</span></p>
+        <p class="big gold" id="biggold">+38</p><p class="subtitle-s pg">gold • <span class="pg w600 small adjustup"><span class="pe w700" id="goldhourdisplay"></span> gold/hour</span></p>
+        <p class="big kills" id="bigkills">+0</p><p class="subtitle-s pk">kills • <span class="pk w600 small adjustup"><span class="pc w700" id="killshourdisplay"></span> kills/hour</span></p>
     </div>
 
     <div class="levels">
         <p class="massiver" style="text-align: center"><span id="xp-display" class="pb" style="font-family: Minecraft">Loading</span><span class="mf"> &mdash; </span><span
                 id="level" class="pb">Please wait a few seconds.</span></span><br>
-        <div class="meter"><span style="width: 14%; z-index: -4;" id="progressbar"></p></div>
+        <div class="meter"><span style="width: 0%; z-index: -4;" id="progressbar"></p></div>
+        <div class="meter smallmeter" style="margin: 20px 0px 0px 0px" id="goldmetercontainer"><span style="width: 0%; z-index: -5;" id="goldmeterbar"></p></div>
 
         <br>
 
@@ -51,10 +52,17 @@
         <span id="total_10level"><span id="left_10level" class="pf massive"></span> <i class="pa massive right" id="time_10level"></i></span>
         <br />
         <span id="total_prestige"><span id="left_prestige" class="pf massive"></span> <i class="pa massive right" id="time_prestige"></i></span>
-        <br /><br>
+
+        <br>
+
+        <span id="gold_section" class="p7 massive"><span id="gold_grinded" class="p6 w700"></span>/<span id="gold_outof" class="p6 w500"></span><span class="p6">g</span> (<span id="gold_percentage" class="p6 w600"></span>)
     </div>
 
         <span style="font-size: large; visibility: hidden" class="m7" id="pleasewait">Please wait...</span>
+
+        <span style="font-size: large" class="p7">Hypixel Pit Player Tracker - Made by
+            <a href="https://brookeafk.com" target="_blank"><span class="pd"
+                    style="text-decoration: none">BrookeAFK</span></a></span>
 
     <div class="block block1">
         <span class="p7 massive w500"><span class="pf w700" id="stat0">as</span> assists</span><br>
@@ -77,9 +85,6 @@
         <span class="p7 massive w500"><span class="pf w700" id="stat11">as</span> chat messages</span><br>
     </div>
 
-    <span style="font-size: large" class="m7">Hypixel Pit XP Tracker - Made by
-        <a href="https://brookeafk.com" target="_blank"><span class="md"
-                style="text-decoration: none">BrookeAFK</span></a></span>
     <script>
         xp_map = [15, 30, 50, 75, 125, 300, 600, 800, 900, 1000, 1200, 1500, 0];
         prestiges = [
@@ -101,24 +106,33 @@
             11787293080,
         ];
 
+        gold_grind = [10000, 20000, 20000, 20000, 30000, 35000, 40000, 45000, 50000, 60000, 70000, 80000, 90000, 100000, 125000, 150000, 175000, 200000, 250000, 300000, 350000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000]
+
         var prestige = 0;
         var level = 0;
 
         progress_colors = [ "2", "a", "e", "e", "6", "6", "6", "6", "6", "c", "c", "c", "c", "c", "c", "4", "4", "4", "4", "4", "4", "4", "5", "5", "5", "5", "5", "5", "5", "5", "d", "d", "d", "d", "d", "d", "d", "d", "d", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "b", ];
-        prestigecolors = [ "7", "9", "e", "6", "c", "5", "d", "f", "b", "1", "0", "3", ];
+        prestigecolors = [ "7", "9", "e", "6", "c", "5", "d", "f", "b", "1", "0", "4", "3", ];
+        prestigecolorsHEX = ["#9b9b9b", "#4f4fa0", "#d1d161", "#ca9837", "#ca5353", "#702f70", "#c852c8", "#eeeeee", "#67c6c6", "#2b2b8f", "#000000", "#702828", "#2e736f"]
+
         levelcolors = [ "7", "9", "3", "2", "a", "e", "b6", "bc", "b4", "b5", "bd", "bf", "bb", ];
 
-        important_stats = [["profile","xp"], ["pit_stats_ptl","cash_earned"], ["pit_stats_ptl","kills"], ["profile","last_save"], ["pit_stats_ptl","assists"], ["pit_stats_ptl","deaths"], ["pit_stats_ptl","damage_dealt"], ["pit_stats_ptl","sword_hits"], ["pit_stats_ptl","left_clicks"], "mystics_enchanted", ["pit_stats_ptl","blocks_broken"], ["pit_stats_ptl","arrow_hits"], ["profile","renown"], "kdr", ["pit_stats_ptl","fished_anything"], ["pit_stats_ptl","chat_messages"],];
+        important_stats = [["profile","xp"], ["pit_stats_ptl","cash_earned"], ["pit_stats_ptl","kills"], ["profile","last_save"], ["pit_stats_ptl","assists"], ["pit_stats_ptl","deaths"], ["pit_stats_ptl","damage_dealt"], ["pit_stats_ptl","sword_hits"], ["pit_stats_ptl","left_clicks"], "mystics_enchanted", ["pit_stats_ptl","blocks_broken"], ["pit_stats_ptl","arrow_hits"], ["profile","renown"], "kdr", ["pit_stats_ptl","fished_anything"], ["pit_stats_ptl","chat_messages"]];
+
+        unimportant_stats = ["cash_during_prestige"]
 
         startingplayerstats = []
         playerstats = []
         prevplayerstats = []
         interpolateplayerstats = []
 
+        prevuplayerstats = []
+        uplayerstats = []
+        interpolateuplayerstats = []
+
         various_displays = ['total_level','total_10level','total_prestige']
 
         important_stats_names = ["XP", "gold", "kills", "last save", "assists", "deaths", "damage dealt", "sword hits", "left clicks", "mystics enchanted", "blocks broken", "arrow hits", "renown", "kill-death ratio", "fished items", "chat messages"];
-        
 
         var startingtime = Date.now();
         var currenttime = 0;
@@ -147,6 +161,7 @@
         var startingxp = 0;
 
         var iterations = 0;
+        var json6;
 
         let here = new URL(window.location.href);
         console.log(here.searchParams.get("ign"));
@@ -218,12 +233,20 @@
             }
         }
 
-        function prestigeColor(prestige) {
-            if(prestige == 0) {
-                return prestigecolors[0];
-            } else {
-                return prestigecolors[Math.floor(prestige / 5) + 1];
+        function gatherStat(statistic, helper = x_prestige) {
+            if (statistic = "prestige_gold") return json6['player']['stats']['Pit']['profile']['cash_during_prestige_' + helper]
+            return "?"
+        }
+
+        function prestigeColor(prestige, hex = false) {
+            if(hex) {
+                if(prestige == 0) return prestigecolorsHEX[0];
+                if(prestige == 48) return prestigecolorsHEX[11];
+                else return prestigecolorsHEX[Math.floor(prestige / 5) + 1];
             }
+            if(prestige == 0) return prestigecolors[0];
+            if(prestige == 48) return prestigecolors[11];
+            else return prestigecolors[Math.floor(prestige / 5) + 1];
         }
 
         function xpToLevel(experience, data_type) {
@@ -295,8 +318,9 @@ function CheckAPI() {
     $.getJSON(
         "https://api.hypixel.net/player?key=f3bb6b73081e43efa198861e5c11ac16&uuid=" + window.uuid,
         function (data) {
-            let json6 = data;
+            json6 = data;
             var currentplayerstats = [];
+            var currentuplayerstats = [];
 
             for(i = 0; i < important_stats.length; i++) {
                 if(important_stats[i].length == 2) {
@@ -316,18 +340,25 @@ function CheckAPI() {
                     currentplayerstats[i] = thevalue;
                 }
             }
+            //work
+            currentuplayerstats[0] = gatherStat("prestige_gold", xpToLevel(currentplayerstats[0], 2))
+            console.log(currentuplayerstats);
 
             if(playerstats.length == 0) {
                 console.log('First time!')
                 prevplayerstats = currentplayerstats; // maybe remove?
                 startingplayerstats = currentplayerstats;
+                
+                prevuplayerstats = currentuplayerstats;
             }
 
             if(playerstats[3] != currentplayerstats[3]) { // if last save is the same & previous player stats actually exist
                 if(playerstats.length > 0) {
                     prevplayerstats = playerstats // allows room for new player stats
+                    prevuplayerstats = uplayerstats
                 }
                 playerstats = currentplayerstats;
+                uplayerstats = currentuplayerstats;
                 console.log("it didn't equal")
             }
 
@@ -485,6 +516,11 @@ function funRound(number, withplusminus) {
             if (xpToLevel(xp, 2) == 0) percentage = interxp / 65950;
             else (percentage = 1 - (((XPat(u_prestige, 120)) - interxp) / ((XPat(u_prestige, 120)) - (XPat(u_prestige - 1, 120)))))
             document.getElementById('progressbar').style.width = (percentage * 100).toFixed(2) + "%";
+            
+
+
+            document.getElementById('progressbar').style.backgroundColor = prestigeColor(u_prestige, true)
+
             document.getElementById('metertext').innerText = (percentage * 100).toFixed(2) + "%";
 
             if (percentage > 0.833) document.getElementById('metertext').style.left = (0.833 * 550) + "px"
@@ -505,6 +541,22 @@ function funRound(number, withplusminus) {
             document.getElementById('time_level').innerHTML = timeLeft(XPat(xpToLevel(interxp, 2), Next(xpToLevel(interxp, 3), 0)[0]) - interxp);
             document.getElementById('time_10level').innerHTML = timeLeft(XPat(xpToLevel(interxp, 2), Next(xpToLevel(interxp, 3), 0)[1]) - interxp);
             document.getElementById('time_prestige').innerHTML = timeLeft(XPat(xpToLevel(interxp, 2), Next(xpToLevel(interxp, 3), 0)[2]) - interxp);
+
+            u_gold_grinded = Interpolate(prevuplayerstats[0], uplayerstats[0], 180, ((Date.now() - playerstats[3]) / 1000))
+            console.log(u_gold_grinded + " gold grinded")
+            u_gold_outof = gold_grind[u_prestige];
+
+            document.getElementById('gold_grinded').innerHTML = funRound(u_gold_grinded)
+            document.getElementById('gold_outof').innerHTML = funRound(u_gold_outof)
+            if(u_gold_grinded > u_gold_outof) {
+                document.getElementById('gold_section').style.display = "none";
+                document.getElementById('goldmetercontainer').style.display = "none";
+            } else {
+                document.getElementById('gold_section').style.display = "block";
+                document.getElementById('goldmetercontainer').style.display = "block";
+                document.getElementById('gold_percentage').innerHTML = (u_gold_grinded * 100 / u_gold_outof).toFixed(2) + "%"
+                document.getElementById('goldmeterbar').style.width = (u_gold_grinded * 100 / u_gold_outof).toFixed(2) + "%"
+            }
 
             document.getElementById('bigxp').innerText = (funRound(Interpolate(prevplayerstats[0], playerstats[0], 180, (Date.now() - playerstats[3]) / 1000) - startingplayerstats[0]))
             document.getElementById('biggold').innerText = (funRound(Interpolate(prevplayerstats[1], playerstats[1], 180, (Date.now() - playerstats[3]) / 1000) - startingplayerstats[1]))
@@ -662,7 +714,7 @@ function funRound(number, withplusminus) {
     }
 
     .p0 {
-        color: #000;
+        color: #000000;
     }
 
     .p1 {
@@ -678,7 +730,7 @@ function funRound(number, withplusminus) {
     }
 
     .p4 {
-        color: #904848;
+        color: #702828;
     }
 
     .p5 {
@@ -750,7 +802,7 @@ function funRound(number, withplusminus) {
     }
 
     .pb4 {
-        color: #904848;
+        color: #702828;
     font-weight: bold;
 
     }
@@ -1007,27 +1059,22 @@ function funRound(number, withplusminus) {
         color: #bd4444;
     }
 
-    .subtitle-x {
+    .subtitle-s {
         font-size: 30px;
         position: relative;
         top: -20px;
         font-weight: 500;
+    }
+
+    .px {
         color: #266363;
     }
 
-    .subtitle-g {
-        font-size: 30px;
-        position: relative;
-        top: -20px;
-        font-weight: 500;
+    .pg {
         color: #877249;
     }
 
-    .subtitle-k {
-        font-size: 30px;
-        position: relative;
-        top: -20px;
-        font-weight: 500;
+    .pk {
         color: #8d3636;
     }
 
@@ -1093,10 +1140,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   height: 30px;
   position: relative;
   border-radius: 25px;
-  outline: 6px solid #2d2d2d;
+  outline: 5px solid #2d2d2d;
   padding: 0px;
   width: 550px;
 }
+
+.smallmeter {
+    height: 20px;
+    outline: 5px solid #35352d;
+}
+
 .meter > span {
   display: block;
   height: 100%;
@@ -1108,6 +1161,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   position: relative;
   overflow: hidden;
 }
+
+#goldmeterbar {
+    background-color: #bd800f;
+}
+
 .meter > span:after,
 .animate > span > span {
   content: "";
@@ -1147,6 +1205,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   100% {
     background-position: 50px 50px;
   }
+}
+
+*{ 
+    transition-duration: 0.2s;
 }
 </style>
 

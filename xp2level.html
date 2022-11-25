@@ -4,30 +4,33 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon_icons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon_icons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon_icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_icons/tracker_apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_icons/tracker_favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_icons/tracker_favicon-16x16.png" />
     <link rel="manifest" href="favicon_icons/site.webmanifest" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/tracker_favicon.ico" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>Hypixel Pit Player Tracker</title>
 </head>
 
-<body style="font-family: Inter; background: #252525">
+<body style="font-family: Inter; background: #252525;">
 
     <div style="text-align: center">
         <br />
         <br />
-        <span class="massiver pf"><span>Currently tracking </span><span id="target" class="p6"><u></u></span></span></span>&nbsp;&nbsp;&nbsp;<img src="https://mc-heads.net/avatar/3457688aa57c4d71ab9d22b04f9160db/100" width="20" id="face" style="display: none;"><br>
-        <span class="large pf"><span style="font-family: Roboto Mono" id="elapsed"></span> elapsed &mdash; last update <span style="font-family: Roboto Mono" id="lastupdate"></span> ago</span>
-        <span class="large"><span id="gain" class="mb"></span> <span id="hour" class="ma"></span></span>
-        <br />
-        <br />
-        <br />
-        <br />
+        <span class="massiver pf"><span>Currently tracking </span><span id="target" class="pd" onclick="changeUserorKey()" style="cursor: pointer" contenteditable="false"><u></u></span></span></span>&nbsp;&nbsp;&nbsp;<img src="https://mc-heads.net/avatar/3457688aa57c4d71ab9d22b04f9160db/100" width="20" id="face" style="display: none;"><br>
+        <span class="large pf"><span style="font-family: Roboto Mono" id="elapsed"></span> elapsed &mdash; last update <span style="font-family: Roboto Mono" id="lastupdate"></span> ago</span><br>
+        <span class="large p8"><span id="apikeystatus" onclick="changeUserorKey(null, 'api')" style="cursor: pointer"><span class="m8">Testing API key</span></span> • <span onclick="changeUserorKey()" style="cursor: pointer">Change Player</span><br>
+        <span id="changename" style="display: none;"><input type="text" id="textIGN" onkeypress="inputIGN(event)"></input>&nbsp;&nbsp;<span class="ma" style="cursor: pointer" onclick="changeIGN()">Change</span> • <span style="cursor: pointer" onclick="changeUserorKey('cancel')">Cancel</span></span>
+        <span id="changekey" style="display: none;"><input type="password" id="textkey" onkeypress="inputAPI(event)"></input>&nbsp;&nbsp;<span class="ma" style="cursor: pointer" onclick="changeAPI()">Change</span> • <span style="cursor: pointer" onclick="changeUserorKey('cancel', 'api')">Cancel</span></span></span>
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
 
     <div class="bigstats">
@@ -48,9 +51,9 @@
                   
 
         <span id="total_level"><span id="left_level" class="pf massive"></span> <i class="pa massive right" id="time_level"></i></span>
-        <br />
+        <br>
         <span id="total_10level"><span id="left_10level" class="pf massive"></span> <i class="pa massive right" id="time_10level"></i></span>
-        <br />
+        <br>
         <span id="total_prestige"><span id="left_prestige" class="pf massive"></span> <i class="pa massive right" id="time_prestige"></i></span>
 
         <br>
@@ -59,10 +62,6 @@
     </div>
 
         <span style="font-size: large; visibility: hidden" class="m7" id="pleasewait">Please wait...</span>
-
-        <span style="font-size: large" class="p7">Hypixel Pit Player Tracker - Made by
-            <a href="https://brookeafk.com" target="_blank"><span class="pd"
-                    style="text-decoration: none">BrookeAFK</span></a></span>
 
     <div class="block block1">
         <span class="p7 massive w500"><span class="pf w700" id="stat0">as</span> assists</span><br>
@@ -84,6 +83,11 @@
         <span class="p7 massive w500"><span class="pf w700" id="stat10">as</span> fished items</span><br>
         <span class="p7 massive w500"><span class="pf w700" id="stat11">as</span> chat messages</span><br>
     </div>
+    <span style="font-size: large" class="p7 credit">Hypixel Pit Player Tracker<br>Made by
+        <a href="https://brookeafk.com" target="_blank"><span class="pd"
+                style="text-decoration: none">BrookeAFK</span></a><br>
+        <a href="https://pit.wiki" target="_blank">Pit Wiki</a> • <a href="https://github.com/brooke-gill" target="_blank">GitHub</a> • <a href="https://twitter.com/BrookeAFK" target="_blank">Twitter</a> 
+    </span>
 
     <script>
         xp_map = [15, 30, 50, 75, 125, 300, 600, 800, 900, 1000, 1200, 1500, 0];
@@ -136,7 +140,6 @@
 
         var startingtime = Date.now();
         var currenttime = 0;
-        var uuid_connect = false;
         var done = false;
         var flag = false;
         var lastupdated = 0; //Unix time of last update
@@ -161,7 +164,7 @@
         var startingxp = 0;
 
         var iterations = 0;
-        var json6;
+        var json6, successful_send;
 
         let here = new URL(window.location.href);
         console.log(here.searchParams.get("ign"));
@@ -170,6 +173,11 @@
         } else {
             user = here.searchParams.get("ign");
         }
+
+        var key = localStorage.getItem('key');
+        if (key == undefined || key == "") key = "f3bb6b73081e43efa198861e5c11ac16";
+
+        document.getElementById("target").innerHTML = `<span class="m8"><u>` + user + `</u></span>`;
         console.log(window.user);
         Setup();
         setInterval(CheckAPI, 20000);
@@ -183,6 +191,7 @@
                     let json5 = data;
                     console.log(json5.data.player.id);
                     window.uuid = json5.data.player.id;
+                    if(typeof(uuid) == "undefined") document.getElementById('apikeystatus').innerHTML = `<span class="mc">Invalid username</span>`;
                     document.getElementById("face").src="https://mc-heads.net/avatar/" + window.uuid + "/100/";
                     document.getElementById("face").style.display = 'inline'
                     CheckAPI();
@@ -315,9 +324,13 @@ function isUndefined(value) {
 
 function CheckAPI() {
     document.getElementById("pleasewait").style.visibility = "hidden";
+    successful_send = false;
+    try {
     $.getJSON(
-        "https://api.hypixel.net/player?key=f3bb6b73081e43efa198861e5c11ac16&uuid=" + window.uuid,
+        "https://api.hypixel.net/player?key=" + key + "&uuid=" + window.uuid,
         function (data) {
+            successful_send = true;
+            console.log("whee")
             json6 = data;
             var currentplayerstats = [];
             var currentuplayerstats = [];
@@ -350,6 +363,9 @@ function CheckAPI() {
                 startingplayerstats = currentplayerstats;
                 
                 prevuplayerstats = currentuplayerstats;
+                
+                if (key == "f3bb6b73081e43efa198861e5c11ac16") document.getElementById('apikeystatus').innerHTML = `<span class="mc">Missing API key</span>`;
+                else document.getElementById('apikeystatus').innerHTML = `Valid API key`;
             }
 
             if(playerstats[3] != currentplayerstats[3]) { // if last save is the same & previous player stats actually exist
@@ -366,10 +382,14 @@ function CheckAPI() {
 
             console.log(prefix);
             document.getElementById("target").innerHTML =
-                `<span class="pd" onclick="changeUser()" style="cursor: pointer"><u>` + user + `</u></span>`;
+                `<u>` + user + `</u>`;
             
         }
     );
+    }
+    catch(err) {
+    document.getElementById('apikeystatus').innerHTML = `<span class="mc">Invalid API key (error ` + err + `)</span>`
+    }
 }
 
 function Next(level, type) {
@@ -414,13 +434,47 @@ function funRound(number, withplusminus) {
 
     return round
 }
+        function changeUserorKey(status = null, type = "user") {
+        if(type == "user") {
+            if (status == "cancel") document.getElementById('changename').style.display = "none";
+            else {
+                document.getElementById('changename').style.display = "inline";
+                document.getElementById('textIGN').focus();
+                document.getElementById('textIGN').select();
+            }
+        } else if(type == "api") {
+            if (status == "cancel") document.getElementById('changekey').style.display = "none";
+            else {
+                document.getElementById('changekey').style.display = "inline";
+                document.getElementById('textkey').focus();
+                document.getElementById('textkey').select();
+            }
+        }
+    }
 
-        function ChangeIGN() {
+        function inputIGN(event) {
+            if(event.key == "Enter") changeIGN();
+        }
+
+        function inputAPI(event) {
+            if(event.key == "Enter") changeAPI();
+        }
+
+        function changeIGN() {
             newIGN = document.getElementById('textIGN').value
             let here = new URL(window.location.href);
             here.searchParams.delete("ign");
             here.searchParams.append("ign", newIGN);
             window.location = here;
+        }
+
+        function changeAPI() {
+            textkeyvalue = (document.getElementById('textkey').value)
+            if(textkeyvalue.length == 32 || textkeyvalue.length == 36 || textkeyvalue.length == 0) {
+                localStorage.setItem('key', document.getElementById('textkey').value)
+                location.reload();
+            } 
+            else document.getElementById('textkey').style.backgroundColor = "#AA7777";
         }
 
         function TimeUntil() {
@@ -505,7 +559,7 @@ function funRound(number, withplusminus) {
 
             for(i = 0; i < various_displays.length; i++) {            
             if((Next(u_level, 1)[i]) == null) document.getElementById(various_displays[i]).style.display = "none";
-            else document.getElementById(various_displays[i]).style.display = "inline";
+            else document.getElementById(various_displays[i]).style.display = "inline-block";
             }
 
             document.getElementById('lastupdate').innerHTML = secTime((Date.now() - playerstats[3]) / 1000)
@@ -543,7 +597,7 @@ function funRound(number, withplusminus) {
             document.getElementById('time_prestige').innerHTML = timeLeft(XPat(xpToLevel(interxp, 2), Next(xpToLevel(interxp, 3), 0)[2]) - interxp);
 
             u_gold_grinded = Interpolate(prevuplayerstats[0], uplayerstats[0], 180, ((Date.now() - playerstats[3]) / 1000))
-            console.log(u_gold_grinded + " gold grinded")
+            //console.log(u_gold_grinded + " gold grinded")
             u_gold_outof = gold_grind[u_prestige];
 
             document.getElementById('gold_grinded').innerHTML = funRound(u_gold_grinded)
@@ -877,9 +931,9 @@ function funRound(number, withplusminus) {
     }
 
     .levels {
-        position: absolute;
-        right: 15%;
-        top: 200px;
+        position: relative;
+        left: 45%;
+        bottom: 460px;
         width: fit-content;
     }
 
@@ -893,23 +947,29 @@ function funRound(number, withplusminus) {
     }
     
     .block1 {
-        left: 15%;
-        top: -90px;
+        left: 45%;
+        top: -440px;
     }
 
     .block2 {
-        left: 35%;
-        top: -205px;
+        left: calc(45% + 300px);
+        top: -560px;
     }
 
     .block3 {
-        left: 55%;
-        top: -320px;
+        left: 45%;
+        top: -530px;
+    }
+
+    .credit {
+        position: relative;
+        bottom: 578px;
+        left: 15%;
     }
 
     .metertext {
         position: absolute;
-        top: 93px;
+        top: 65px;
         left: 70px;
         z-index: 3;
         background-color: rgba(37, 37, 37, 1);
@@ -1090,16 +1150,25 @@ function funRound(number, withplusminus) {
         }
     }
 
-    input[type=text] {
-        padding: 5px;
-        font-size: 16px;
-        text-align: center;
-        margin: 8px 0;
-        box-sizing: border-box;
-        font-family: minecraft;
-        color: #fff;
-        background-color: #252525;
-    }
+input[type="text"], input[type="password"] {
+    font-size:20px;
+    font-family: Inter, sans-serif;
+    text-align:center;
+    background-color: #313131;
+    color: white;
+    transition-duration: 0.5s;
+    position: relative;
+    width: 200px;
+    right: 0px;
+    border-radius: 5px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+outline: none;
+box-shadow: 0 0 10px rgba(200, 200, 200, 0.2);
+position: relative;
+background-color: #31313a;
+}
 
     @font-face {
         font-family: Minecraft;
@@ -1121,6 +1190,11 @@ function funRound(number, withplusminus) {
     @font-face {
         font-family: Roboto Mono;
         src: url(./font/RobotoMono-Regular.ttf);
+    }
+
+    @font-face {
+        font-family: Material;
+        src: url(./font/Material.ttf);
     }
 
     /* Many thanks to Chris Coyier for portions of the progress bar code.
@@ -1209,6 +1283,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 *{ 
     transition-duration: 0.2s;
+}
+
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
 }
 </style>
 

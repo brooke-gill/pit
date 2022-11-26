@@ -50,11 +50,11 @@
         <span id="metertext" class="w900 p8 italic medium metertext"></span>
                   
 
-        <span id="total_level"><span id="left_level" class="pf massive"></span> <i class="pa massive right" id="time_level"></i></span>
-        <br>
-        <span id="total_10level"><span id="left_10level" class="pf massive"></span> <i class="pa massive right" id="time_10level"></i></span>
-        <br>
-        <span id="total_prestige"><span id="left_prestige" class="pf massive"></span> <i class="pa massive right" id="time_prestige"></i></span>
+        <p id="total_level"><span id="left_level" class="pf massive"></span> <i class="pa massive right" id="time_level"></i></p>
+        
+        <p id="total_10level"><span id="left_10level" class="pf massive"></span> <i class="pa massive right" id="time_10level"></i></p>
+        
+        <p id="total_prestige"><span id="left_prestige" class="pf massive"></span> <i class="pa massive right" id="time_prestige"></i></p>
 
         <br>
 
@@ -91,24 +91,9 @@
 
     <script>
         xp_map = [15, 30, 50, 75, 125, 300, 600, 800, 900, 1000, 1200, 1500, 0];
-        prestiges = [
-            100, 110, 120, 130, 140, 150, 175, 200, 250, 300, 400, 500, 600, 700,
-            800, 900, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 2800, 3200, 3600,
-            4000, 4500, 5000, 7500, 10000, 10100, 10100, 10100, 10100, 10100, 20000,
-            30000, 40000, 50000, 75000, 100000, 125000, 150000, 175000, 200000,
-            300000, 500000, 1000000, 5000000, 10000000,
-        ];
+        prestiges = [100, 110, 120, 130, 140, 150, 175, 200, 250, 300, 400, 500, 600, 700, 800, 900, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 2800, 3200, 3600, 4000, 4500, 5000, 7500, 10000, 10100, 10100, 10100, 10100, 10100, 20000, 30000, 40000, 50000, 75000, 100000, 125000, 150000, 175000, 200000, 300000, 500000, 1000000, 5000000, 10000000,];
 
-        prestige_xp = [
-            65950, 138510, 217680, 303430, 395760, 494700, 610140, 742040, 906930,
-            1104780, 1368580, 1698330, 2094030, 2555680, 3083280, 3676830, 4336330,
-            5127730, 6051030, 7106230, 8293330, 9612330, 11195130, 13041730,
-            15152130, 17526330, 20164330, 23132080, 26429580, 31375830, 37970830,
-            44631780, 51292730, 57953680, 64614630, 71275580, 84465580, 104250580,
-            130630580, 163605580, 213068080, 279018080, 361455580, 460380580,
-            575793080, 707693080, 905543080, 1235293080, 1894793080, 5192293080,
-            11787293080,
-        ];
+        prestige_xp = [65950, 138510, 217680, 303430, 395760, 494700, 610140, 742040, 906930, 1104780, 1368580, 1698330, 2094030, 2555680, 3083280, 3676830, 4336330, 5127730, 6051030, 7106230, 8293330, 9612330, 11195130, 13041730, 15152130, 17526330, 20164330, 23132080, 26429580, 31375830, 37970830, 44631780, 51292730, 57953680, 64614630, 71275580, 84465580, 104250580, 130630580, 163605580, 213068080, 279018080, 361455580, 460380580,575793080, 707693080, 905543080, 1235293080, 1894793080, 5192293080,11787293080,];
 
         gold_grind = [10000, 20000, 20000, 20000, 30000, 35000, 40000, 45000, 50000, 60000, 70000, 80000, 90000, 100000, 125000, 150000, 175000, 200000, 250000, 300000, 350000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 1000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000]
 
@@ -201,19 +186,7 @@
 
         function convertToRoman(num) {
             var roman = {
-                M: 1000,
-                CM: 900,
-                D: 500,
-                CD: 400,
-                C: 100,
-                XC: 90,
-                L: 50,
-                XL: 40,
-                X: 10,
-                IX: 9,
-                V: 5,
-                IV: 4,
-                I: 1,
+                M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1,
             };
             var str = "";
 
@@ -315,7 +288,7 @@
         }
 
 function isUndefined(value) {
-    if(value == undefined) {
+    if(value == undefined || isNaN(value)) {
         return 0;
     } else {
         return value;
@@ -342,7 +315,7 @@ function CheckAPI() {
                     if(important_stats[i] == "mystics_enchanted") {
                         var thevalue = isUndefined(json6['player']['stats']['Pit']['pit_stats_ptl']['enchanted_tier1']) + isUndefined(json6['player']['stats']['Pit']['pit_stats_ptl']['enchanted_tier2']) + isUndefined(json6['player']['stats']['Pit']['pit_stats_ptl']['enchanted_tier3']);
                     } else if(important_stats[i] == "kdr") {
-                        var thevalue = 999; //probably close enough
+                        var thevalue = (json6['player']['stats']['Pit']['pit_stats_ptl']['deaths'] - startingplayerstats[5]) == 0?isUndefined((json6['player']['stats']['Pit']['pit_stats_ptl']['kills'] - startingplayerstats[2])):isUndefined((json6['player']['stats']['Pit']['pit_stats_ptl']['kills'] - startingplayerstats[2]) / (json6['player']['stats']['Pit']['pit_stats_ptl']['deaths'] - startingplayerstats[5])).toFixed(2)
                     }
                 }
                 user = json6['player']['displayname']
@@ -544,7 +517,8 @@ function funRound(number, withplusminus) {
 
         function UpdateDisplay() {
             for(j = 0; j < important_stats.length; j++) {
-                interpolateplayerstats[j] = Math.round(Interpolate(prevplayerstats[j], playerstats[j], 180, (Date.now() - playerstats[3]) / 1000))
+                if(j == 13) interpolateplayerstats[j] = (Interpolate(prevplayerstats[j], playerstats[j], 180, (Date.now() - playerstats[3]) / 1000))
+                else interpolateplayerstats[j] = Math.round(Interpolate(prevplayerstats[j], playerstats[j], 180, (Date.now() - playerstats[3]) / 1000))
             }
 
             interxp = interpolateplayerstats[0];
@@ -559,7 +533,7 @@ function funRound(number, withplusminus) {
 
             for(i = 0; i < various_displays.length; i++) {            
             if((Next(u_level, 1)[i]) == null) document.getElementById(various_displays[i]).style.display = "none";
-            else document.getElementById(various_displays[i]).style.display = "inline-block";
+            else document.getElementById(various_displays[i]).style.display = "block";
             }
 
             document.getElementById('lastupdate').innerHTML = secTime((Date.now() - playerstats[3]) / 1000)
@@ -930,10 +904,14 @@ function funRound(number, withplusminus) {
         font-style: italic;
     }
 
+    p {
+        line-height: 0.7em;
+    }
+
     .levels {
         position: relative;
         left: 45%;
-        bottom: 460px;
+        bottom: 520px;
         width: fit-content;
     }
 
@@ -948,17 +926,17 @@ function funRound(number, withplusminus) {
     
     .block1 {
         left: 45%;
-        top: -440px;
+        top: -500px;
     }
 
     .block2 {
         left: calc(45% + 300px);
-        top: -560px;
+        top: -620px;
     }
 
     .block3 {
         left: 45%;
-        top: -530px;
+        top: -590px;
     }
 
     .credit {
@@ -969,7 +947,7 @@ function funRound(number, withplusminus) {
 
     .metertext {
         position: absolute;
-        top: 65px;
+        top: 50px;
         left: 70px;
         z-index: 3;
         background-color: rgba(37, 37, 37, 1);
@@ -1061,7 +1039,7 @@ function funRound(number, withplusminus) {
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        animation: rainbow_animation 12s ease-in-out infinite;
+        animation: rainbow_animation 4s ease-in-out infinite;
         background-size: 400% 100%;
     }
 
@@ -1140,12 +1118,11 @@ function funRound(number, withplusminus) {
 
     @keyframes rainbow_animation {
 
-        0%,
-        100% {
+        0% {
             background-position: 0 0;
         }
 
-        50% {
+        100% {
             background-position: 100% 0;
         }
     }

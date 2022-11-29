@@ -216,7 +216,7 @@
         }
 
         function gatherStat(statistic, helper = x_prestige) {
-            if (statistic = "prestige_gold") return json6['player']['stats']['Pit']['profile']['cash_during_prestige_' + helper]
+            if (statistic = "prestige_gold") return isUndefined(json6['player']['stats']['Pit']['profile']['cash_during_prestige_' + helper])
             return "?"
         }
 

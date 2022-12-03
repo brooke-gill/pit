@@ -42,7 +42,7 @@
   <p id="dnotif" style="font-size:15px"><span>- Desktop notifications (BETA): </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
   <p style="font-size:15px"><span id="alert-nobells" style="color: #ff7777; display: none">You're not being reminded for any events!<br>Click the bells in the top-right corner to receive notifications.</span></p>
   <p style="font-size:15px"><span id="alert-notypes" style="color: #ff7777; display: none">Make sure to turn either "Audio notifications"<br>or "Desktop notifications" on to receive alerts.</span></p>
-  <p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='ToggleTimestamps("dnc");' class="hand_cursor">Day-Night Cycle</span></p>
+  <p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='ToggleTimestamps("dnc");' class="hand_cursor">Day-Night</span></p>
   <p style="font-size:15px"><span id="settings-flashing">Flashing text: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
   <p style="font-size:15px"><span>Font: </span><span id="settings-font-minecraft" class="hand_cursor" onclick='ChangeFont("minecraftregular")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='ChangeFont("sans-serif")'>Sans-Serif</span></p> 
   <p style="font-size:15px"><span id="alert-noevents" style="color: #ff7777; display: none">You don't have any events selected!<br>Click the event names in the top-right corner to make some visible.</span></p>
@@ -603,8 +603,6 @@
     if(emergency == true) {
     document.getElementById('version').innerHTML = (version_number + "e " + wiki_ad);
     document.getElementById('mcpqndq').style.display = "none"; // i'm evil
-    window.localStorage.clear(); //attempts to clear the local storage to allow reloading to work
-    localStorage.clear();
     window.data = await window.emergency_data;
     /*if(Object.keys(data).length == 0) {
       console.log("oh no")
@@ -1172,6 +1170,20 @@
     }
 }
 
+/*@font-face {
+  font-family: Minecraft;
+  src: url("./font/MinecraftRegular.otf");
+}
+
+@font-face {
+  font-family: Minecraft;
+  src: url("./font/MinecraftBold.otf");
+  font-weight: bold;
+}
+
+*{
+  transition-duration: 0.2s;
+}*/
     </style>
   
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"6ee9d8195eaa7e2c","version":"2021.12.0","r":1,"token":"7ae79fbdb6224da3a02aeec2ac9658a6","si":100}' crossorigin="anonymous"></script>

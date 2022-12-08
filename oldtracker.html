@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<!-- god if you have to read through this i'm so sorry. to any and all statsify devs who have to read this, my sincerest apologies. just copy and paste the code without a second thought. -->
+<html>
+  <head>
+    <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_icons/favicon-16x16.png">
+    <link rel="manifest" href="favicon_icons/site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
+    <title>Hypixel Pit Player Tracker</title>
+  </head>
+<body style="font-family: minecraftregular; background: #222;">
+  <center>
+    <br>
+    <br>
+    <br>
+    <span style="font-size: xx-large"><span id='xp' class="mb">Loading XP</span><span class="mf"> - </span><span id="level" class="mb">Please wait 6 seconds.</span></span>
+    <br>
+    <span style="font-size: x-large"><span id="gain" class="mb"></span> <span id="hour" class="ma"></span></span>
+    <br>
+    <span style="font-size: large" id="fake" class="m7"></span><span style="font-size: large" id="slowapi" class="m7">&nbsp;| API typically updates every 3 minutes</span>
+    <br>
+    <br>
+    <br>
+  <span style="font-size: large" id="time_level" class="m7"></span>
+  <br>
+  <span style="font-size: large" id="time_10level" class="m7"></span>
+  <br>
+  <span style="font-size: large" id="time_prestige" class="m7"></span>
+  <br><br>
+  <span style="font-size: large" id="brackets" class="m7">[<span id="rainbowprogress" style="display: none" class="rainbow_text_animated">||||||||||||||||||||||||||||||||||||||||||||||||||</span><span id="progress" class="m8"><span id="progress_0">|</span><span id="progress_1">|</span><span id="progress_2">|</span><span id="progress_3">|</span><span id="progress_4">|</span><span id="progress_5">|</span><span id="progress_6">|</span><span id="progress_7">|</span><span id="progress_8">|</span><span id="progress_9">|</span><span id="progress_10">|</span><span id="progress_11">|</span><span id="progress_12">|</span><span id="progress_13">|</span><span id="progress_14">|</span><span id="progress_15">|</span><span id="progress_16">|</span><span id="progress_17">|</span><span id="progress_18">|</span><span id="progress_19">|</span><span id="progress_20">|</span><span id="progress_21">|</span><span id="progress_22">|</span><span id="progress_23">|</span><span id="progress_24">|</span><span id="progress_25">|</span><span id="progress_26">|</span><span id="progress_27">|</span><span id="progress_28">|</span><span id="progress_29">|</span><span id="progress_30">|</span><span id="progress_31">|</span><span id="progress_32">|</span><span id="progress_33">|</span><span id="progress_34">|</span><span id="progress_35">|</span><span id="progress_36">|</span><span id="progress_37">|</span><span id="progress_38">|</span><span id="progress_39">|</span><span id="progress_40">|</span><span id="progress_41">|</span><span id="progress_42">|</span><span id="progress_43">|</span><span id="progress_44">|</span><span id="progress_45">|</span><span id="progress_46">|</span><span id="progress_47">|</span><span id="progress_48">|</span><span id="progress_49">|</span></span>]</span> <span style="font-size: large" id="percentage" class="m6"></span>
+  <br><br>
+  <span style="font-size: large" class="m7"><span>Currently tracking </span><span id="target" class="md"></span>  |  <span id="change" style="cursor:pointer" onclick="ChangeIGN()" class="ma">Click here to change</span></span>
+  <br>
+  <span style="font-size: large; visibility: hidden;" class="m7" id="pleasewait">Please wait...</span>
+  <br><br><br><br>
+  <span style="font-size: large" class="m7">Hypixel Pit XP Tracker - Made by <a href="https://brookeafk.com" target="_blank"><span class="md" style="text-decoration: none">BrookeAFK</span></a></span>
+
+
+</center>
+<script>
+xp_map = [15, 30, 50, 75, 125, 300, 600, 800, 900, 1000, 1200, 1500]
+prestiges = [100, 110, 120, 130, 140, 150, 175, 200, 250, 300, 400, 500, 600, 700, 800, 900, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 2800, 3200, 3600, 4000, 4500, 5000, 7500, 10000, 10100, 10100, 10100, 10100, 10100, 20000, 30000, 40000, 50000, 75000, 100000, 125000, 150000, 175000, 200000, 300000, 500000, 1000000, 5000000, 10000000]
+//prestige_xp = [65935, 138458, 217580, 303290, 395599, 494496, 609869, 741739, 906571, 1104376, 1368116, 1697791, 2093401, 2554946, 3082426, 3675841, 4335191, 5126411, 6049501, 7104461, 8291291, 9609991, 11192431, 13038611, 15148531, 17522191, 20159591, 23126666, 26423416, 31368541, 37962041, 44621476, 51280911, 57940346, 64599781, 71259216, ]
+prestige_xp = [65950,138510,217680,303430,395760,494700,610140,742040,906930,1104780,1368580,1698330,2094030,2555680,3083280,3676830,4336330,5127730,6051030,7106230,8293330,9612330,11195130,13041730,15152130,17526330,20164330,23132080,26429580,31375830,37970830,44631780,51292730,57953680,64614630,71275580,84465580,104250580,130630580,163605580,213068080,279018080,361455580,460380580,575793080,707693080,905543080,1235293080,1894793080,5192293080,11787293080]
+prestige = 0
+
+progress_colors = ["2", "a", "e", "e", "6", "6", "6", "6", "6", "c", "c", "c", "c", "c", "c", "4", "4", "4", "4", "4", "4", "4", "5", "5", "5", "5", "5", "5", "5", "5", "d", "d", "d", "d", "d", "d", "d", "d", "d", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "b",]
+
+level = 0
+var startingxp = 0 
+var currentxp = 0
+var startingtime = 0
+var currenttime = 0
+var uuid_connect = false
+var done = false
+var flag = false
+var lastupdated = 0 //Unix time of last update
+var realxp = 0 //current count of xp
+var oldxp = 0
+var elapsed = 0
+var difference = 0
+var fakexp = 0
+var nextlevelxp = 0;
+var next10levelxp = 0;
+var menuopen = 0;
+var nextprestigecolor = 0;
+var prefix = 0;
+var nextlevelcolor = 0;
+var percentage = 0;
+
+var counter = 0;
+var calcxp = 0;
+var calcprestige = 0;
+
+var numberofupdates = 0;
+var whattoput = 0;
+var rankcolor = "7";
+
+let here = new URL(window.location.href);
+console.log(here.searchParams.get('ign'))
+if(here.searchParams.get('ign') == null) {
+    user = "BrookeAFK"
+} else {
+    user = here.searchParams.get('ign')
+}
+    document.getElementById('target').innerHTML = `<a href="https://pitpanda.rocks/players/` + user + `" target="_blank"><span class="m7">` + user + `</span></a>`;
+    console.log(window.user)
+    CheckAPI()
+    setInterval(CheckAPI2, 20000);
+    setInterval(XPHour, 125)
+    setInterval(Increment, 62)
+    function CheckAPI() {
+    $.getJSON(('https://playerdb.co/api/player/minecraft/' + window.user), function(data) {
+    let json5 = data;
+    console.log(json5.data.player.id)
+    window.uuid = json5.data.player.id
+    CheckAPI2();
+    });
+    }
+
+    function convertToRoman(num) {
+     var roman = {
+    M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1
+    };
+    var str = '';
+
+    for (var i of Object.keys(roman)) {
+        var q = Math.floor(num / roman[i]);
+        num -= q * roman[i];
+        str += i.repeat(q);
+    }
+    return str;
+}
+
+function toTimestamp(duration) {
+    if(duration == Infinity || !(duration > 0)) {
+          return("")
+      } else if (duration <= 3600) {
+      return ((Math.floor(((duration))/60) + "m" + (Math.floor((duration)) % 60) + "s"));
+  } else if (duration > 1) {
+      return ((Math.floor((duration)/3600) + "h" + (Math.floor((duration)/60) % 60) + "m"));
+  }
+}
+
+
+    function UpdateStuff() {
+        xp = window.fakexp;
+document.getElementById('xp').innerHTML = (window.fakexp.toLocaleString("en-US") + " XP") //gives xp commas
+    prestige = 0;
+    level = 0;
+    for (; prestige < 50; prestige++) {
+        if (xp <= prestige_xp[prestige]) {
+            break;
+        }
+    }
+
+    calcxp = prestige_xp[prestige];
+    level = 120;
+    while (calcxp > xp) {
+        //console.log("Subtracting " + (xp_map[Math.floor(level / 10)] * prestiges[prestige] / 100) + " XP from " + xp + ". Level: " + level)
+        level = level - 1;
+        calcxp = calcxp - Math.ceil(xp_map[Math.floor(level / 10)] * prestiges[prestige] / 100)
+    }
+    //console.log("Can't subtract " + xp_map[Math.floor(level / 10)] + " XP from " + xp + "! Level: " + level)
+    //console.log("")
+
+
+    //console.log("Prestige: " + prestige)
+    //console.log("Level: " + level)
+document.getElementById('level').innerHTML = ("[" + convertToRoman(prestige) + `-<span style="font-size: xx-large">` + level + "</span>]");
+
+prestigecolors = ['7','9','e','6','c','5','d','f','b','1','2','3']
+levelcolors = ['7','9','3','2','a','e','b6','bc','b4','b5','bd','bf','bb']
+myprestigecolor = prestigecolors[((Math.floor((prestige+5)/5)))]
+if(prestige == 0) {
+    myprestigecolor = prestigecolors[0]
+}
+document.getElementById('brackets').className = ""
+document.getElementById('brackets').classList.add("m" + myprestigecolor)
+
+mylevelcolor = levelcolors[Math.floor(level/10)]
+if(prestige == 0) {
+  document.getElementById('level').innerHTML = `<span class=m` + myprestigecolor +`>[</span><span class=m` + mylevelcolor + `>` + level + `</span><span class=` + "m" + myprestigecolor +`>]</span>`
+}
+else {
+document.getElementById('level').innerHTML = `<span class=m` + myprestigecolor +`>[</span><span class=` + "me" + `>` + convertToRoman(prestige) +`</span><span class=m` + myprestigecolor + `>-</span><span class=m` + mylevelcolor + `>` + level + `</span><span class=` + "m" + myprestigecolor +`>]</span>`
+}
+}
+
+    function CheckAPI2() {
+    if(menuopen != 3 && menuopen > 0) {
+        menuopen = menuopen - 1
+        console.log(menuopen + " is the new menuopen value.")
+        document.getElementById('pleasewait').style.visibility = "visible";
+    }
+    if(menuopen < 1) {
+    document.getElementById('pleasewait').style.visibility = "hidden";
+    $.getJSON(('https://api.slothpixel.me/api/players/' + window.uuid), function(data) {
+    let json6 = data;
+    console.log(json6.stats.Pit.xp)
+    xp = json6.stats.Pit.xp
+    let packageRank = json6.stats.rank;
+    rankcolor = "d";
+    console.log(prefix)
+    document.getElementById('target').innerHTML = `<a href="https://pitpanda.rocks/players/` + user + `" target="_blank"><span class="m` + rankcolor + `">` + user + `</span></a>`;
+    if(realxp != xp) {
+    oldxp = realxp
+    numberofupdates = numberofupdates + 1;
+    if(numberofupdates == 2) {
+        startingtime = Date.now()
+        console.log("hahha! the time reset(the software updated)")
+    }
+    }
+    realxp = xp
+    if(startingxp == 0) {
+    startingxp = realxp
+    startingtime = Date.now()
+    }
+    if(currentxp != realxp) {
+    console.log(realxp + " does not equal " + json6.stats.Pit.xp)
+    console.log("Data has been updated after " + ((Date.now() - lastupdated) / 1000) + "s.")
+    lastupdated = Date.now()
+
+    }
+    currentxp = xp
+});
+}}
+
+function Reset() {
+    prestige = 0
+level = 0
+startingxp = 0 
+currentxp = 0
+ startingtime = 0
+ currenttime = 0
+ uuid_connect = false
+ done = false
+ flag = false
+ lastupdated = 0 //Unix time of last update
+ realxp = 0 //current count of xp
+ oldxp = 0
+ elapsed = 0
+ difference = 0
+ fakexp = 0
+ nextlevelxp = 0;
+ nextprestigecolor = 0;
+ nextlevelcolor = 0;
+ numberofupdates = 0;
+}
+
+function ChangeIGN() {
+    menuopen = 3
+    newIGN = prompt("Enter a new IGN here.", user);
+    if (newIGN == null || newIGN == "") {
+    console.log("hey what the heck")
+    } else {/*
+    user = newIGN;
+    document.getElementById('target').innerHTML = (user + " (pending)");
+    Reset()
+    CheckAPI()
+    document.getElementById('target').innerHTML = (user);
+    oldxp = currentxp
+    document.getElementById('pleasewait').style.visibility = "visible";
+    menuopen = 2*/
+    let here = new URL(window.location.href);
+    here.searchParams.delete('ign');
+    here.searchParams.append('ign', newIGN);
+    window.location = here; 
+    }
+}
+
+function TimeUntil() {
+nextlevelxp = prestige_xp[prestige];
+if (isNaN(nextlevelxp)) { //if the prestige is 0
+nextlevelxp = 0;
+}
+
+    levelinc = 120;
+    while (levelinc > (level + 1)) {
+        //console.log("Subtracting " + (xp_map[Math.floor(level / 10)] * prestiges[prestige] / 100) + " XP from " + xp + ". Level: " + level)
+        levelinc = levelinc - 1;
+        nextlevelxp = nextlevelxp - Math.ceil(xp_map[Math.floor(levelinc / 10)] * prestiges[prestige] / 100)
+    }
+
+/*console.log("")
+for(j = 0; j <= level; j++) {
+nextlevelxp = nextlevelxp + (prestiges[prestige] / 100 * xp_map[Math.floor(j / 10)])
+//console.log("[Level " + j + "] Adding " + (prestiges[prestige] / 100 * xp_map[Math.floor(j / 10)]) + " to XP. Next Level XP is " + nextlevelxp)
+}*/
+nextprestigecolor = prestigecolors[((Math.floor((prestige+6)/5)))]
+if(prestige == 0) {
+    nextprestigecolor = prestigecolors[1]
+}
+nextlevelcolor = levelcolors[Math.floor((level + 1)/10)]
+
+if(level < 109) {
+    if(prestige == 0) {
+        next10levelxp = 0;
+    } else {
+    next10levelxp = prestige_xp[prestige - 1]
+    }
+    for(k = 0; k < Math.ceil((level + 2) / 10); k++) {
+        next10levelxp = next10levelxp + (Math.ceil(prestiges[prestige] * xp_map[k] / 100) * 10)
+        //console.log(Math.ceil(prestiges[prestige] * xp_map[k] / 100) * 10 + " / " + k*10)
+    }
+}
+//console.log(next10levelxp + " / " + k)
+
+if(level == 120) {
+    document.getElementById('time_level').innerHTML = ("Maximum level reached!")
+} else {
+    document.getElementById('time_level').innerHTML = ((nextlevelxp - fakexp).toLocaleString("en-US") + ` XP until </span><span class="m` + myprestigecolor + `">[</span><span class="m` + nextlevelcolor + `">` + (level + 1) + `</span><span class="m` + myprestigecolor + `">] </span><span class="m6">` + toTimestamp((nextlevelxp - fakexp)/(((fakexp - startingxp)*3600000)/(currenttime - startingtime)) * 3600))
+}
+if(level < 109) {
+    document.getElementById('time_10level').innerHTML = ((next10levelxp - fakexp).toLocaleString("en-US") + ` XP until </span><span class="m` + myprestigecolor + `">[</span><span class="m` + levelcolors[k] + `">` + (k * 10) + `</span><span class="m` + myprestigecolor + `">] </span><span class="m6">` + toTimestamp((next10levelxp - fakexp)/(((fakexp - startingxp)*3600000)/(currenttime - startingtime)) * 3600))
+} else {
+    document.getElementById('time_10level').innerHTML = ""
+}
+    document.getElementById('time_prestige').innerHTML = ((prestige_xp[prestige] - fakexp).toLocaleString("en-US") + ` XP until </span><span class="m` + nextprestigecolor + `">[</span><span class="me">` + convertToRoman(prestige + 1) + `</span><span class="m` + nextprestigecolor + `">] </span><span class="m6">` + toTimestamp((prestige_xp[prestige] - fakexp)/(((fakexp - startingxp)*3600000)/(currenttime - startingtime)) * 3600))
+    
+    if(prestige == 0) {
+    percentage = ((fakexp * 100)/(prestige_xp[prestige]))
+    document.getElementById('percentage').innerHTML = percentage.toFixed(2) + "%"
+    } else {
+    percentage = (((fakexp - prestige_xp[prestige - 1]) * 100)/(prestige_xp[prestige] - prestige_xp[prestige - 1]))
+    document.getElementById('percentage').innerHTML = percentage.toFixed(2) + "%"
+}
+
+counter = counter + 1
+if (counter == 10) {
+    counter = 0;
+if(percentage >= 100) {
+    document.getElementById('progress').style.display = "none"
+document.getElementById('rainbowprogress').style.display = "inline"
+
+} else { 
+document.getElementById('progress').style.display = "inline"
+document.getElementById('rainbowprogress').style.display = "none"
+for(l = 0; l <= 49; l++) {
+document.getElementById('progress_' + l).className = ""
+if(l < ((percentage - 2) / 2)) {
+document.getElementById('progress_' + l).classList.add("m" + progress_colors[l])
+} }
+}
+}
+}
+function XPHour() {
+currenttime = Date.now()
+if(startingxp != 0 && startingtime != 0) {
+ console.log((currenttime - startingtime) / (1000) + " seconds elapsed")
+ console.log((currentxp - startingxp) + " xp gained")
+ document.getElementById('gain').innerHTML = ("+" + (fakexp - startingxp).toLocaleString("en-US") + " XP")
+ document.getElementById('hour').innerHTML = ((Math.round(((fakexp - startingxp)*3600000)/(currenttime - startingtime))).toLocaleString("en-US") + " XP/hour | last updated " + ((Math.round((currenttime - lastupdated)/1000 * 100) / 100)).toFixed(2)
+ + " seconds ago")
+ TimeUntil()
+}
+}
+
+function Increment() {
+if (lastupdated > 0) {
+if(oldxp != 0) {
+elapsed = (Date.now() - lastupdated) / 1000 
+difference = (currentxp - oldxp)
+if(elapsed < 180) {
+fakexp = Math.round(oldxp + ((currentxp - oldxp) * (elapsed/180)))
+} else {
+fakexp = currentxp
+}
+UpdateStuff();
+console.log(fakexp + " = " + oldxp + " + (" + currentxp + " - " + oldxp + ") * (" + elapsed + "/ 180)")
+} else {
+fakexp = realxp
+UpdateStuff();
+}
+document.getElementById('fake').innerHTML = (Math.round(realxp).toLocaleString("en-US") + " XP")
+}}
+</script>
+</body>
+
+<style>
+.m0 {
+    color: #000
+}
+.m1 {
+    color: #00a
+}
+.m2 {
+    color: #0a0
+}
+.m3 {
+    color: #0aa
+}
+.m4 {
+    color: #a00
+}
+.m5 {
+    color: #a0a
+}
+.m6 {
+    color: #fa0
+}
+.m7 {
+    color: #aaa
+}
+.m8 {
+    color: #555
+}
+.m9 {
+    color: #55f
+}
+.ma {
+    color: #5f5
+}
+.mb {
+    color: #5ff
+}
+.mc {
+    color: #f55
+}
+.md {
+    color: #f5f
+}
+.me {
+    color: #ff5
+}
+.mf {
+    color: #fff
+}
+.mb0 {
+    color: #000
+}
+.mb1 {
+    color: #00a;
+    font-family: minecraftbold
+}
+.mb2 {
+    color: #0a0;
+    font-family: minecraftbold
+}
+.mb3 {
+    color: #0aa;
+    font-family: minecraftbold
+}
+.mb4 {
+    color: #a00;
+    font-family: minecraftbold
+}
+.mb5 {
+    color: #a0a;
+    font-family: minecraftbold
+}
+.mb6 {
+    color: #fa0;
+    font-family: minecraftbold
+}
+.mb7 {
+    color: #555;
+    font-family: minecraftbold
+}
+.mb8 {
+    color: #aaa;
+    font-family: minecraftbold
+}
+.mb9 {
+    color: #55f;
+    font-family: minecraftbold
+}
+.mba {
+    color: #5f5;
+    font-family: minecraftbold
+}
+.mbb {
+    color: #5ff;
+    font-family: minecraftbold
+}
+.mbc {
+    color: #f55;
+    font-family: minecraftbold
+}
+.mbd {
+    color: #f5f;
+    font-family: minecraftbold
+}
+.mbe {
+    color: #ff5;
+    font-family: minecraftbold
+}
+.mbf {
+    color: #fff;
+    font-family: minecraftbold
+}
+
+a:link {
+      color: #B15AC2;
+      background-color: transparent;
+      text-decoration: none;
+    }
+    
+    a:visited {
+      color: #725279;
+      background-color: transparent;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      color: #E7C2EE;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+    
+    a:active {
+      color: #EDDDF0;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+
+
+    .rainbow_text_animated {
+    background: linear-gradient(to right, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 12s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
+</style>
+</html>

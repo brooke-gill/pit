@@ -4,6 +4,7 @@
 <html>
 
 <head>
+    <meta http-equiv="Refresh" content="0; url='https://brookeafk.com/tracker'" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_icons/tracker_apple-touch-icon.png" />
@@ -546,13 +547,19 @@ function funRound(number, withplusminus) {
             document.getElementById('progressbar').style.width = (percentage * 100).toFixed(2) + "%";
             
 
+            //checks whether level is 120 to make the background rainbow
+            if(u_level != 120) {document.getElementById('progressbar').style.backgroundColor = prestigeColor(u_prestige, true)
+            document.getElementById('progressbar').classList = null;
+        }
+            else { 
+                document.getElementById('progressbar').classList = "rainbow_bg_animated";
+            }
 
-            document.getElementById('progressbar').style.backgroundColor = prestigeColor(u_prestige, true)
-
+            //updates meter text
             document.getElementById('metertext').innerText = (percentage * 100).toFixed(2) + "%";
 
             if (percentage > 0.833) document.getElementById('metertext').style.left = (0.833 * 550) + "px"
-            else document.getElementById('metertext').style.left = ((percentage * 550) + 15) + "px" // moves the text
+            else document.getElementById('metertext').style.left = ((percentage * 550) + 15) + "px" // moves the text to avoid it going off the meter
 
             xphour = StatPerHour(interxp, startingplayerstats[0]);
             goldhour = StatPerHour(interpolateplayerstats[1], startingplayerstats[1]);
@@ -1011,33 +1018,17 @@ function funRound(number, withplusminus) {
 
     .rainbow_text_animated {
         background: linear-gradient(to right,
-                #f55,
-                #fa0,
-                #ff5,
-                #5f5,
-                #5ff,
-                #f5f,
-                #f55,
-                #fa0,
-                #ff5,
-                #5f5,
-                #5ff,
-                #f5f,
-                #f55,
-                #fa0,
-                #ff5,
-                #5f5,
-                #5ff,
-                #f5f,
-                #f55,
-                #fa0,
-                #ff5,
-                #5f5,
-                #5ff,
-                #f5f,
-                #f55);
+        #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55);
         -webkit-background-clip: text;
         background-clip: text;
+        color: transparent;
+        animation: rainbow_animation 4s ease-in-out infinite;
+        background-size: 400% 100%;
+    }
+
+    .rainbow_bg_animated {
+        background: linear-gradient(to right,
+        #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55);
         color: transparent;
         animation: rainbow_animation 4s ease-in-out infinite;
         background-size: 400% 100%;

@@ -223,11 +223,11 @@
         function prestigeColor(prestige, hex = false) {
             if(hex) {
                 if(prestige == 0) return prestigecolorsHEX[0];
-                if(prestige == 48) return prestigecolorsHEX[11];
+                if(prestige == 48 || prestige == 49) return prestigecolorsHEX[11];
                 else return prestigecolorsHEX[Math.floor(prestige / 5) + 1];
             }
             if(prestige == 0) return prestigecolors[0];
-            if(prestige == 48) return prestigecolors[11];
+            if(prestige == 48 || prestige == 49) return prestigecolors[11];
             else return prestigecolors[Math.floor(prestige / 5) + 1];
         }
 

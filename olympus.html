@@ -34,7 +34,7 @@
     </div>
 
     <div class="bigstats">
-        <p class="big xp" id="bigxp">+361,338</p><p class="subtitle-s px">XP • <span class="px w600 small adjustup"><span class="pb w700" id="xphourdisplay"></span> XP/hour</span></p>
+        <p class="big xp" id="bigxp">+361,338</p><p class="subtitle-s px">Olympus Potions • <span class="px w600 small adjustup"><span class="pb w700" id="xphourdisplay"></span> &times; Oly/hour</span></p>
         <p class="big gold" id="biggold">+38</p><p class="subtitle-s pg">gold • <span class="pg w600 small adjustup"><span class="pe w700" id="goldhourdisplay"></span> gold/hour</span></p>
         <p class="big kills" id="bigkills">+0</p><p class="subtitle-s pk">kills • <span class="pk w600 small adjustup"><span class="pc w700" id="killshourdisplay"></span> kills/hour</span></p>
     </div>
@@ -99,6 +99,9 @@
 
         var prestige = 0;
         var level = 0;
+        var oly = 37;
+        var ml_olympus = 500; // my estimate for the number of millilitres in an Olympus Potion
+        var bathtub_litre = 302.83 // number of litres in an Olympus Bathtub
 
         progress_colors = [ "2", "a", "e", "e", "6", "6", "6", "6", "6", "c", "c", "c", "c", "c", "c", "4", "4", "4", "4", "4", "4", "4", "5", "5", "5", "5", "5", "5", "5", "5", "d", "d", "d", "d", "d", "d", "d", "d", "d", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "b", ];
         prestigecolors = [ "7", "9", "e", "6", "c", "5", "d", "f", "b", "1", "0", "4", "8",];
@@ -390,8 +393,13 @@ function secTime(seconds) {
     }
 }
 
-function addComma(number) {
-    return (number.toLocaleString());
+function addComma(number, isdigit) {
+if(isdigit > 0) {
+return number.toLocaleString(undefined, {
+  minimumFractionDigits: isdigit,
+  maximumFractionDigits: isdigit
+})
+} else return number.toLocaleString();
 }
 
 function isNeg(number) {
@@ -530,7 +538,7 @@ function funRound(number, withplusminus) {
 
             document.getElementById('xp-display').innerHTML = xpToLevel(interxp, 1);
 
-            document.getElementById('level').innerHTML = (`<span class="w700">` + addComma(interxp) + `</span><span class="w400"> XP</span>`)
+            document.getElementById('level').innerHTML = (`<span class="w700">` + addComma(interxp / oly, 1) + `</span><span class="w400"> &times; Olympus</span><br><br>` + addComma(interxp) + ` XP &mdash; <span class="w700">` + addComma(((interxp / oly) * (ml_olympus / 1000) / bathtub_litre), 3) + `</span><span class="w400"> Olympus Bathtubs</span>`)
             document.getElementById('elapsed').innerHTML = secTime((Date.now() - startingtime) / 1000)
 
             for(i = 0; i < various_displays.length; i++) {            
@@ -539,9 +547,9 @@ function funRound(number, withplusminus) {
             }
 
             document.getElementById('lastupdate').innerHTML = secTime((Date.now() - playerstats[3]) / 1000)
-            document.getElementById('left_level').innerHTML = `level <span class="p` + Next(u_level, 1)[0] + `"> ` + Next(u_level, 0)[0] + `</span> in ` + `<span class="pb w600">` + addComma(XPat(u_prestige, Next(u_level, 0)[0]) - interxp) + `<span class="w500"> XP</span></span>`
-            document.getElementById('left_10level').innerHTML = `level <span class="p` + Next(u_level, 1)[1] + `"> ` + Next(u_level, 0)[1] + `</span> in ` + `<span class="pb w600">` + addComma(XPat(u_prestige, Next(u_level, 0)[1]) - interxp) + `<span class="w500"> XP</span></span>`
-            document.getElementById('left_prestige').innerHTML = `prestige <span class="w700 p` + prestigeColor(u_prestige + 1) + `"> ` + convertToRoman(u_prestige + 1) + `</span> in ` + `<span class="pb w600">` + addComma(XPat(u_prestige, Next(u_level, 0)[2]) - interxp) + `<span class="w500"> XP</span></span>`
+            document.getElementById('left_level').innerHTML = `level <span class="p` + Next(u_level, 1)[0] + `"> ` + Next(u_level, 0)[0] + `</span> in ` + `<span class="pb w600">` + addComma((XPat(u_prestige, Next(u_level, 0)[0]) - interxp)/oly, 1) + `<span class="w500"> &times; Olympus</span></span>`
+            document.getElementById('left_10level').innerHTML = `level <span class="p` + Next(u_level, 1)[1] + `"> ` + Next(u_level, 0)[1] + `</span> in ` + `<span class="pb w600">` + addComma((XPat(u_prestige, Next(u_level, 0)[1]) - interxp)/oly, 1) + `<span class="w500"> &times; Olympus</span></span>`
+            document.getElementById('left_prestige').innerHTML = `prestige <span class="w700 p` + prestigeColor(u_prestige + 1) + `"> ` + convertToRoman(u_prestige + 1) + `</span> in ` + `<span class="pb w600">` + addComma((XPat(u_prestige, Next(u_level, 0)[2]) - interxp)/oly, 1) + `<span class="w500"> &times; Olympus</span></span>`
 
             if (xpToLevel(xp, 2) == 0) percentage = interxp / 65950;
             else (percentage = 1 - (((XPat(u_prestige, 120)) - interxp) / ((XPat(u_prestige, 120)) - (XPat(u_prestige - 1, 120)))))
@@ -565,7 +573,7 @@ function funRound(number, withplusminus) {
             goldhour = StatPerHour(interpolateplayerstats[1], startingplayerstats[1]);
             killshour = StatPerHour(interpolateplayerstats[2], startingplayerstats[2]);
 
-            document.getElementById('xphourdisplay').innerText = funRound(xphour);
+            document.getElementById('xphourdisplay').innerText = funRound(xphour / oly);
             document.getElementById('goldhourdisplay').innerText = funRound(goldhour);
             document.getElementById('killshourdisplay').innerText = funRound(killshour);
 
@@ -593,9 +601,9 @@ function funRound(number, withplusminus) {
                 document.getElementById('goldmeterbar').style.width = (u_gold_grinded * 100 / u_gold_outof).toFixed(2) + "%"
             }
 
-            document.getElementById('bigxp').innerText = (funRound(Interpolate(prevplayerstats[0], playerstats[0], 180, (Date.now() - playerstats[3]) / 1000) - startingplayerstats[0]))
+            document.getElementById('bigxp').innerText = (funRound((Interpolate(prevplayerstats[0], playerstats[0], 180, (Date.now() - playerstats[3]) / 1000) - startingplayerstats[0])/oly))
             document.getElementById('biggold').innerText = (funRound(Interpolate(prevplayerstats[1], playerstats[1], 180, (Date.now() - playerstats[3]) / 1000) - startingplayerstats[1]))
-            document.getElementById('bigkills').innerText = funRound(Interpolate(prevplayerstats[2], playerstats[2], 180, (Date.now() - playerstats[3   ]) / 1000) - startingplayerstats[2])
+            document.getElementById('bigkills').innerText = funRound(Interpolate(prevplayerstats[2], playerstats[2], 180, (Date.now() - playerstats[3]) / 1000) - startingplayerstats[2])
         }
     </script>
 </body>
@@ -954,7 +962,7 @@ function funRound(number, withplusminus) {
 
     .metertext {
         position: absolute;
-        top: 50px;
+        top: 90px;
         left: 70px;
         z-index: 3;
         background-color: rgba(37, 37, 37, 0.95);

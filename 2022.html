@@ -1,13 +1,12 @@
 <!--
   Hey, Pit players! This is the un-obfuscated source code for brookeafk.com.
-  Please feel free to ask me questions at Brooke#0843 or brooke-gill on GitHub.
+  Please feel free to ask me questions at Brooke#0843 or @BrookeAFK on Twitter.
 -->
   <!DOCTYPE HTML>
   <html>
   
   <head>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-    <meta id="viewport" name="viewport" content="initial-scale=1,user-scalable=0">
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
     <!-- why did i have jquery here? surely it wasn't for anything important. -->
@@ -24,30 +23,31 @@
     <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
   </head>
   
-  <body background-color="black" class="unselectable">
+  <body style="font-family: minecraftregular" background-color="black" class="unselectable">
   
-    <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center"></div>
+    <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center">Current events will<br>show up here.</div>
   
   
-    <div><p class="topcontainer"><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span>&nbsp;&nbsp;<span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
+    <div class="img-with-text" display=""><img id="logo" src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" draggable="false" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 8px" id="brookeafk-com">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()" class="hand_cursor">View Settings</span>
     </div>
   
-    <div id="day-night-border" class="timers"><div id="day-night" style="vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg>&nbsp; &mdash; &nbsp;<span id="maprot"></span></div>
+    <div style="background: #314; padding: 5px; width: 120px; height: 32px; position: absolute; left: 300px; top: 24px; border-radius: 25px; display:flex; align-items: center; vertical-align:center; justify-content: center;
+    " id="day-night-border"><div id="day-night" style="font-size: 22px; vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg></div>
     
-  <div id="settings-section"><br>
-  <p class="option"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
-  <p class="option"><span>Palette: </span><span id="settings-palette-gradient" onclick="ChangePalette('gradient')" class="hand_cursor">Gradient</span> / <span id="settings-palette-0" onclick='ChangePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)' class="hand_cursor">Theme 3</span></p>
-  <p class="option"><span id="tut-notif" style="color: #ffff80">Pre-event notifications</span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
-  <p id="anotif" class="option"><span>- Audio notifications: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
-  <p id="dnotif" class="option"><span>- Desktop notifications (BETA): </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
-  <p class="option"><span id="alert-nobells" style="color: #ff7777; display: none">You're not being reminded for any events!<br>Click the bells in the top-right corner to receive notifications.</span></p>
-  <p class="option"><span id="alert-notypes" style="color: #ff7777; display: none">Make sure to turn either "Audio notifications"<br>or "Desktop notifications" on to receive alerts.</span></p>
-  <p class="option"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='ToggleTimestamps("dnc");' class="hand_cursor">Day-Night</span></p>
-  <p class="option"><span id="settings-flashing">Flashing text: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
-  <p class="option"><span>Font: </span><span id="settings-font-default" class="hand_cursor" onclick='ChangeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='ChangeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='ChangeFont("sans-serif")'>Sans-Serif</span></p> 
-  <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none">You don't have any events selected!<br>Click the event names in the top-right corner to make some visible.</span></p>
+  <div id="settings-section" style="display: none; position: relative; bottom: 40px;">
+  <p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
+  <p style="font-size:15px"><span>Palette: </span><span id="settings-palette-0" onclick='ChangePalette(0)'>Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)'>Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)'>Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)'>Theme 3</span></p>
+  <p style="font-size:15px"><span id="tut-notif" style="color: #ffff80">Pre-event notifications</span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
+  <p id="anotif" style="font-size:15px"><span>- Audio notifications: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
+  <p id="dnotif" style="font-size:15px"><span>- Desktop notifications (BETA): </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
+  <p style="font-size:15px"><span id="alert-nobells" style="color: #ff7777; display: none">You're not being reminded for any events!<br>Click the bells in the top-right corner to receive notifications.</span></p>
+  <p style="font-size:15px"><span id="alert-notypes" style="color: #ff7777; display: none">Make sure to turn either "Audio notifications"<br>or "Desktop notifications" on to receive alerts.</span></p>
+  <p style="font-size:15px"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='ToggleTimestamps("dnc");' class="hand_cursor">Day-Night</span></p>
+  <p style="font-size:15px"><span id="settings-flashing">Flashing text: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
+  <p style="font-size:15px"><span>Font: </span><span id="settings-font-minecraft" class="hand_cursor" onclick='ChangeFont("minecraftregular")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='ChangeFont("sans-serif")'>Sans-Serif</span></p> 
+  <p style="font-size:15px"><span id="alert-noevents" style="color: #ff7777; display: none">You don't have any events selected!<br>Click the event names in the top-right corner to make some visible.</span></p>
 
-  <div id="notifications-major">
+  <div id="notifications-major" style="display: block; position: absolute; top: -50px; right: 200px; text-align: right; font-size: 15px; color: #FFFFFF;">
     <div><span id="visible-Pizza" onclick='VisibilityToggle("Pizza")' class="hand_cursor">Pizza</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Pizza" onclick='NotifToggle("Pizza")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-Raffle" onclick='VisibilityToggle("Raffle")' class="hand_cursor">Raffle</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Raffle" onclick='NotifToggle("Raffle")'class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-Squads" onclick='VisibilityToggle("Squads")' class="hand_cursor">Squads</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Squads" onclick='NotifToggle("Squads")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
@@ -59,7 +59,7 @@
     <div><span id="visible-Beast" onclick='VisibilityToggle("Beast")' class="hand_cursor">Beast</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Beast" onclick='NotifToggle("Beast")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <br><div id="test-audio" style="color: #ffffff;" onclick='TestAudio()' class="hand_cursor">Preview Audio</div><br><div id="select-all" style="color: #ffffff;" onclick='SelectOnly("everything")' class="hand_cursor">Select All</div>
   </div>
-  <div id="notifications-minor">
+  <div id="notifications-minor" style="display: block; position: absolute; top: -50px; right: 50px; text-align: right; font-size: 15px; color: #FFFFFF;">
     <div><span id="visible-DragonEgg" onclick='VisibilityToggle("Dragon Egg")' class="hand_cursor">Dragon Egg</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-DragonEgg" onclick='NotifToggle("Dragon Egg")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-KOTH" onclick='VisibilityToggle("KOTH")' class="hand_cursor">KOTH</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-KOTH" onclick='NotifToggle("KOTH")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-KOTL" onclick='VisibilityToggle("KOTL")' class="hand_cursor">KOTL</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-KOTL" onclick='NotifToggle("KOTL")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
@@ -69,10 +69,10 @@
     <div><span id="visible-QuickMaths" onclick='VisibilityToggle("Quick Maths")' class="hand_cursor">Quick Maths</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-QuickMaths" onclick='NotifToggle("Quick Maths")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-GiantCake" onclick='VisibilityToggle("Giant Cake")' class="hand_cursor">Giant Cake</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-GiantCake" onclick='NotifToggle("Giant Cake")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-Allbounty" onclick='VisibilityToggle("All bounty")' class="hand_cursor">All bounty</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Allbounty" onclick='NotifToggle("All bounty")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
-    <br><div id="select-major" style="color: #fff;" onclick='SelectOnly("major")' class="hand_cursor">Majors Only</div>
-    <div id="select-minor" style="color: #fff;" onclick='SelectOnly("minor")' class="hand_cursor">Minors Only</div>
-    <div id="select-none" style="color: #f77;" onclick='SelectOnly("nothing")' class="hand_cursor">Deselect All</div>
-    <br><div id="save" style="color: #aac;" onclick='SaveSettings()' class="hand_cursor"><i>Settings save<br> automatically!</i></div><div id="save" style="color: #f77;" onclick="SaveSettings('clear')" class="hand_cursor">Clear Settings</div>
+    <br><div id="select-major" style="color: #ffffff;" onclick='SelectOnly("major")' class="hand_cursor">Majors Only</div>
+    <div id="select-minor" style="color: #ffffff;" onclick='SelectOnly("minor")' class="hand_cursor">Minors Only</div>
+    <div id="select-none" style="color: #ff7777;" onclick='SelectOnly("nothing")' class="hand_cursor">Deselect All</div>
+    <br><div id="save" style="color: #8888ff;" onclick='SaveSettings()' class="hand_cursor">Save Settings</div>
   
   </div>
 
@@ -80,17 +80,15 @@
 
   <span id="events"></span>
 
-  <hr>
-
-  <span class="credits"><span style="font-style: oblique 11deg;" id="madewithlove">Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></span><br>
-  <span id="version"></span><br><br>
-  <span id="special_thanks"></span></span></span>
+  <p style="position:relative; left: 10px;" id="madewithlove">Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></span></p>
+  <p id="version" style="position: relative; left: 10px;"></p>
+  <p id="special_thanks"><span style="position: relative; left: 10px;"></span></p>
 
   <script>
 
   var HiddenEventCount = 0;
   var EventsToLoad = 1;
-  var version_number = `BETA` 
+  var version_number = `v0.6.7` 
   var wiki_ad = `|&nbsp;<a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</span>`
   var counter = 4;
   var settingsOpened = false;
@@ -99,18 +97,16 @@
   var NotifTimer = -10;
   var DoesStuffExist = false;
   var HasStuffLoaded = false;
-  var Palette = 'gradient';
+  var Palette = 0;
   var SettingsSelectedEvents = 262143;
   var SettingsNotifyEvents = 0;
   var SettingsDesktopNotifs = 0;
   var SettingsAudioNotifs = 0;
-  var CorrectFont = "Inter";
-  var CorrectBold = "Inter";
-  var CorrectBoldStyleless = "Inter";
+  var CorrectFont = "minecraftregular";
+  var CorrectBold = "minecraftregular; font-weight: bold";
+  var CorrectBoldStyleless = "minecraftbold";
   var RealWeight = 400;
-  var offset = 0; // offset, in minutes, of a person's clock. useful for people with really weird OSes that can't set their clocks for some reason
-  var samplemaprotation = 1661835600; // used for the map rotation timer. stolen from pit.wiki
-  var maps = ["Genesis","Corals","Castle","Elements","Four Seasons"] // for map rotation
+  var offset = 0;
 
   document.body.style.fontFamily = CorrectFont;
   document.getElementById('version').innerHTML = (version_number + " " + wiki_ad);
@@ -134,13 +130,10 @@
   var ok_ids = []
   var WithoutVar = ""
   
-  var events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"] // the important one.
+  var events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
   var eventsNoSpaces = ["QuickMaths","DragonEgg","2xRewards","CarePackage","KOTL","KOTH","Auction","GiantCake","Allbounty","Squads","Beast","Pizza","RagePit","Spire","Robbery","Blockhead","Raffle","TeamDeathmatch"]
   var ShortformEvents = ["MATH","EGG","2X","CARE","KOTL","KOTH","AUC","CAKE","AB","SQU","BST","PZA","RP","SPR","ROB","BH","RFL","TDM"]
-  var nicknamesen_CA = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","King of the Ladder","King of the Hill","Auction","Giant Cake","Everyone Gets a Bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
-  var pit_wiki_links = ["Quick_Maths","Dragon_Egg","2x_Rewards","Care_Package","King_of_the_Ladder","King_of_the_Hill","Auction","Giant_Cake","Everyone_Gets_a_Bounty","Squads","Beast","Pizza","Rage_Pit","Spire","Robbery","Blockhead","Raffle","Team_Deathmatch"]
-  var trueEventColors = ["#FF55FF","#AA00AA","#00AA00","#FFAA00","#55FF55","#55FFFF","#FFFF55","#FF55FF","#FFAA00","#55FFFF","#55FF55","#FF5555","#FF5555","#AA00AA","#FFAA00","#5555FF","#FFAA00","#AA00AA"]
-
+  var trueEventColours = ["#FF55FF","#AA00AA","#00AA00","#FFAA00","#55FF55","#55FFFF","#FFFF55","#FF55FF","#FFAA00","#55FFFF","#55FF55","#FF5555","#FF5555","#AA00AA","#FFAA00","#5555FF","#FFAA00","#AA00AA"]
   var VisibilityLength = [15,90,240,30,180,240,30,120,15,480,480,480,420,480,420,480,480,480]
   var IsItACountdown = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">QUICK MATHS!</span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #aa00aa; font-family: ` + CorrectBold + `;">DRAGON EGG</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffaa00; font-family: ` + CorrectBold + `;">CARE PACKAGE</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">AUCTION!</span><br><span style="color: #AAAAAA; font-family:` + CorrectFont + `">Check auctioneer or chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> EVERYONE GETS A BOUNTY!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
   var DemolitionTime = 15;
@@ -151,7 +144,8 @@
 
   var all_text = ["MINOR EVENT!","MAJOR EVENT!","Starting in ","Ending in "]
 
-  if(document.body.clientWidth < 800) { // should make the site mobile when needed
+  //events that I know work: all bounty, dragon egg, 2x rewards, uh .,
+  if(document.body.clientWidth < 800) {
     document.getElementById("brookeafk-com").innerText = "mobile website"
     document.getElementById("settings-ts-dnc").innerText = "Day-Night"
     document.getElementById("settings-ts-tue").innerText = "Until Event"
@@ -160,13 +154,13 @@
     document.getElementById("current-event").setAttribute("id","replacement")
     document.getElementById("brookeafk-com").setAttribute("id","current-event")
     document.getElementById("replacement").setAttribute("id","brookeafk-com")
-    document.getElementById("current-event").innerHTML = "brookeafk.com"
+    document.getElementById("current-event").innerHTML = "brookeafk.com (mobile)"
     document.getElementById("brookeafk-com").innerHTML = ""
     document.getElementById("current-event").style.width = "200px"
     WithoutVar = "brookeafk.com"
   }
   
-  document.getElementById('settings').style.color = "NormalText";
+  document.getElementById('settings').style.color = NormalText;
 
   function MakeFunTimestamps(convertible) {
   let currentTime = (Date.now() + offset);
@@ -176,9 +170,9 @@
   if (convertible - currentTime <= 60000) {
       convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + "s");
   } else if (convertible - currentTime <= 3600000) {
-      convertible = ((Math.floor(((convertible - currentTime))/60000) + "m " + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
+      convertible = ((Math.floor(((convertible - currentTime))/60000) + "m" + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
   } else if (convertible - currentTime > 1) {
-      convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h " + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
+      convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h" + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
   }
   
   return convertible;
@@ -188,52 +182,56 @@
     window.EventFlashSec = seconds;
     if(DoesStuffExist == true) {
     for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
-        document.getElementById('event_'+ String(i)).classList.remove("blinktext-light");
-        document.getElementById('event_'+ String(i)).classList.remove("blinktext-dark");
-      }
+      document.getElementById('event_'+ String(i)).classList.remove("blinktext-light");
+      document.getElementById('event_'+ String(i)).classList.remove("blinktext-dark");
+    }}
+    if(seconds == 60) {
+      document.getElementById('settings-flash-60').style.color = NormalText;
+      document.getElementById('settings-flash-30').style.color = "#888888";
+      document.getElementById('settings-flash-10').style.color = "#888888";
+      document.getElementById('settings-flash-0').style.color = "#888888"; 
     }
-    document.getElementById('settings-flash-60').style.color = "#888888";
-    document.getElementById('settings-flash-30').style.color = "#888888";
-    document.getElementById('settings-flash-10').style.color = "#888888";
-    document.getElementById('settings-flash-0').style.color = "#888888"; 
-    if(seconds == 60) document.getElementById('settings-flash-60').style.color = NormalText;
-    if(seconds == 30) document.getElementById('settings-flash-30').style.color = NormalText;
-    if(seconds == 10) document.getElementById('settings-flash-10').style.color = NormalText;
-    if(seconds == -10) document.getElementById('settings-flash-0').style.color = NormalText;
-    SaveSettings('noreload');
+    if(seconds == 30) {
+      document.getElementById('settings-flash-30').style.color = NormalText;
+      document.getElementById('settings-flash-60').style.color = "#888888";
+      document.getElementById('settings-flash-10').style.color = "#888888";
+      document.getElementById('settings-flash-0').style.color = "#888888"; 
+    }
+    if(seconds == 10) {
+      document.getElementById('settings-flash-10').style.color = NormalText;
+      document.getElementById('settings-flash-30').style.color = "#888888";
+      document.getElementById('settings-flash-60').style.color = "#888888";
+      document.getElementById('settings-flash-0').style.color = "#888888"; 
+    }
+    if(seconds == -10) {
+      document.getElementById('settings-flash-0').style.color = NormalText;
+      document.getElementById('settings-flash-30').style.color = "#888888";
+      document.getElementById('settings-flash-10').style.color = "#888888";
+      document.getElementById('settings-flash-60').style.color = "#888888"; 
+    }
+    
   }
 
   function ChangeFont(font) {
-    document.getElementById('settings-font-default').style.color = "#888888";
-    document.getElementById('settings-font-sans-serif').style.color = "#888888";
-    document.getElementById('settings-font-minecraft').style.color = "#888888";
-
-    if(font == "minecraft") {
+    if(font == "minecraftregular") {
     document.getElementById('settings-font-minecraft').style.color = NormalText;
-    CorrectFont = "minecraft";
-    CorrectBold = "minecraft; font-weight: bold";
-    CorrectBoldStyleless = "minecraft";
+    document.getElementById('settings-font-sans-serif').style.color = "#888888";
+    CorrectFont = "minecraftregular";
+    CorrectBold = "minecraftbold";
+    CorrectBoldStyleless = "minecraftbold";
     RealWeight = 400;
     }
     if(font == "sans-serif") {
     document.getElementById('settings-font-sans-serif').style.color = NormalText;
+    document.getElementById('settings-font-minecraft').style.color = "#888888";
     CorrectFont = "sans-serif";
     CorrectBold = "sans-serif; font-weight: bold";
     CorrectBoldStyleless = "sans-serif";
     RealWeight = 700;
     }
-    if(font == "Inter") {
-    document.getElementById('settings-font-default').style.color = NormalText;
-    CorrectFont = "Inter";
-    CorrectBold = "Inter; font-weight: bold";
-    CorrectBoldStyleless = "Inter";
-    RealWeight = 700;
-    }
-
     document.body.style.fontFamily = CorrectFont;
     IsItACountdown = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">QUICK MATHS!</span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #aa00aa; font-family: ` + CorrectBold + `;">DRAGON EGG</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffaa00; font-family: ` + CorrectBold + `;">CARE PACKAGE</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">AUCTION!</span><br><span style="color: #AAAAAA; font-family:` + CorrectFont + `">Check auctioneer or chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> EVERYONE GETS A BOUNTY!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
 
-    SaveSettings('noreload');
   }
   
   function DayNightCycle() { //OPTIMIZE THIS please add variable that's like "when the day is dark please do not call the svg again please"
@@ -244,9 +242,9 @@
       //console.log("The day ends in " + (1440 - DayTime) + " seconds.")
       document.getElementById("day-night").innerHTML = (AboutMe((1440 - DayTime)*1000) + "&nbsp;");
       if(theme == "light") {
-      //document.getElementById("day-night-border").style.backgroundColor = "#fcf8ae";
+      document.getElementById("day-night-border").style.background = "#EDD368";
       } else if (theme == "dark") {
-      //document.getElementById("day-night-border").style.backgroundColor = "#ba9b53";
+      document.getElementById("day-night-border").style.background = "rgb(67, 61, 35)";
       }
       document.getElementById('day-svg').innerHTML = `<path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/>`
   
@@ -254,9 +252,9 @@
       //console.log("The night ends in " + (2160 - DayTime) + " seconds.")
       document.getElementById("day-night").innerHTML = (AboutMe((2160 - DayTime)*1000) + "&nbsp;");
       if(theme == "light") {
-      document.getElementById("day-night-border").style.color = "#3b3b87";
+      document.getElementById("day-night-border").style.background = "#25AACF";
       } else if (theme == "dark") {
-      document.getElementById("day-night-border").style.color = "#8e8bdd";
+      document.getElementById("day-night-border").style.background = "rgb(35, 35, 67)";
       }
       document.getElementById('day-svg').innerHTML = `<path d="M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36c-0.98,1.37-2.58,2.26-4.4,2.26 c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/>`
   }
@@ -280,15 +278,29 @@
       document.getElementById('alert-notypes').style.display = "block"
     }
   }
-      document.getElementById('audio-300').style.color = "#888888";
+    if(seconds == 300) {
+      document.getElementById('audio-300').style.color = NormalText;
       document.getElementById('audio-180').style.color = "#888888";
       document.getElementById('audio-60').style.color = "#888888";
       document.getElementById('audio-0').style.color = "#888888"; 
-    if(seconds == 300) document.getElementById('audio-300').style.color = NormalText;
-    if(seconds == 180) document.getElementById('audio-180').style.color = NormalText;
-    if(seconds == 60) document.getElementById('audio-60').style.color = NormalText;
+    }
+    if(seconds == 180) {
+      document.getElementById('audio-180').style.color = NormalText;
+      document.getElementById('audio-300').style.color = "#888888";
+      document.getElementById('audio-60').style.color = "#888888";
+      document.getElementById('audio-0').style.color = "#888888"; 
+    }
+    if(seconds == 60) {
+      document.getElementById('audio-60').style.color = NormalText;
+      document.getElementById('audio-180').style.color = "#888888";
+      document.getElementById('audio-300').style.color = "#888888";
+      document.getElementById('audio-0').style.color = "#888888"; 
+    }
     if(seconds <= 0) {
       document.getElementById('audio-0').style.color = NormalText;
+      document.getElementById('audio-180').style.color = "#888888";
+      document.getElementById('audio-60').style.color = "#888888";
+      document.getElementById('audio-300').style.color = "#888888"; 
       document.getElementById('anotif').style.display = "none"
       document.getElementById('dnotif').style.display = "none"
       document.getElementById('alert-nobells').style.display = "none";
@@ -299,7 +311,7 @@
       }}
       
     }
-  SaveSettings('noreload');
+  
   }
 
   function ANotif(tog) {
@@ -317,7 +329,6 @@
         document.getElementById('alert-notypes').style.display = 'block';
       }
     }
-    SaveSettings('noreload');
   }
 
 
@@ -363,43 +374,17 @@
         document.getElementById('alert-notypes').style.display = 'block';
       }
     }
-    SaveSettings('noreload');
   }
   
-  function TestAudio() { // plays the audio. simple!
+  function TestAudio() {
     event_sound.play();
     event_sound.currentTime = 0;
   }
-
-  function TimestampIt(sec = 0) { // creates a timestamp (y, d, h, m, s). used for the map rotation timer
-      if(sec > 31536000) {
-        return Math.floor(sec / 31536000) + "y " + Math.floor((sec % 31536000) / 86400) + "d " + Math.floor((sec % 86400) / 3600) + "h " + Math.floor((sec % 3600) / 60) + "m " + Math.floor(sec % 60) + "s"
-      } else if(sec > 86400 /*1 day*/) {
-        return Math.floor(sec / 86400) + "d " + Math.floor((sec % 86400) / 3600) + "h " + Math.floor((sec % 3600) / 60) + "m " + Math.floor(sec % 60) + "s"
-      } else if(sec > 3600) {
-        return Math.floor((sec % 86400) / 3600) + "h " + Math.floor((sec % 3600) / 60) + "m " + Math.floor(sec % 60) + "s"
-      } else if(sec > 60) {
-        return Math.floor((sec % 3600) / 60) + "m " + Math.floor(sec % 60) + "s"
-      } else {
-        return Math.floor(sec % 60) + "s"
-      }
-  }
-
-  function mod(n, m) { // the actual mod operation. why isn't this in vanilla JS
-    return ((n % m) + m) % m;
-  }
-
-  function mapRotation() {
-    let CurrentUnix = (Date.now()  + offset) / 1000;
-    mapid = Math.floor(mod((samplemaprotation - CurrentUnix), 3024000) / 604800);
-    
-    document.getElementById('maprot').innerHTML = "<b>" + maps[mod(mapid - 1, 5)] + "</b> in " + TimestampIt(mod((samplemaprotation - CurrentUnix), 604800));
-  }
   
-  function ChangeTheme(themecolor) {
-    window.theme = themecolor;
+  function ChangeTheme(themecolour) {
+    window.theme = themecolour;
     console.log ("Changed theme to " + window.theme);
-    if(themecolor == "light") {
+    if(themecolour == "light") {
       NormalText = "#000000";
       document.getElementById('settings-theme-dark').style.color = "#888888";
       document.getElementById('settings-theme-light').style.color = NormalText;
@@ -407,7 +392,7 @@
       document.querySelectorAll('p').forEach(e => e.style.color = "black");
       document.getElementById('settings-theme-dark').classList.add("hand_cursor");
       document.getElementById('settings-theme-light').classList.remove("hand_cursor");
-      document.getElementById('settings-palette-0').innerHTML = ("Origins");
+      document.getElementById('settings-palette-0').innerHTML = ("Default");
       document.getElementById('settings-palette-1').innerHTML = ("Sunset");
       document.getElementById('settings-palette-2').innerHTML = ("Beachside");
       document.getElementById('settings-palette-3').innerHTML = ("Bubblegum");
@@ -420,15 +405,14 @@
       document.querySelectorAll('p').forEach(e => e.style.color = "white");
       document.getElementById('settings-theme-dark').classList.remove("hand_cursor");
       document.getElementById('settings-theme-light').classList.add("hand_cursor");
-      document.getElementById('settings-palette-0').innerHTML = ("Origins");
+      document.getElementById('settings-palette-0').innerHTML = ("Default");
       document.getElementById('settings-palette-1').innerHTML = ("Sunrise");
       document.getElementById('settings-palette-2').innerHTML = ("Ocean");
       document.getElementById('settings-palette-3').innerHTML = ("Business");
       document.getElementById('tut-notif').style.color = "#FFFF80"
     }
-    document.documentElement.style.setProperty("--normaltext", NormalText);
     document.getElementById('day-svg').style.fill = NormalText;
-    document.getElementById('day-night-border').style.color = NormalText;
+    document.getElementById('settings').style.color = "#888888";
     if (DoesStuffExist == true) {
       ChangeFont(window.font)
       EventFlash(window.EventFlashSec);
@@ -436,7 +420,6 @@
       DNotif(window.SettingsDesktopNotifs);
       ANotif(window.SettingsAudioNotifs);
       console.log("Stuff exists. Updating event flashes and audio.");
-      CuteColors(window.data);
     }
     for(var i = 1; i <= window.eventsNoSpaces.length; i++) {
       if(AudioEvents.includes(events[i - 1])) { //if the event is audible...
@@ -452,17 +435,16 @@
         document.getElementById('visible-'+ eventsNoSpaces[i - 1]).style.color = "#888888";	
       }
     }
-    if(themecolor == "light") {
+    if(themecolour == "light") {
     [...document.querySelectorAll('*')]
       .filter(el => getComputedStyle(el).color === 'rgb(255, 255, 255)')
       .forEach(el => el.style.color = '#000000')
     }
-    if(themecolor == "dark") {
+    if(themecolour == "dark") {
     [...document.querySelectorAll('*')]
       .filter(el => getComputedStyle(el).color === 'rgb(0, 0, 0)')
       .forEach(el => el.style.color = '#ffffff')
     }
-    SaveSettings('noreload');
   }
   
   ChangeTheme(theme); //It's called here to load the events in as black to begin with. I don't want to give people seizures.
@@ -500,22 +482,17 @@
   
       }
     }
-    addNamesandImages(window.data);
-    SaveSettings('noreload');
   }
   
   function ChangePalette(changeThePalette) {
     Palette = changeThePalette;
-    document.getElementById('settings-palette-gradient').style.color = "#888888";
     document.getElementById('settings-palette-0').style.color = "#888888";
     document.getElementById('settings-palette-1').style.color = "#888888";
     document.getElementById('settings-palette-2').style.color = "#888888";
     document.getElementById('settings-palette-3').style.color = "#888888";
-    if(Palette > -100 || Palette == 'gradient') {
-      document.getElementById('settings-palette-' + Palette).style.color = NormalText;
+    if(Palette > -100) {
+    document.getElementById('settings-palette-' + Palette).style.color = NormalText;
     }
-    CuteColors(window.data);
-    SaveSettings('noreload');
   }
   
 
@@ -587,30 +564,24 @@
   var offset = (new Date().getTimezoneOffset())*-60000;
   return new Date(s + offset).toISOString().slice(-13, -8);
   }
-
-  function autoReload() { if(performance.now() > 43200000 && Math.random() < 0.1) location.reload(); } // automatically reloads the site every twelve hours
-
-  var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
-
-  var gradients0 = [["db07eb","2a33a1"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d2b01a","b03737"],["4f73cf","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
-
-  var lightColors0 = ["#D9D2E9","#E9D2E1","#D2E9DD","#E9E2D2","#D2E9D2","#D2E9E8","#E9DDD2","#E9D2D2","#E9E3D2","#8EBAEC","#8EEC94","#ECB38E","#EC8E8E","#EC8EEC","#ECE98E","#9191EC","#ECBD8E","#BA8EEC"]
-  var darkColors0 = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
   
-  var lightColors2 = ["#FFAEBC","#E29CB4","#B4F8C8","#E4D4B4","#F1CBB0","#A0E7E5","#F4F4CC","#C5E3F2","#FBE7C6","#14C2DD","#C7F954","#FCC27C","#FF6F61","#64ABD1","#FDD55E","#5CB7D4","#EEB968","#81599F",]
-  var darkColors2 = ["#003A61","#194475","#2E4180","#323275","#0E2F82","#305B8C","#315F82","#196B82","#02636E","#0ACF87","#2CB8AE","#219CD1","#438BDE","#1B96DE","#2BB5BA","#25AACF","#2D82D6","#4BD6B8",]
-  var darkColors1 = ["#4F2561","#3D2C5C","#782C91","#8C3A81","#70287D","#504178","#402459","#AB1B7D","#661563","#DE8F10","#FA9E0A","#DB7821","#D19D49","#E84E3C","#E6C853","#ED7C2B","#CF8D32","#E3DD30",] 
-  var lightColors1 = ["#F7E497","#E3DC7B","#D9C755","#EBC86A","#F7C997","#EDD368","#F2B583","#EDD09D","#EB8773","#AB419B","#C2619E","#D93FB7","#B83DB3","#E038A3","#C71C60","#D45BA1","#E84179","#E344E0",]
-  //var darkColors3 = ["#321433","#33142b","#143321","#332314","#1e3314","#143333","#332a14","#261433","#2f3314","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
-  var lightColors3 = ["#FE9FBF","#F2C4CD","#ffaed7","#F2A2C0","#FF9DBB","#FF92B9","#ECAFB7","#FFC6DA","#FEA8C5","#D98FC5","#BF5AA4","#E68DCF","#E08FCA","#E884CC","#C15BA7","#E78CD1","#DC87BE","#CF6EB1"]
-  var darkColors3 = ["#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222",'#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229',]
-  var darkColors4 = ["#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222",'#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229',]
+  var lightColours0 = ["#D9D2E9","#E9D2E1","#D2E9DD","#E9E2D2","#D2E9D2","#D2E9E8","#E9DDD2","#E9D2D2","#E9E3D2","#8EBAEC","#8EEC94","#ECB38E","#EC8E8E","#EC8EEC","#ECE98E","#9191EC","#ECBD8E","#BA8EEC"]
+  var darkColours0 = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
+  
+  var lightColours2 = ["#FFAEBC","#E29CB4","#B4F8C8","#E4D4B4","#F1CBB0","#A0E7E5","#F4F4CC","#C5E3F2","#FBE7C6","#14C2DD","#C7F954","#FCC27C","#FF6F61","#64ABD1","#FDD55E","#5CB7D4","#EEB968","#81599F",]
+  var darkColours2 = ["#003A61","#194475","#2E4180","#323275","#0E2F82","#305B8C","#315F82","#196B82","#02636E","#0ACF87","#2CB8AE","#219CD1","#438BDE","#1B96DE","#2BB5BA","#25AACF","#2D82D6","#4BD6B8",]
+  var darkColours1 = ["#4F2561","#3D2C5C","#782C91","#8C3A81","#70287D","#504178","#402459","#AB1B7D","#661563","#DE8F10","#FA9E0A","#DB7821","#D19D49","#E84E3C","#E6C853","#ED7C2B","#CF8D32","#E3DD30",] 
+  var lightColours1 = ["#F7E497","#E3DC7B","#D9C755","#EBC86A","#F7C997","#EDD368","#F2B583","#EDD09D","#EB8773","#AB419B","#C2619E","#D93FB7","#B83DB3","#E038A3","#C71C60","#D45BA1","#E84179","#E344E0",]
+  //var darkColours3 = ["#321433","#33142b","#143321","#332314","#1e3314","#143333","#332a14","#261433","#2f3314","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
+  var lightColours3 = ["#FE9FBF","#F2C4CD","#ffaed7","#F2A2C0","#FF9DBB","#FF92B9","#ECAFB7","#FFC6DA","#FEA8C5","#D98FC5","#BF5AA4","#E68DCF","#E08FCA","#E884CC","#C15BA7","#E78CD1","#DC87BE","#CF6EB1"]
+  var darkColours3 = ["#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222",'#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229',]
+  var darkColours4 = ["#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222",'#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229',]
 
-  var darkColorsVermasium = ["#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#394066","#394066","#394066","#394066","#394066","#394066","#394066","#394066","#394066"]
-  var darkColorsIDAKOI = ["#1B2440","#BF372A","#453561","#65213C","#19213C","#29314C","#101628","#101D2F","#601F39","#D98943","#E9879E","#C54129","#E6C302","#C54129","#C5A510","#D2A829","#B4971E","#D68941"]
-  var darkColorsadjective_n0un = ["#808080","#808080","#808080","#808080","#808080","#808080","#808080","#808080","#808080","#55F","#55F","#55F","#55F","#55F","#55F","#55F","#55F","#55F"]
-  var darkColorsswuxx = ["#61123e","#000000","#61123e","#000000","#61123e","#61123e","#61123e","#61123e","#61123e","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000"]
-  var darkColorsMaleffect = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
+  var darkColoursVermasium = ["#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#394066","#394066","#394066","#394066","#394066","#394066","#394066","#394066","#394066"]
+  var darkColoursIDAKOI = ["#1B2440","#BF372A","#453561","#65213C","#19213C","#29314C","#101628","#101D2F","#601F39","#D98943","#E9879E","#C54129","#E6C302","#C54129","#C5A510","#D2A829","#B4971E","#D68941"]
+  var darkColoursadjective_n0un = ["#808080","#808080","#808080","#808080","#808080","#808080","#808080","#808080","#808080","#55F","#55F","#55F","#55F","#55F","#55F","#55F","#55F","#55F"]
+  var darkColoursswuxx = ["#61123e","#000000","#61123e","#000000","#61123e","#61123e","#61123e","#61123e","#61123e","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000"]
+  var darkColoursMaleffect = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
 
   if( typeof emergency === 'undefined'){ // if the connection to control.js failed
     console.log("Wah!")
@@ -623,7 +594,6 @@
     pp_url = ('https://events.mcpqndq.dev'); //stands for "Pit Panda"
     console.log("no emergency here!")
   }
-
   data_backup = MakeAPIAndHTML();
   getPitPanda();
   console.log("The data's been called!");
@@ -652,16 +622,18 @@
       console.log("I made an element.");
       div.id = ("event_" + i);
       div.innerHTML = ("[loading event]");
-      div.classList.add('event');
-      div.innerHTML = `<span class="timers" id="timer_` + i + `"></span>`;
+      div.style.padding = "15px"; 
+      div.style.backgroundColor = "#222222";
+      div.style.textAlign = "left";
+      div.style.fontSize = "1.5em"
+      div.style.lineHeight = "100%"
      document.getElementById('events').appendChild(div);
   }
-  document.getElementById('special_thanks').innerHTML = GeneratePraise();
+  document.getElementById('special_thanks').innerHTML = `<span style="position:relative; left: 10px;">` + GeneratePraise() + `</span>` 
     ChangeTheme(theme); //just again to make sure 
     //console.log("Seems like your screen's " + document.body.clientWidth + " pixels wide.");
     DoesStuffExist = true;
-    URLToSettings();  
-    addNamesandImages(window.data);
+    URLToSettings()
   }
   
   function AudioChecker() {
@@ -679,7 +651,7 @@
       } else {
         var minute_s = "minutes"
       }
-      var notification = new Notification("", {body: "Hey—" + window.data[i]['event'] + " is starting in " + NotifTimer/60 + " " + minute_s +"!", icon: "3457688aa57c4d71ab9d22b04f9160db.png"});
+      var notification = new Notification("", {body: "Hey— " + window.data[i]['event'] + " is starting in " + NotifTimer/60 + " " + minute_s +"!", icon: "3457688aa57c4d71ab9d22b04f9160db.png"});
       time1 = Date.now() + offset
       }
       }
@@ -691,8 +663,17 @@
   if (DoesStuffExist == true) {
     HasStuffLoaded = true; //looks like the stuff has loaded
     for(var i = window.HiddenEventCount; i <= window.HiddenEventCount && i < EventsToLoad; i++) { 
-    if(showEventTuE == true) document.getElementById('timer_' + String(i)).innerHTML = MakeFunTimestamps(transformation[i].timestamp);
+    if (showEventToD == true && showEventTuE == true) {
+    document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: ` + CorrectFont + `">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: ` + CorrectFont + `"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
+    } else if (showEventToD == false && showEventTuE == true) {
+    document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: ` + CorrectFont + `">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: ` + CorrectFont + `"> </span>`);
+    } else if (showEventToD == true && showEventTuE == false) {
+    document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: ` + CorrectFont + `">` + TimeOfDay(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: ` + CorrectFont + `"> </span>`);
+    } else if (showEventToD == false && showEventTuE == false) {
+    document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: ` + CorrectFont + `">` + transformation[i].event + `</span>`);
+    }
     if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
+      //document.getElementById('event_' + String(i)).remove();
       for(var j = 0; j <= i; j++) {
         document.getElementById('event_' + String(j)).style.display = "none"; //This should get rid of some bugs with events not hiding.
       }
@@ -709,9 +690,18 @@
   
   function UpdateEverything(transformation) { //this plops the stuff in the actual html page
     for(var i = window.HiddenEventCount + 1; i < EventsToLoad; i++) { 
-      if(showEventTuE == true) document.getElementById('timer_' + String(i)).innerHTML = MakeFunTimestamps(transformation[i].timestamp);
+    if (showEventToD == true && showEventTuE == true) {
+    document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: ` + CorrectFont + `">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: ` + CorrectFont + `"> (` + TimeOfDay(transformation[i].timestamp) + ") </span>");
+    } else if (showEventToD == false && showEventTuE == true) {
+    document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: ` + CorrectFont + `">` + MakeFunTimestamps(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: ` + CorrectFont + `"> </span>`);
+    } else if (showEventToD == true && showEventTuE == false) {
+    document.getElementById('event_' + String(i)).innerHTML = (`<span style="font-family: ` + CorrectFont + `">` + TimeOfDay(transformation[i].timestamp) + `: </span><span> ` + transformation[i].event + `</span><span style="font-family: ` + CorrectFont + `"> </span>`);
+    } else if (showEventToD == false && showEventTuE == false) {
+    document.getElementById('event_' + String(i)).innerHTML = (`<span>` + transformation[i].event + `</span>`);
+    }
     if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) { //in an ideal world this should NEVER be called but js can be weird as hell sometimes
-      document.getElementById('timer_' + String(i)).style.display = "none";
+      //document.getElementById('event_' + String(i)).remove();
+      document.getElementById('event_' + String(i)).style.display = "none";
       window.HiddenEventCount = window.HiddenEventCount + 1; 
       console.log("hey if you see this please let Brooke know as this should Not happen lol");
     }
@@ -748,7 +738,6 @@
     }
     console.log("List of events that are visible:")
     console.log(window.VisibleEvents);
-    SaveSettings('noreload');
   }
   
   function URLToSettings() {
@@ -756,50 +745,38 @@
       if(here.searchParams.get('offset') !== null) {
         offset = here.searchParams.get('offset') * 60000
       }
-      if(localStorage.getItem('offset') !== null) offset = localStorage.getItem('offset') * 60000
-      
-      if(!(localStorage.getItem('settings-version') >= 11)) {
-        localStorage.setItem('theme', theme);
-        localStorage.setItem('visible', '262144');
-        localStorage.setItem('notifs', '0');
-        localStorage.setItem('palette', 'gradient');
-        localStorage.setItem('timestamps', '111');
-        localStorage.setItem('flashing', '0');
-        localStorage.setItem('reminder', '0');
-        localStorage.setItem('desktop', '0');
-        localStorage.setItem('audio', '-10');
-        localStorage.setItem('font', '0');
+      if(here.searchParams.get('reminder') == null || here.searchParams.get('flashing') == null || here.searchParams.get('palette') == null || here.searchParams.get('theme') == null || here.searchParams.get('timestamps') == null || here.searchParams.get('visible') == null || here.searchParams.get('notifs') == null || here.searchParams.get('desktop') == null || here.searchParams.get('font') == null) {
           console.log("No settings :fear:")
-          ChangeFont('Inter');
-          ChangePalette('gradient');
-           EventFlash(60); // setting everything up!
+          ChangeFont('minecraftregular');
+          ChangePalette(0);
+           EventFlash(60); //setting everything up!
           SetAudio(-10);
           DNotif(0);
           ANotif(0);
       } else {
 
-      CorrectFont = localStorage.getItem('font');
+      CorrectFont = here.searchParams.get('font');
       console.log("CORRECT FONT VALUE: " + CorrectFont);
-      if (CorrectFont == '0') CorrectFont = 'Inter'
-      else if(CorrectFont == 1) CorrectFont = 'sans-serif';
-      else if(CorrectFont == 2) CorrectFont = 'minecraft';
-      else CorrectFont = "Inter";
-
-      NotifTimer = localStorage.getItem('reminder');
-      EventFlashSec = localStorage.getItem('flashing');
-      Palette = localStorage.getItem('palette')
-      theme = localStorage.getItem('theme');
-      showEventToD = localStorage.getItem('timestamps').charAt(0); //first character of "timestamps" in URL
-      showEventTuE = localStorage.getItem('timestamps').charAt(1);
-      showEventDNC = localStorage.getItem('timestamps').charAt(2);
+      if (CorrectFont == '0') {
+        CorrectFont = 'minecraftregular'
+      } else {
+        CorrectFont = 'sans-serif'
+      }
+      NotifTimer = here.searchParams.get('reminder');
+      EventFlashSec = here.searchParams.get('flashing');
+      Palette = here.searchParams.get('palette')
+      theme = here.searchParams.get('theme');
+      showEventToD = here.searchParams.get('timestamps').charAt(0); //first character of "timestamps" in URL
+      showEventTuE = here.searchParams.get('timestamps').charAt(1);
+      showEventDNC = here.searchParams.get('timestamps').charAt(2);
       if (showEventDNC == false) {
         document.getElementById("day-night-border").style.display = "none";
       }
-      SettingsSelectedEvents = parseInt(localStorage.getItem('visible'));
-      SettingsNotifyEvents = parseInt(localStorage.getItem('notifs'));
-      SettingsDesktopNotifs = parseInt(localStorage.getItem('desktop'));
-      SettingsAudioNotifs = parseInt(localStorage.getItem('audio'));
-
+      SettingsSelectedEvents = parseInt(here.searchParams.get('visible'));
+      SettingsNotifyEvents = parseInt(here.searchParams.get('notifs'));
+      SettingsDesktopNotifs = parseInt(here.searchParams.get('desktop'));
+      SettingsAudioNotifs = parseInt(here.searchParams.get('audio'))
+      
       ChangeFont(CorrectFont)
       ChangePalette(Palette);
       SetAudio(parseInt(NotifTimer)); //this does not work //then WHY did you add it??
@@ -823,7 +800,7 @@
       VisibleEvents = [];
       AudioEvents = [];
       var leadingZeroes = (num, places) => String(num).padStart(places, '0')
-      var number = localStorage.getItem('visible');
+      var number = here.searchParams.get('visible');
 
       if(number == "0") {
         document.getElementById('alert-noevents').style.display = "block";
@@ -855,7 +832,7 @@
       }
   
       var leadingZeroes = (num, places) => String(num).padStart(places, '0')
-      var number = localStorage.getItem('notifs');
+      var number = here.searchParams.get('notifs');
       var BinaryEvents = (leadingZeroes(parseInt(number).toString(2),events.length));
       console.log(BinaryEvents)
       for(i = 0; i < events.length; i++) {
@@ -868,7 +845,9 @@
       console.log(window.AudioEvents + " audioevents")
      document.getElementById('alert-nobells').style.display = "block";
       }
-
+  
+  
+  
       const queryString = window.location.search; //no clue what this does but i'm really scared to remove it
       ChangeTheme(theme);
       HasStuffLoaded = true;
@@ -896,7 +875,6 @@
   }
     console.log("List of events that a sound will play for:")
     console.log(window.AudioEvents);
-    SaveSettings('noreload');
   }
   
   function AboutMe(variable) {
@@ -904,10 +882,6 @@
       date.setSeconds(variable / 1000);
       var endpoint = date.toISOString().substr(14, 5);
       return(endpoint); 
-  }
-
-  function Help() { //redirects the user to the BrookeAFK Help Guide
-    window.open("help", '_blank').focus();
   }
   
   function CurrentEvent() {
@@ -917,8 +891,8 @@
       var result = AboutMe(DemolitionTime - currentTime);
       console.log(result);
       let recentEventData = window.data[HiddenEventCount - 1];
-      let correctColorCode =
-        trueEventColors[events.indexOf(recentEventData["event"])];
+      let correctColourCode =
+        trueEventColours[events.indexOf(recentEventData["event"])];
       if (recentEventData["type"] == "major") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
           console.log(DemolitionTime - currentTime);
@@ -927,7 +901,7 @@
           if (currentTime >= 180000 + TimeOfEventStart) {
             document.getElementById("current-event").innerHTML =
               `<span style="color: #aa00aa; font-family: ` + CorrectBold + `;">` + all_text[1] + `</span> <span style="color:` +
-              correctColorCode +
+              correctColourCode +
               `; font-family: ` + CorrectBold + `;">` +
               window.data[HiddenEventCount - 1]["event"].toUpperCase() +
               `!</span><br><span style="color: #aaaaaa;">` + all_text[3] + `<span style="color: #55ff55;">` +
@@ -936,13 +910,13 @@
           } else {
             document.getElementById("current-event").innerHTML =
               `<span style="color: #aa00aa; font-family: ` + CorrectBold + `;">` + all_text[1] + `</span> <span style="color:` +
-              correctColorCode +
+              correctColourCode +
               `; font-family: ` + CorrectBold + `;">` +
               window.data[HiddenEventCount - 1]["event"].toUpperCase() +
               `!</span><br><span style="color: #aaaaaa;">` + all_text[2] + `<span style="color: #55ff55;">` +
               AboutMe(TimeOfEventStart + 180000 - currentTime) +
               `</span></span>`;
-            //console.log("major + countdown");
+            console.log("major + countdown");
           }
         } else {
           document.getElementById("current-event").innerHTML =
@@ -953,17 +927,17 @@
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
           document.getElementById("current-event").innerHTML =
             `<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">` + all_text[0] + `</span> <span style="color:` +
-            correctColorCode +
+            correctColourCode +
             `; font-family: ` + CorrectBold + `;">` +
             window.data[HiddenEventCount - 1]["event"].toUpperCase() +
             `!</span><br><span style="color: #aaaaaa;">` + all_text[3] + `<span style="color: #55ff55;">` +
             result +
             `</span></span>`;
-          //console.log("minor + countdown");
+          console.log("minor + countdown");
         } else {
           document.getElementById("current-event").innerHTML =
             IsItACountdown[events.indexOf(recentEventData["event"])];
-          //console.log("minor, no countdown");
+          console.log("minor, no countdown");
         }
       }
     } else if (HiddenEventCount > 0 && DemolitionTime - currentTime <= 0) {
@@ -974,55 +948,31 @@
   
   function SettingsMenu() {
     if(settingsOpened == false) {
+      document.getElementById('settings').style.color = "#888888";
       settingsOpened = true;
-      document.getElementById("day-night-border").style.display = "none";
       document.getElementById('settings-section').style.display = "block";
       console.log("Settings opened.");
     } else if(settingsOpened == true) {
+      document.getElementById('settings').style.color = NormalText;
       settingsOpened = false;
-      document.getElementById("day-night-border").style.display = "";
       console.log("Settings closed.");
       document.getElementById('settings-section').style.display = "none";
     }
     let here = new URL(window.location.href);
-    console.log(localStorage.getItem('reminder'))
-  }
-
-  function localSave() { // saves settings every time you click on something
-    localStorage.setItem('theme', theme);
-      localStorage.setItem('visible', SettingsSelectedEvents);
-      localStorage.setItem('notifs', SettingsNotifyEvents);
-      localStorage.setItem('palette', Palette);
-      localStorage.setItem('timestamps', (showEventToD | 0).toString() + (showEventTuE | 0).toString() + (showEventDNC | 0).toString());
-      localStorage.setItem('flashing', EventFlashSec);
-      localStorage.setItem('reminder', NotifTimer);
-      localStorage.setItem('desktop', SettingsDesktopNotifs);
-      localStorage.setItem('audio', SettingsAudioNotifs);
-      if(CorrectFont == 'Inter') localStorage.setItem('font', '0');
-      if(CorrectFont == 'sans-serif') localStorage.setItem('font', '1');
-      if(CorrectFont == 'minecraft') localStorage.setItem('font', '2');
-
-      localStorage.setItem('settings-version', "11");
+  
+    console.log(here.searchParams.get('reminder'))
+  
+    
   }
   
-  function SaveSettings(action = false) { 
-    if(DoesStuffExist) {
-    console.log("action");
-    
-      if(action == "clear") {
-        window.localStorage.clear()
-        window.localStorage.setItem('debug',"fuckkgoyou")
-        window.location.reload();
-      } else {
+  function SaveSettings() { 
       let here = new URL(window.location.href);
       for(i = 0; i < AllSettings.length; i++) {
       here.searchParams.delete(AllSettings[i]);
-    }
+      }
   
       console.log(here);
-      localSave();
-
-      /*here.searchParams.append('theme', theme);
+      here.searchParams.append('theme', theme);
       here.searchParams.append('visible', SettingsSelectedEvents);
       here.searchParams.append('notifs', SettingsNotifyEvents);
       here.searchParams.append('palette', Palette);
@@ -1032,70 +982,39 @@
       here.searchParams.append('desktop', SettingsDesktopNotifs);
       here.searchParams.append('audio', SettingsAudioNotifs);
       console.log(CorrectFont)
-      if(CorrectFont == 'Inter') here.searchParams.append('font', '0');
-      if(CorrectFont == 'sans-serif') here.searchParams.append('font', '1');
-      if(CorrectFont == 'minecraft') here.searchParams.append('font', '2');*/
-      //if(action != "noreload") window.location = here; 
-  }
-  }
-}
-
-  function nickname(name, isPitWikiLink = false) { // changes Pit Supporter names ("KOTL") to cooler names ("King of the Ladder"). probably also good for other language support. also good for making links to Pit Wiki
-    if(events.indexOf(name) == -1) return "?"
-    else if(isPitWikiLink) return "https://pit.wiki/" + pit_wiki_links[events.indexOf(name)];
-    else return nicknamesen_CA[events.indexOf(name)];
-  }
-
-  function addNamesandImages(transformation) { // adds names like "King of the Hill" and images to each div
-    for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
-      var nicknamevent = nickname(transformation[i].event);
-      var wikievent = nickname(transformation[i].event, true)
-      if (showEventToD == true && showEventTuE == true) {
-      document.getElementById('event_' + String(i)).innerHTML = (`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span> &mdash; ` + TimeOfDay(transformation[i].timestamp));
-    } else if (showEventToD == false && showEventTuE == true) {
-      document.getElementById('event_' + String(i)).innerHTML = (`<b>` + nicknamevent + `</b> in <span class="timers" id="timer_` + i + `"></span>`);
-    } else if (showEventToD == true && showEventTuE == false) {
-      document.getElementById('event_' + String(i)).innerHTML = (`<b>` + nicknamevent + `</b> at ` + TimeOfDay(transformation[i].timestamp));
-    } else if (showEventToD == false && showEventTuE == false) {
-      document.getElementById('event_' + String(i)).innerHTML = (`<b>` + nicknamevent + `</b>`);
-    }
-   }
+      if(CorrectFont == 'minecraftregular') {
+      here.searchParams.append('font', '0');
+      }
+      if(CorrectFont == 'sans-serif') {
+      here.searchParams.append('font', '1');
+      }
+      window.location = here; 
   }
   
-  function CuteColors(conversion) { //adds cute colors
-  if(window.Palette.length > 1 && window.Palette != "gradient") {
+  function CuteColors(conversion) { //adds cute colours
+  if(window.Palette.length > 1) {
     document.getElementById('logo').src = ("https://mc-heads.net/avatar/" + window.Palette + "/100")
     window.theme = "dark";
   }
-
   if(window.theme == "light") {
-    var TheRightArrayToFindTheColors = window["lightColors" + Palette];
+    var TheRightArrayToFindTheColours = window["lightColours" + Palette];
   }
   if(window.theme == "dark") {
-    var TheRightArrayToFindTheColors = window["darkColors" + Palette];
+    var TheRightArrayToFindTheColours = window["darkColours" + Palette];
   }
   if(DoesStuffExist == true) {
-    console.log(Palette)
-    if(Palette == "gradient") { // if awesome gradients are enabled
-      for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
-        document.getElementById('event_' + String(i)).style.background = 
-        `linear-gradient(90deg, #`+ gradients0[events.indexOf(conversion[i]['event'])][0] + ` 0%, #` + gradients0[events.indexOf(conversion[i]['event'])][1] + ` 100%)`;
+  for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
+      document.getElementById('event_' + String(i)).style.backgroundColor = TheRightArrayToFindTheColours[events.indexOf(conversion[i]['event'])];
+      if(Palette == "Maleffect") { // easter egg
+        document.getElementById('event_' + String(i)).style.backgroundColor = "#222222";
+        document.getElementById('event_' + String(i)).style.color = TheRightArrayToFindTheColours[events.indexOf(conversion[i]['event'])];
+      } else {
+        document.getElementById('event_' + String(i)).style.color = NormalText;
       }
-    } else { // if the user is totally uncool and refuses to use my awesome gradients
-      console.log("uncool user :/")
-  for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
-      document.getElementById('event_' + String(i)).style.background = TheRightArrayToFindTheColors[events.indexOf(conversion[i]['event'])];
-
-  if(Palette == "Maleffect") { // easter egg
-    document.getElementById('event_' + String(i)).style.backgroundColor = "#222222";
-    document.getElementById('event_' + String(i)).style.color = TheRightArrayToFindTheColors[events.indexOf(conversion[i]['event'])];
-  } else if(showEventTuE == true) {
-    document.getElementById('timer_' + String(i)).style.color = NormalText;
-  }
-   /*if(conversion[i]['type'] == "major") { // fix this
+   if(conversion[i]['type'] == "major") {
     document.getElementById('event_' + String(i)).style.fontFamily = CorrectBoldStyleless;
     document.getElementById('event_' + String(i)).style.fontWeight = RealWeight;
-   }*/
+   }
    let currentTime = (Date.now() + offset);
    if ((conversion[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "light")) {
     document.getElementById('event_'+ String(i)).classList.add("blinktext-light");
@@ -1106,7 +1025,7 @@
     document.getElementById('event_'+ String(i)).classList.remove("blinktext-light");
    }
   }}
-  }}
+  }
   
   function getPitPanda() {
     window.data = window.data_backup;
@@ -1118,51 +1037,21 @@
       AudioChecker();
       CurrentEvent();
       DayNightCycle();
-      mapRotation();
-      autoReload();
     }
+    CuteColors(window.data);
     RapidFirst(window.data);
+    
   }
     </script>
   
   <style>
-    .topcontainer {
-      padding: 15px;
-      padding-top: 8px;
-    }
-
-    .wordmark {
-      font-size: 40px;
-      background: linear-gradient(90deg, rgba(245,114,212,1) 0%, rgba(141,60,175,1) 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; 
-      -moz-background-clip: text;
-      -moz-text-fill-color: transparent;
-    }
-
-    #settings {
-      font-family: Material;
-    }
-
-    .icon {
-      font-family: Material;
-      font-size: 25px;
-      color: #808080;
-    }
-
-    .icon:hover {
-      color: var(--normaltext);
-      font-size: 30px;
-    }
-
-    a:link:not(.blanklink) {
+    a:link {
       color: #B15AC2;
       background-color: transparent;
       text-decoration: none;
     }
     
-    a:visited:not(.blanklink) {
+    a:visited {
       color: #725279;
       background-color: transparent;
       text-decoration: none;
@@ -1179,33 +1068,9 @@
       background-color: transparent;
       text-decoration: underline;
     }
-
-    #day-night-border {
-      height: 0;
-      padding: 5px;
-      float: left;
-      position: relative;
-      bottom: 30px;
-      left: 10px;
-      display:flex;
-      align-items: center;
-      vertical-align:center;
-      justify-content: center;
-      font-size: 14px;
-    }
   
     p {
-      font-size: 1.5em;
-    }
-
-    hr {
-      display: block; height: 1px;
-    border: 0; border-top: 4px solid rgba(255, 255, 255, 0.6);
-    margin: 1em 0; padding: 0; 
-    }
-
-    .timers {
-      font-variant-numeric: tabular-nums;
+      font-size: 1.5em
     }
     
     .blinktext-light {
@@ -1242,7 +1107,6 @@
     49% { color: #300000;opacity: 1; }
     50% { color: #190000;opacity: 1; }
   }
-
   @keyframes blink-text-dark {
     0% { color: #c00000; opacity: 1; }
     10% { color: #c51a1a;opacity: 1; }
@@ -1269,7 +1133,6 @@
     85% { opacity: 0.85; }
     100% { opacity: 1; }
   }
-
   .hand_cursor {
     cursor: pointer;
   }
@@ -1277,8 +1140,6 @@
   #settings-section {
     display: none;
     margin-left: 60px;
-    position: relative;
-    bottom: 40px;
   }
   
   .unselectable {
@@ -1309,149 +1170,21 @@
     }
 }
 
-.w100 {
-  font-weight: 100;
-}
-.w200 {
-  font-weight: 200;
-}
-.w300 {
-  font-weight: 300;
-}
-.w400 {
-  font-weight: 400;
-}
-.w500 {
-  font-weight: 500;
-}
-.w600 {
-  font-weight: 600;
-}
-.w700 {
-  font-weight: 700;
-}
-.w800 {
-  font-weight: 800;
-}
-.w900 {
-  font-weight: 900;
+/*@font-face {
+  font-family: Minecraft;
+  src: url("./font/MinecraftRegular.otf");
 }
 
 @font-face {
-  font-family: Inter;
-  src: url("/font/InterVariable.ttf")
-}
-
-@font-face {
-  font-family: Material;
-  src: url("/font/Material.ttf");
-}
-
-@font-face {
-  font-family: minecraft;
-  src: url("/font/MinecraftRegular.otf");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: minecraft;
-  src: url("/font/MinecraftBold.otf");
+  font-family: Minecraft;
+  src: url("./font/MinecraftBold.otf");
   font-weight: bold;
 }
 
-a, .icon, div {
+*{
   transition-duration: 0.2s;
-}
-
-.option {
-  font-size: 15px;
-}
-
-* { /* should make font look less bad on Webkit */
-  -webkit-font-smoothing: antialiased;
-  font-smooth: never; /* !!! */
-}
-
-.eventicon {
-  width: 32px;
-  position: relative;
-  float: left;
-  bottom: 4px;
-}
-
-.event {
-  padding: 16px; 
-  background-color: #222222;
-  text-align: left;
-  font-size: 1.5em;
-  line-height: 100%;
-  margin: 5px;
-}
-
-#notifications-major {
-  display: block; position: absolute; top: -50px; right: 200px; text-align: right; font-size: 15px; color: #FFFFFF;
-}
-
-#notifications-minor {
-  display: block; position: absolute; top: -50px; right: 50px; text-align: right; font-size: 15px; color: #FFFFFF;
-}
-
-.blanklink {
-  color: unset;
-  text-decoration: none;
-}
-
-.credits {
-  color: rgba(255, 255, 255, 0.6);
-  position: relative;
-  left: 10px;
-  font-size: 18px;
-}
-
-:root {
-  --normaltext: #FFF;
-}
-
-html, body {
-    overflow-x:hidden;
-}
-
-@media only screen and (max-width: 500px) {
-  * {
-    transition-duration: 0s !important;
-  }
-
-  #settings-section {
-    margin-left: 20px;
-  }
-
-  #notifications-major, #notifications-minor {
-    position: relative;
-    width: 140px;
-    text-align: center;
-    font-size: 18px;
-  }
-
-  #notifications-major {
-    left: 180px;
-    top: 10px;
-  }
-
-  #notifications-minor {
-    top: -293px;
-    right: -20px;
-  }
-
-  .event {
-    line-height: 1.2em;
-  }
-
-  .option {
-    font-size: 18px;
-  }
-}
-
-</style>
+}*/
+    </style>
   
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"6ee9d8195eaa7e2c","version":"2021.12.0","r":1,"token":"7ae79fbdb6224da3a02aeec2ac9658a6","si":100}' crossorigin="anonymous"></script>
   </body>

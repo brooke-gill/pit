@@ -35,7 +35,7 @@
     
   <div id="settings-section" style="display: none; position: relative; bottom: 40px;"><br>
   <p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
-  <p style="font-size:15px"><span>Palette: </span><span id="settings-palette-gradient" onclick="ChangePalette('gradient')">GRADIENTS WOOOO</span> / <span id="settings-palette-0" onclick='ChangePalette(0)'>Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)'>Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)'>Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)'>Theme 3</span></p>
+  <p style="font-size:15px"><span>Palette: </span><span id="settings-palette-gradient" onclick="ChangePalette('gradient')" class="hand_cursor">Gradient</span> / <span id="settings-palette-0" onclick='ChangePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)' class="hand_cursor">Theme 3</span></p>
   <p style="font-size:15px"><span id="tut-notif" style="color: #ffff80">Pre-event notifications</span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
   <p id="anotif" style="font-size:15px"><span>- Audio notifications: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
   <p id="dnotif" style="font-size:15px"><span>- Desktop notifications (BETA): </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
@@ -68,10 +68,10 @@
     <div><span id="visible-QuickMaths" onclick='VisibilityToggle("Quick Maths")' class="hand_cursor">Quick Maths</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-QuickMaths" onclick='NotifToggle("Quick Maths")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-GiantCake" onclick='VisibilityToggle("Giant Cake")' class="hand_cursor">Giant Cake</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-GiantCake" onclick='NotifToggle("Giant Cake")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-Allbounty" onclick='VisibilityToggle("All bounty")' class="hand_cursor">All bounty</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Allbounty" onclick='NotifToggle("All bounty")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
-    <br><div id="select-major" style="color: #ffffff;" onclick='SelectOnly("major")' class="hand_cursor">Majors Only</div>
-    <div id="select-minor" style="color: #ffffff;" onclick='SelectOnly("minor")' class="hand_cursor">Minors Only</div>
-    <div id="select-none" style="color: #ff7777;" onclick='SelectOnly("nothing")' class="hand_cursor">Deselect All</div>
-    <br><div id="save" style="color: #8888ff;" onclick='SaveSettings()' class="hand_cursor">Save Settings</div>
+    <br><div id="select-major" style="color: #fff;" onclick='SelectOnly("major")' class="hand_cursor">Majors Only</div>
+    <div id="select-minor" style="color: #fff;" onclick='SelectOnly("minor")' class="hand_cursor">Minors Only</div>
+    <div id="select-none" style="color: #f77;" onclick='SelectOnly("nothing")' class="hand_cursor">Deselect All</div>
+    <br><div id="save" style="color: #aac;" onclick='SaveSettings()' class="hand_cursor"><i>Settings save<br> automatically!</i></div><div id="save" style="color: #f77;" onclick="SaveSettings('clear')" class="hand_cursor">Clear Settings</div>
   
   </div>
 
@@ -98,7 +98,7 @@
   var NotifTimer = -10;
   var DoesStuffExist = false;
   var HasStuffLoaded = false;
-  var Palette = 0;
+  var Palette = 'gradient';
   var SettingsSelectedEvents = 262143;
   var SettingsNotifyEvents = 0;
   var SettingsDesktopNotifs = 0;
@@ -199,6 +199,7 @@
     if(seconds == 30) document.getElementById('settings-flash-30').style.color = NormalText;
     if(seconds == 10) document.getElementById('settings-flash-10').style.color = NormalText;
     if(seconds == -10) document.getElementById('settings-flash-0').style.color = NormalText;
+    SaveSettings('noreload');
   }
 
   function ChangeFont(font) {
@@ -231,6 +232,7 @@
     document.body.style.fontFamily = CorrectFont;
     IsItACountdown = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">QUICK MATHS!</span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #aa00aa; font-family: ` + CorrectBold + `;">DRAGON EGG</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffaa00; font-family: ` + CorrectBold + `;">CARE PACKAGE</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">AUCTION!</span><br><span style="color: #AAAAAA; font-family:` + CorrectFont + `">Check auctioneer or chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> EVERYONE GETS A BOUNTY!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
 
+    SaveSettings('noreload');
   }
   
   function DayNightCycle() { //OPTIMIZE THIS please add variable that's like "when the day is dark please do not call the svg again please"
@@ -296,7 +298,7 @@
       }}
       
     }
-  
+  SaveSettings('noreload');
   }
 
   function ANotif(tog) {
@@ -314,6 +316,7 @@
         document.getElementById('alert-notypes').style.display = 'block';
       }
     }
+    SaveSettings('noreload');
   }
 
 
@@ -359,6 +362,7 @@
         document.getElementById('alert-notypes').style.display = 'block';
       }
     }
+    SaveSettings('noreload');
   }
   
   function TestAudio() { // plays the audio. simple!
@@ -421,7 +425,9 @@
       document.getElementById('settings-palette-3').innerHTML = ("Business");
       document.getElementById('tut-notif').style.color = "#FFFF80"
     }
+    document.documentElement.style.setProperty("--normaltext", NormalText);
     document.getElementById('day-svg').style.fill = NormalText;
+    document.getElementById('day-night-border').style.color = NormalText;
     if (DoesStuffExist == true) {
       ChangeFont(window.font)
       EventFlash(window.EventFlashSec);
@@ -455,6 +461,7 @@
       .filter(el => getComputedStyle(el).color === 'rgb(0, 0, 0)')
       .forEach(el => el.style.color = '#ffffff')
     }
+    SaveSettings('noreload');
   }
   
   ChangeTheme(theme); //It's called here to load the events in as black to begin with. I don't want to give people seizures.
@@ -493,6 +500,7 @@
       }
     }
     addNamesandImages(window.data);
+    SaveSettings('noreload');
   }
   
   function ChangePalette(changeThePalette) {
@@ -506,6 +514,7 @@
       document.getElementById('settings-palette-' + Palette).style.color = NormalText;
     }
     CuteColors(window.data);
+    SaveSettings('noreload');
   }
   
 
@@ -743,6 +752,7 @@
     }
     console.log("List of events that are visible:")
     console.log(window.VisibleEvents);
+    SaveSettings('noreload');
   }
   
   function URLToSettings() {
@@ -750,38 +760,50 @@
       if(here.searchParams.get('offset') !== null) {
         offset = here.searchParams.get('offset') * 60000
       }
-      if(here.searchParams.get('reminder') == null || here.searchParams.get('flashing') == null || here.searchParams.get('palette') == null || here.searchParams.get('theme') == null || here.searchParams.get('timestamps') == null || here.searchParams.get('visible') == null || here.searchParams.get('notifs') == null || here.searchParams.get('desktop') == null || here.searchParams.get('font') == null) {
+      if(localStorage.getItem('offset') !== null) offset = localStorage.getItem('offset') * 60000
+      
+      if(!(localStorage.getItem('settings-version') >= 11)) {
+        localStorage.setItem('theme', theme);
+        localStorage.setItem('visible', '262144');
+        localStorage.setItem('notifs', '0');
+        localStorage.setItem('palette', 'gradient');
+        localStorage.setItem('timestamps', '111');
+        localStorage.setItem('flashing', '0');
+        localStorage.setItem('reminder', '0');
+        localStorage.setItem('desktop', '0');
+        localStorage.setItem('audio', '-10');
+        localStorage.setItem('font', '0');
           console.log("No settings :fear:")
           ChangeFont('Inter');
           ChangePalette('gradient');
-           EventFlash(60); //setting everything up!
+           EventFlash(60); // setting everything up!
           SetAudio(-10);
           DNotif(0);
           ANotif(0);
       } else {
 
-      CorrectFont = here.searchParams.get('font');
+      CorrectFont = localStorage.getItem('font');
       console.log("CORRECT FONT VALUE: " + CorrectFont);
       if (CorrectFont == '0') CorrectFont = 'Inter'
       else if(CorrectFont == 1) CorrectFont = 'sans-serif';
       else if(CorrectFont == 2) CorrectFont = 'minecraft';
       else CorrectFont = "Inter";
 
-      NotifTimer = here.searchParams.get('reminder');
-      EventFlashSec = here.searchParams.get('flashing');
-      Palette = here.searchParams.get('palette')
-      theme = here.searchParams.get('theme');
-      showEventToD = here.searchParams.get('timestamps').charAt(0); //first character of "timestamps" in URL
-      showEventTuE = here.searchParams.get('timestamps').charAt(1);
-      showEventDNC = here.searchParams.get('timestamps').charAt(2);
+      NotifTimer = localStorage.getItem('reminder');
+      EventFlashSec = localStorage.getItem('flashing');
+      Palette = localStorage.getItem('palette')
+      theme = localStorage.getItem('theme');
+      showEventToD = localStorage.getItem('timestamps').charAt(0); //first character of "timestamps" in URL
+      showEventTuE = localStorage.getItem('timestamps').charAt(1);
+      showEventDNC = localStorage.getItem('timestamps').charAt(2);
       if (showEventDNC == false) {
         document.getElementById("day-night-border").style.display = "none";
       }
-      SettingsSelectedEvents = parseInt(here.searchParams.get('visible'));
-      SettingsNotifyEvents = parseInt(here.searchParams.get('notifs'));
-      SettingsDesktopNotifs = parseInt(here.searchParams.get('desktop'));
-      SettingsAudioNotifs = parseInt(here.searchParams.get('audio'))
-      
+      SettingsSelectedEvents = parseInt(localStorage.getItem('visible'));
+      SettingsNotifyEvents = parseInt(localStorage.getItem('notifs'));
+      SettingsDesktopNotifs = parseInt(localStorage.getItem('desktop'));
+      SettingsAudioNotifs = parseInt(localStorage.getItem('audio'));
+
       ChangeFont(CorrectFont)
       ChangePalette(Palette);
       SetAudio(parseInt(NotifTimer)); //this does not work //then WHY did you add it??
@@ -805,7 +827,7 @@
       VisibleEvents = [];
       AudioEvents = [];
       var leadingZeroes = (num, places) => String(num).padStart(places, '0')
-      var number = here.searchParams.get('visible');
+      var number = localStorage.getItem('visible');
 
       if(number == "0") {
         document.getElementById('alert-noevents').style.display = "block";
@@ -837,7 +859,7 @@
       }
   
       var leadingZeroes = (num, places) => String(num).padStart(places, '0')
-      var number = here.searchParams.get('notifs');
+      var number = localStorage.getItem('notifs');
       var BinaryEvents = (leadingZeroes(parseInt(number).toString(2),events.length));
       console.log(BinaryEvents)
       for(i = 0; i < events.length; i++) {
@@ -850,9 +872,7 @@
       console.log(window.AudioEvents + " audioevents")
      document.getElementById('alert-nobells').style.display = "block";
       }
-  
-  
-  
+
       const queryString = window.location.search; //no clue what this does but i'm really scared to remove it
       ChangeTheme(theme);
       HasStuffLoaded = true;
@@ -880,6 +900,7 @@
   }
     console.log("List of events that a sound will play for:")
     console.log(window.AudioEvents);
+    SaveSettings('noreload');
   }
   
   function AboutMe(variable) {
@@ -968,17 +989,44 @@
       document.getElementById('settings-section').style.display = "none";
     }
     let here = new URL(window.location.href);
-    console.log(here.searchParams.get('reminder'))
+    console.log(localStorage.getItem('reminder'))
+  }
+
+  function localSave() { // saves settings every time you click on something
+    localStorage.setItem('theme', theme);
+      localStorage.setItem('visible', SettingsSelectedEvents);
+      localStorage.setItem('notifs', SettingsNotifyEvents);
+      localStorage.setItem('palette', Palette);
+      localStorage.setItem('timestamps', (showEventToD | 0).toString() + (showEventTuE | 0).toString() + (showEventDNC | 0).toString());
+      localStorage.setItem('flashing', EventFlashSec);
+      localStorage.setItem('reminder', NotifTimer);
+      localStorage.setItem('desktop', SettingsDesktopNotifs);
+      localStorage.setItem('audio', SettingsAudioNotifs);
+      if(CorrectFont == 'Inter') localStorage.setItem('font', '0');
+      if(CorrectFont == 'sans-serif') localStorage.setItem('font', '1');
+      if(CorrectFont == 'minecraft') localStorage.setItem('font', '2');
+
+      localStorage.setItem('settings-version', "11");
   }
   
-  function SaveSettings() { 
+  function SaveSettings(action = false) { 
+    if(DoesStuffExist) {
+    console.log("action");
+    
+      if(action == "clear") {
+        window.localStorage.clear()
+        window.localStorage.setItem('debug',"fuckkgoyou")
+        window.location.reload();
+      } else {
       let here = new URL(window.location.href);
       for(i = 0; i < AllSettings.length; i++) {
       here.searchParams.delete(AllSettings[i]);
-      }
+    }
   
       console.log(here);
-      here.searchParams.append('theme', theme);
+      localSave();
+
+      /*here.searchParams.append('theme', theme);
       here.searchParams.append('visible', SettingsSelectedEvents);
       here.searchParams.append('notifs', SettingsNotifyEvents);
       here.searchParams.append('palette', Palette);
@@ -990,9 +1038,11 @@
       console.log(CorrectFont)
       if(CorrectFont == 'Inter') here.searchParams.append('font', '0');
       if(CorrectFont == 'sans-serif') here.searchParams.append('font', '1');
-      if(CorrectFont == 'minecraft') here.searchParams.append('font', '2');
-      window.location = here; 
+      if(CorrectFont == 'minecraft') here.searchParams.append('font', '2');*/
+      //if(action != "noreload") window.location = here; 
   }
+  }
+}
 
   function nickname(name, isPitWikiLink = false) { // changes Pit Supporter names ("KOTL") to cooler names ("King of the Ladder"). probably also good for other language support. also good for making links to Pit Wiki
     if(events.indexOf(name) == -1) return "?"
@@ -1043,13 +1093,13 @@
   if(Palette == "Maleffect") { // easter egg
     document.getElementById('event_' + String(i)).style.backgroundColor = "#222222";
     document.getElementById('event_' + String(i)).style.color = TheRightArrayToFindTheColors[events.indexOf(conversion[i]['event'])];
-  } else {
+  } else if(showEventTuE = true) {
     document.getElementById('timer_' + String(i)).style.color = NormalText;
   }
-   if(conversion[i]['type'] == "major") { // fix this
+   /*if(conversion[i]['type'] == "major") { // fix this
     document.getElementById('event_' + String(i)).style.fontFamily = CorrectBoldStyleless;
     document.getElementById('event_' + String(i)).style.fontWeight = RealWeight;
-   }
+   }*/
    let currentTime = (Date.now() + offset);
    if ((conversion[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "light")) {
     document.getElementById('event_'+ String(i)).classList.add("blinktext-light");
@@ -1093,7 +1143,6 @@
       -webkit-text-fill-color: transparent; 
       -moz-background-clip: text;
       -moz-text-fill-color: transparent;
-      transition-duration: 0.5s;
     }
 
     #settings {
@@ -1312,8 +1361,13 @@
   font-weight: bold;
 }
 
-* {
+a, .icon, div {
   transition-duration: 0.2s;
+}
+
+* { /* should make font look less bad on Webkit */
+  -webkit-font-smoothing: antialiased;
+  font-smooth: never; /* !!! */
 }
 
 .eventicon {

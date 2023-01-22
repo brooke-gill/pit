@@ -29,7 +29,7 @@
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center"></div>
   
   
-    <div><p class="topcontainer"><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span>&nbsp;&nbsp;<span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
+    <div><p class="topcontainer"><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span id="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
     </div>
   
     <div id="day-night-border" class="timers"><div id="day-night" style="vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg>&nbsp; &mdash; &nbsp;<span id="maprot"></span></div>
@@ -141,6 +141,7 @@
   var pit_wiki_links = ["Quick_Maths","Dragon_Egg","2x_Rewards","Care_Package","King_of_the_Ladder","King_of_the_Hill","Auction","Giant_Cake","Everyone_Gets_a_Bounty","Squads","Beast","Pizza","Rage_Pit","Spire","Robbery","Blockhead","Raffle","Team_Deathmatch"]
   var trueEventColors = ["#FF55FF","#AA00AA","#00AA00","#FFAA00","#55FF55","#55FFFF","#FFFF55","#FF55FF","#FFAA00","#55FFFF","#55FF55","#FF5555","#FF5555","#AA00AA","#FFAA00","#5555FF","#FFAA00","#AA00AA"]
 
+  var panicevents = []; // list of events that are red and flashy
   var VisibilityLength = [15,90,240,30,180,240,30,120,15,480,480,480,420,480,420,480,480,480]
   var IsItACountdown = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">QUICK MATHS!</span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #aa00aa; font-family: ` + CorrectBold + `;">DRAGON EGG</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffaa00; font-family: ` + CorrectBold + `;">CARE PACKAGE</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">AUCTION!</span><br><span style="color: #AAAAAA; font-family:` + CorrectFont + `">Check auctioneer or chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> EVERYONE GETS A BOUNTY!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
   var DemolitionTime = 15;
@@ -162,7 +163,8 @@
     document.getElementById("replacement").setAttribute("id","brookeafk-com")
     document.getElementById("current-event").innerHTML = "brookeafk.com"
     document.getElementById("brookeafk-com").innerHTML = ""
-    document.getElementById("current-event").style.width = "200px"
+    document.getElementById("current-event").style.width = "100%";
+    document.getElementById("mobilebreak").innerHTML = "<br>"
     WithoutVar = "brookeafk.com"
   }
   
@@ -201,9 +203,15 @@
     if(seconds == 10) document.getElementById('settings-flash-10').style.color = NormalText;
     if(seconds == -10) document.getElementById('settings-flash-0').style.color = NormalText;
     SaveSettings('noreload');
+
+    panicevents = []; // clears the panic events
+    CuteColors(data); // used to remove the red colour from the event
+    changeColor(); // prevents eyestrain
   }
 
   function ChangeFont(font) {
+    if(font != undefined) {
+    console.log("A request was just sent to change the font to " + font)
     document.getElementById('settings-font-default').style.color = "#888888";
     document.getElementById('settings-font-sans-serif').style.color = "#888888";
     document.getElementById('settings-font-minecraft').style.color = "#888888";
@@ -235,6 +243,7 @@
 
     SaveSettings('noreload');
   }
+}
   
   function DayNightCycle() { //OPTIMIZE THIS please add variable that's like "when the day is dark please do not call the svg again please"
   //I will not >:)
@@ -243,21 +252,11 @@
     if(DayTime < 1440) {
       //console.log("The day ends in " + (1440 - DayTime) + " seconds.")
       document.getElementById("day-night").innerHTML = (AboutMe((1440 - DayTime)*1000) + "&nbsp;");
-      if(theme == "light") {
-      //document.getElementById("day-night-border").style.backgroundColor = "#fcf8ae";
-      } else if (theme == "dark") {
-      //document.getElementById("day-night-border").style.backgroundColor = "#ba9b53";
-      }
       document.getElementById('day-svg').innerHTML = `<path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/>`
   
   } else {
       //console.log("The night ends in " + (2160 - DayTime) + " seconds.")
       document.getElementById("day-night").innerHTML = (AboutMe((2160 - DayTime)*1000) + "&nbsp;");
-      if(theme == "light") {
-      document.getElementById("day-night-border").style.color = "#3b3b87";
-      } else if (theme == "dark") {
-      document.getElementById("day-night-border").style.color = "#8e8bdd";
-      }
       document.getElementById('day-svg').innerHTML = `<path d="M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36c-0.98,1.37-2.58,2.26-4.4,2.26 c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/>`
   }
   }
@@ -592,7 +591,12 @@
 
   var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
 
-  var gradients0 = [["db07eb","2a33a1"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d2b01a","b03737"],["4f73cf","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
+  /*var gradientsdark = [["db07eb","2a33a1"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d2b01a","b03737"],["386693","72c79a"],["3bbd40","b1fb70"],["5e042e","ac3ca7"],["4d1210","d37515"],["510940","1f8fa6"],["d5ac1d","dadd38"],["0b1f47","736cd0"],["d7ad17","dae398"],["380960","d06c98"]];*/ // these ones are awesome but adj won;t let me add them
+
+  var gradientsdark = [["db07eb","2a33a1"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d2b01a","b03737"],["4f73cf","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
+
+
+  var gradientslight = [["db07eb","2a33a1"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d2b01a","b03737"],["123456","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
 
   var lightColors0 = ["#D9D2E9","#E9D2E1","#D2E9DD","#E9E2D2","#D2E9D2","#D2E9E8","#E9DDD2","#E9D2D2","#E9E3D2","#8EBAEC","#8EEC94","#ECB38E","#EC8E8E","#EC8EEC","#ECE98E","#9191EC","#ECBD8E","#BA8EEC"]
   var darkColors0 = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
@@ -704,11 +708,31 @@
       document.getElementById("current-event").style.display = "block";
       document.getElementById('special_thanks').innerHTML = `<span style="position:relative; left: 10px;">` + GeneratePraise() + `</span>` 
     }
-  }}
+
+   let currentTime = (Date.now() + offset);
+   if ((transformation[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (transformation[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "light" || theme == "dark")) {
+    console.log(i)
+    document.getElementById('event_'+ String(i)).classList.remove("blinktext-light");
+    document.getElementById('event_'+ String(i)).classList.remove("blinktext-dark");
+    document.getElementById('event_'+ String(i)).classList.add("blinktext-" + theme);
+    changeColor();
+   }
+  }
+}
+  }
+
+  function changeColor() { // changes the color of a specific item
+    CurrentTime = Date.now();
+    timeleft = window.data[HiddenEventCount]['timestamp'] - CurrentTime;
+
+    if(timeleft < EventFlashSec * 1000 && panicevents.indexOf(HiddenEventCount) == -1) {
+      document.getElementById('event_' + HiddenEventCount).style.background = "linear-gradient(120deg, rgb(240, 40, 20) 0%, rgb(100, 60, 36) 100%)";
+      panicevents.push(HiddenEventCount);
+    }
   }
   
   function UpdateEverything(transformation) { //this plops the stuff in the actual html page
-    for(var i = window.HiddenEventCount + 1; i < EventsToLoad; i++) { 
+    for(var i = window.HiddenEventCount + 1; i < EventsToLoad; i++) {
       if(showEventTuE == true) document.getElementById('timer_' + String(i)).innerHTML = MakeFunTimestamps(transformation[i].timestamp);
     if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) { //in an ideal world this should NEVER be called but js can be weird as hell sometimes
       document.getElementById('timer_' + String(i)).style.display = "none";
@@ -772,7 +796,7 @@
           console.log("No settings :fear:")
           ChangeFont('Inter');
           ChangePalette('gradient');
-           EventFlash(60); // setting everything up!
+          EventFlash(60); // setting everything up!
           SetAudio(-10);
           DNotif(0);
           ANotif(0);
@@ -1011,7 +1035,6 @@
     
       if(action == "clear") {
         window.localStorage.clear()
-        window.localStorage.setItem('debug',"fuckkgoyou")
         window.location.reload();
       } else {
       let here = new URL(window.location.href);
@@ -1019,22 +1042,8 @@
       here.searchParams.delete(AllSettings[i]);
     }
   
-      console.log(here);
       localSave();
 
-      /*here.searchParams.append('theme', theme);
-      here.searchParams.append('visible', SettingsSelectedEvents);
-      here.searchParams.append('notifs', SettingsNotifyEvents);
-      here.searchParams.append('palette', Palette);
-      here.searchParams.append('timestamps', (showEventToD | 0).toString() + (showEventTuE | 0).toString() + (showEventDNC | 0).toString());
-      here.searchParams.append('flashing', EventFlashSec);
-      here.searchParams.append('reminder', NotifTimer);
-      here.searchParams.append('desktop', SettingsDesktopNotifs);
-      here.searchParams.append('audio', SettingsAudioNotifs);
-      console.log(CorrectFont)
-      if(CorrectFont == 'Inter') here.searchParams.append('font', '0');
-      if(CorrectFont == 'sans-serif') here.searchParams.append('font', '1');
-      if(CorrectFont == 'minecraft') here.searchParams.append('font', '2');*/
       //if(action != "noreload") window.location = here; 
   }
   }
@@ -1063,8 +1072,9 @@
   }
   
   function CuteColors(conversion) { //adds cute colors
+
   if(window.Palette.length > 1 && window.Palette != "gradient") {
-    document.getElementById('logo').src = ("https://mc-heads.net/avatar/" + window.Palette + "/100")
+    document.getElementById('brookeafk-com').innerText = window.Palette + ".com"
     window.theme = "dark";
   }
 
@@ -1079,7 +1089,7 @@
     if(Palette == "gradient") { // if awesome gradients are enabled
       for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
         document.getElementById('event_' + String(i)).style.background = 
-        `linear-gradient(90deg, #`+ gradients0[events.indexOf(conversion[i]['event'])][0] + ` 0%, #` + gradients0[events.indexOf(conversion[i]['event'])][1] + ` 100%)`;
+        `linear-gradient(90deg, #`+ gradientsdark[events.indexOf(conversion[i]['event'])][0] + ` 0%, #` + gradientsdark[events.indexOf(conversion[i]['event'])][1] + ` 100%)`;
       }
     } else { // if the user is totally uncool and refuses to use my awesome gradients
       console.log("uncool user :/")
@@ -1092,20 +1102,14 @@
   } else if(showEventTuE == true) {
     document.getElementById('timer_' + String(i)).style.color = NormalText;
   }
-   /*if(conversion[i]['type'] == "major") { // fix this
-    document.getElementById('event_' + String(i)).style.fontFamily = CorrectBoldStyleless;
-    document.getElementById('event_' + String(i)).style.fontWeight = RealWeight;
-   }*/
-   let currentTime = (Date.now() + offset);
-   if ((conversion[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "light")) {
-    document.getElementById('event_'+ String(i)).classList.add("blinktext-light");
-    document.getElementById('event_'+ String(i)).classList.remove("blinktext-dark");  
-   }
-   if ((conversion[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (conversion[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "dark")) {
-    document.getElementById('event_'+ String(i)).classList.add("blinktext-dark");
-    document.getElementById('event_'+ String(i)).classList.remove("blinktext-light");
-   }
   }}
+
+  for(i = window.HiddenEventCount; i < EventsToLoad; i++) {
+   if(conversion[i]['type'] == "major") { // fix this
+    document.getElementById('event_' + String(i)).style.boxShadow = "inset 0px 0px 0px 3px rgba(255, 255, 255, 0.6)";
+    document.getElementById('event_' + String(i)).style.backgroundOrigin = "border-box";
+   }
+  }
   }}
   
   function getPitPanda() {
@@ -1129,6 +1133,8 @@
     .topcontainer {
       padding: 15px;
       padding-top: 8px;
+      position: relative;
+      bottom: 20px;
     }
 
     .wordmark {
@@ -1185,7 +1191,7 @@
       padding: 5px;
       float: left;
       position: relative;
-      bottom: 30px;
+      bottom: 40px;
       left: 10px;
       display:flex;
       align-items: center;
@@ -1209,13 +1215,16 @@
     }
     
     .blinktext-light {
+    background-color: #f00;
     -webkit-animation: blink-text-light 1000ms linear infinite;
     -moz-animation: blink-text-light 1000ms linear infinite;
     -ms-animation: blink-text-light 1000ms linear infinite;
     -o-animation: blink-text-light 1000ms linear infinite;
      animation: blink-text-light 1000ms linear infinite;
   }
+
   .blinktext-dark {
+    background-color: #f00;
     -webkit-animation: blink-text-dark 1000ms linear infinite;
     -moz-animation: blink-text-dark 1000ms linear infinite;
     -ms-animation: blink-text-dark 1000ms linear infinite;
@@ -1230,7 +1239,7 @@
      animation: flash-text 1000ms linear infinite;
   }
   @keyframes blink-text-light {
-    0% { color: #FF0000; opacity: 1; }
+    0% { color: #ff0000; opacity: 1; }
     10% { color: #e80000;opacity: 1; }
     15% { color: #d10000;opacity: 1; }
     20% { color: #b80000;opacity: 1; }
@@ -1413,12 +1422,17 @@ a, .icon, div {
 }
 
 html, body {
-    overflow-x:hidden;
+  touch-action: pan-x pan-y;
+  overflow-x: hidden;
 }
 
 @media only screen and (max-width: 500px) {
   * {
     transition-duration: 0s !important;
+  }
+
+  #current-event {
+    display: "";
   }
 
   #settings-section {

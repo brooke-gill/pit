@@ -31,6 +31,8 @@
   
     <div><p class="topcontainer"><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span id="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
     </div>
+
+    <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old version by <a href="2022" style="color: #ccc">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)</div>
   
     <div id="day-night-border" class="timers dnb"><div id="day-night" style="vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg>&nbsp; &mdash; &nbsp;<span id="maprot"></span></div>
 <div class="mobileanno" id="mobileanno"></div>
@@ -153,6 +155,12 @@
   var IsItACountdownES = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡MATEMÁTICAS RÁPIDAS!</span> <span style="color: #AAAAAA;">Los 5 primeros jugadores que respondan recibirán</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #aa00aa; font-family: ` + CorrectBold + `;">HUEVO DE DRAGÓN</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">PAQUETE AUXILIAR</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">SUBASTA!</span> <span style="color: #AAAAAA; font-family:` + CorrectFont + `">Compruebe el subastador o el chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> ¡TODOS RECIBEN UNA RECOMPENSA!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
 
   var all_text = ["MINOR EVENT!","MAJOR EVENT!","Starting in ","Ending in "]
+
+  if(localStorage.getItem('gotit')) document.getElementById('newsite').style.display = 'none';
+  function iGetIt() {
+    localStorage.setItem('gotit', true);
+    document.getElementById('newsite').style.display = 'none';
+  }
 
   if(document.body.clientWidth < 800) { // should make the site mobile when needed
     //document.getElementById("brookeafk-com").innerText = "mobile website"
@@ -777,6 +785,7 @@
       let here = new URL(window.location.href);
       if(here.searchParams.get('offset') !== null) {
         offset = here.searchParams.get('offset') * 60000
+        localStorage.setItem('offset', here.searchParams.get('offset'));
       }
       if(localStorage.getItem('offset') !== null) offset = localStorage.getItem('offset') * 60000
       
@@ -1126,6 +1135,10 @@
     </script>
   
   <style>
+    #newsite:hover {
+      opacity: 0.5;
+    }
+
     .topcontainer {
       padding: 15px;
       padding-top: 8px;

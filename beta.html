@@ -25,6 +25,7 @@
   </head>
   
   <body background-color="black" class="unselectable">
+    <div id="wrapper">
   
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center"></div>
   
@@ -88,7 +89,7 @@
   <span class="credits"><span style="font-style: oblique 11deg;" id="madewithlove">Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></span><br>
   <span id="version"></span><br><br>
   <span id="special_thanks"></span></span></span>
-
+</div>
   <script>
 
   var HiddenEventCount = 0;
@@ -1444,7 +1445,7 @@ a, .icon, div {
   --normaltext: #FFF;
 }
 
-html, body {
+.wrapper {
   touch-action: pan-x pan-y;
   overflow-x: hidden;
 }

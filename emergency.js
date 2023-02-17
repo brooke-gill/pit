@@ -174,5 +174,5 @@ var emergency_data = [
 ,{"event":"All bounty","timestamp":1674440640000,"type":"minor"}
 ,{"event":"KOTL","timestamp":1674441000000,"type":"minor"}
 ,{"event":"Beast","timestamp":1674441300000,"type":"major"}
-,{"event":"Care Package","timestamp":1674441960000,"type":"minor"}
+,{"event":"Care Package","timestamp":16074441960000,"type":"minor"}
 ]

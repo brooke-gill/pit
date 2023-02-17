@@ -39,16 +39,16 @@
 <div class="mobileanno" id="mobileanno"></div>
     
   <div id="settings-section"><br>
-  <p class="option"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
-  <p class="option"><span>Palette: </span><span id="settings-palette-gradient" onclick="ChangePalette('gradient')" class="hand_cursor">Gradient</span> / <span id="settings-palette-0" onclick='ChangePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)' class="hand_cursor">Theme 3</span></p>
-  <p class="option"><span id="tut-notif" style="color: #ffff80">Pre-event notifications</span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
-  <p id="anotif" class="option"><span>- Audio notifications: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
-  <p id="dnotif" class="option"><span>- Desktop notifications (BETA): </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
+  <p class="option"><span><b>Theme</b>: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
+  <p class="option"><span><b>Palette</b>: </span><span id="settings-palette-gradient" onclick="ChangePalette('gradient')" class="hand_cursor">Gradient</span> / <span id="settings-palette-0" onclick='ChangePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)' class="hand_cursor">Theme 3</span></p>
+  <p class="option"><span id="tut-notif" style="color: #ffff80"><b>Pre-event notifications</b></span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
+  <p id="anotif" class="option"><span>&bullet; <b>Audio notifications</b>: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
+  <p id="dnotif" class="option"><span>&bullet; <b>Desktop notifications</b>: </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
   <p class="option"><span id="alert-nobells" style="color: #ff7777; display: none">You're not being reminded for any events!<br>Click the bells in the top-right corner to receive notifications.</span></p>
   <p class="option"><span id="alert-notypes" style="color: #ff7777; display: none">Make sure to turn either "Audio notifications"<br>or "Desktop notifications" on to receive alerts.</span></p>
-  <p class="option"><span>Timestamps: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='ToggleTimestamps("dnc");' class="hand_cursor">Day-Night</span></p>
-  <p class="option"><span id="settings-flashing">Flashing text: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
-  <p class="option"><span>Font: </span><span id="settings-font-default" class="hand_cursor" onclick='ChangeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='ChangeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='ChangeFont("sans-serif")'>Sans-Serif</span></p> 
+  <p class="option"><span><b>Timestamps</b>: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='ToggleTimestamps("dnc");' class="hand_cursor">Day and Map</span></p>
+  <p class="option"><span id="settings-flashing"><b>Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
+  <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='ChangeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='ChangeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='ChangeFont("sans-serif")'>Sans-serif</span></p> 
   <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none">You don't have any events selected!<br>Click the event names in the top-right corner to make some visible.</span></p>
 
   <div id="notifications-major">
@@ -82,6 +82,7 @@
 
   </div>
 
+  <span id="noevents" class="credits"></span>
   <span id="events"></span>
 
   <hr>
@@ -110,8 +111,7 @@
   var SettingsAudioNotifs = 0;
   var CorrectFont = "Inter";
   var CorrectBold = "Inter";
-  var CorrectBoldStyleless = "Inter";
-  var RealWeight = 400;
+  var noevents = false; // if there's no events
   var offset = 0; // offset, in minutes, of a person's clock. useful for people with really weird OSes that can't set their clocks for some reason
   var samplemaprotation = 1661835600; // used for the map rotation timer. stolen from pit.wiki
   var maps = ["Genesis","Corals","Castle","Elements","Four Seasons"] // for map rotation
@@ -124,7 +124,7 @@
   var theme = "dark";
   var showEventToD = true; //Time of Day
   var showEventTuE = true; //Time until Event
-  var showEventDNC = true; //Day-night cycle
+  var showEventDNC = true; //Day-night cycle and map timer
   var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
   var AudioEvents = [];
   
@@ -165,7 +165,7 @@
 
   if(document.body.clientWidth < 800) { // should make the site mobile when needed
     //document.getElementById("brookeafk-com").innerText = "mobile website"
-    document.getElementById("settings-ts-dnc").innerText = "Day-Night"
+    document.getElementById("settings-ts-dnc").innerText = "Day and Map"
     document.getElementById("settings-ts-tue").innerText = "Until Event"
     document.getElementById("settings-flashing").innerText = "Flash: "
     console.log("busy accommodating to the user's hilariously tiny screen")
@@ -229,22 +229,16 @@
     document.getElementById('settings-font-minecraft').style.color = NormalText;
     CorrectFont = "minecraft";
     CorrectBold = "minecraft; font-weight: bold";
-    CorrectBoldStyleless = "minecraft";
-    RealWeight = 400;
     }
     if(font == "sans-serif") {
     document.getElementById('settings-font-sans-serif').style.color = NormalText;
     CorrectFont = "sans-serif";
     CorrectBold = "sans-serif; font-weight: bold";
-    CorrectBoldStyleless = "sans-serif";
-    RealWeight = 700;
     }
     if(font == "Inter") {
     document.getElementById('settings-font-default').style.color = NormalText;
     CorrectFont = "Inter";
     CorrectBold = "Inter; font-weight: bold";
-    CorrectBoldStyleless = "Inter";
-    RealWeight = 700;
     }
 
     document.body.style.fontFamily = CorrectFont;
@@ -582,7 +576,7 @@
   
   function GeneratePraise() {
     const randomElement = [Math.floor(Math.random() * (praise_quotes.length + 3)) - 3]; //adds very slight bias to quote #0
-    console.log(randomElement);
+    console.log("Item " + randomElement + " chosen for praise!");
     if(randomElement <= -1) {
       randomElement[0] = 0;
     }
@@ -595,6 +589,15 @@
   }
 
   function autoReload() { if(performance.now() > 43200000 && Math.random() < 0.1) location.reload(); } // automatically reloads the site every twelve hours
+
+  function noEvents() { // if there's no events left, show some text explaining this to the user
+    if(HiddenEventCount == EventsToLoad) {
+      if(!noevents) {
+        document.getElementById('noevents').innerHTML = `<br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://events.mcpqndq.dev" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me on Discord (Brooke#0843) or <a href="https://github.com/brooke-gill">on GitHub</a>.`
+          noevents = true;
+        }
+    }
+  }
 
   var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
 
@@ -660,7 +663,7 @@
     console.log("API Called.")
     for(var i = 0; i < window.EventsToLoad; i += 1) { //Make HTML elements
       var div = document.createElement("div");
-      console.log("I made an element.");
+      console.log("Made an element.");
       div.id = ("event_" + i);
       div.innerHTML = ("[loading event]");
       div.classList.add('event');
@@ -685,12 +688,7 @@
       }
       if(SettingsDesktopNotifs == 1) {
       if(Date.now() + offset > time1 + 10000) { //if it's been more than 10 seconds since the last notification
-      if (NotifTimer == 60) {
-        var minute_s = "minute"
-      } else {
-        var minute_s = "minutes"
-      }
-      var notification = new Notification("", {body: "Hey—" + window.data[i]['event'] + " is starting in " + NotifTimer/60 + " " + minute_s +"!", icon: "3457688aa57c4d71ab9d22b04f9160db.png"});
+      var notification = new Notification("", {body: "Hey – " + window.data[i]['event'] + " is starting in " + NotifTimer/60 + " " + (NotifTimer == 60?"minute":"minutes") +"!", icon: "3457688aa57c4d71ab9d22b04f9160db.png"});
       time1 = Date.now() + offset
       }
       }
@@ -947,7 +945,7 @@
   
     if (HiddenEventCount > 0 && DemolitionTime - currentTime >= 0) {
       var result = AboutMe(DemolitionTime - currentTime);
-      console.log(result);
+      //console.log(result); // returns time left in event display
       let recentEventData = window.data[HiddenEventCount - 1];
       let correctColorCode =
         trueEventColors[events.indexOf(recentEventData["event"])];
@@ -1037,7 +1035,7 @@
   
   function SaveSettings(action = false) { 
     if(DoesStuffExist) {
-    console.log("action");
+    console.log("Saved settings.");
     
       if(action == "clear") {
         window.localStorage.clear()
@@ -1124,12 +1122,12 @@
     if (counter == 5) {
       counter = 0;
       UpdateEverything(window.data);
-      console.log("Updated all values.")
       AudioChecker();
       CurrentEvent();
       DayNightCycle();
       mapRotation();
       autoReload();
+      noEvents();
     }
     RapidFirst(window.data);
   }
@@ -1142,7 +1140,6 @@
 
     .topcontainer {
       padding: 15px;
-      padding-top: 8px;
       position: relative;
       bottom: 20px;
     }
@@ -1234,7 +1231,7 @@
     margin: 1em 0; padding: 0; 
     }
 
-    .timers {
+    .timers, #current-event {
       font-variant-numeric: tabular-nums;
     }
     
@@ -1372,23 +1369,23 @@
 
 @font-face {
   font-family: Inter;
-  src: url("/font/InterVariable.ttf")
+  src: url("./font/InterVariable.ttf")
 }
 
 @font-face {
   font-family: Material;
-  src: url("/font/Material.ttf");
+  src: url("./font/Material.ttf");
 }
 
 @font-face {
   font-family: minecraft;
-  src: url("/font/MinecraftRegular.otf");
+  src: url("./font/MinecraftRegular.otf");
   font-weight: 400;
 }
 
 @font-face {
   font-family: minecraft;
-  src: url("/font/MinecraftBold.otf");
+  src: url("./font/MinecraftBold.otf");
   font-weight: bold;
 }
 

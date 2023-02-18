@@ -56,7 +56,7 @@
     <li>The names of events on the right (Pizza, Raffle, Squads, etc.) will toggle the visibility of the event. Selecting <b>Majors Only</b> will automatically only show major events. <b>Minors Only</b> will do the same for minor events. <b>Select All</b> and <b class="mc">Deselect All</b> will show and hide all events respectively. <b class="mc">Clear Settings</b> will completely erase all settings you've entered into the site. <b>Preview Audio</b> will play the aforementioned chime to make sure it works on your device.</li>
 </ul> 
 
-<h2 id="section-faq">Frequently Asked Questions</h2>
+<h2 id="section-faq">Frequently Asked Questions<br><span style="font-size: 18px"><i>&#x2e3a; in order of importance &#x2e3a;</i></span></h2>
 
 <h3>The timestamps on the site are wrong</h3>
 <ul><li>This is most likely an issue with your system clock being wrong, too. I recommend you fix that first&mdash;it'll mess with a bunch of other web pages too&mdash;but if you're looking for a quick solution, try appending <code>?offset=MINUTES</code> to the URL, where <code>MINUTES</code> is the number of minutes you'd like all of the timestamps to change by. <code><a href="https://brookeafk.com?offset=-180" target="_blank">https://brookeafk.com?offset=-180</a></code> would move all of the timestamps backwards by three hours.</li></ul>
@@ -65,19 +65,25 @@
 <ul><li>First of all, try reloading the page (use <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>). That'll usually solve it. If that doesn't work, you should do one of two things depending on what you see at <a href="control.js" target="_blank">this link</a>:</li><ul><li><code>var emergency = false</code>: Check out <a href="https://events.mcpqndq.dev" target="_blank">McPqndq's events API</a>. If you see a bunch of sprawling JSON code that looks like <code>[{"event":"Rage Pit","timestamp":1676589300000,"type":"major"} ...</code>, then it's likely an issue with your system. Try a different browser, device, or IP address. If you don't see anything, see only <code>[]</code> and nothing else, or get a Cloudflare error, <b>please contact me immediately</b> (Brooke#0843).</li><li><code>var emergency = true</code>: Reload the page like twenty times (using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> to clear the cache), and then contact me (Brooke#0843) if that doesn't work.</li></ul></ul>
 
 <h3>How do I go back to the old version of brookeafk.com?</h3>
-<ul><li>Is the site too gradient-y for you now? Click <a href="https://brookeafk.com/2022" target="_blank">here</a> or go to <a href="https://brookeafk.com/2022" target="_blank">brookeafk.com/2022</a>. I won't be mad.</ul>
+<ul><li>Is the site too gradient-y for you now? Click <a href="https://brookeafk.com/2022" target="_blank">here</a> or go to <a href="https://brookeafk.com/2022" target="_blank">brookeafk.com/2022</a>. I won't be mad.</li></ul>
 
 <h3>How do I get a quote on the bottom of the site?</h3>
 <ul><li>The quotes on the bottom were the people who supported me back when brookeafk.com was in its <a href="https://docs.google.com/spreadsheets/d/1pP78ifctBLkuIPH2lg5pzTS2s1pDTXXPMGYVnKgvlug/edit#gid=108982194" target="_blank">archaic spreadsheet phase</a> and didn't have nearly as much support as it does now. I'm currently not looking for more quotes on the bottom of the site&mdash;my apologies.</li></ul>
 
+<h3>Who are you?</h3>
+<ul><li>I'm Brooke! I made this site over a year ago to track when dragon eggs were happening since I was a non and desperately needed the XP it gave. I've also helped make a couple of other things, like <a href="https://pit.wiki" target="_blank">the Pit Wiki</a> and <a href="https://brookeafk.com/tracker" target="_blank">this cool player tracker</a>. I also help with some <a href="https://statsify.net" target="_blank">Statsify</a> development.</li></ul>
+
+<h3>Why did you redesign the site, anyway?</h3>
+<ul><li>To me, it looked a bit aged&mdash;the Minecraft font certainly didn't help. I wanted to take an already-existing project and see if I could make it better. The new version also has performance improvements, since there was a <i>lot</i> to improve (the old version of the site tries changing the color of each event twenty-five times a second). I think it looks a lot better now, but if you disagree, you can <a href="https://brookeafk.com/2022" target="_blank">always go back</a>.</li></ul>
+
 <h3>Why does your code suck?</h3>
-<ul><li>It was my first JavaScript project 🥲 I mean, if it works, it works... right? Why are you even looking at the code anyway? If it's not working, that's a whole other issue. The GitHub repo for this page is <a href="https://github.com/brooke-gill/pit" target="_blank">here</a>.</ul>
+<ul><li>It was my first JavaScript project 🥲 I mean, if it works, it works... right? Why are you even looking at the code anyway? If it's not working, that's a whole other issue. The GitHub repo for this page is <a href="https://github.com/brooke-gill/pit" target="_blank">here</a>.</li></ul>
 
 <h3>Why didn't you use ClumplunkleJS or <code>[insert random JavaScript library]</code>? Why's it all client-side?</h3>
 <ul><li>There's no need to. It's a really simple site with a simple purpose. What would I use something like that for, anyway? (also because I can't be bothered learning React)</li></ul>
 
 <h3>But you could've just implemented Clumplunkle's <code>BlorgleFlorgle()</code> method and it would cure cancer and&mdash;</h3>
-<ul><li><i>SHUT UP SHUT UP SHUT UP SHUT UP SHUT UP SHUT UP SHUT</i></li></ul>
+<ul><li>shut up !!! !! !&nbsp;&nbsp;&nbsp;!&nbsp;&nbsp;!!! ! !&nbsp;1!</li></ul>
 
 <p>Are you in need of additional assistance, or have a question that's not listed here? Try contacting me at Brooke#0843 on Discord.</p>
 </body>

@@ -591,11 +591,12 @@
   function autoReload() { if(performance.now() > 43200000 && Math.random() < 0.1) location.reload(); } // automatically reloads the site every twelve hours
 
   function noEvents() { // if there's no events left, show some text explaining this to the user
-    if(HiddenEventCount == EventsToLoad) {
-      if(!noevents) {
+    if((HiddenEventCount == EventsToLoad || EventsToLoad == 1) && !noevents) { 
         document.getElementById('noevents').innerHTML = `<br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://events.mcpqndq.dev" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me on Discord (Brooke#0843) or <a href="https://github.com/brooke-gill">on GitHub</a>.`
           noevents = true;
-        }
+    } else if(noevents) {
+      document.getElementById('noevents').innerHTML = ``;
+      noevents = false;
     }
   }
 
@@ -1119,15 +1120,14 @@
   function getPitPanda() {
     window.data = window.data_backup;
     counter = counter + 1;
-    if (counter == 5) {
-      counter = 0;
+    if (counter % 5 == 0) {
       UpdateEverything(window.data);
       AudioChecker();
       CurrentEvent();
       DayNightCycle();
       mapRotation();
       autoReload();
-      noEvents();
+      if(counter % 25 == 0) noEvents();
     }
     RapidFirst(window.data);
   }

@@ -47,8 +47,10 @@
   <p class="option"><span id="alert-nobells" style="color: #ff7777; display: none">You're not being reminded for any events!<br>Click the bells in the top-right corner to receive notifications.</span></p>
   <p class="option"><span id="alert-notypes" style="color: #ff7777; display: none">Make sure to turn either "Audio notifications"<br>or "Desktop notifications" on to receive alerts.</span></p>
   <p class="option"><span><b>Timestamps</b>: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='ToggleTimestamps("dnc");' class="hand_cursor">Day and Map</span></p>
+  <p class="option"><span><b>Clock style</b>: </span><span id="settings-clock-24" onclick='changeClock("24");' class="hand_cursor">24-hour</span><span> / </span><span id="settings-clock-12" onclick='changeClock("12");' class="hand_cursor">12-hour</span></p>
   <p class="option"><span id="settings-flashing"><b>Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
-  <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='ChangeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='ChangeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='ChangeFont("sans-serif")'>Sans-serif</span></p> 
+  <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
+  <p class="option"><span><b>Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
   <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none">You don't have any events selected!<br>Click the event names in the top-right corner to make some visible.</span></p>
 
   <div id="notifications-major">
@@ -61,7 +63,7 @@
     <div><span id="visible-TeamDeathmatch" onclick='VisibilityToggle("Team Deathmatch")' class="hand_cursor">Team Deathmatch</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-TeamDeathmatch" onclick='NotifToggle("Team Deathmatch")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-RagePit" onclick='VisibilityToggle("Rage Pit")' class="hand_cursor">Rage Pit</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-RagePit" onclick='NotifToggle("Rage Pit")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-Beast" onclick='VisibilityToggle("Beast")' class="hand_cursor">Beast</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Beast" onclick='NotifToggle("Beast")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
-    <br><div id="test-audio" style="color: #ffffff;" onclick='TestAudio()' class="hand_cursor">Preview Audio</div><br><div id="select-all" style="color: #ffffff;" onclick='SelectOnly("everything")' class="hand_cursor">Select All</div>
+    <br><div id="test-audio" style="color: #ffffff;" onclick='TestAudio()' class="hand_cursor">Preview Audio</div><div id="view-offset" style="color: #fff;" onclick='resetOffset()' class="hand_cursor"></div><div id="select-all" style="color: #ffffff;" onclick='SelectOnly("everything")' class="hand_cursor">Select All</div>
   </div>
   <div id="notifications-minor">
     <div><span id="visible-DragonEgg" onclick='VisibilityToggle("Dragon Egg")' class="hand_cursor">Dragon Egg</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-DragonEgg" onclick='NotifToggle("Dragon Egg")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
@@ -111,6 +113,8 @@
   var SettingsAudioNotifs = 0;
   var CorrectFont = "Inter";
   var CorrectBold = "Inter";
+  var iconsVisible = 1; // whether the user has icons enabled
+  var clockStyle = 24; // number of hours in a day if you're strange and American
   var noevents = false; // if there's no events
   var offset = 0; // offset, in minutes, of a person's clock. useful for people with really weird OSes that can't set their clocks for some reason
   var samplemaprotation = 1661835600; // used for the map rotation timer. stolen from pit.wiki
@@ -128,11 +132,11 @@
   var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
   var AudioEvents = [];
   
-  var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`i find your website really useful, specially when i have the game closed`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","this game is hard","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",]
-  var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","saraacat","litphoenix","adjective"]
-  var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://twitter.com/saracatxd","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/"]
+  var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`i find your website really useful, specially when i have the game closed`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","this game is hard","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`]
+  var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","saraacat","litphoenix","adjective",`anoxysm`]
+  var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://twitter.com/saracatxd","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/",`https://statsify.net/`]
   //jojo was here
-  var AllSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font']
+  var AllSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock']
   var event_sound = new Audio("event_arriving.mp3");
   event_sound.volume = 0.2;
   var ok_ids = []
@@ -147,7 +151,7 @@
 
   var panicevents = []; // list of events that are red and flashy
   var VisibilityLength = [15,90,240,30,180,240,30,120,15,480,480,480,420,480,420,480,480,480]
-  var IsItACountdown = [`<span style="color: #ff55ff"><b>QUICK MATHS!</b></span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #aa00aa"><b>DRAGON EGG</b></span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55"><b>Pit Area</b></span>`,"yes",`<span style="color: #ff55ff"><b>MINOR EVENT!</span> <span style="color: #ffaa00"><b>CARE PACKAGE</b></span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55"><b>Pit Area</b></span>`,"yes","yes",`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #ffaa00"><b>AUCTION!</b></span> <span style="color: #AAAAAA">Check auctioneer or chat!</span>`,"yes",`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #ffAA00;"><b>EVERYONE GETS A BOUNTY!</b></span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
+  var IsItACountdown = [`<span style="color: #ff55ff"><b>QUICK MATHS!</b></span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #aa00aa"><b>DRAGON EGG</b></span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55"><b>Pit Area</b></span>`,"yes",`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #ffaa00"><b>CARE PACKAGE</b></span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55"><b>Pit Area</b></span>`,"yes","yes",`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #ffaa00"><b>AUCTION!</b></span> <span style="color: #AAAAAA">Check auctioneer or chat!</span>`,"yes",`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #ffAA00;"><b>EVERYONE GETS A BOUNTY!</b></span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
 
   var DemolitionTime = 15;
   var TimeOfEventStart = 0;
@@ -167,7 +171,7 @@
     //document.getElementById("brookeafk-com").innerText = "mobile website"
     document.getElementById("settings-ts-dnc").innerText = "Day and Map"
     document.getElementById("settings-ts-tue").innerText = "Until Event"
-    document.getElementById("settings-flashing").innerText = "Flash: "
+    document.getElementById("settings-flashing").innerHTML = "<b>Flash: </b>"
     console.log("busy accommodating to the user's hilariously tiny screen")
     document.getElementById("current-event").setAttribute("id","replacement") // swaps the IDs
     document.getElementById("mobileanno").setAttribute("id","current-event")
@@ -218,7 +222,7 @@
     changeColor(); // prevents eyestrain
   }
 
-  function ChangeFont(font) {
+  function changeFont(font) {
     if(font != undefined) {
     console.log("A request was just sent to change the font to " + font)
     document.getElementById('settings-font-default').style.color = "#888888";
@@ -245,6 +249,31 @@
     SaveSettings('noreload');
   }
 }
+
+  function changeIcons(icons) { // enables and disables the icons
+    document.getElementById('settings-icons-on').style.color = "#888888";
+    document.getElementById('settings-icons-off').style.color = "#888888";
+    iconsVisible = icons;
+    if(icons == true) document.getElementById('settings-icons-on').style.color = NormalText;
+    else if(icons == false) document.getElementById('settings-icons-off').style.color = NormalText;
+
+    console.log("Icon visibility set to " + iconsVisible);
+    addNamesandImages(window.data);
+    SaveSettings('noreload');
+  }
+
+  function changeClock(clock) {
+    document.getElementById('settings-clock-24').style.color = "#888888";
+    document.getElementById('settings-clock-12').style.color = "#888888";
+    clockStyle = clock;
+    if(clockStyle == 24) document.getElementById('settings-clock-24').style.color = NormalText;
+    else if(clockStyle == 12) document.getElementById('settings-clock-12').style.color = NormalText;
+
+    console.log("yipee! the number of hours in a day has changed");
+    console.log("The number of hours in a day has been set to " + clock);
+    addNamesandImages(window.data);
+    SaveSettings('noreload');
+  }
   
   function DayNightCycle() { //OPTIMIZE THIS please add variable that's like "when the day is dark please do not call the svg again please"
   //I will not >:)
@@ -430,11 +459,13 @@
     document.getElementById('day-svg').style.fill = NormalText;
     document.getElementById('day-night-border').style.color = NormalText;
     if (DoesStuffExist == true) {
-      ChangeFont(window.font)
+      changeFont(window.font)
       EventFlash(window.EventFlashSec);
       SetAudio(window.NotifTimer);
       DNotif(window.SettingsDesktopNotifs);
       ANotif(window.SettingsAudioNotifs);
+      changeIcons(window.iconsVisible);
+      changeClock(window.clockStyle);
       console.log("Stuff exists. Updating event flashes and audio.");
       CuteColors(window.data);
     }
@@ -584,8 +615,15 @@
   }
   
   function TimeOfDay(s) {
-  var offset = (new Date().getTimezoneOffset())*-60000;
-  return new Date(s + offset).toISOString().slice(-13, -8);
+    var toffset = (new Date().getTimezoneOffset())*-60000;
+    if(clockStyle == 12) {
+      var twelvetime = new Date(s + offset);
+      var hour = twelvetime.getHours() % 12;
+      if(hour == 0) hour = 12;
+      var minute = twelvetime.getMinutes();
+      return (hour + ":" + prefixZero(minute, 2) + (twelvetime.getHours()>11&&twelvetime.getHours()!=0?" pm":" am"))
+    }
+    else return new Date(s + toffset + offset).toISOString().slice(-13, -8);
   }
 
   function autoReload() { if(performance.now() > 43200000 && Math.random() < 0.1) location.reload(); } // automatically reloads the site every twelve hours
@@ -747,6 +785,11 @@
     }
    }
   }
+
+  function resetOffset() { // resets the offset, then reloads the page
+    localStorage.setItem('offset', 0);
+    location.reload();
+  }
   
   function VisibilityToggle(toggle) {
     if (window.VisibleEvents.includes(toggle)) {
@@ -788,8 +831,11 @@
         localStorage.setItem('offset', here.searchParams.get('offset'));
       }
       if(localStorage.getItem('offset') !== null) offset = localStorage.getItem('offset') * 60000
-      
-      if(!(localStorage.getItem('settings-version') >= 11)) {
+
+      if(offset != 0) document.getElementById('view-offset').innerHTML = "Offset set to <b>" + Math.floor(offset / 60000) + "</b> minutes &mdash; Click here to reset";
+      else document.getElementById('view-offset').innerHTML = "<br>"
+
+      if(!(localStorage.getItem('settings-version') >= 12)) {
         localStorage.setItem('theme', theme);
         localStorage.setItem('visible', '262144');
         localStorage.setItem('notifs', '0');
@@ -800,13 +846,17 @@
         localStorage.setItem('desktop', '0');
         localStorage.setItem('audio', '-10');
         localStorage.setItem('font', '0');
-          console.log("No settings :fear:")
-          ChangeFont('Inter');
-          ChangePalette('gradient');
-          EventFlash(60); // setting everything up!
-          SetAudio(-10);
-          DNotif(0);
-          ANotif(0);
+        localStorage.setItem('icons', '1');
+        localStorage.setItem('clock', '24');
+        console.log("No settings :fear:")
+        changeFont('Inter');
+        ChangePalette('gradient');
+        EventFlash(60); // setting everything up!
+        SetAudio(-10);
+        DNotif(0);
+        ANotif(0);
+        changeIcons(1);
+        changeClock(24);
       } else {
 
       CorrectFont = localStorage.getItem('font');
@@ -830,11 +880,15 @@
       SettingsNotifyEvents = parseInt(localStorage.getItem('notifs'));
       SettingsDesktopNotifs = parseInt(localStorage.getItem('desktop'));
       SettingsAudioNotifs = parseInt(localStorage.getItem('audio'));
+      iconsVisible = parseInt(localStorage.getItem('icons'));
+      clockStyle = parseInt(localStorage.getItem('clock'));
 
-      ChangeFont(CorrectFont)
+      changeFont(CorrectFont)
       ChangePalette(Palette);
       SetAudio(parseInt(NotifTimer)); //this does not work //then WHY did you add it??
       EventFlash(window.EventFlashSec);
+      changeIcons(iconsVisible);
+      changeClock(clockStyle);
   
       if(window.showEventToD == 0) {
         document.getElementById('settings-ts-tod').style.color = "#888888";
@@ -851,6 +905,7 @@
       } else {
         document.getElementById('settings-ts-dnc').style.color = NormalText;
       }
+
       VisibleEvents = [];
       AudioEvents = [];
       var leadingZeroes = (num, places) => String(num).padStart(places, '0')
@@ -893,14 +948,13 @@
           if(BinaryEvents.charAt(i) == "1") {
              AudioEvents.push(events[(events.length - 1) - i]);
           }
-      } 
+      }
       console.log(AudioEvents);
       if(window.AudioEvents.length == 0 && DoesStuffExist == true) {
       console.log(window.AudioEvents + " audioevents")
      document.getElementById('alert-nobells').style.display = "block";
       }
 
-      const queryString = window.location.search; //no clue what this does but i'm really scared to remove it
       ChangeTheme(theme);
       HasStuffLoaded = true;
       }
@@ -939,6 +993,14 @@
 
   function Help() { //redirects the user to the BrookeAFK Help Guide
     window.open("help", '_blank').focus();
+  }
+
+  function prefixZero(number, size) { // adds a number of prefix zeroes to a number
+    number = number.toString();
+    while(number.length < size) {
+      number = "0" + number;
+    }
+    return number;
   }
   
   function CurrentEvent() {
@@ -1027,11 +1089,13 @@
       localStorage.setItem('reminder', NotifTimer);
       localStorage.setItem('desktop', SettingsDesktopNotifs);
       localStorage.setItem('audio', SettingsAudioNotifs);
+      localStorage.setItem('icons', iconsVisible);
+      localStorage.setItem('clock', clockStyle);
       if(CorrectFont == 'Inter') localStorage.setItem('font', '0');
       if(CorrectFont == 'sans-serif') localStorage.setItem('font', '1');
       if(CorrectFont == 'minecraft') localStorage.setItem('font', '2');
 
-      localStorage.setItem('settings-version', "11");
+      localStorage.setItem('settings-version', "12");
   }
   
   function SaveSettings(action = false) { 
@@ -1065,13 +1129,13 @@
       var nicknamevent = nickname(transformation[i].event);
       var wikievent = nickname(transformation[i].event, true)
       if (showEventToD == true && showEventTuE == true) {
-      document.getElementById('event_' + String(i)).innerHTML = (`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span> &mdash; ` + TimeOfDay(transformation[i].timestamp));
+      document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span> &mdash; ` + TimeOfDay(transformation[i].timestamp));
     } else if (showEventToD == false && showEventTuE == true) {
-      document.getElementById('event_' + String(i)).innerHTML = (`<b>` + nicknamevent + `</b> in <span class="timers" id="timer_` + i + `"></span>`);
+      document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span>`);
     } else if (showEventToD == true && showEventTuE == false) {
-      document.getElementById('event_' + String(i)).innerHTML = (`<b>` + nicknamevent + `</b> at ` + TimeOfDay(transformation[i].timestamp));
+      document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> at ` + TimeOfDay(transformation[i].timestamp));
     } else if (showEventToD == false && showEventTuE == false) {
-      document.getElementById('event_' + String(i)).innerHTML = (`<b>` + nicknamevent + `</b>`);
+      document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b>`);
     }
    }
   }

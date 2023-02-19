@@ -29,7 +29,7 @@
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center"></div>
   
   
-    <div><p class="topcontainer"><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span id="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
+    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;">&nbsp;<span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span id="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
     </div>
 
     <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old version by <a href="2022" style="color: #ccc">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)</div>
@@ -50,7 +50,6 @@
   <p class="option"><span id="settings-flashing"><b>Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
   <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
   <p class="option"><span><b>Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
-  <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none">You don't have any events selected!<br>Click the event names in the top-right corner to make some visible.</span></p>
 
   <div id="notifications-major">
     <div><span id="visible-Pizza" onclick='VisibilityToggle("Pizza")' class="hand_cursor">Pizza</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Pizza" onclick='NotifToggle("Pizza")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
@@ -83,6 +82,7 @@
 
   </div>
 
+  <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none; text-align: center;"><br>You don't have any events selected!<br>Click the <span style="font-family: Material">settings</span> gear to open the settings. Then, click the event names in the top-right corner to make some visible.</span></p>
   <span id="noevents" class="credits"></span>
   <span id="events"></span>
 
@@ -167,7 +167,6 @@
   }
 
   if(document.body.clientWidth < 800) { // should make the site mobile when needed
-    //document.getElementById("brookeafk-com").innerText = "mobile website"
     document.getElementById("settings-ts-dnc").innerText = "Day and Map"
     document.getElementById("settings-ts-tue").innerText = "Until Event"
     document.getElementById("settings-flashing").innerHTML = "<b>Flash: </b>"
@@ -772,6 +771,18 @@
 }
   }
 
+
+  document.getElementById('brookeafk-com').addEventListener('animationend', function(e) { // literally just makes the logo do awesome flips when you hover on it. this is the best feature of the website
+    document.getElementById('brookeafk-com').classList.remove('animated');
+    document.querySelector(':root').style.setProperty('--xrot', (Math.random() - 0.5) * 1);
+    document.querySelector(':root').style.setProperty('--yrot', (Math.random() - 0.5) * 1);
+    document.querySelector(':root').style.setProperty('--zrot', (Math.random() - 0.5) * 1);
+  });
+
+  document.getElementById('brookeafk-com').addEventListener('mouseover', function(e) {
+    document.getElementById('brookeafk-com').classList.add('animated');
+  });
+
   function changeColor() { // changes the color of a specific item
     CurrentTime = Date.now();
     timeleft = window.data[HiddenEventCount]['timestamp'] - CurrentTime;
@@ -1206,12 +1217,24 @@
 
     .wordmark {
       font-size: 40px;
-      background: linear-gradient(90deg, rgba(245,114,212,1) 0%, rgba(141,60,175,1) 100%);
+      background: linear-gradient(90deg, #f572d4 0%, #8d3caf 100%);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent; 
       -moz-background-clip: text;
       -moz-text-fill-color: transparent;
+      transition-duration: 2s;
+      display: inline-block;
+      transform: rotate3d(1, 1, 1, 720deg);
+    }
+
+    .animated {
+      animation: rotate 1s;
+    }
+
+    @keyframes rotate {
+      0%   { transform: rotate3d(0, 0, 0, 0deg); }
+      100% { transform: rotate3d(var(--xrot), var(--yrot), var(--zrot), 360deg); }
     }
 
     #settings {
@@ -1500,6 +1523,9 @@ a, .icon, div {
 
 :root {
   --normaltext: #FFF;
+  --xrot: 1;
+  --yrot: 1;
+  --zrot: 1;
 }
 
 .wrapper {

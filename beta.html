@@ -10,7 +10,6 @@
     <meta id="viewport" name="viewport" content="initial-scale=1, user-scalable=0, minimum-scale=1">
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-    <!-- why did i have jquery here? surely it wasn't for anything important. -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_icons/favicon-16x16.png">
@@ -40,14 +39,14 @@
     
   <div id="settings-section"><br>
   <p class="option"><span><b>Theme</b>: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
-  <p class="option"><span><b>Palette</b>: </span><span id="settings-palette-gradient" onclick="ChangePalette('gradient')" class="hand_cursor">Gradient</span> / <span id="settings-palette-0" onclick='ChangePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)' class="hand_cursor">Theme 3</span></p>
+  <p class="option"><span><b>Palette</b>: </span><span id="settings-palette-gradients0" onclick="ChangePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="ChangePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='ChangePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)' class="hand_cursor">Theme 3</span></p>
   <p class="option"><span id="tut-notif" style="color: #ffff80"><b>Pre-event notifications</b></span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
   <p id="anotif" class="option"><span>&bullet; <b>Audio notifications</b>: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
   <p id="dnotif" class="option"><span>&bullet; <b>Desktop notifications</b>: </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
   <p class="option"><span id="alert-nobells" style="color: #ff7777; display: none">You're not being reminded for any events!<br>Click the bells in the top-right corner to receive notifications.</span></p>
   <p class="option"><span id="alert-notypes" style="color: #ff7777; display: none">Make sure to turn either "Audio notifications"<br>or "Desktop notifications" on to receive alerts.</span></p>
-  <p class="option"><span><b>Timestamps</b>: </span><span id="settings-ts-tod" onclick='ToggleTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='ToggleTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='ToggleTimestamps("dnc");' class="hand_cursor">Day and Map</span></p>
-  <p class="option"><span><b>Clock style</b>: </span><span id="settings-clock-24" onclick='changeClock("24");' class="hand_cursor">24-hour</span><span> / </span><span id="settings-clock-12" onclick='changeClock("12");' class="hand_cursor">12-hour</span></p>
+  <p class="option"><span><b>Timestamps</b>: </span><span id="settings-ts-tod" onclick='setTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='setTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='setTimestamps("dnc");' class="hand_cursor">Day and Map</span></p>
+  <p class="option" id="setting-clock-style"><span><b>Clock style</b>: </span><span id="settings-clock-24" onclick='changeClock("24");' class="hand_cursor">24-hour</span><span> / </span><span id="settings-clock-12" onclick='changeClock("12");' class="hand_cursor">12-hour</span></p>
   <p class="option"><span id="settings-flashing"><b>Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
   <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
   <p class="option"><span><b>Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
@@ -106,7 +105,7 @@
   var NotifTimer = -10;
   var DoesStuffExist = false;
   var HasStuffLoaded = false;
-  var Palette = 'gradient';
+  var Palette = 'gradients0';
   var SettingsSelectedEvents = 262143;
   var SettingsNotifyEvents = 0;
   var SettingsDesktopNotifs = 0;
@@ -500,18 +499,20 @@
   
   
   
-  function ToggleTimestamps(timestamps) {
+  function setTimestamps(timestamps, toggler = true) {
     if (timestamps == "tod") {
-      if(window.showEventToD == true) {
+      if((window.showEventToD == false && !toggler) || (window.showEventToD == true && toggler)) {
         document.getElementById('settings-ts-tod').style.color = "#888888";
+        document.getElementById('setting-clock-style').style.display = "none";
         window.showEventToD = false;
       } else {
         document.getElementById('settings-ts-tod').style.color = NormalText;
+        document.getElementById('setting-clock-style').style.display = "block";
         window.showEventToD = true;
       }
     }
     if (timestamps == "tue") {
-      if(window.showEventTuE == true) {
+      if((window.showEventTuE == false && !toggler) || (window.showEventTuE == true && toggler)) {
         document.getElementById('settings-ts-tue').style.color = "#888888";
         window.showEventTuE = false;
       } else {
@@ -520,7 +521,7 @@
       }
     }
     if (timestamps == "dnc") {
-      if(window.showEventDNC == true) {
+      if((window.showEventDNC == false && !toggler) || (window.showEventDNC == true && toggler)) {
         document.getElementById('settings-ts-dnc').style.color = "#888888";
         window.showEventDNC = false;
         document.getElementById("day-night-border").style.display = "none";
@@ -537,12 +538,13 @@
   
   function ChangePalette(changeThePalette) {
     Palette = changeThePalette;
-    document.getElementById('settings-palette-gradient').style.color = "#888888";
+    document.getElementById('settings-palette-gradients0').style.color = "#888888";
+    document.getElementById('settings-palette-gradients1').style.color = "#888888";
     document.getElementById('settings-palette-0').style.color = "#888888";
     document.getElementById('settings-palette-1').style.color = "#888888";
     document.getElementById('settings-palette-2').style.color = "#888888";
     document.getElementById('settings-palette-3').style.color = "#888888";
-    if(Palette > -100 || Palette == 'gradient') {
+    if(Palette > -100 || Palette == 'gradients0' || Palette == 'gradients1') {
       document.getElementById('settings-palette-' + Palette).style.color = NormalText;
     }
     CuteColors(window.data);
@@ -638,14 +640,19 @@
     }
   }
 
-  // ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
+  // ["Quick Maths","Dragon Egg","2x Rewards","Care Package",
+  // "KOTL","KOTH","Auction","Giant Cake","All bounty",
+  // "Squads","Beast","Pizza","Rage Pit","Spire",
+  // "Robbery","Blockhead","Raffle","Team Deathmatch"];
 
-  var gradientsdark = [["cb7cd1","575c9a"],["c66fb6","99647d"],["479452","b9d29e"],["c49b50","b8c775"],["6ec97c","cfd42b"],["83d2cd","3574a8"],["d5aa66","d4e7a2"],["cd86cf","e3bfe6"],["d4bc55","b56767"],["123456","47c9be"],["146517","b1fb70"],["5e042e","ac3ca7"],["4d1210","d37515"],["510940","1f8fa6"],["bba321","e6e633"],["0b1f47","736cd0"],["a6a239","dae398"],["380960","d06c98"]]; // these ones are awesome but adj won;t let me add them
+  
+  var gradients0 = [["db07eb","2a33a1"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d28b1a","b03737"],["4f73cf","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
 
-  //var gradientsdark = [["db07eb","2a33a1"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d28b1a","b03737"],["4f73cf","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
+  var gradients1 = [["cb7cd1","575c9a"],["c66fb6","99647d"],["479452","b9d29e"],["c49b50","b8c775"],["6ec97c","cfd42b"],["83d2cd","3574a8"],["d5aa66","d4e7a2"],["cd86cf","e3bfe6"],["d4bc55","b56767"],["123456","47c9be"],["146517","b1fb70"],["5e042e","ac3ca7"],["4d1210","d37515"],["510940","1f8fa6"],["bba321","e6e633"],["0b1f47","736cd0"],["a6a239","dae398"],["380960","d06c98"]]; // these ones are awesome but adj won;t let me add them
 
+  //gradients0 = [["b961bb","d5c656"],["8e4f75","5d4c98"],["79d976","239eab"],["ce6a6a","aaaf15"],["4c8374","aaaf15"],["8fb5d5","21966b"],["d2d099","d28419"],["d558b8","f3eff2"],["a25656","4144ab"],["4f73cf","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
 
-  //var gradientslight = [["4eb743","12743f"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d2b01a","b03737"],["123456","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
+  //var gradients2 = [["4eb743","12743f"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d2b01a","b03737"],["123456","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
 
   var lightColors0 = ["#D9D2E9","#E9D2E1","#D2E9DD","#E9E2D2","#D2E9D2","#D2E9E8","#E9DDD2","#E9D2D2","#E9E3D2","#8EBAEC","#8EEC94","#ECB38E","#EC8E8E","#EC8EEC","#ECE98E","#9191EC","#ECBD8E","#BA8EEC"]
   var darkColors0 = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
@@ -728,7 +735,7 @@
       if(SettingsDesktopNotifs == 1) {
       if(Date.now() + offset > time1 + 10000) { //if it's been more than 10 seconds since the last notification
       var notification = new Notification("", {body: "Hey – " + window.data[i]['event'] + " is starting in " + NotifTimer/60 + " " + (NotifTimer == 60?"minute":"minutes") +"!", icon: "3457688aa57c4d71ab9d22b04f9160db.png"});
-      time1 = Date.now() + offset
+      time1 = Date.now() + offset;
       }
       }
    }
@@ -839,7 +846,7 @@
         localStorage.setItem('theme', theme);
         localStorage.setItem('visible', '262144');
         localStorage.setItem('notifs', '0');
-        localStorage.setItem('palette', 'gradient');
+        localStorage.setItem('palette', 'gradients0');
         localStorage.setItem('timestamps', '111');
         localStorage.setItem('flashing', '0');
         localStorage.setItem('reminder', '0');
@@ -850,7 +857,7 @@
         localStorage.setItem('clock', '24');
         console.log("No settings :fear:")
         changeFont('Inter');
-        ChangePalette('gradient');
+        ChangePalette('gradients0');
         EventFlash(60); // setting everything up!
         SetAudio(-10);
         DNotif(0);
@@ -890,21 +897,9 @@
       changeIcons(iconsVisible);
       changeClock(clockStyle);
   
-      if(window.showEventToD == 0) {
-        document.getElementById('settings-ts-tod').style.color = "#888888";
-      } else {
-        document.getElementById('settings-ts-tod').style.color = NormalText;
-      }
-      if(window.showEventTuE == 0) {
-        document.getElementById('settings-ts-tue').style.color = "#888888";
-      } else {
-        document.getElementById('settings-ts-tue').style.color = NormalText;
-      }
-      if(window.showEventDNC == 0) {
-        document.getElementById('settings-ts-dnc').style.color = "#888888";
-      } else {
-        document.getElementById('settings-ts-dnc').style.color = NormalText;
-      }
+      setTimestamps("tod", false);
+      setTimestamps("tue", false);
+      setTimestamps("dnc", false);
 
       VisibleEvents = [];
       AudioEvents = [];
@@ -924,20 +919,21 @@
       console.log(VisibleEvents);
   
       for(var i = 0; i < VisibleEvents.length; i++) {
-      for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
-      if (window.data[j]["event"].includes(VisibleEvents[i]) && !ok_ids.includes(j)) {
-        document.getElementById('event_' + String(j)).style.display = "block";
-        ok_ids.push(j);
-        console.log(ok_ids)
-          console.log("saved " + window.data[j]["event"])
-      } 
-      }}
-      for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
-      if (!ok_ids.includes(j)) {
-      document.getElementById('event_' + String(j)).style.display = "none";
-      console.log("hid " + window.data[j]["event"])
+        for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
+        if (window.data[j]["event"].includes(VisibleEvents[i]) && !ok_ids.includes(j)) {
+          document.getElementById('event_' + String(j)).style.display = "block";
+          ok_ids.push(j);
+          console.log(ok_ids)
+            console.log("saved " + window.data[j]["event"])
+          }  
+        }
       }
-  
+
+      for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
+        if (!ok_ids.includes(j)) {
+          document.getElementById('event_' + String(j)).style.display = "none";
+          console.log("hid " + window.data[j]["event"])
+        }
       }
   
       var leadingZeroes = (num, places) => String(num).padStart(places, '0')
@@ -952,7 +948,7 @@
       console.log(AudioEvents);
       if(window.AudioEvents.length == 0 && DoesStuffExist == true) {
       console.log(window.AudioEvents + " audioevents")
-     document.getElementById('alert-nobells').style.display = "block";
+      document.getElementById('alert-nobells').style.display = "block";
       }
 
       ChangeTheme(theme);
@@ -1142,7 +1138,7 @@
   
   function CuteColors(conversion) { //adds cute colors
 
-  if(window.Palette.length > 1 && window.Palette != "gradient") {
+  if(window.Palette.length > 1 && !(window.Palette.startsWith('gradient'))) {
     document.getElementById('brookeafk-com').innerText = window.Palette + ".com"
     window.theme = "dark";
   }
@@ -1155,10 +1151,10 @@
   }
   if(DoesStuffExist == true) {
     console.log(Palette)
-    if(Palette == "gradient") { // if awesome gradients are enabled
+    if(Palette.toString().startsWith("gradient")) { // if awesome gradients are enabled
       for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
         document.getElementById('event_' + String(i)).style.background = 
-        `linear-gradient(90deg, #`+ gradientsdark[events.indexOf(conversion[i]['event'])][0] + ` 0%, #` + gradientsdark[events.indexOf(conversion[i]['event'])][1] + ` 100%)`;
+        `linear-gradient(90deg, #`+ eval("gradients" + Palette.substring(9) + `[events.indexOf(conversion[i]['event'])][0]`) + ` 0%, #` + gradients0[events.indexOf(conversion[i]['event'])][1] + ` 100%)`;
       }
     } else { // if the user is totally uncool and refuses to use my awesome gradients
       console.log("uncool user :/")

@@ -20,7 +20,7 @@
     <script src="emergency.js?v=1"></script>
     <script src="control.js?v=1"></script>
     <meta name="theme-color" content="#ffbbff">
-    <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
+    <meta name="description" content="This site allows you to view the upcoming events in the Hypixel Pit in real time."> 
   </head>
   
   <body background-color="black" class="unselectable">
@@ -29,7 +29,7 @@
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center"></div>
   
   
-    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;">&nbsp;<span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span id="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
+    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span id="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
     </div>
 
     <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old version by <a href="2022" style="color: #ccc">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)</div>
@@ -176,7 +176,9 @@
     document.getElementById("replacement").setAttribute("id","mobileanno")
 
     document.getElementById("current-event").style.width = "100%";
-    document.getElementById("mobilebreak").innerHTML = "<br>"
+    document.getElementById("mobilebreak").innerHTML = "<br>"; // modifies whitespace to make the mobile site look better
+    document.getElementById("facebreak").innerHTML = "";
+    document.getElementById("face").style.display = "none";
   }
   
   document.getElementById('settings').style.color = "NormalText";
@@ -1200,8 +1202,13 @@
       autoReload();
       if(counter % 25 == 0) noEvents();
     }
+    if(counter > 51) { console.log("making element " + counter % 100 + "do a flip. this is gonna be awesome");
+      document.getElementById('event_' + counter % 100).classList.add('flip')
+      document.getElementById('event_' + (counter - 50) % 100).classList.remove('flip') 
+    };
     RapidFirst(window.data);
   }
+
     </script>
   
   <style>
@@ -1232,9 +1239,18 @@
       animation: rotate 1s;
     }
 
+    .flip {
+      animation: flip_ 1s;
+    }
+
     @keyframes rotate {
       0%   { transform: rotate3d(0, 0, 0, 0deg); }
       100% { transform: rotate3d(var(--xrot), var(--yrot), var(--zrot), 360deg); }
+    }
+
+    @keyframes flip_ {
+      0%   { transform: rotate3d(0, 0, 0, 0deg); }
+      100% { transform: rotate3d(0.48, -0.03, 0.1, 360deg); }
     }
 
     #settings {
@@ -1523,9 +1539,9 @@ a, .icon, div {
 
 :root {
   --normaltext: #FFF;
-  --xrot: 1;
-  --yrot: 1;
-  --zrot: 1;
+  --xrot: 0.6;
+  --yrot: 2;
+  --zrot: 0.8;
 }
 
 .wrapper {

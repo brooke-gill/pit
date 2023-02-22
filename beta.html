@@ -32,7 +32,7 @@
     <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span id="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
     </div>
 
-    <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old version by <a href="2022" style="color: #ccc">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)</div>
+    <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate Pit Day and brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old version by <a href="2022" style="color: #ccc">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)</div>
   
     <div id="day-night-border" class="timers dnb"><div id="day-night" style="vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg>&nbsp; &mdash; &nbsp;<span id="maprot"></span></div>
 <div class="mobileanno" id="mobileanno"></div>
@@ -269,7 +269,6 @@
     if(clockStyle == 24) document.getElementById('settings-clock-24').style.color = NormalText;
     else if(clockStyle == 12) document.getElementById('settings-clock-12').style.color = NormalText;
 
-    console.log("yipee! the number of hours in a day has changed");
     console.log("The number of hours in a day has been set to " + clock);
     addNamesandImages(window.data);
     SaveSettings('noreload');
@@ -686,9 +685,9 @@
   }
 
   data_backup = MakeAPIAndHTML();
-  getPitPanda();
+  cycle();
   console.log("The data's been called!");
-  setInterval(getPitPanda,40);
+  setInterval(cycle, 40);
   
   async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
     if(emergency == true) {
@@ -785,6 +784,15 @@
     document.getElementById('brookeafk-com').classList.add('animated');
   });
 
+
+  const elements = document.getElementsByClassName('event');
+
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('animationend', function(e) {
+      elements[i].classList.remove('flip');
+    });
+  }
+
   function changeColor() { // changes the color of a specific item
     CurrentTime = Date.now();
     timeleft = window.data[HiddenEventCount]['timestamp'] - CurrentTime;
@@ -793,6 +801,12 @@
       document.getElementById('event_' + HiddenEventCount).style.background = "linear-gradient(120deg, rgb(240, 40, 20) 0%, rgb(100, 60, 36) 100%)";
       panicevents.push(HiddenEventCount);
     }
+  }
+
+  function flipStuff(g) {
+    if(g >= 10 && g <= 200 && document.getElementById('event_' + (g-10)) != null)
+    document.getElementById('event_' + (g - 10)).classList.add("flip");
+    if(g>35 && document.getElementById('event_' + (g - 35)) != null) document.getElementById('event_' + (g - 35)).classList.remove("flip");
   }
   
   function UpdateEverything(transformation) { //this plops the stuff in the actual html page
@@ -1146,7 +1160,15 @@
     } else if (showEventToD == false && showEventTuE == false) {
       document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b>`);
     }
-   }
+    }
+  }
+
+  function noFun() {
+  const element = document.getElementsByClassName('event');
+  console.log(element)
+  for (let i = 0; i < element.length; i++) { 
+    console.log(i);
+    element[i].classList.remove('flip'); }
   }
   
   function CuteColors(conversion) { //adds cute colors
@@ -1190,7 +1212,7 @@
   }
   }}
   
-  function getPitPanda() {
+  function cycle() { // updates everything every 40ms
     window.data = window.data_backup;
     counter = counter + 1;
     if (counter % 5 == 0) {
@@ -1202,11 +1224,8 @@
       autoReload();
       if(counter % 25 == 0) noEvents();
     }
-    if(counter > 51) { console.log("making element " + counter % 100 + "do a flip. this is gonna be awesome");
-      document.getElementById('event_' + counter % 100).classList.add('flip')
-      document.getElementById('event_' + (counter - 50) % 100).classList.remove('flip') 
-    };
     RapidFirst(window.data);
+    flipStuff(counter);
   }
 
     </script>
@@ -1230,9 +1249,7 @@
       -webkit-text-fill-color: transparent; 
       -moz-background-clip: text;
       -moz-text-fill-color: transparent;
-      transition-duration: 2s;
       display: inline-block;
-      transform: rotate3d(1, 1, 1, 720deg);
     }
 
     .animated {
@@ -1241,6 +1258,7 @@
 
     .flip {
       animation: flip_ 1s;
+      animation-timing-function: ease-in-out;
     }
 
     @keyframes rotate {
@@ -1250,7 +1268,7 @@
 
     @keyframes flip_ {
       0%   { transform: rotate3d(0, 0, 0, 0deg); }
-      100% { transform: rotate3d(0.48, -0.03, 0.1, 360deg); }
+      100% { transform: rotate3d(0.48, 0, 0.06, 360deg); }
     }
 
     #settings {

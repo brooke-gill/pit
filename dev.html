@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&display=swap" rel="stylesheet"> <link rel="stylesheet" href="devsheet.css">
+<title>Brooke</title>
+</head>
+<body style="font-family: Inter Tight; background-color: #2f262f;">
+
+<br><div class="center medium">(soon-to-be)</div>
+<div class="center huge rainbow-animated wordmark unselectable" onclick="addI()" id="wordmark" display="block"><b>brookie</b><sub>.dev</sub></div>
+
+
+
+
+<p class="center big" style="color: var(--brosy)"><i>what i've made</i></p>
+
+<div class="link" style="background-image: url(./img/pit_wiki.png); background-size: cover">
+    <div class="blur" id="blur_1">
+    <span class="link-container">
+    <span class="link-title bold smallcaps">The Hypixel Pit Wiki</span><br>
+    <span class="link-subtitle" style="font-weight: 500"><span style="color: var(--byellow);">80,000+</span> monthly requests</span><br>
+    <span class="link-subtitle italic">Co-created an unofficial wiki, built from scratch. Contains over 30,000 words.</span>
+    </span>
+    <a href="https://pit.wiki" target="_blank"><div class="circle center bold" id="circle_1">-></div></a>
+</div>
+</div>
+
+<br><br>
+
+<div class="link" style="background-image: url(./img/brookeafk_com.png); background-size: cover">
+    <div class="blur" id="blur_2">
+    <span class="link-container">
+    <span class="link-title bold smallcaps">BrookeAFK.com</span><br>
+    <span class="link-subtitle" style="font-weight: 500"><span style="color: var(--byellow)">210,000+</span> monthly requests</span><br>
+    <span class="link-subtitle italic">Pit events-tracking website. Used by a majority of the community.</span>
+    </span>
+    <a href="https://brookeafk.com" target="_blank"><div class="circle center bold" id="circle_2">-></div></a>
+</div>
+</div>
+
+<br><br>
+
+<div class="link" style="background-image: url(./img/pit_player_tracker.png); background-size: cover">
+  <div class="blur" id="blur_3">
+  <span class="link-container">
+  <span class="link-title bold smallcaps">Pit Player Tracker</span><br>
+  <span class="new link-subtitle">NEW</span><br>
+  <span class="link-subtitle italic">Tracks a Pit player's in-game rewards with the Hypixel API.</span>
+  </span>
+  <a href="https://brookeafk.com/tracker" target="_blank"><div class="circle center bold" id="circle_3">-></div></a>
+</div>
+</div>
+
+<br><br>
+
+<div class="link" style="background-image: url(./img/pitmd.png); background-size: cover">
+  <div class="blur" id="blur_4">
+  <span class="link-container">
+  <span class="link-title bold smallcaps">Pit Markdown</span><br>
+  <span class="new link-subtitle">NEW</span><br>
+  <span class="link-subtitle italic">A new flavor of Markdown with color support&mdash;useful to write wiki articles.</span>
+  </span>
+  <a href="https://pit.wiki/PitMD" target="_blank"><div class="circle center bold" id="circle_4">-></div></a>
+</div>
+</div>
+
+<br><br>
+
+<p class="center medium" style="color: var(--brosy)">also contributed code to</p>
+
+<div class="center">
+<a href="https://statsify.net" target="_blank"><img src="./img/statsify.svg" width="20%" class="logos"></a>
+</div>
+
+<br><br>
+
+<p class="center medium" style="color: var(--brosy)">contact me!</p>
+<div class="center">
+  <a href="https://github.com/brooke-gill" target="_blank"><img src="./img/github-mark-white.svg" width="3%" class="logos"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a id="discordlogo" onclick="showDiscordId()"><img src="./img/discord-mark-white.svg" width="3%" class="logos" style="position: relative; bottom: 4px"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="mailto:gillbrooke@hotmail.com" target="_blank"><img src="./img/mail.svg" width="3%" class="logos"></a>
+
+</div>
+
+
+<br>
+
+<div class="cursor"></div>
+<div class="insidecursor"></div>
+
+<script>
+    var name = "brooke"
+    var accomplishments = 4; // haha that's not that many lol
+    var clicks = 0;
+    function addI() {
+        clicks += 1;
+        if(name == "brooke") {
+            name = "brookie"
+            document.documentElement.style.cssText = "--richter: 0";
+        }
+            name = name.slice(0, 3) + "o" + name.slice(3);
+            document.getElementById("wordmark").classList.add('shake')
+    
+        document.getElementById("wordmark").classList.add('hop');
+        document.getElementById("wordmark").innerHTML = `<b>` + name + `</b><sub>.dev</sub>`;
+        document.documentElement.style.cssText = "--richter: " + clicks;
+        document.getElementById("wordmark").classList.remove('hop');
+    }
+
+        document.getElementById('circle_1').addEventListener('mouseover', function() {  // i tried for like 1 hour to get this into a concise for loop and just kinda gave up
+            document.getElementById('blur_1').style.backdropFilter = "blur(14px)"
+        });
+        document.getElementById('circle_1').addEventListener('mouseleave', function() {
+            document.getElementById('blur_1').style.backdropFilter = "blur(4px)"
+        });
+        document.getElementById('circle_2').addEventListener('mouseover', function() {
+            document.getElementById('blur_2').style.backdropFilter = "blur(14px)"
+        });
+        document.getElementById('circle_2').addEventListener('mouseleave', function() {
+            document.getElementById('blur_2').style.backdropFilter = "blur(4px)"
+        });
+        document.getElementById('circle_3').addEventListener('mouseover', function() {
+            document.getElementById('blur_3').style.backdropFilter = "blur(14px)"
+        });
+        document.getElementById('circle_3').addEventListener('mouseleave', function() {
+            document.getElementById('blur_3').style.backdropFilter = "blur(4px)"
+        });
+        document.getElementById('circle_4').addEventListener('mouseover', function() {
+            document.getElementById('blur_4').style.backdropFilter = "blur(14px)"
+        });
+        document.getElementById('circle_4').addEventListener('mouseleave', function() {
+            document.getElementById('blur_4').style.backdropFilter = "blur(4px)"
+        });
+
+        function showDiscordId() {
+          document.getElementById("discordlogo").innerText = "Brooke#0843";
+          document.getElementById("discordlogo").style.bottom = "12px";
+          document.getElementById("discordlogo").style.position = "relative";
+        }
+
+  /* 
+
+  thank you to Nick Tenebruso on CodePen for portions of the cursor code!
+
+  Copyright (c) 2022 by Nick (https://codepen.io/ntenebruso/pen/QWLzVjY)
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+  associated documentation files (the "Software"), to deal in the Software without restriction, 
+  including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+  and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+  subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all copies or substantial
+  portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+  LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+  NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  
+  */
+
+
+var cursor = document.querySelector('.cursor');
+var cursorinner = document.querySelector('.insidecursor');
+var a = document.querySelectorAll('a');
+var logo = document.querySelectorAll('#wordmark');
+
+document.addEventListener('mousemove', function(e){
+  var x = e.clientX;
+  var y = e.clientY;
+  cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
+});
+
+document.addEventListener('mousemove', function(e){
+  var x = e.clientX;
+  var y = e.clientY;
+  cursorinner.style.left = x + 'px';
+  cursorinner.style.top = y + 'px';
+});
+
+document.addEventListener('mousedown', function(){
+  cursor.classList.add('click');
+  cursor.classList.add('whiteoutline');
+  cursorinner.classList.add('cursorinnerhover')
+});
+
+document.addEventListener('mouseup', function(){
+  cursor.classList.remove('click')
+  cursor.classList.remove('whiteoutline');
+  cursorinner.classList.remove('cursorinnerhover')
+});
+
+a.forEach(item => {
+  item.addEventListener('mouseover', () => {
+    cursor.classList.add('hover');
+});
+  item.addEventListener('mouseleave', () => {
+    cursor.classList.remove('hover');
+  });
+})
+
+logo.forEach(item => {
+  item.addEventListener('mouseover', () => {
+    cursor.classList.add('hover');
+  });
+  item.addEventListener('mouseleave', () => {
+    cursor.classList.remove('hover');
+  });
+})
+</script>
+</body>

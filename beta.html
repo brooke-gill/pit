@@ -47,7 +47,7 @@
   <p class="option"><span id="alert-notypes" style="color: #ff7777; display: none">Make sure to turn either "Audio notifications"<br>or "Desktop notifications" on to receive alerts.</span></p>
   <p class="option"><span><b>Timestamps</b>: </span><span id="settings-ts-tod" onclick='setTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='setTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='setTimestamps("dnc");' class="hand_cursor">Day and Map</span></p>
   <p class="option" id="setting-clock-style"><span><b>Clock style</b>: </span><span id="settings-clock-24" onclick='changeClock("24");' class="hand_cursor">24-hour</span><span> / </span><span id="settings-clock-12" onclick='changeClock("12");' class="hand_cursor">12-hour</span></p>
-  <p class="option"><span id="settings-flashing"><b>Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
+  <p class="option"><span id="settings-flashing"><b>Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='setFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='setFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='setFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='setFlash(-10);' class="hand_cursor">Never</span></span></p>
   <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
   <p class="option"><span><b>Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
 
@@ -82,22 +82,28 @@
 
   </div>
 
-  <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none; text-align: center;"><br>You don't have any events selected!<br>Click the <span style="font-family: Material">settings</span> gear to open the settings. Then, click the event names in the top-right corner to make some visible.</span></p>
+  <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none; text-align: center;"><br>You don't have any events selected!<br>Click the <span style="font-family: Material">settings</span> gear to open the settings. Then, click the event names in the top-right corner to make some visible.<br>Alternatively, click <span onclick="SelectOnly('everything')" style="cursor: pointer; color: #ae4e8e">here</span> to select all events.</span></p>
   <span id="noevents" class="credits"></span>
   <span id="events"></span>
 
   <hr>
 
-  <span class="credits"><span style="font-style: oblique 11deg;" id="madewithlove">Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></span><br>
-  <span id="version"></span><br><br>
-  <span id="special_thanks"></span></span></span>
+  <span class="credits">
+    <p id="madewithlove">Made with love and tears by <a href="dev" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></p>
+    <p id="wikiad"><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</p>
+    <p id="special_thanks"></p>
+    <p id="version" class="ver"> </p> <span>&mdash; 2023-02-23</span><br><br>
+    </span>
+  </span>
 </div>
+
   <script>
+  
 
   var HiddenEventCount = 0;
   var EventsToLoad = 1;
   var version_number = `BETA` 
-  var wiki_ad = `|&nbsp;<a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</span>`
+  var wiki_ad = `<br>`
   var counter = 4;
   var settingsOpened = false;
   var NormalText = "#000000";
@@ -199,7 +205,7 @@
   return convertible;
   }
   
-  function EventFlash(seconds) {
+  function setFlash(seconds) {
     window.EventFlashSec = seconds;
     if(DoesStuffExist == true) {
     for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
@@ -262,7 +268,7 @@
     SaveSettings('noreload');
   }
 
-  function changeClock(clock) {
+  function changeClock(clock) { // changes the clock from 24-hour "17:40" to 12-hour "5:40 pm"
     document.getElementById('settings-clock-24').style.color = "#888888";
     document.getElementById('settings-clock-12').style.color = "#888888";
     clockStyle = clock;
@@ -417,14 +423,14 @@
     return ((n % m) + m) % m;
   }
 
-  function mapRotation() {
+  function mapRotation() { // calculates and updates the map rotation timer
     let CurrentUnix = (Date.now()  + offset) / 1000;
     mapid = Math.floor(mod((samplemaprotation - CurrentUnix), 3024000) / 604800);
     
     document.getElementById('maprot').innerHTML = "<b>" + maps[mod(mapid - 1, 5)] + "</b> in " + TimestampIt(mod((samplemaprotation - CurrentUnix), 604800));
   }
   
-  function ChangeTheme(themecolor) {
+  function ChangeTheme(themecolor) { // changes the theme from dark to light mode (or vice versa)
     window.theme = themecolor;
     console.log ("Changed theme to " + window.theme);
     if(themecolor == "light") {
@@ -459,7 +465,7 @@
     document.getElementById('day-night-border').style.color = NormalText;
     if (DoesStuffExist == true) {
       changeFont(window.font)
-      EventFlash(window.EventFlashSec);
+      setFlash(window.EventFlashSec);
       SetAudio(window.NotifTimer);
       DNotif(window.SettingsDesktopNotifs);
       ANotif(window.SettingsAudioNotifs);
@@ -497,9 +503,7 @@
   
   ChangeTheme(theme); //It's called here to load the events in as black to begin with. I don't want to give people seizures.
   
-  
-  
-  function setTimestamps(timestamps, toggler = true) {
+  function setTimestamps(timestamps, toggler = true) { // shows and hides timestamps. "toggler" is whether the event toggles (i.e. swaps the visibility.)
     if (timestamps == "tod") {
       if((window.showEventToD == false && !toggler) || (window.showEventToD == true && toggler)) {
         document.getElementById('settings-ts-tod').style.color = "#888888";
@@ -536,7 +540,7 @@
     SaveSettings('noreload');
   }
   
-  function ChangePalette(changeThePalette) {
+  function ChangePalette(changeThePalette) { // changes the user's palette
     Palette = changeThePalette;
     document.getElementById('settings-palette-gradients0').style.color = "#888888";
     document.getElementById('settings-palette-gradients1').style.color = "#888888";
@@ -547,12 +551,14 @@
     if(Palette > -100 || Palette == 'gradients0' || Palette == 'gradients1') {
       document.getElementById('settings-palette-' + Palette).style.color = NormalText;
     }
+
+    panicevents = []; // clears the panic events
     CuteColors(window.data);
     SaveSettings('noreload');
   }
   
 
-  function SelectOnly(event_type) {
+  function SelectOnly(event_type) { // allows the user to select certain events, all, or none
     if(event_type == "minor") {
     for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
         if (window.data[i]['type'] == "major") {
@@ -607,7 +613,7 @@
     console.log(SettingsSelectedEvents);
   }
   
-  function GeneratePraise() {
+  function GeneratePraise() { // generates a quote (used on the bottom of the site)
     const randomElement = [Math.floor(Math.random() * (praise_quotes.length + 3)) - 3]; //adds very slight bias to quote #0
     console.log("Item " + randomElement + " chosen for praise!");
     if(randomElement <= -1) {
@@ -616,7 +622,7 @@
     return (`"` + praise_quotes[randomElement] + `" -<a href="` + praise_urls[randomElement] + `" target="_blank">` + praise_names[randomElement] + `</a>`);
   }
   
-  function TimeOfDay(s) {
+  function TimeOfDay(s) { // gets the local time of day from a Unix timestamp.
     var toffset = (new Date().getTimezoneOffset())*-60000;
     if(clockStyle == 12) {
       var twelvetime = new Date(s + offset);
@@ -634,10 +640,10 @@
     if((HiddenEventCount == EventsToLoad || EventsToLoad == 1) && !noevents) { 
         document.getElementById('noevents').innerHTML = `<br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://events.mcpqndq.dev" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me on Discord (Brooke#0843) or <a href="https://github.com/brooke-gill">on GitHub</a>.`
           noevents = true;
-    } else if(noevents) {
+    } /*else if(noevents) {
       document.getElementById('noevents').innerHTML = ``;
       noevents = false;
-    }
+    }*/
   }
 
   // ["Quick Maths","Dragon Egg","2x Rewards","Care Package",
@@ -757,7 +763,7 @@
       TimeOfEventStart = Date.now() + offset;
       console.log(TimeOfEventStart);
       document.getElementById("current-event").style.display = "block";
-      document.getElementById('special_thanks').innerHTML = `<span style="position:relative; left: 10px;">` + GeneratePraise() + `</span>` 
+      document.getElementById('special_thanks').innerHTML = GeneratePraise(); // updates the praise on the bottom of the site
     }
 
    let currentTime = (Date.now() + offset);
@@ -784,32 +790,25 @@
     document.getElementById('brookeafk-com').classList.add('animated');
   });
 
-
-  const elements = document.getElementsByClassName('event');
-
-  for (let i = 0; i < elements.length; i++) {
-    elements[i].addEventListener('animationend', function(e) {
-      elements[i].classList.remove('flip');
-    });
-  }
-
-  function changeColor() { // changes the color of a specific item
+  function changeColor() { // changes the color of the top item when time's running out (as described in setFlash or something)
     CurrentTime = Date.now();
     timeleft = window.data[HiddenEventCount]['timestamp'] - CurrentTime;
 
     if(timeleft < EventFlashSec * 1000 && panicevents.indexOf(HiddenEventCount) == -1) {
       document.getElementById('event_' + HiddenEventCount).style.background = "linear-gradient(120deg, rgb(240, 40, 20) 0%, rgb(100, 60, 36) 100%)";
-      panicevents.push(HiddenEventCount);
+      if(counter >= 20) panicevents.push(HiddenEventCount);
     }
   }
 
-  function flipStuff(g) {
+  function flipEvents(g) { // makes the events flip when you load the page
     if(g >= 10 && g <= 200 && document.getElementById('event_' + (g-10)) != null)
-    document.getElementById('event_' + (g - 10)).classList.add("flip");
-    if(g>35 && document.getElementById('event_' + (g - 35)) != null) document.getElementById('event_' + (g - 35)).classList.remove("flip");
+    if((g != 10 || (data[0].timestamp - Date.now()) > (EventFlashSec * 1000))) {
+      document.getElementById('event_' + (g - 10)).classList.add("flip");
+    } 
+    if(g >= 35 && document.getElementById('event_' + (g - 35)) != null) document.getElementById('event_' + (g - 35)).classList.remove("flip");
   }
   
-  function UpdateEverything(transformation) { //this plops the stuff in the actual html page
+  function UpdateEverything(transformation) { // this plops the stuff in the actual html page
     for(var i = window.HiddenEventCount + 1; i < EventsToLoad; i++) {
       if(showEventTuE == true) document.getElementById('timer_' + String(i)).innerHTML = MakeFunTimestamps(transformation[i].timestamp);
     if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) { //in an ideal world this should NEVER be called but js can be weird as hell sometimes
@@ -885,7 +884,7 @@
         console.log("No settings :fear:")
         changeFont('Inter');
         ChangePalette('gradients0');
-        EventFlash(60); // setting everything up!
+        setFlash(60); // setting everything up!
         SetAudio(-10);
         DNotif(0);
         ANotif(0);
@@ -920,7 +919,7 @@
       changeFont(CorrectFont)
       ChangePalette(Palette);
       SetAudio(parseInt(NotifTimer)); //this does not work //then WHY did you add it??
-      EventFlash(window.EventFlashSec);
+      setFlash(window.EventFlashSec);
       changeIcons(iconsVisible);
       changeClock(clockStyle);
   
@@ -1189,7 +1188,7 @@
     if(Palette.toString().startsWith("gradient")) { // if awesome gradients are enabled
       for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
         document.getElementById('event_' + String(i)).style.background = 
-        `linear-gradient(90deg, #`+ eval("gradients" + Palette.substring(9) + `[events.indexOf(conversion[i]['event'])][0]`) + ` 0%, #` + gradients0[events.indexOf(conversion[i]['event'])][1] + ` 100%)`;
+        `linear-gradient(90deg, #`+ eval("gradients" + Palette.substring(9) + `[events.indexOf(conversion[i]['event'])][0]`) + ` 0%, #` + eval("gradients" + Palette.substring(9) + `[events.indexOf(conversion[i]['event'])][1]`) + ` 100%)`;
       }
     } else { // if the user is totally uncool and refuses to use my awesome gradients
       console.log("uncool user :/")
@@ -1225,7 +1224,7 @@
       if(counter % 25 == 0) noEvents();
     }
     RapidFirst(window.data);
-    flipStuff(counter);
+    flipEvents(counter);
   }
 
     </script>
@@ -1293,7 +1292,7 @@
     }
     
     a:visited:not(.blanklink) {
-      color: #725279;
+      color: #8a4a99;
       background-color: transparent;
       text-decoration: none;
     }
@@ -1338,7 +1337,7 @@
       font-size: 14px;
     }
   
-    p {
+    p:not(.credits > p, .option) {
       font-size: 1.5em;
     }
 
@@ -1552,7 +1551,25 @@ a, .icon, div {
   color: rgba(255, 255, 255, 0.6);
   position: relative;
   left: 10px;
-  font-size: 18px;
+  font-size: 20px;
+  font-style: oblique 9deg;
+  opacity: 0.8;
+  font-weight: 400;
+  line-height: 0.7em;
+}
+
+.ver {
+  background: linear-gradient(140deg, rgb(127, 42, 192) 0%, rgb(43, 188, 214) 100%);
+  text-align: center;
+  border-radius: 30px;
+  display: inline-block;
+  height: 25px;
+  font-weight: bold;
+  margin: 0px;
+  line-height: 1.5;
+  font-size: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 :root {

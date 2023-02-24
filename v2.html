@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon_icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_icons/favicon-16x16.png">
+  <link rel="manifest" href="favicon_icons/site.webmanifest">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
+  <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
+  <title>Hypixel Pit Events Tracker</title>
+  <meta name="description" content="This program allows you to view the upcoming events in the Hypixel Pit in real time."> 
+</head>
+<body style="font-family: minecraftregular">
+
+  <p>brooke's pit event website</p>
+
+<script>
+
+var HiddenEventCount = 0;
+var EventsToLoad = 1;
+
+function MakeFunTimestamps(convertible) {
+let currentTime = (Date.now);
+if (convertible - currentTime() <= 0) {
+  convertible = "Passed!"
+}
+if (convertible - currentTime() <= 60000) {
+    convertible = (((Math.floor(((convertible - currentTime())*100))/100000).toFixed(2)) + "s");
+} else if (convertible - currentTime() <= 3600000) {
+    convertible = ((Math.floor(((convertible - currentTime()))/60000) + "m" + (Math.floor(((convertible - currentTime()))/1000) % 60) + "s"));
+} else if (convertible - currentTime() > 1) {
+    convertible = ((Math.floor(((convertible - currentTime()))/3600000) + "h" + (Math.floor(((convertible - currentTime()))/60000) % 60) + "m"));
+}
+
+return convertible;
+}
+
+function test_zero(conversion) { //adds cute colours
+for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
+ if(conversion[i]['event'] == "Quick Maths") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#D9D2E9";
+ }
+ if(conversion[i]['event'] == "Dragon Egg") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9D2E1";
+ }
+ if(conversion[i]['event'] == "2x Rewards") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#D2E9DD";
+ }
+ if(conversion[i]['event'] == "Care Package") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9E2D2";
+ }
+ if(conversion[i]['event'] == "KOTL") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#D2E9D2";
+ }
+ if(conversion[i]['event'] == "KOTH") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#D2E9E8";
+ }
+ if(conversion[i]['event'] == "Auction") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9DDD2";
+ }
+ if(conversion[i]['event'] == "Giant Cake") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9D2D2";
+ }
+ if(conversion[i]['event'] == "All bounty") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#E9E3D2";
+ }
+ if(conversion[i]['type'] == "major") {
+  document.getElementById('event_' + String(i)).style.fontFamily = "minecraftbold";
+ }
+ if(conversion[i]['event'] == "Squads") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#8EBAEC";
+ }
+ if(conversion[i]['event'] == "Beast") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#8EEC94";
+ }
+ if(conversion[i]['event'] == "Pizza") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#ECB38E";
+ }
+ if(conversion[i]['event'] == "Rage Pit") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#EC8E8E";
+ }
+ if(conversion[i]['event'] == "Spire") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#EC8EEC";
+ }
+ if(conversion[i]['event'] == "Robbery") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#ECE98E";
+ }
+ if(conversion[i]['event'] == "Blockhead") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#9191EC";
+ }
+ if(conversion[i]['event'] == "Raffle") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#ECBD8E";
+ }
+ if(conversion[i]['event'] == "Team Deathmatch") {
+  document.getElementById('event_' + String(i)).style.backgroundColor = "#BA8EEC";
+ }
+ let currentTime = (Date.now);
+ if (conversion[i]['timestamp'] - currentTime() <= 60000) {
+  document.getElementById('event_'+ String(i)).classList.add("blinktext");
+ }
+}
+}
+const pp_url = 'https://events.mcpqndq.dev/'
+data_backup = MakeAPIAndHTML();
+console.log("The data's been called!")
+setInterval(getPitPanda,80);
+
+async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
+  const response = await fetch(pp_url);
+  window.data = await response.json();
+  window.data_backup = window.data;
+  window.EventsToLoad = Object.keys(window.data).length
+  console.log("Loading events: " + window.EventsToLoad);
+  console.log("API Called.")
+  for(var i = 0; i < window.EventsToLoad; i += 1) { //Make HTML elements
+    var div = document.createElement("div");
+    console.log("I made an element.")
+    div.id = ("event_" + i);
+    div.innerHTML = ("[loading event]");
+    div.style.padding = "15px"; 
+    div.style.backgroundColor = "#FFFFFF";
+    div.style.textAlign = "center";
+    div.style.fontSize = "1.5em"
+    document.body.appendChild(div);
+
+}
+  var p = document.createElement("p");
+  console.log("Added footer.")
+  p.id = ("version")
+  p.innerHTML = (`v0.1.5`)
+  document.body.appendChild(p);
+  var q = document.createElement("p");
+  q.id = ("special_thanks")
+  q.innerHTML = (`<span style="font-size: 0.8em;">Special thanks to <a href="http://deviantart.com/hextant" target="_blank">Andrew ♡</a>,&nbsp;<a href="https://twitter.com/ellwixd" target="_blank">Ellie</a>, <a href="https://twitter.com/oSnapLLL" target="_blank">oSnapL</a>, <a href="https://namemc.com/profile/eff789f9-3c7f-484b-8464-aacbd667846e" target="_blank">1Mad</a>,&nbsp;<a href="https://twitter.com/cutekitty271" target="_blank">Emma</a>, <a href="https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6" target="_blank">catweapon</a>, <a href="https://twitter.com/KinderFissa" target="_blank">Twen</a>, <a href="https://vnmm.dev/"" target="_blank">vnmm</a>, and <a href="https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768" target="_blank">Vermasium</a> for emotional support!</span>`)
+  document.body.appendChild(q);
+}
+
+
+
+
+function UpdateEverything(transformation) { //this plops the stuff in the actual html page
+  for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
+  document.getElementById('event_' + String(i)).textContent = (transformation[i].event + " in " + MakeFunTimestamps(transformation[i].timestamp));
+  if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
+    //document.getElementById('event_' + String(i)).remove();
+    document.getElementById('event_' + String(i)).style.display = "none";
+    window.HiddenEventCount = window.HiddenEventCount + 1; 
+  }
+
+}
+console.log("Just updated " + (i + 1) + " variables.")
+}
+function getPitPanda() {
+  window.data = window.data_backup;
+  console.log("Found backup.");
+  test_zero(window.data);
+  UpdateEverything(window.data);
+  console.log("Updated values!");
+}
+
+  </script>
+
+<style>
+  a:link {
+    color: #B15AC2;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: #3F2D43;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #E7C2EE;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: #EDDDF0;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+
+  p {
+    font-size: 1.5em
+  }
+  
+  .blinktext {
+	-webkit-animation: blink-text 1000ms linear infinite;
+	-moz-animation: blink-text 1000ms linear infinite;
+	-ms-animation: blink-text 1000ms linear infinite;
+	-o-animation: blink-text 1000ms linear infinite;
+	 animation: blink-text 1000ms linear infinite;
+}
+@keyframes blink-text {
+	0% { color: #FF0000; opacity: 1; }
+	10% { color: #e80000;opacity: 1; }
+	15% { color: #d10000;opacity: 1; }
+	20% { color: #b80000;opacity: 1; }
+	25% { color: #a30000;opacity: 1; }
+	30% { color: #8c0000;opacity: 1; }
+	35% { color: #750000;opacity: 1; }
+	40% { color: #5e0000;opacity: 1; }
+	45% { color: #470000;opacity: 1; }
+	49% { color: #300000;opacity: 1; }
+	50% { color: #190000;opacity: 1; }
+}
+  </style>
+
+</body>
+
+</html>

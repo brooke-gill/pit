@@ -92,7 +92,7 @@
     <p id="madewithlove">Made with love and tears by <a href="dev" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></p>
     <p id="wikiad"><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</p>
     <p id="special_thanks"></p>
-    <p id="version" class="ver"> </p> <span>&mdash; 2023-02-23</span><br><br>
+    <p id="version" class="ver"> </p> <span>&mdash; February 23, 2023</span><br><br>
     </span>
   </span>
 </div>
@@ -103,7 +103,6 @@
   var HiddenEventCount = 0;
   var EventsToLoad = 1;
   var version_number = `BETA` 
-  var wiki_ad = `<br>`
   var counter = 4;
   var settingsOpened = false;
   var NormalText = "#000000";
@@ -126,7 +125,7 @@
   var maps = ["Genesis","Corals","Castle","Elements","Four Seasons"] // for map rotation
 
   document.body.style.fontFamily = CorrectFont;
-  document.getElementById('version').innerHTML = (version_number + " " + wiki_ad);
+  document.getElementById('version').innerHTML = version_number;
 
   var time1 = 0; // time since last desktop notif
   
@@ -137,9 +136,9 @@
   var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
   var AudioEvents = [];
   
-  var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`i find your website really useful, specially when i have the game closed`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","this game is hard","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`]
-  var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","saraacat","litphoenix","adjective",`anoxysm`]
-  var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://twitter.com/saracatxd","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/",`https://statsify.net/`]
+  var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`i find your website really useful, specially when i have the game closed`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`]
+  var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","litphoenix","adjective",`anoxysm`]
+  var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/",`https://statsify.net/`]
   //jojo was here
   var AllSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock']
   var event_sound = new Audio("event_arriving.mp3");
@@ -173,7 +172,6 @@
   }
 
   if(document.body.clientWidth < 800) { // should make the site mobile when needed
-    document.getElementById("settings-ts-dnc").innerText = "Day and Map"
     document.getElementById("settings-ts-tue").innerText = "Until Event"
     document.getElementById("settings-flashing").innerHTML = "<b>Flash: </b>"
     console.log("busy accommodating to the user's hilariously tiny screen")
@@ -619,7 +617,7 @@
     if(randomElement <= -1) {
       randomElement[0] = 0;
     }
-    return (`"` + praise_quotes[randomElement] + `" -<a href="` + praise_urls[randomElement] + `" target="_blank">` + praise_names[randomElement] + `</a>`);
+    return (`"` + praise_quotes[randomElement] + `" &mdash; <a href="` + praise_urls[randomElement] + `" target="_blank">` + praise_names[randomElement] + `</a>`);
   }
   
   function TimeOfDay(s) { // gets the local time of day from a Unix timestamp.
@@ -697,7 +695,7 @@
   
   async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
     if(emergency == true) {
-    document.getElementById('version').innerHTML = (version_number + "e " + wiki_ad);
+    document.getElementById('version').innerHTML = (version_number + "e");
     document.getElementById('mcpqndq').style.display = "none"; // i'm evil
     window.data = await window.emergency_data;
     /*if(Object.keys(data).length == 0) {

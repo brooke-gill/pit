@@ -16,9 +16,9 @@
     <link rel="manifest" href="favicon_icons/site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
     <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
-    <title>Hypixel Pit Events Tracker</title>
-    <script src="emergency.js?v=1"></script>
-    <script src="control.js?v=1"></script>
+    <title>Hypixel Pit Beta Events Tracker</title>
+    <script src="emergency.js?v=3"></script>
+    <script src="control.js?v=3"></script>
     <meta name="theme-color" content="#ffbbff">
     <meta name="description" content="This site allows you to view the upcoming events in the Hypixel Pit in real time."> 
   </head>
@@ -29,17 +29,25 @@
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center"></div>
   
   
-    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span id="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
+    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span class="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
     </div>
 
-    <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate Pit Day and brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old version by <a href="2022" style="color: #ccc">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)</div>
+    <noscript>JavaScript is disabled. This site can't function without it.</noscript>
+
+    <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate Pit Day and brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old version by <a href="2022" style="color: #ccc">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
   
-    <div id="day-night-border" class="timers dnb"><div id="day-night" style="vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg>&nbsp; &mdash; &nbsp;<span id="maprot" class="hand_cursor"></span></div>
-<div class="mobileanno" id="mobileanno"></div>
+    <div id="day-night-border" class="timers dnb"><div id="day-night" style="vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg>&nbsp; &mdash; &nbsp;<span id="maprot" class="hand_cursor" onclick="mapClick()"></span></div>
+<span class="mobilebreak"></span>
+<div class="mobileanno" id="mobileanno" style="display: none"></div>
     
   <div id="settings-section"><br>
+  <p class="option"><span class="settingsheader">&mdash; Style &mdash;</span></p>
   <p class="option"><span><b>Theme</b>: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
   <p class="option"><span><b>Palette</b>: </span><span id="settings-palette-gradients0" onclick="ChangePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="ChangePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='ChangePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)' class="hand_cursor">Theme 3</span></p>
+  <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
+  <p class="option"><span><b>Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
+
+  <p class="option"><span class="settingsheader">&mdash; Quality of Life &mdash;</span></p>
   <p class="option"><span id="tut-notif" style="color: #ffff80"><b>Pre-event notifications</b></span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
   <p id="anotif" class="option"><span>&bullet; <b>Audio notifications</b>: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
   <p id="dnotif" class="option"><span>&bullet; <b>Desktop notifications</b>: </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
@@ -49,8 +57,6 @@
   <p class="option" id="setting-clock-style"><span><b>Clock style</b>: </span><span id="settings-clock-24" onclick='changeClock("24");' class="hand_cursor">24-hour</span><span> / </span><span id="settings-clock-12" onclick='changeClock("12");' class="hand_cursor">12-hour</span></p>
   <p class="option"><span id="settings-flashing"><b>Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='setFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='setFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='setFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='setFlash(-10);' class="hand_cursor">Never</span></span></p>
   <p class="option"><span><b>Event text</b>: </span><span id="settings-classic-off" class="hand_cursor" onclick='changeClassic(0)'>Modern</span><span> / <span id="settings-classic-on" class="hand_cursor" onclick='changeClassic(1)'>Classic</span></p> 
-  <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
-  <p class="option"><span><b>Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
 
   <div id="notifications-major">
     <div><span id="visible-Pizza" onclick='VisibilityToggle("Pizza")' class="hand_cursor">Pizza</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Pizza" onclick='NotifToggle("Pizza")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
@@ -77,14 +83,14 @@
     <br><div id="select-major" style="color: #fff;" onclick='SelectOnly("major")' class="hand_cursor">Majors Only</div>
     <div id="select-minor" style="color: #fff;" onclick='SelectOnly("minor")' class="hand_cursor">Minors Only</div>
     <div id="select-none" style="color: #f77;" onclick='SelectOnly("nothing")' class="hand_cursor">Deselect All</div>
-    <br><div id="save" style="color: #aac;" onclick='SaveSettings()' class="hand_cursor"><i>Settings save<br> automatically!</i></div><div id="save" style="color: #f77;" onclick="SaveSettings('clear')" class="hand_cursor">Clear Settings</div>
+    <br><div id="save" style="color: #aac;" onclick='SaveSettings()' class="hand_cursor"><i>Settings save<br> automatically!</i></div><div id="save" style="color: #f77;" onclick="SaveSettings('clear')" class="hand_cursor">Clear Settings</div><div id="settings-clear-literally-everything" style="color: #b35151; display: none;" onclick="SaveSettings('cleareverything')" class="hand_cursor"><b>Clear Settings and URL</b></div>
   
   </div>
 
   </div>
 
   <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none; text-align: center;"><br>You don't have any events selected!<br>Click the <span style="font-family: Material">settings</span> gear to open the settings. Then, click the event names in the top-right corner to make some visible.<br>Alternatively, click <span onclick="SelectOnly('everything')" style="cursor: pointer; color: #ae4e8e">here</span> to select all events.</span></p>
-  <span id="noevents" class="credits"></span>
+  <span id="noevents" class="bigtext"></span>
   <span id="events"></span>
 
   <hr>
@@ -93,7 +99,7 @@
     <p id="madewithlove">Made with love and tears by <a href="dev" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></p>
     <p id="wikiad"><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</p>
     <p id="special_thanks"></p>
-    <p id="version" class="ver"> </p> <span>&mdash; February 27, 2023</span><br><br>
+    <p id="version" class="ver"> </p> <span>&mdash; March 3, 2023</span><br><br>
     </span>
   </span>
 </div>
@@ -106,11 +112,13 @@
   var version_number = `BETA` 
   var counter = 4;
   var settingsOpened = false;
+  var mapClicked = false;
   var NormalText = "#000000";
   var EventFlashSec = 60;
   var NotifTimer = -10;
   var DoesStuffExist = false;
   var HasStuffLoaded = false;
+  var currentTime; // the current unix timestamp
   var Palette = 'gradients0';
   var SettingsSelectedEvents = 262143;
   var SettingsNotifyEvents = 0;
@@ -138,7 +146,8 @@
   var showEventDNC = true; //Day-night cycle and map timer
   var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
   var AudioEvents = [];
-  
+  var visibleEventIds = []; // list of event IDs that are currently visible
+
   var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`i find your website really useful, specially when i have the game closed`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`]
   var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","litphoenix","adjective",`anoxysm`]
   var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/",`https://statsify.net/`]
@@ -153,11 +162,12 @@
   
   var events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"] // the important one.
   var eventsNoSpaces = ["QuickMaths","DragonEgg","2xRewards","CarePackage","KOTL","KOTH","Auction","GiantCake","Allbounty","Squads","Beast","Pizza","RagePit","Spire","Robbery","Blockhead","Raffle","TeamDeathmatch"]
-  var ShortformEvents = ["MATH","EGG","2X","CARE","KOTL","KOTH","AUC","CAKE","AB","SQU","BST","PZA","RP","SPR","ROB","BH","RFL","TDM"]
+  var shortEvents = ["MATH","EGG","2X","CARE","KOTL","KOTH","AUC","CAKE","BNTY","SQD","BST","PIZ","RAGE","SPI","ROB","BLK","RAF","TDM"]
+  var eventsEmoji = ["🧮", "🐲", "2️⃣", "📦", "🪜", "👑", "💵", "🍰", "🪙", "🏳️", "🐻", "🍕", "🥔", "🏯", "💸", "🧱", "🎟️", "🆚"] // for the tab title. i'm not just messing with you... maybe
   var nicknamesen_CA = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","King of the Ladder","King of the Hill","Auction","Giant Cake","Everyone Gets a Bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
   var pit_wiki_links = ["Quick_Maths","Dragon_Egg","2x_Rewards","Care_Package","King_of_the_Ladder","King_of_the_Hill","Auction","Giant_Cake","Everyone_Gets_a_Bounty","Squads","Beast","Pizza","Rage_Pit","Spire","Robbery","Blockhead","Raffle","Team_Deathmatch"]
   var trueEventColors = ["#FF55FF","#AA00AA","#00AA00","#FFAA00","#55FF55","#55FFFF","#FFFF55","#FF55FF","#FFAA00","#55FFFF","#55FF55","#FF5555","#FF5555","#AA00AA","#FFAA00","#5555FF","#FFAA00","#AA00AA"]
-
+  
   var panicevents = []; // list of events that are red and flashy
   var VisibilityLength = [15,90,240,30,180,240,30,120,15,480,480,480,420,480,420,480,480,480]
   var IsItACountdown = [`<span style="color: #ff55ff"><b>QUICK MATHS!</b></span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #aa00aa"><b>DRAGON EGG</b></span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55"><b>Pit Area</b></span>`,"yes",`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #ffaa00"><b>CARE PACKAGE</b></span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55"><b>Pit Area</b></span>`,"yes","yes",`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #ffaa00"><b>AUCTION!</b></span> <span style="color: #AAAAAA">Check auctioneer or chat!</span>`,"yes",`<span style="color: #ff55ff"><b>MINOR EVENT!</b></span> <span style="color: #ffAA00;"><b>EVERYONE GETS A BOUNTY!</b></span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
@@ -180,12 +190,17 @@
     document.getElementById("settings-ts-tue").innerText = "Until Event"
     document.getElementById("settings-flashing").innerHTML = "<b>Flash: </b>"
     console.log("busy accommodating to the user's hilariously tiny screen")
+    document.getElementById("mobileanno").style.display = "";
     document.getElementById("current-event").setAttribute("id","replacement") // swaps the IDs
     document.getElementById("mobileanno").setAttribute("id","current-event")
     document.getElementById("replacement").setAttribute("id","mobileanno")
-
+    var mobilebreaks = document.getElementsByClassName('mobilebreak');
+      for (var i = 0; i < mobilebreaks.length; i++) {
+       var item = mobilebreaks[i];  
+       console.log("one item")
+       item.innerHTML = '<br>';
+    }
     document.getElementById("current-event").style.width = "100%";
-    document.getElementById("mobilebreak").innerHTML = "<br>"; // modifies whitespace to make the mobile site look better
     document.getElementById("facebreak").innerHTML = "";
     document.getElementById("face").style.display = "none";
   }
@@ -193,7 +208,7 @@
   document.getElementById('settings').style.color = "NormalText";
 
   function MakeFunTimestamps(convertible) {
-  let currentTime = (Date.now() + offset);
+  currentTime = (Date.now() + offset);
   if (convertible - currentTime <= 0) {
     convertible = "Passed!"
   }
@@ -298,8 +313,8 @@
   
   function DayNightCycle() { //OPTIMIZE THIS please add variable that's like "when the day is dark please do not call the svg again please"
   //I will not >:)
-    let CurrentTime = Date.now()  + offset;
-    let DayTime = ((CurrentTime + 10000) % 2160000)/1000; //10-second offset
+    currentTime = Date.now()  + offset;
+    let DayTime = ((currentTime + 10000) % 2160000)/1000; //10-second offset
     if(DayTime < 1440) {
       //console.log("The day ends in " + (1440 - DayTime) + " seconds.")
       document.getElementById("day-night").innerHTML = (AboutMe((1440 - DayTime)*1000) + "&nbsp;");
@@ -443,20 +458,17 @@
     let CurrentUnix = (Date.now()  + offset) / 1000;
     mapid = Math.floor(mod((samplemaprotation - CurrentUnix), 3024000) / 604800);
     
-    if(!isMapHover) document.getElementById('maprot').innerHTML = "<b>" + maps[mod(mapid - 1, 5)] + "</b> in " + TimestampIt(mod((samplemaprotation - CurrentUnix), 604800));
+    if(!mapClicked) document.getElementById('maprot').innerHTML = "<b>" + maps[mod(mapid - 1, 5)] + "</b> in " + TimestampIt(mod((samplemaprotation - CurrentUnix), 604800));
   }
 
   function mapClick() {
-    isMapHover = true;
-    document.getElementById('maprot').innerHTML = `<span style="color: #edbe1f"><b>` + maps[mapid] + `</b></span> &rarr; <span style="color: #2bbddb"><b>` + maps[mod(mapid - 1, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 2, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 3, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 4, 5)];
+    if(!mapClicked) {
+      mapClicked = true;
+      document.getElementById('maprot').innerHTML = `<span style="color: #edbe1f"><b>` + maps[mapid] + `</b></span> &rarr; <span style="color: #2bbddb"><b>` + maps[mod(mapid - 1, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 2, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 3, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 4, 5)];
+    } else {
+      mapClicked = false;
+    }
   }
-
-  function mapStopClick() {
-    isMapHover = false;
-  }
-
-  document.getElementById('maprot').addEventListener('mousedown', mapClick);
-  document.getElementById('maprot').addEventListener('mouseup', mapStopClick);
 
   function changeDefOver(e) {
     e.target.classList.toggle('opacity-toggle');
@@ -535,6 +547,7 @@
       .filter(el => getComputedStyle(el).color === 'rgb(0, 0, 0)')
       .forEach(el => el.style.color = '#ffffff')
     }
+    if(DoesStuffExist) addNamesandImages(window.data);
     SaveSettings('noreload');
   }
   
@@ -647,11 +660,12 @@
       document.getElementById('alert-noevents').style.display = "none";
     }
     ChangeTheme(theme);
+    checkVisibleEvents();
     console.log(SettingsSelectedEvents);
   }
   
   function GeneratePraise() { // generates a quote (used on the bottom of the site)
-    const randomElement = [Math.floor(Math.random() * (praise_quotes.length + 3)) - 3]; //adds very slight bias to quote #0
+    const randomElement = [Math.floor(Math.random() * (praise_quotes.length + 4)) - 4]; //adds very slight bias to quote #0
     console.log("Item " + randomElement + " chosen for praise!");
     if(randomElement <= -1) {
       randomElement[0] = 0;
@@ -682,6 +696,7 @@
       noevents = false;
     }*/
     if(counter >= 1400) iGetIt();
+    if(counter <= 1400) document.getElementById("dismissalprogress").style.width = (1 - counter / 1400) * 100 + "%";
   }
 
   // ["Quick Maths","Dragon Egg","2x Rewards","Care Package",
@@ -703,7 +718,7 @@
   
   var lightColors2 = ["#FFAEBC","#E29CB4","#B4F8C8","#E4D4B4","#F1CBB0","#A0E7E5","#F4F4CC","#C5E3F2","#FBE7C6","#14C2DD","#C7F954","#FCC27C","#FF6F61","#64ABD1","#FDD55E","#5CB7D4","#EEB968","#81599F",]
   var darkColors2 = ["#003A61","#194475","#2E4180","#323275","#0E2F82","#305B8C","#315F82","#196B82","#02636E","#0ACF87","#2CB8AE","#219CD1","#438BDE","#1B96DE","#2BB5BA","#25AACF","#2D82D6","#4BD6B8",]
-  var darkColors1 = ["#4F2561","#3D2C5C","#782C91","#8C3A81","#70287D","#504178","#402459","#AB1B7D","#661563","#DE8F10","#FA9E0A","#DB7821","#D19D49","#E84E3C","#E6C853","#ED7C2B","#CF8D32","#E3DD30",] 
+  var darkColors1 = ["#4F2561","#3D2C5C","#782C91","#8C3A81","#70287D","#504178","#402459","#AB1B7D","#661563","#DE8F10","#FA9E0A","#DB7821","#D19D49","#E84E3C","#E6C853","#ED7C2B","#CF8D32","#D3CD30",] 
   var lightColors1 = ["#F7E497","#E3DC7B","#D9C755","#EBC86A","#F7C997","#EDD368","#F2B583","#EDD09D","#EB8773","#AB419B","#C2619E","#D93FB7","#B83DB3","#E038A3","#C71C60","#D45BA1","#E84179","#E344E0",]
   //var darkColors3 = ["#321433","#33142b","#143321","#332314","#1e3314","#143333","#332a14","#261433","#2f3314","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
   var lightColors3 = ["#FE9FBF","#F2C4CD","#ffaed7","#F2A2C0","#FF9DBB","#FF92B9","#ECAFB7","#FFC6DA","#FEA8C5","#D98FC5","#BF5AA4","#E68DCF","#E08FCA","#E884CC","#C15BA7","#E78CD1","#DC87BE","#CF6EB1"]
@@ -769,7 +784,7 @@
   }
   
   function AudioChecker() {
-    let currentTime = (Date.now() + offset);
+    currentTime = (Date.now() + offset);
     if(DoesStuffExist == true) {
     for(var i = window.HiddenEventCount; i <= window.HiddenEventCount + 3 && i < EventsToLoad; i++) { //thanks Clipi-12!
       if (window.AudioEvents.includes(window.data[i]['event'])  && window.data[i]['timestamp'] - currentTime <= (NotifTimer * 1000 + 1000) && window.data[i]['timestamp'] - currentTime >= (NotifTimer * 1000 - 1000)) {
@@ -791,7 +806,7 @@
     HasStuffLoaded = true; //looks like the stuff has loaded
     for(var i = window.HiddenEventCount; i <= window.HiddenEventCount && i < EventsToLoad; i++) { 
     if(showEventTuE == true) document.getElementById('timer_' + String(i)).innerHTML = MakeFunTimestamps(transformation[i].timestamp);
-    if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) {
+    if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) { // if the topmost event's timer ran out
       for(var j = 0; j <= i; j++) {
         document.getElementById('event_' + String(j)).style.display = "none"; //This should get rid of some bugs with events not hiding.
       }
@@ -800,11 +815,13 @@
       console.log(DemolitionTime);
       TimeOfEventStart = Date.now() + offset;
       console.log(TimeOfEventStart);
+
+      checkVisibleEvents();
       document.getElementById("current-event").style.display = "block";
       document.getElementById('special_thanks').innerHTML = GeneratePraise(); // updates the praise on the bottom of the site
     }
 
-   let currentTime = (Date.now() + offset);
+   currentTime = (Date.now() + offset);
    if ((transformation[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (transformation[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "light" || theme == "dark")) {
     console.log(i)
     document.getElementById('event_'+ String(i)).classList.remove("blinktext-light");
@@ -829,8 +846,8 @@
   });
 
   function changeColor() { // changes the color of the top item when time's running out (as described in setFlash or something)
-    CurrentTime = Date.now();
-    timeleft = window.data[HiddenEventCount]['timestamp'] - CurrentTime;
+    currentTime = (Date.now() + offset);
+    timeleft = window.data[HiddenEventCount]['timestamp'] - currentTime;
 
     if(timeleft < EventFlashSec * 1000 && panicevents.indexOf(HiddenEventCount) == -1) {
       document.getElementById('event_' + HiddenEventCount).style.background = "linear-gradient(120deg, rgb(240, 40, 20) 0%, rgb(100, 60, 36) 100%)";
@@ -859,7 +876,9 @@
 
   function resetOffset() { // resets the offset, then reloads the page
     localStorage.setItem('offset', 0);
-    location.reload();
+    let here = new URL(window.location.href);
+    here.searchParams.delete("offset"); // deletes offset from URL and localStorage
+    window.location = here;
   }
   
   function VisibilityToggle(toggle) {
@@ -892,6 +911,7 @@
     }
     console.log("List of events that are visible:")
     console.log(window.VisibleEvents);
+    checkVisibleEvents();
     SaveSettings('noreload');
   }
 
@@ -913,9 +933,26 @@
       } else {
         console.log("setting for " + allSettings[h] + " found in the URL!");
         settingValues[h] = site_url.searchParams.get(allSettings[h]);
+        document.getElementById("settings-clear-literally-everything").style.display = "";
       }
     }
     return settingValues;
+  }
+
+  function checkVisibleEvents() { // returns an array with IDs of visible events
+    visibleEventIds = [];
+    for(a = 0; a < EventsToLoad; a++) {
+      if(document.getElementById('event_' + a).style.display != "none") visibleEventIds.push(a);
+    }
+  }
+
+  function updateTabTimer() { // updates the timer in the tab
+    if(DoesStuffExist && visibleEventIds.length > 0) {
+      var firstIndex = events.indexOf(data[visibleEventIds[0]]['event']);
+      document.title = "[" + eventsEmoji[firstIndex] + " " +  shortEvents[firstIndex] + " " + MakeFunTimestamps(data[visibleEventIds[0]]['timestamp']) + "] | Hypixel Pit Events Tracker";
+    } else {
+      document.title = "Hypixel Pit Events Tracker";
+    }
   }
   
   function URLToSettings() {
@@ -986,7 +1023,7 @@
       }    
       console.log(VisibleEvents);
   
-      for(var i = 0; i < VisibleEvents.length; i++) {
+      for(var i = 0; i < VisibleEvents.length; i++) { // filter out events that aren't in VisibleEvents
         for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
         if (window.data[j]["event"].includes(VisibleEvents[i]) && !ok_ids.includes(j)) {
           document.getElementById('event_' + String(j)).style.display = "block";
@@ -1003,6 +1040,8 @@
           console.log("hid " + window.data[j]["event"])
         }
       }
+
+      checkVisibleEvents();
   
       var leadingZeroes = (num, places) => String(num).padStart(places, '0')
       var number = siteLoadSettingValues[1];
@@ -1067,7 +1106,7 @@
   }
   
   function CurrentEvent() {
-    let currentTime = Date.now() + offset;
+    currentTime = Date.now() + offset;
   
     if (HiddenEventCount > 0 && DemolitionTime - currentTime >= 0) {
       var result = AboutMe(DemolitionTime - currentTime);
@@ -1162,23 +1201,22 @@
       localStorage.setItem('settings-version', "12");
   }
   
-  function SaveSettings(action = false) { 
+  function SaveSettings(action = false) {  // save settings, clear settings, reload page
     if(DoesStuffExist) {
     console.log("Saved settings.");
     
       if(action == "clear") {
-        window.localStorage.clear()
+        window.localStorage.clear();
         window.location.reload();
       } else {
-      let here = new URL(window.location.href);
-      for(i = 0; i < allSettings.length; i++) {
-      here.searchParams.delete(allSettings[i]);
-    }
-  
+      if(action == "cleareverything") {
+        let here = new URL(window.location.href);
+        for(i = 0; i < allSettings.length; i++) here.searchParams.delete(allSettings[i]);
+        window.localStorage.clear();
+        window.location = here;
+      }
       localSave();
-
-      //if(action != "noreload") window.location = here; 
-  }
+    }
   }
 }
 
@@ -1192,23 +1230,23 @@
     for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
       var nicknamevent = nickname(transformation[i].event);
       var wikievent = nickname(transformation[i].event, true);
-      if(classicMode == false) {
+      if(classicMode == true) {
+        if (showEventToD == true && showEventTuE == true) {
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></b> (` + TimeOfDay(transformation[i].timestamp) + `)`);
+        } else if (showEventToD == false && showEventTuE == true) {
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></b>`);
+        } else if (showEventToD == true && showEventTuE == false) {
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></b> (` + TimeOfDay(transformation[i].timestamp) + `)`);
+        } else if (showEventToD == false && showEventTuE == false) {
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></b>`);
+        }
+      } else {
         if (showEventToD == true && showEventTuE == true) {
           document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span> &mdash; ` + TimeOfDay(transformation[i].timestamp));
         } else if (showEventToD == false && showEventTuE == true) {
           document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span>`);
         } else if (showEventToD == true && showEventTuE == false) {
           document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> at ` + TimeOfDay(transformation[i].timestamp));
-        } else if (showEventToD == false && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b>`);
-        }
-      } else {
-        if (showEventToD == true && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> (` + TimeOfDay(transformation[i].timestamp) + `)`);
-        } else if (showEventToD == false && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b>`);
-        } else if (showEventToD == true && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> (` + TimeOfDay(transformation[i].timestamp) + `)`);
         } else if (showEventToD == false && showEventTuE == false) {
           document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b>`);
         }
@@ -1267,6 +1305,7 @@
       DayNightCycle();
       mapRotation();
       autoReload();
+      updateTabTimer();
       if(counter % 25 == 0) noEvents();
     }
     RapidFirst(window.data);
@@ -1295,6 +1334,19 @@
       -moz-background-clip: text;
       -moz-text-fill-color: transparent;
       display: inline-block;
+    }
+
+    .settingsheader {
+      font-size: 18px;
+      background: linear-gradient(90deg, #06f5a5 0%, #96a0b0 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; 
+      -moz-background-clip: text;
+      -moz-text-fill-color: transparent;
+      font-variant-caps: small-caps;
+      font-weight: bold;
+      font-style: oblique;
     }
 
     .animated {
@@ -1372,10 +1424,8 @@
     .mobileanno {
       height: 0;
       padding: 5px;
-      float: left;
+      bottom: 20px;
       position: relative;
-      bottom: 78px;
-      right: 40px;
       display: flex;
       align-items: center;
       vertical-align:center;
@@ -1383,7 +1433,7 @@
       font-size: 14px;
     }
   
-    p:not(.credits > p, .option) {
+    p:not(.credits > p, .option, .settingsheader) {
       font-size: 1.5em;
     }
 
@@ -1601,7 +1651,17 @@ a, .icon, div {
   font-style: oblique 9deg;
   opacity: 0.8;
   font-weight: 400;
-  line-height: 0.7em;
+  line-height: 1em;
+}
+
+.bigtext {
+  color: rgba(255, 255, 255, 0.6);
+  position: relative;
+  left: 10px;
+  font-size: 20px;
+  font-style: oblique 9deg;
+  opacity: 0.8;
+  font-weight: 400;
 }
 
 .ver {

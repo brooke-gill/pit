@@ -17,8 +17,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
     <link href="font/webfontkit-20220210-002804/stylesheet.css" type="text/css" rel="stylesheet">
     <title>Hypixel Pit Beta Events Tracker</title>
-    <script src="emergency.js?v=3"></script>
-    <script src="control.js?v=3"></script>
+    <script src="emergency.js?v=4"></script>
+    <script src="control.js?v=4"></script>
     <meta name="theme-color" content="#ffbbff">
     <meta name="description" content="This site allows you to view the upcoming events in the Hypixel Pit in real time."> 
   </head>
@@ -1258,19 +1258,20 @@
   }
 
   function addNamesandImages(transformation) { // adds names like "King of the Hill" and images to each div
-    for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
+    for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
       var nicknamevent = nickname(transformation[i].event);
       var wikievent = nickname(transformation[i].event, true);
       if(classicMode == true) {
         if (showEventToD == true && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></b> (` + TimeOfDay(transformation[i].timestamp) + `)`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
         } else if (showEventToD == false && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></b>`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span>`);
         } else if (showEventToD == true && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></b> (` + TimeOfDay(transformation[i].timestamp) + `)`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
         } else if (showEventToD == false && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></b>`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span>`);
         }
+        if(data[i].type == "major") document.getElementById("boldmajor_" + i).style.fontWeight = "bold";
       } else {
         if (showEventToD == true && showEventTuE == true) {
           document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span> &mdash; ` + TimeOfDay(transformation[i].timestamp));
@@ -1322,7 +1323,7 @@
 
   for(i = window.HiddenEventCount; i < EventsToLoad; i++) {
    if(conversion[i]['type'] == "major") { // fix this
-    document.getElementById('event_' + String(i)).style.boxShadow = "inset 0px 0px 0px 3px rgba(255, 255, 255, 0.6)";
+    document.getElementById('event_' + String(i)).style.boxShadow = "inset 0px 0px 0px 3px rgba(255, 255, 255, 0.7)";
     document.getElementById('event_' + String(i)).style.backgroundOrigin = "border-box";
    }
   }

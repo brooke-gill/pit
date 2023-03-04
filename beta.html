@@ -101,7 +101,7 @@
     <p id="madewithlove">Made with love and tears by <a href="dev" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></p>
     <p id="wikiad"><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</p>
     <p id="special_thanks"></p>
-    <p id="version" class="ver"> </p> <span>&mdash; March 3, 2023</span><br><br>
+    <p id="version" class="ver"> </p> <span>&mdash; March 4, 2023</span><br><br>
     </span>
   </span>
 </div>
@@ -1234,15 +1234,18 @@
   function SaveSettings(action = false) {  // save settings, clear settings, reload page
     if(DoesStuffExist) {
     console.log("Saved settings.");
+    var annoyingBanner = localStorage.getItem("gotit");
     
       if(action == "clear") {
         window.localStorage.clear();
+        if(annoyingBanner != undefined) localStorage.setItem("gotit", annoyingBanner);
         window.location.reload();
       } else {
       if(action == "cleareverything") {
         let here = new URL(window.location.href);
         for(i = 0; i < allSettings.length; i++) here.searchParams.delete(allSettings[i]);
         window.localStorage.clear();
+        if(annoyingBanner != undefined) localStorage.setItem("gotit", annoyingBanner);
         console.log("cleared local storage :)")
         window.location = here;
       }

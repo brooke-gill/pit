@@ -80,7 +80,7 @@
 
   <span id="events"></span>
 
-  <p style="position:relative; left: 10px;" id="madewithlove"><span style="font-family: minecraftbold">NOTE!</span> brookeafk.com will be switching to a new (opt-outable) version starting <s>February 27th</s> <i>extremely soon</i>. <a href="beta">Click here</a> to preview it before it goes live.<br><br>Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></span></p>
+  <p style="position:relative; left: 10px;" id="madewithlove"><span style="font-family: minecraftbold">NOTE!</span> brookeafk.com will be switching to a new (opt-outable) version starting <s>February 27th</s> <i><s>extremely soon</s></i> <b>March 11th PROBABLY</b>. <a href="beta">Click here</a> to preview it before it goes live.<br><br>Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></span></p>
   <p id="version" style="position: relative; left: 10px;"></p>
   <p id="special_thanks"><span style="position: relative; left: 10px;"></span></p>
 
@@ -107,6 +107,8 @@
   var CorrectBoldStyleless = "minecraftbold";
   var RealWeight = 400;
   var offset = 0;
+
+  localStorage.setItem('aviduser', 1) // used for preparations for the redesign. this will determine if it's opt-in (1) or opt-out (0) for you
 
   document.body.style.fontFamily = CorrectFont;
   document.getElementById('version').innerHTML = (version_number + " " + wiki_ad);

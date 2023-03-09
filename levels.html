@@ -1,0 +1,275 @@
+<body>
+<input type="text" id="xpinput" onkeyup="updateLevel()" style="text-align: center; font-variant-numeric: tabular-nums; font-size: 30px;">
+<p id="level" style="text-align: center; font-variant-numeric: tabular-nums; font-size: 20px;"></p> 
+</body> 
+<script>
+        prestige_xp = [65950, 138510, 217680, 303430, 395760, 494700, 610140, 742040, 906930, 1104780, 1368580, 1698330, 2094030, 2555680, 3083280, 3676830, 4336330, 5127730, 6051030, 7106230, 8293330, 9612330, 11195130, 13041730, 15152130, 17526330, 20164330, 23132080, 26429580, 31375830, 37970830, 44631780, 51292730, 57953680, 64614630, 71275580, 84465580, 104250580, 130630580, 163605580, 213068080, 279018080, 361455580, 460380580,575793080, 707693080, 905543080, 1235293080, 1894793080, 5192293080,11787293080,];
+        xp_map = [15, 30, 50, 75, 125, 300, 600, 800, 900, 1000, 1200, 1500, 0];
+        prestiges = [100, 110, 120, 130, 140, 150, 175, 200, 250, 300, 400, 500, 600, 700, 800, 900, 1000, 1200, 1400, 1600, 1800, 2000, 2400, 2800, 3200, 3600, 4000, 4500, 5000, 7500, 10000, 10100, 10100, 10100, 10100, 10100, 20000, 30000, 40000, 50000, 75000, 100000, 125000, 150000, 175000, 200000, 300000, 500000, 1000000, 5000000, 10000000,];
+        prestigecolors = [ "7", "9", "e", "6", "c", "5", "d", "f", "b", "1", "0", "4", "8",];
+        levelcolors = [ "7", "9", "3", "2", "a", "e", "b6", "bc", "b4", "b5", "bd", "bf", "bb", ];
+
+
+function xpToLevel(experience, data_type) {
+    x_prestige = 0;
+    x_level = 120;
+    x_120level = 0;
+
+    /* Data Types:
+        0: Unformatted      - "[I-26]"
+        1: HTML             - "<span class="m9"> ..."
+        2: Just prestige    - 1
+        3: Just level       - 26
+        4: [120] of pres XP - 138510
+    */
+
+    for (; x_prestige < 50; x_prestige++) {
+        if (experience <= prestige_xp[x_prestige]) {
+            break;
+        }
+    }
+
+    x_120level = prestige_xp[x_prestige];
+
+    while (x_120level > experience) {
+        //console.log(x_120level - experience);
+        x_level = x_level - 1;
+        x_120level = x_120level - Math.ceil((xp_map[Math.floor(x_level / 10)] * prestiges[x_prestige]) / 100);
+    }
+
+    x_levelcolor = levelcolors[Math.floor(x_level / 10)]
+
+    x_prestigecolor = prestigeColor(x_prestige);
+
+    if(data_type == 2) {
+        return x_prestige;
+    } else if(data_type == 3) {
+        return x_level;
+    } else if(x_prestige == 0) {
+        if(data_type == 0) {
+            return "[" + x_level + "]";
+        } else if(data_type == 1) {
+            return `<span class="m7">` + `[<span class="m` + x_levelcolor + `">` + x_level + `</span>]</span>`;
+        }
+
+    } else {
+        if(data_type == 0) {
+            return "[" + convertToRoman(x_prestige) + "-" + x_level + "]" 
+        } else {
+            return `<span class="m` + x_prestigecolor + `">[<span class="me">` + convertToRoman(x_prestige) + `</span>-<span class="m` + x_levelcolor + `">` + x_level + `</span>]</span>`
+        }
+    }
+    //return "[" + x_prestige + "-" + x_level + "]";
+}
+
+function updateLevel() {
+    showCalc = false;
+    document.getElementById("level").innerHTML = ""
+    userval = xpinput.value;
+    human = xpinput.value;
+    console.log(userval);
+    for(a = 50; a > -1; a--) {        
+        var re = new RegExp("p" + a,"g");
+        userval = (userval.replace(re, prestige_xp[a]));
+        human = (human.replace(re, "[" + (a==0?"":convertToRoman(a) + "-") + "120]"));
+    }
+    console.log(human)
+    userval = (userval.replace(",", ""));
+
+    if (eval(userval) > 0) {
+        userval = eval(userval);
+        console.log("yay~")
+        showCalc = true;
+    }
+    else if(userval > 0) userval = userval;
+
+    if(showCalc) document.getElementById("level").innerHTML += `<span class="mb"><i>(` + human + `)</i></span><br>`
+    if(userval != "") document.getElementById("level").innerHTML += `<span class="mb">` + userval.toLocaleString() + ` XP:</span><br><span style="font-size: 60px">` + xpToLevel(userval, 1) + `</span>`
+    else document.getElementById("level").innerHTML = `Enter an amount of XP into the text box to figure out what level it is!`
+}
+
+function convertToRoman(num) {
+            var roman = {
+                M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1,
+            };
+            var str = "";
+
+            for (var i of Object.keys(roman)) {
+                var q = Math.floor(num / roman[i]);
+                num -= q * roman[i];
+                str += i.repeat(q);
+            }
+            return str;
+}
+
+function prestigeColor(prestige, hex = false) {
+            if(hex) {
+                if(prestige == 0) return prestigecolorsHEX[0];
+                if(prestige == 48 || prestige == 49) return prestigecolorsHEX[11];
+                if(prestige == 50) return prestigecolorsHEX[12];
+                else return prestigecolorsHEX[Math.floor(prestige / 5) + 1];
+            }
+            if(prestige == 0) return prestigecolors[0];
+            if(prestige == 48 || prestige == 49) return prestigecolors[11];
+            if(prestige == 50) return prestigecolors[12];
+            else return prestigecolors[Math.floor(prestige / 5) + 1];
+}
+
+</script>
+<style>
+        .m0 {
+        color: #000;
+    }
+
+    .m1 {
+        color: #00a;
+    }
+
+    .m2 {
+        color: #0a0;
+    }
+
+    .m3 {
+        color: #0aa;
+    }
+
+    .m4 {
+        color: #a00;
+    }
+
+    .m5 {
+        color: #a0a;
+    }
+
+    .m6 {
+        color: #fa0;
+    }
+
+    .m7 {
+        color: #aaa;
+    }
+
+    .m8 {
+        color: #555;
+    }
+
+    .m9 {
+        color: #55f;
+    }
+
+    .ma {
+        color: #5f5;
+    }
+
+    .mb {
+        color: #5ff;
+    }
+
+    .mc {
+        color: #f55;
+    }
+
+    .md {
+        color: #f5f;
+    }
+
+    .me {
+        color: #ff5;
+    }
+
+    .mf {
+        color: #fff;
+    }
+
+    .mb0 {
+        color: #000;
+    }
+
+    .mb1 {
+        color: #00a;
+        font-weight: bold;
+    }
+
+    .mb2 {
+        color: #0a0;
+        font-weight: bold;
+    }
+
+    .mb3 {
+        color: #0aa;
+        font-weight: bold;
+    }
+
+    .mb4 {
+        color: #a00;
+        font-weight: bold;
+    }
+
+    .mb5 {
+        color: #a0a;
+        font-weight: bold;
+    }
+
+    .mb6 {
+        color: #fa0;
+        font-weight: bold;
+    }
+
+    .mb7 {
+        color: #555;
+        font-weight: bold;
+    }
+
+    .mb8 {
+        color: #aaa;
+        font-weight: bold;
+    }
+
+    .mb9 {
+        color: #55f;
+        font-weight: bold;
+    }
+
+    .mba {
+        color: #5f5;
+        font-weight: bold;
+    }
+
+    .mbb {
+        color: #5ff;
+        font-weight: bold;
+    }
+
+    .mbc {
+        color: #f55;
+        font-weight: bold;
+    }
+
+    .mbd {
+        color: #f5f;
+        font-weight: bold;
+    }
+
+    .mbe {
+        color: #ff5;
+        font-weight: bold;
+    }
+
+.mbf {
+        color: #fff;
+        font-weight: bold;
+    }
+
+    @font-face {
+  font-family: Inter;
+  src: url("./font/InterVariable.ttf")
+}
+
+* {
+    font-family: Inter;
+}
+
+body {
+    background-color: #252525;
+}
+    </style>

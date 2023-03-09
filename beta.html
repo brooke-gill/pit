@@ -32,7 +32,9 @@
     <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span class="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
     </div>
 
-    <noscript>JavaScript is disabled. This site can't function without it.</noscript>
+    <noscript style="font-size: 80px">JavaScript is disabled. This site can't function without it.</noscript>
+
+    
 
     <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate Pit Day and brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old version by <a href="2022" style="color: #ccc">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
   
@@ -166,8 +168,8 @@
 
   var events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"] // the important one.
   var eventsNoSpaces = ["QuickMaths","DragonEgg","2xRewards","CarePackage","KOTL","KOTH","Auction","GiantCake","Allbounty","Squads","Beast","Pizza","RagePit","Spire","Robbery","Blockhead","Raffle","TeamDeathmatch"]
-  var shortEvents = ["MATH","EGG","2X","CARE","KOTL","KOTH","AUC","CAKE","BNTY","SQD","BST","PIZ","RAGE","SPI","ROB","BLK","RAF","TDM"]
-  var eventsEmoji = ["🧮", "🐲", "2️⃣", "📦", "🪜", "👑", "💵", "🍰", "🪙", "🏳️", "🐻", "🍕", "🥔", "🏯", "💸", "🧱", "🎟️", "🆚"] // for the tab title. i'm not just messing with you... maybe
+  var shortEvents = ["MATH","EGG","2X","CARE","KOTL","KOTH","AUC","CAKE","BNTY","SQD","BST","PZA","RAGE","SPI","ROB","BLK","RAF","TDM"]
+  var eventsEmoji = ["🧮", "🐲", "2️⃣\u{FE0F}", "📦", "🪜", "👑", "💵", "🍰", "🪙", "🏳️", "🐻", "🍕", "🥔", "🏯", "💸", "🧱", "🎟️", "🆚"] // for the tab title. i'm not just messing with you... maybe
   var nicknamesen_CA = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","King of the Ladder","King of the Hill","Auction","Giant Cake","Everyone Gets a Bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
   var pit_wiki_links = ["Quick_Maths","Dragon_Egg","2x_Rewards","Care_Package","King_of_the_Ladder","King_of_the_Hill","Auction","Giant_Cake","Everyone_Gets_a_Bounty","Squads","Beast","Pizza","Rage_Pit","Spire","Robbery","Blockhead","Raffle","Team_Deathmatch"]
   var trueEventColors = ["#FF55FF","#AA00AA","#00AA00","#FFAA00","#55FF55","#55FFFF","#FFFF55","#FF55FF","#FFAA00","#55FFFF","#55FF55","#FF5555","#FF5555","#AA00AA","#FFAA00","#5555FF","#FFAA00","#AA00AA"]
@@ -481,7 +483,7 @@
   function mapClick() {
     if(!mapClicked) {
       mapClicked = true;
-      document.getElementById('maprot').innerHTML = `<span style="color: #edbe1f"><b>` + maps[mapid] + `</b></span> &rarr; <span style="color: #2bbddb"><b>` + maps[mod(mapid - 1, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 2, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 3, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 4, 5)];
+      document.getElementById('maprot').innerHTML = `<span style="color: #edbe1f"><b><span class="tip">` + maps[mapid] + `<span class="tiptext">The current map.</span></span></b></span> &rarr; <span style="color: #2bbddb"><b><span class="tip">` + maps[mod(mapid - 1, 5)] + `<span class="tiptext">The upcoming map.</span></span></b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 2, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 3, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 4, 5)];
     } else {
       mapClicked = false;
     }
@@ -1456,6 +1458,7 @@
       vertical-align:center;
       justify-content: center;
       font-size: 14px;
+      z-index: 1;
     }
 
     .mobileanno {
@@ -1665,6 +1668,51 @@ a, .icon, div {
   font-size: 1.5em;
   line-height: 100%;
   margin: 5px;
+}
+
+.tip {
+  position: relative;
+  border-bottom: 1px dotted #ffffff88;
+  cursor: help;
+}
+
+.tip .tiptext {
+  visibility: hidden;
+  word-wrap: break-word;
+  width: 160px;
+  background-color: #000000cc;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: -85px;
+  padding: 10px;
+  font-weight: 400;
+  font-style: oblique;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.tip .tiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #00000088 transparent transparent transparent;
+}
+
+.tip:hover .tiptext, .tip:active .tiptext {
+  visibility: visible;
+}
+
+.tip:hover .tiptext {
+  opacity: 1;
 }
 
 #notifications-major {

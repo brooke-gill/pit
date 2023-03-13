@@ -27,7 +27,6 @@
   
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center">Current events will<br>show up here.</div>
   
-  
     <div class="img-with-text" display=""><img id="logo" src="3457688aa57c4d71ab9d22b04f9160db.png" alt="hi!" draggable="false" width=50px, height=auto, style="float:left"><p style="padding: 15px; padding-left: 60px; padding-top: 8px" id="brookeafk-com">brookeafk.com</p><span style="position:relative; left:60px; top:-40px;" id="settings" onclick="SettingsMenu()" class="hand_cursor">View Settings</span>
     </div>
   
@@ -35,6 +34,7 @@
     " id="day-night-border"><div id="day-night" style="font-size: 22px; vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg></div>
     
   <div id="settings-section" style="display: none; position: relative; bottom: 40px;">
+    <p style="font-size:15px"><span><b>Version</b>: </span><span onclick='window.location = "beta"' style="cursor: pointer; color: #d276be">New</span><span> / </span><span>Old</span></p> 
   <p style="font-size:15px"><span>Theme: </span><span id="settings-theme-dark" onclick='ChangeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='ChangeTheme("light")'>Light</span></p> 
   <p style="font-size:15px"><span>Palette: </span><span id="settings-palette-0" onclick='ChangePalette(0)'>Theme 0</span> / <span id="settings-palette-1" onclick='ChangePalette(1)'>Theme 1</span> / <span id="settings-palette-2" onclick='ChangePalette(2)'>Theme 2</span> / <span id="settings-palette-3" onclick='ChangePalette(3)'>Theme 3</span></p>
   <p style="font-size:15px"><span id="tut-notif" style="color: #ffff80">Pre-event notifications</span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
@@ -46,7 +46,7 @@
   <p style="font-size:15px"><span id="settings-flashing">Flashing text: </span><span id="settings-flash"><span id="settings-flash-60" onclick='EventFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='EventFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='EventFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='EventFlash(-10);' class="hand_cursor">Never</span></span></p>
   <p style="font-size:15px"><span>Font: </span><span id="settings-font-minecraft" class="hand_cursor" onclick='ChangeFont("minecraftregular")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='ChangeFont("sans-serif")'>Sans-Serif</span></p> 
   <p style="font-size:15px"><span id="alert-noevents" style="color: #ff7777; display: none">You don't have any events selected!<br>Click the event names in the top-right corner to make some visible.</span></p>
-
+  
   <div id="notifications-major" style="display: block; position: absolute; top: -50px; right: 200px; text-align: right; font-size: 15px; color: #FFFFFF;">
     <div><span id="visible-Pizza" onclick='VisibilityToggle("Pizza")' class="hand_cursor">Pizza</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Pizza" onclick='NotifToggle("Pizza")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
     <div><span id="visible-Raffle" onclick='VisibilityToggle("Raffle")' class="hand_cursor">Raffle</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Raffle" onclick='NotifToggle("Raffle")'class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
@@ -78,9 +78,12 @@
 
   </div>
 
+  <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -20px; z-index: 5; font-size: 20px" id="betaanno"><span style="font-family: minecraftbold">NEW STUFF!</span> Want to try out the new beta of brookeafk.com? <a href="beta" style="color: #ccc">Click here</a>!<br><span style="color: #ffffffaa; cursor: pointer;" onclick="dismiss()">[click here to dismiss]<br></span><i>You can always change which version you're using in the settings section.</i></span></div>
+
+
   <span id="events"></span>
 
-  <p style="position:relative; left: 10px;" id="madewithlove"><span style="font-family: minecraftbold">NOTE!</span> brookeafk.com will be switching to a new (opt-outable) version starting <s>February 27th</s> <i><s>extremely soon</s></i> <b>March 11th PROBABLY</b>. <a href="beta">Click here</a> to preview it before it goes live.<br><br>Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></span></p>
+  <p style="position:relative; left: 10px;" id="madewithlove"><span style="font-family: minecraftbold">NOTE!</span> brookeafk.com will be switching to a new (opt-outable) version starting <s>February 27th</s> <i><s>extremely soon</s></i> <b>March <s>11th</s> <s><i>12th</i></s> delayed until I get more feedback </b>. <a href="beta">Click here</a> to preview it before it goes live.<br><br>Made with love and tears by <a href="https://twitter.com/BrookeAFK" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></span></p>
   <p id="version" style="position: relative; left: 10px;"></p>
   <p id="special_thanks"><span style="position: relative; left: 10px;"></span></p>
 
@@ -161,6 +164,12 @@
     document.getElementById("current-event").style.width = "200px"
     WithoutVar = "brookeafk.com"
   }
+
+  function dismiss() {
+    localStorage.setItem("oldannouncement", "seen");
+    document.getElementById("betaanno").style.display = "none";
+  }
+  if(localStorage.getItem("oldannouncement") == "seen") document.getElementById("betaanno").style.display = "none";
   
   document.getElementById('settings').style.color = NormalText;
 
@@ -235,6 +244,7 @@
     IsItACountdown = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">QUICK MATHS!</span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #aa00aa; font-family: ` + CorrectBold + `;">DRAGON EGG</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffaa00; font-family: ` + CorrectBold + `;">CARE PACKAGE</span><span style="color: #aaaaaa;"> in </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Pit Area</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">AUCTION!</span><br><span style="color: #AAAAAA; font-family:` + CorrectFont + `">Check auctioneer or chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">MINOR EVENT!</span><br><span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> EVERYONE GETS A BOUNTY!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
 
   }
+
   
   function DayNightCycle() { //OPTIMIZE THIS please add variable that's like "when the day is dark please do not call the svg again please"
   //I will not >:)

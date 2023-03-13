@@ -29,14 +29,14 @@
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center"></div>
   
   
-    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span class="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
+    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span class="oldversion" style="display: none" id="oldversion">2022 EDITION</span><span class="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
     </div>
 
     <noscript style="font-size: 80px">JavaScript is disabled. This site can't function without it.</noscript>
 
     
 
-    <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate Pit Day and brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old version by <a href="2022" style="color: #ccc">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
+    <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate Pit Day and brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old design by <span style="color: #ccc; cursor: pointer;" onclick="changeToOldDesign()">clicking here</span>. (Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
   
     <div id="day-night-border" class="timers dnb"><div id="day-night" style="vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg>&nbsp; &mdash; &nbsp;<span id="maprot" class="hand_cursor" onclick="mapClick()"></span></div>
 <span class="mobilebreak"></span>
@@ -44,11 +44,15 @@
     
   <div id="settings-section"><br>
   <p class="option"><span class="settingsheader">&mdash; Style &mdash;</span></p>
+  <p class="option"><span><b>Version</b>: </span><span>New</span><span> / </span><span onclick='window.location = "./"' style="color: #808080; cursor: pointer">Old</span></p> 
+
   <p class="option"><span><b>Theme</b>: </span><span id="settings-theme-dark" onclick='changeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='changeTheme("light")'>Light</span></p> 
   <p class="option"><span><b>Palette</b>: </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span></p>
   <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
   <p class="option"><span><b>Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
   <p class="option"><span><b>Tab timer</b>: </span><span id="settings-tabtimer-on" class="hand_cursor" onclick='changeTabTimer(1)'>On</span><span> / <span id="settings-tabtimer-off" class="hand_cursor" onclick='changeTabTimer(0)'>Off</span></p>
+  <p class="option"><span><b>Major event effects</b>: </span><span id="settings-majorstyle-border" class="hand_cursor" onclick='changeMajorStyle("border", "toggle")'>Border</span><span> / <span id="settings-majorstyle-shadow" class="hand_cursor" onclick='changeMajorStyle("shadow", "toggle")'>Shadow</span></p>
+  <p class="option"><span><b>Event spacing</b>: </span><span id="settings-spacing-5" class="hand_cursor" onclick='changeSpacing(5)'>Big</span><span> / <span id="settings-spacing-3" class="hand_cursor" onclick='changeSpacing(3)'>Small</span> / <span id="settings-spacing-0" class="hand_cursor" onclick='changeSpacing(0)'>None</span></p>
 
 
   <p class="option"><span class="settingsheader">&mdash; Quality of Life &mdash;</span></p>
@@ -109,27 +113,28 @@
 </div>
 
   <script>
-  
+  console.log("The site has loaded.")
 
-  var HiddenEventCount = 0;
-  var EventsToLoad = 1;
+  var HiddenEventCount = 0; // number of hidden events
+  var EventsToLoad = 1; // number of events in the JSON. this is used a LOT!
   var version_number = `BETA` 
-  var counter = 4;
-  var settingsOpened = false;
-  var mapClicked = false;
-  var NormalText = "#000000";
-  var EventFlashSec = 60;
+  var counter = 4; // counter that counts up every 40ms
+  var settingsOpened = false; // ...
+  var mapClicked = false; // whether the user's clicked the map timer to show its spooky extended info
+  var NormalText = "#000000"; // what colour text should be
+  var EventFlashSec = 60; // how many seconds events flash before starting
   var NotifTimer = -10;
-  var DoesStuffExist = false;
-  var HasStuffLoaded = false;
+  var DoesStuffExist = false; // if things are loaded and it's safe to start querying event <div>s
+  var HasStuffLoaded = false; // an even more strict version of DoesStuffExist.
   var currentTime; // the current unix timestamp
-  var Palette = 'gradients0';
-  var SettingsSelectedEvents = 262143;
-  var SettingsNotifyEvents = 0;
+  var Palette = 'gradients0'; // current palette. not sure why it's capitalized. really ought to change it sometime
+  var SettingsSelectedEvents = 262143; // binary array of user's selected events (in decimal). sorry
+  var SettingsNotifyEvents = 0; // same as above but for events that the user's getting notified for
   var SettingsDesktopNotifs = 0;
   var SettingsAudioNotifs = 0;
   var CorrectFont = "Inter";
   var CorrectBold = "Inter";
+  var svgDaytime = ""; // used to change the day/night SVG when the time of day changes
   var iconsVisible = 1; // whether the user has icons enabled
   var tabTimerVisible = 1; // whether the user has the tab timer on
   var classicMode = 0; // whether the user uses the older timestamps for the site
@@ -139,6 +144,8 @@
   var samplemaprotation = 1661835600; // used for the map rotation timer. stolen from pit.wiki
   var maps = ["Genesis","Corals","Castle","Elements","Four Seasons"] // for map rotation
   var mapid = 0; // id of the current map
+  var majorStyles = [1, 1] // whether the major event border and shadow distinguisher are visible
+  var spacingPx = 5; // spacing between each event in CSS pixels
 
   document.body.style.fontFamily = CorrectFont;
   document.getElementById('version').innerHTML = version_number;
@@ -157,7 +164,7 @@
   var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","litphoenix","adjective",`anoxysm`]
   var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/",`https://statsify.net/`]
   //jojo was here
-  var allSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer'] // all of the settings except for "offset". it's a special case
+  var allSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing'] // all of the settings except for "offset". it's a special case
   var siteLoadSettingValues = Array(allSettings.length); //  list of the user's settings when the site loads.
   var event_sound = new Audio("event_arriving.mp3"); // everyone's favourite jingle
   event_sound.volume = 0.2;
@@ -222,9 +229,9 @@
   if (convertible - currentTime <= 60000) {
       convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + "s");
   } else if (convertible - currentTime <= 3600000) {
-      convertible = ((Math.floor(((convertible - currentTime))/60000) + "m " + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
+      convertible = ((Math.floor(((convertible - currentTime))/60000) + "m" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
   } else if (convertible - currentTime > 1) {
-      convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h " + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
+      convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
   }
   
   return convertible;
@@ -261,25 +268,40 @@
     document.getElementById('settings-font-minecraft').style.color = "#888888";
 
     if(font == "minecraft") {
-    document.getElementById('settings-font-minecraft').style.color = NormalText;
-    CorrectFont = "minecraft";
-    CorrectBold = "minecraft; font-weight: bold";
+      document.getElementById('settings-font-minecraft').style.color = NormalText;
+      CorrectFont = "minecraft";
+      CorrectBold = "minecraft; font-weight: bold";
+      document.getElementById("brookeafk-com").style.fontWeight = "400";
     }
-    if(font == "sans-serif") {
-    document.getElementById('settings-font-sans-serif').style.color = NormalText;
-    CorrectFont = "sans-serif";
-    CorrectBold = "sans-serif; font-weight: bold";
-    }
-    if(font == "Inter") {
-    document.getElementById('settings-font-default').style.color = NormalText;
-    CorrectFont = "Inter";
-    CorrectBold = "Inter; font-weight: bold";
+    else {
+      document.getElementById("brookeafk-com").style.fontWeight = "600";
+      if(font == "sans-serif") {
+        document.getElementById('settings-font-sans-serif').style.color = NormalText;
+        CorrectFont = "sans-serif";
+        CorrectBold = "sans-serif; font-weight: bold";
+      }
+      if(font == "Inter") {
+        document.getElementById('settings-font-default').style.color = NormalText;
+        CorrectFont = "Inter";
+        CorrectBold = "Inter; font-weight: bold";
+      }
     }
 
     document.body.style.fontFamily = CorrectFont;
     SaveSettings('noreload');
   }
 }
+
+  
+  function changeToOldDesign() { // makes the new version look exactly like the old one. problem solved!  :thumbsup:
+    changePalette(0);
+    changeIcons(0);
+    changeMajorStyle("border", 0);
+    changeMajorStyle("shadow", 0);
+    changeSpacing(0);
+    changeClassic(1);
+    changeFont("minecraft");
+  }
 
   function changeIcons(icons) { // enables and disables the icons
     document.getElementById('settings-icons-on').style.color = "#888888";
@@ -318,7 +340,7 @@
     SaveSettings('noreload');
   }
 
-  function changeClock(clock) { // changes the clock from 24-hour "17:40" to 12-hour "5:40 pm"
+  function changeClock(clock) { // changes the clock from 24-hour "17:40" to 12-hour "5:40 pm" or vice versa
     document.getElementById('settings-clock-24').style.color = "#888888";
     document.getElementById('settings-clock-12').style.color = "#888888";
     clockStyle = clock;
@@ -329,20 +351,64 @@
     addNamesandImages(window.data);
     SaveSettings('noreload');
   }
+
+  function changeMajorStyle(style, toggle) { // toggles whether the major event border and shadow distinguisher are visible
+    
+    // toggle's either going to be "toggle" or a number.
+    if(style == "border") styleId = 0; 
+    if(style == "shadow") styleId = 1;
+
+    if(toggle == "toggle") {
+    if(majorStyles[styleId] == true) {
+      document.getElementById('settings-majorstyle-' + style).style.color = "#888888";
+      majorStyles[styleId] = 0;
+    } else {
+      document.getElementById('settings-majorstyle-' + style).style.color = NormalText;
+      majorStyles[styleId] = 1;
+    }
+  } else {
+    console.log("toggle isn't 'toggle', it's " + toggle)
+      majorStyles[styleId] = toggle;
+      if(majorStyles[styleId] == true) document.getElementById('settings-majorstyle-' + style).style.color = NormalText;
+      else document.getElementById('settings-majorstyle-' + style).style.color = "#888888";
+    }
+
+    console.log("Major event styles have been set to: " + majorStyles);
+    addNamesandImages(window.data);
+    CuteColors(window.data);
+    SaveSettings('noreload');
+  }
+
+  function changeSpacing(space) { // changes the spacing between events
+    document.getElementById('settings-spacing-0').style.color = "#888888";
+    document.getElementById('settings-spacing-3').style.color = "#888888";
+    document.getElementById('settings-spacing-5').style.color = "#888888";
+
+    var allEvents = document.getElementsByClassName('event');
+      for (var i = 0; i < allEvents.length; i++) {
+        allEvents[i].style.margin = space + "px";
+    }
+    spacingPx = space;
+
+    document.getElementById('settings-spacing-' + space).style.color = NormalText;
+
+    console.log("Spacing has been set to " + majorStyles + " px");
+    SaveSettings('noreload');
+  }
   
-  function DayNightCycle() { //OPTIMIZE THIS please add variable that's like "when the day is dark please do not call the svg again please"
-  //I will not >:)
+  function DayNightCycle() { // i finally optimized it!
     currentTime = Date.now()  + offset;
     let DayTime = ((currentTime + 10000) % 2160000)/1000; //10-second offset
     if(DayTime < 1440) {
-      //console.log("The day ends in " + (1440 - DayTime) + " seconds.")
       document.getElementById("day-night").innerHTML = (AboutMe((1440 - DayTime)*1000) + "&nbsp;");
-      document.getElementById('day-svg').innerHTML = `<path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/>`
+      if(svgDaytime = "night") document.getElementById('day-svg').innerHTML = `<path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/>`
+      svgDaytime = "day";
   
   } else {
       //console.log("The night ends in " + (2160 - DayTime) + " seconds.")
       document.getElementById("day-night").innerHTML = (AboutMe((2160 - DayTime)*1000) + "&nbsp;");
-      document.getElementById('day-svg').innerHTML = `<path d="M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36c-0.98,1.37-2.58,2.26-4.4,2.26 c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/>`
+      if(svgDaytime = "day") document.getElementById('day-svg').innerHTML = `<path d="M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36c-0.98,1.37-2.58,2.26-4.4,2.26 c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/>`
+      svgDaytime = "night";
   }
   }
   
@@ -540,6 +606,8 @@
       changeClock(window.clockStyle);
       changeClassic(window.classicMode);
       changeTabTimer(window.tabTimerVisible);
+      changeMajorStyle("border", window.majorStyles[0]);
+      changeMajorStyle("shadow", window.majorStyles[1]);
       console.log("Stuff exists. Updating event flashes and audio.");
       CuteColors(window.data);
     }
@@ -800,6 +868,7 @@
     //console.log("Seems like your screen's " + document.body.clientWidth + " pixels wide.");
     DoesStuffExist = true;
     URLToSettings();  
+    
     addNamesandImages(window.data);
   }
   
@@ -940,8 +1009,8 @@
   }
 
   function getSettings() { // scrapes both URLs and localStorage for settings. URLs get top priority.
-    var defaultSettings = ['262143', '262143', 'gradients0', '111', 'dark', '60', '-10', '0', '0', '0', '1', '24', '0', '1']
-    // 'visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer'
+    var defaultSettings = ['262143', '262143', 'gradients0', '111', 'dark', '60', '-10', '0', '0', '0', '1', '24', '0', '1', '11', '5']
+    // 'visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing'
     var site_url = new URL(window.location.href);
     var settingValues = Array(allSettings.length);
 
@@ -960,6 +1029,7 @@
         document.getElementById("settings-clear-literally-everything").style.display = "";
       }
     }
+    if(site_url.searchParams.get("2022") != null) document.getElementById("settings-clear-literally-everything").style.display = "";
     return settingValues;
   }
 
@@ -971,13 +1041,13 @@
   }
 
   function isRobot() {
-    if (new RegExp("bot|google|baidu|bing|msn|teoma|slurp|yandex", 'i').test(navigator.userAgent)) /* if the user is actually a search engine crawler */ return true;
+    if (new RegExp("bot|google|baidu|bing|msn|teoma|slurp|yandex", 'i').test(navigator.userAgent)) return true; // list of robots
     else return false; 
   }
   robot = isRobot();
 
   function updateTabTimer() { // updates the timer in the tab
-    if(DoesStuffExist && visibleEventIds.length > 0 && !robot && tabTimerVisible == true) { // if events are real, at least one event is visible, you're not a robot (so it doesn't appear in search engines), and the user has the tab timer setting on
+    if(DoesStuffExist && visibleEventIds.length > 0 && !robot && tabTimerVisible == true) { // if events are real, at least one event is visible, you're not a robot (so it doesn't appear in search engines), and the user has the tab timer setting on. phew
       var firstIndex = events.indexOf(data[visibleEventIds[0]]['event']);
       document.title = "[" + eventsEmoji[firstIndex] + " " +  shortEvents[firstIndex] + " " + MakeFunTimestamps(data[visibleEventIds[0]]['timestamp']) + "] | Hypixel Pit Events Tracker";
     } else {
@@ -1023,7 +1093,13 @@
       iconsVisible = parseInt(siteLoadSettingValues[10]);
       clockStyle = parseInt(siteLoadSettingValues[11]);
       classicMode = parseInt(siteLoadSettingValues[12]);
-      tabTimerVisible = parseInt(siteLoadSettingValues[13]);
+      spacingPx = parseInt(siteLoadSettingValues[15]);
+      
+      console.log(siteLoadSettingValues + " is the major styles")
+      for(ae = 0; ae < siteLoadSettingValues[14].length; ae++) {
+        majorStyles[ae] = siteLoadSettingValues[14].charAt(ae);
+      }
+      console.log(majorStyles + " is the major styles") 
 
       changeFont(CorrectFont);
       changePalette(Palette);
@@ -1033,7 +1109,11 @@
       changeClock(clockStyle);
       changeClassic(classicMode);
       changeTabTimer(tabTimerVisible);
-  
+      changeSpacing(spacingPx);
+      
+      changeMajorStyle("border", majorStyles[0]);
+      changeMajorStyle("shadow", majorStyles[1]);
+      
       setTimestamps("tod", false);
       setTimestamps("tue", false);
       setTimestamps("dnc", false);
@@ -1092,6 +1172,9 @@
 
       changeTheme(theme);
       HasStuffLoaded = true;
+
+      var site_url = new URL(window.location.href);
+      if(site_url.searchParams.get("2022") != null) changeToOldDesign();
   }
   
   function NotifToggle(toggle) {
@@ -1148,8 +1231,6 @@
         trueEventColors[events.indexOf(recentEventData["event"])];
       if (recentEventData["type"] == "major") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
-          console.log(DemolitionTime - currentTime);
-          console.log(TimeOfEventStart)
           //console.log(((VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) /* should return like "480000" (8m) in most cases */ - 180000)
           if (currentTime >= 180000 + TimeOfEventStart) {
             document.getElementById("current-event").innerHTML =
@@ -1229,8 +1310,10 @@
       if(CorrectFont == 'Inter') localStorage.setItem('font', '0');
       if(CorrectFont == 'sans-serif') localStorage.setItem('font', '1');
       if(CorrectFont == 'minecraft') localStorage.setItem('font', '2');
+      localStorage.setItem('spacing', spacingPx);
+      localStorage.setItem('majorstyle', majorStyles[0].toString() + majorStyles[1].toString())
 
-      localStorage.setItem('settings-version', "12");
+      localStorage.setItem('settings-version', "13");
   }
   
   function SaveSettings(action = false) {  // save settings, clear settings, reload page
@@ -1246,6 +1329,7 @@
       if(action == "cleareverything") {
         let here = new URL(window.location.href);
         for(i = 0; i < allSettings.length; i++) here.searchParams.delete(allSettings[i]);
+        here.searchParams.delete("2022");
         window.localStorage.clear();
         if(annoyingBanner != undefined) localStorage.setItem("gotit", annoyingBanner);
         console.log("cleared local storage :)")
@@ -1266,29 +1350,34 @@
     for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
       var nicknamevent = nickname(transformation[i].event);
       var wikievent = nickname(transformation[i].event, true);
+
       if(classicMode == true) {
         if (showEventToD == true && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
         } else if (showEventToD == false && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span>`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span>`);
         } else if (showEventToD == true && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
         } else if (showEventToD == false && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span>`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span>`);
         }
         if(data[i].type == "major") document.getElementById("boldmajor_" + i).style.fontWeight = "bold";
       } else {
         if (showEventToD == true && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span> &mdash; ` + TimeOfDay(transformation[i].timestamp));
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" id="name_` + i + `"  target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span> &mdash; ` + TimeOfDay(transformation[i].timestamp));
         } else if (showEventToD == false && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span>`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" id="name_` + i + `"  target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span>`);
         } else if (showEventToD == true && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> at ` + TimeOfDay(transformation[i].timestamp));
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" id="name_` + i + `"  target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> at ` + TimeOfDay(transformation[i].timestamp));
         } else if (showEventToD == false && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b>`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" id="name_` + i + `"  target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b>`);
         }
       }
+
+      if(transformation[i]['type'] == "major" && majorStyles[1] == true) document.getElementById('name_' + String(i)).classList.add("majorshadow");
+
     }
+
 
     panicevents = [];
   }
@@ -1327,9 +1416,10 @@
     }
 
   for(i = window.HiddenEventCount; i < EventsToLoad; i++) {
-   if(conversion[i]['type'] == "major") { // fix this
-    document.getElementById('event_' + String(i)).style.boxShadow = "inset 0px 0px 0px 3px rgba(255, 255, 255, 0.7)";
-    document.getElementById('event_' + String(i)).style.backgroundOrigin = "border-box";
+   if(conversion[i]['type'] == "major" && majorStyles[0] == true) {
+    document.getElementById('event_' + String(i)).classList.add("majorborder");
+   } else {
+    document.getElementById('event_' + String(i)).classList.remove("majorborder");
    }
   }
   }}
@@ -1399,11 +1489,13 @@
 
     @keyframes rotate {
       0%   { transform: rotate3d(0, 0, 0, 0deg); }
+      1%   { transform: rotate3d(0, 0, 0, 0deg); }
       100% { transform: rotate3d(var(--xrot), var(--yrot), var(--zrot), 360deg); }
     }
 
     @keyframes flip_ {
       0%   { transform: rotate3d(0, 0, 0, 0deg); }
+      1%   { transform: rotate3d(0, 0, 0, 0deg); }
       100% { transform: rotate3d(0.48, 0, 0.06, 360deg); }
     }
 
@@ -1619,6 +1711,15 @@
   font-weight: 900;
 }
 
+.majorborder {
+  box-shadow: inset 0px 0px 0px 4px rgba(255, 255, 255, 0.8);
+  background-origin: "border-box";
+}
+
+.majorshadow {
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.4);
+}
+
 @font-face {
   font-family: Inter;
   src: url("./font/InterVariable.ttf")
@@ -1643,6 +1744,15 @@
 
 a, .icon, div {
   transition-duration: 0.2s;
+}
+
+.oldversion {
+  color: #808080;
+  padding: 10px;
+  font-size: 12px;
+  width: 40px;
+  display: inline-block;
+
 }
 
 .option {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<center style="font-size: 24px"> <!-- i don't care that this tag is outdated. i  do not care .-->
+<p>Hey! This is a test to determine why brookeafk.com's notifications on Chrome aren't working.</p>
+
+<p id="fear" onclick="StartTheChaos()" style="cursor: pointer">Click HERE to start notification spam.</p>
+</center>
+<script>
+function makeATimestamp() {
+    minsunix = Date.now()
+    return new Date(minsunix).toLocaleTimeString([], {hour: 'numeric', minute:'2-digit', second:'2-digit'})
+}
+
+var spammy = 0;
+
+function notification() {
+    spammy += 1;
+setTimeout(() => howdy.close(), 1000);
+const howdy = new Notification('',{
+  body: 'Notification sent at ' + makeATimestamp() + '! [#' + spammy + ']',
+  icon: "3457688aa57c4d71ab9d22b04f9160db.png"
+});
+fear.innerHTML = "Notification spam has started. Close the tab to stop it.<br>Sent " + spammy + " notifications so far."
+}
+
+var chaos = false;
+
+function StartTheChaos() {
+if (chaos == false) {
+chaos = true;
+setInterval(notification, 1000);
+fear.innerHTML = "Notification spam has started. Close the tab to stop it."
+document.getElementById('fear').style.cursor = 'inherit'
+}
+}
+</script>

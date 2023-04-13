@@ -29,14 +29,14 @@
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center"></div>
   
   
-    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span class="oldversion" style="display: none" id="oldversion">2022 EDITION</span><span class="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
+    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span class="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
     </div>
 
     <noscript style="font-size: 80px">JavaScript is disabled. This site can't function without it.</noscript>
 
     
 
-    <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate Pit Day and brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old design by <span style="color: #ccc; cursor: pointer;" onclick="changeToOldDesign()">clicking here</span>. (Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
+    <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate Pit Day and brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old design by <a style="color: #ccc; cursor: pointer;" href="2022.html">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
   
     <div id="day-night-border" class="timers dnb"><div id="day-night" style="vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg>&nbsp; &mdash; &nbsp;<span id="maprot" class="hand_cursor" onclick="mapClick()"></span></div>
 <span class="mobilebreak"></span>
@@ -44,8 +44,6 @@
     
   <div id="settings-section"><br>
   <p class="option"><span class="settingsheader">&mdash; Style &mdash;</span></p>
-  <p class="option"><span><b>Version</b>: </span><span>New</span><span> / </span><span onclick='window.location = "./"' style="color: #808080; cursor: pointer">Old</span></p> 
-
   <p class="option"><span><b>Theme</b>: </span><span id="settings-theme-dark" onclick='changeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='changeTheme("light")'>Light</span></p> 
   <p class="option"><span><b>Palette</b>: </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span></p>
   <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
@@ -65,6 +63,8 @@
   <p class="option" id="setting-clock-style"><span><b>Clock style</b>: </span><span id="settings-clock-24" onclick='changeClock("24");' class="hand_cursor">24-hour</span><span> / </span><span id="settings-clock-12" onclick='changeClock("12");' class="hand_cursor">12-hour</span></p>
   <p class="option"><span id="settings-flashing"><b>Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='setFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='setFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='setFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='setFlash(-10);' class="hand_cursor">Never</span></span></p>
   <p class="option"><span><b>Event text</b>: </span><span id="settings-classic-off" class="hand_cursor" onclick='changeClassic(0)'>Modern</span><span> / <span id="settings-classic-on" class="hand_cursor" onclick='changeClassic(1)'>Classic</span></p> 
+  <p class="option"><span><b>Version</b>: </span><span>New</span><span> / </span><span onclick='window.location = "./"' style="color: #808080; cursor: pointer">Old</span></p> 
+
 
   <div id="notifications-major">
     <div><span id="visible-Pizza" onclick='VisibilityToggle("Pizza")' class="hand_cursor">Pizza</span><svg xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 0 24 24" width="24px" fill="#ffffff" id="notif-Pizza" onclick='NotifToggle("Pizza")' class="hand_cursor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
@@ -104,10 +104,10 @@
   <hr>
 
   <span class="credits">
-    <p id="madewithlove">Made with love and tears by <a href="dev" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></p>
+    <p id="madewithlove">Made with love and tears by <a href="https://brookie.dev" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></p>
     <p id="wikiad"><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</p>
     <p id="special_thanks"></p>
-    <p id="version" class="ver"> </p> <span>&mdash; March 5, 2023</span><br><br>
+    <p id="version" class="ver"> </p> <span>&mdash; April 12, 2023</span><br><br>
     </span>
   </span>
 </div>
@@ -141,7 +141,7 @@
   var clockStyle = 24; // number of hours in a day if you're strange and American
   var noevents = false; // if there's no events
   var offset = 0; // offset, in minutes, of a person's clock. useful for people with really weird OSes that can't set their clocks for some reason
-  var samplemaprotation = 1661835600; // used for the map rotation timer. stolen from pit.wiki
+  var samplemaprotation = 1661832000; // used for the map rotation timer. stolen from pit.wiki
   var maps = ["Genesis","Corals","Castle","Elements","Four Seasons"] // for map rotation
   var mapid = 0; // id of the current map
   var majorStyles = [1, 1] // whether the major event border and shadow distinguisher are visible
@@ -193,6 +193,11 @@
 
   var all_text = ["MINOR EVENT!","MAJOR EVENT!","Starting in ","Ending in "]
 
+  /*if(localStorage.getItem("aviduser") == "1") {
+    localStorage.removeItem("aviduser");
+    localStorage.setItem("reloadChances", "1");
+    window.location = "2022";
+  }*/
 
   if(localStorage.getItem('gotit')) document.getElementById('newsite').style.display = 'none';
   function iGetIt() {
@@ -291,17 +296,6 @@
     SaveSettings('noreload');
   }
 }
-
-  
-  function changeToOldDesign() { // makes the new version look exactly like the old one. problem solved!  :thumbsup:
-    changePalette(0);
-    changeIcons(0);
-    changeMajorStyle("border", 0);
-    changeMajorStyle("shadow", 0);
-    changeSpacing(0);
-    changeClassic(1);
-    changeFont("minecraft");
-  }
 
   function changeIcons(icons) { // enables and disables the icons
     document.getElementById('settings-icons-on').style.color = "#888888";
@@ -777,12 +771,9 @@
 
   function noEvents() { // if there's no events left, show some text explaining this to the user
     if((HiddenEventCount == EventsToLoad || EventsToLoad == 1) && !noevents && counter >= 35) { 
-        document.getElementById('noevents').innerHTML = `<br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://events.mcpqndq.dev" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me on Discord (Brooke#0843) or <a href="https://github.com/brooke-gill">on GitHub</a>.`
+        document.getElementById('noevents').innerHTML = `<br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://events.mcpqndq.dev" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me using the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord server</a> or <a href="https://github.com/brooke-gill">on GitHub</a>.`
           noevents = true;
-    } /*else if(noevents) {
-      document.getElementById('noevents').innerHTML = ``;
-      noevents = false;
-    }*/
+    }
     if(counter >= 1400) iGetIt();
     if(counter <= 1400) document.getElementById("dismissalprogress").style.width = (1 - counter / 1400) * 100 + "%";
   }
@@ -1176,6 +1167,16 @@
       var site_url = new URL(window.location.href);
       if(site_url.searchParams.get("2022") != null) changeToOldDesign();
   }
+
+  function changeToOldDesign() { // makes the new version look exactly like the old one. problem solved!  :thumbsup:
+    changePalette(0);
+    changeIcons(0);
+    changeMajorStyle("border", 0);
+    changeMajorStyle("shadow", 0);
+    changeSpacing(0);
+    changeClassic(1);
+    changeFont("minecraft");
+  }
   
   function NotifToggle(toggle) {
     if (window.AudioEvents.includes(toggle)) {
@@ -1315,6 +1316,12 @@
 
       localStorage.setItem('settings-version', "13");
   }
+
+  function resetSettings() { // resets all settings in the localStorage
+    for(h = 0; h < allSettings.length; h++) {
+      localStorage.removeItem(allSettings[h]);
+    }
+  }
   
   function SaveSettings(action = false) {  // save settings, clear settings, reload page
     if(DoesStuffExist) {
@@ -1322,7 +1329,7 @@
     var annoyingBanner = localStorage.getItem("gotit");
     
       if(action == "clear") {
-        window.localStorage.clear();
+        resetSettings();
         if(annoyingBanner != undefined) localStorage.setItem("gotit", annoyingBanner);
         window.location.reload();
       } else {
@@ -1330,7 +1337,7 @@
         let here = new URL(window.location.href);
         for(i = 0; i < allSettings.length; i++) here.searchParams.delete(allSettings[i]);
         here.searchParams.delete("2022");
-        window.localStorage.clear();
+        resetSettings();
         if(annoyingBanner != undefined) localStorage.setItem("gotit", annoyingBanner);
         console.log("cleared local storage :)")
         window.location = here;
@@ -1744,15 +1751,6 @@
 
 a, .icon, div {
   transition-duration: 0.2s;
-}
-
-.oldversion {
-  color: #808080;
-  padding: 10px;
-  font-size: 12px;
-  width: 40px;
-  display: inline-block;
-
 }
 
 .option {

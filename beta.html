@@ -26,20 +26,20 @@
   <body background-color="black" class="unselectable">
     <div id="wrapper">
   
-    <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px;" class="flashtext unselectable" align="center"></div>
+    <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px; display: none;" class="flashtext unselectable" align="center"></div>
   
   
     <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span class="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
     </div>
 
-    <noscript style="font-size: 80px">JavaScript is disabled. This site can't function without it.</noscript>
+    <noscript style="font-size: 80px; color: #ce1010"><b>JavaScript is disabled. This site can't function without it.</b></noscript>
 
     
 
     <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate brookeafk.com's one-year anniversary, I've fixed a bunch of stuff and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old design by <a style="color: #ccc; cursor: pointer;" href="2022">clicking here</a>. (Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
   
     <div id="day-night-border" class="timers dnb"><div id="day-night" style="vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg>&nbsp; &mdash; &nbsp;<span id="maprot" class="hand_cursor" onclick="mapClick()"></span></div>
-<span class="mobilebreak"></span>
+<span class="mobilebreak" id="current-event-mobilebreak"></span>
 <div class="mobileanno" id="mobileanno" style="display: none"></div>
     
   <div id="settings-section"><br>
@@ -107,7 +107,7 @@
     <p id="madewithlove">Made with love and tears by <a href="https://brookie.dev" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></p>
     <p id="wikiad"><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</p>
     <p id="special_thanks"></p>
-    <p id="version" class="ver"> </p> <span>&mdash; April 12, 2023</span><br><br>
+    <p id="version" class="ver"> </p> <span>&mdash; April 14, 2023</span><br><br>
     </span>
   </span>
 </div>
@@ -117,7 +117,7 @@
 
   var HiddenEventCount = 0; // number of hidden events
   var EventsToLoad = 1; // number of events in the JSON. this is used a LOT!
-  var version_number = `1.0.0` 
+  var version_number = `v1.0.0`
   var counter = 4; // counter that counts up every 40ms
   var settingsOpened = false; // self explanatory
   var mapClicked = false; // whether the user's clicked the map timer to show its spooky extended info
@@ -146,7 +146,7 @@
   var mapid = 0; // id of the current map
   var majorStyles = [1, 1] // whether the major event border and shadow distinguisher are visible
   var spacingPx = 5; // spacing between each event in CSS pixels
-  var playedNotifications = []; // array of all event IDs of played notifications. will be a pain to update in the future. have fun, future me
+  var playedNotifications = []; // array of all event IDs of played notifications. [0] is 1-minute, [1] is 3-minute, [2] is 5-minute. in the future. when i'm not busy
 
   document.body.style.fontFamily = CorrectFont;
   document.getElementById('version').innerHTML = version_number;
@@ -216,9 +216,9 @@
     document.getElementById("replacement").setAttribute("id","mobileanno")
     var mobilebreaks = document.getElementsByClassName('mobilebreak');
     for (var i = 0; i < mobilebreaks.length; i++) {
-       var item = mobilebreaks[i];  
-       console.log("one item")
-       item.innerHTML = '<br>';
+      var item = mobilebreaks[i];  
+      console.log("one item")
+      item.innerHTML = '<br>';
     }
     document.getElementById("current-event").style.width = "90%";
     document.getElementById("mobileanno").style.display = "none";
@@ -420,7 +420,7 @@
     }}
     if(window.AudioEvents.length == 0 && HasStuffLoaded == true) {
       console.log(window.AudioEvents + " audioevents")
-     document.getElementById('alert-nobells').style.display = "block";
+    document.getElementById('alert-nobells').style.display = "block";
       }
     if(SettingsDesktopNotifs == 0 && SettingsAudioNotifs == 0) {
       document.getElementById('alert-notypes').style.display = "block"
@@ -772,9 +772,13 @@
   function autoReload() { if(performance.now() > 43200000 && Math.random() < 0.1) location.reload(); } // automatically reloads the site every twelve hours
 
   function noEvents() { // if there's no events left, show some text explaining this to the user
-    if((HiddenEventCount == EventsToLoad || EventsToLoad == 1) && !noevents && counter >= 35) { 
-        document.getElementById('noevents').innerHTML = `<br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://events.mcpqndq.dev" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me using the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord server</a> or <a href="https://github.com/brooke-gill">on GitHub</a>.`
-          noevents = true;
+    if(HiddenEventCount == EventsToLoad || EventsToLoad == 1) { 
+      if(!noevents && counter >= 35) {
+        document.getElementById('noevents').innerHTML = `<br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Wait a few seconds.</li><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://events.mcpqndq.dev" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me using the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord server</a> or <a href="https://github.com/brooke-gill">on GitHub</a>.`
+        noevents = true;
+      } 
+    } else {
+      document.getElementById('noevents').style.display = "none";
     }
     if(counter >= 1400) iGetIt();
     if(counter <= 1400) document.getElementById("dismissalprogress").style.width = (1 - counter / 1400) * 100 + "%";
@@ -858,7 +862,7 @@
       div.innerHTML = ("[loading event]");
       div.classList.add('event');
       div.innerHTML = `<span class="timers" id="timer_` + i + `"></span>`;
-     document.getElementById('events').appendChild(div);
+      document.getElementById('events').appendChild(div);
   }
   document.getElementById('special_thanks').innerHTML = GeneratePraise();
     changeTheme(theme); //just again to make sure 
@@ -964,7 +968,7 @@
       window.HiddenEventCount = window.HiddenEventCount + 1; 
       console.log("hey if you see this please let Brooke know as this should Not happen lol");
     }
-   }
+  }
   }
 
   function resetOffset() { // resets the offset, then reloads the page
@@ -1130,7 +1134,7 @@
       console.log(BinaryEvents)
       for(i = 0; i < events.length; i++) {
           if(BinaryEvents.charAt(i) == "1") {
-             VisibleEvents.push(events[(events.length - 1) - i]);
+            VisibleEvents.push(events[(events.length - 1) - i]);
           }
       }    
       console.log(VisibleEvents);
@@ -1161,7 +1165,7 @@
       console.log(BinaryEvents)
       for(i = 0; i < events.length; i++) {
           if(BinaryEvents.charAt(i) == "1") {
-             AudioEvents.push(events[(events.length - 1) - i]);
+            AudioEvents.push(events[(events.length - 1) - i]);
           }
       }
       console.log(AudioEvents);
@@ -1235,6 +1239,7 @@
   
     if (HiddenEventCount > 0 && DemolitionTime - currentTime >= 0) {
       var result = AboutMe(DemolitionTime - currentTime);
+      document.getElementById("current-event-mobilebreak").style.display = "";
       //console.log(result); // returns time left in event display
       let recentEventData = window.data[HiddenEventCount - 1];
       let correctColorCode =
@@ -1284,9 +1289,9 @@
           //console.log("minor, no countdown");
         }
       }
-    } else if (HiddenEventCount > 0 && DemolitionTime - currentTime <= 0) {
-      //document.getElementById("current-event").style.display = "none";
-      document.getElementById("current-event").innerHTML = WithoutVar;
+    } else {
+      document.getElementById("current-event").style.display = "none";
+      document.getElementById("current-event-mobilebreak").style.display = "none";
     }
   }
   
@@ -1432,11 +1437,11 @@
     }
 
   for(i = window.HiddenEventCount; i < EventsToLoad; i++) {
-   if(conversion[i]['type'] == "major" && majorStyles[0] == true) {
+  if(conversion[i]['type'] == "major" && majorStyles[0] == true) {
     document.getElementById('event_' + String(i)).classList.add("majorborder");
-   } else {
+  } else {
     document.getElementById('event_' + String(i)).classList.remove("majorborder");
-   }
+  }
   }
   }}
 
@@ -1604,7 +1609,7 @@
     -moz-animation: blink-text-light 1000ms linear infinite;
     -ms-animation: blink-text-light 1000ms linear infinite;
     -o-animation: blink-text-light 1000ms linear infinite;
-     animation: blink-text-light 1000ms linear infinite;
+    animation: blink-text-light 1000ms linear infinite;
   }
 
   .blinktext-dark {
@@ -1613,14 +1618,14 @@
     -moz-animation: blink-text-dark 1000ms linear infinite;
     -ms-animation: blink-text-dark 1000ms linear infinite;
     -o-animation: blink-text-dark 1000ms linear infinite;
-     animation: blink-text-dark 1000ms linear infinite;
+    animation: blink-text-dark 1000ms linear infinite;
   }
   .flashtext {
     -webkit-animation: flash-text 1000ms linear infinite;
     -moz-animation: flash-text 1000ms linear infinite;
     -ms-animation: flash-text 1000ms linear infinite;
     -o-animation: flash-text 1000ms linear infinite;
-     animation: flash-text 1000ms linear infinite;
+    animation: flash-text 1000ms linear infinite;
   }
   @keyframes blink-text-light {
     0% { color: #ff0000; opacity: 1; }

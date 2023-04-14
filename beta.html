@@ -117,9 +117,9 @@
 
   var HiddenEventCount = 0; // number of hidden events
   var EventsToLoad = 1; // number of events in the JSON. this is used a LOT!
-  var version_number = `BETA` 
+  var version_number = `1.0.0` 
   var counter = 4; // counter that counts up every 40ms
-  var settingsOpened = false; // ...
+  var settingsOpened = false; // self explanatory
   var mapClicked = false; // whether the user's clicked the map timer to show its spooky extended info
   var NormalText = "#000000"; // what colour text should be
   var EventFlashSec = 60; // how many seconds events flash before starting
@@ -146,6 +146,7 @@
   var mapid = 0; // id of the current map
   var majorStyles = [1, 1] // whether the major event border and shadow distinguisher are visible
   var spacingPx = 5; // spacing between each event in CSS pixels
+  var playedNotifications = []; // array of all event IDs of played notifications. will be a pain to update in the future. have fun, future me
 
   document.body.style.fontFamily = CorrectFont;
   document.getElementById('version').innerHTML = version_number;
@@ -872,14 +873,15 @@
     currentTime = (Date.now() + offset);
     if (DoesStuffExist == true) {
         for (var i = window.HiddenEventCount; i <= window.HiddenEventCount + 3 && i < EventsToLoad; i++) { //thanks Clipi-12!
-            if (window.AudioEvents.includes(window.data[i]['event']) && window.data[i]['timestamp'] - currentTime <= (NotifTimer * 1000 + 1000) && window.data[i]['timestamp'] - currentTime >= (NotifTimer * 1000 - 10000)) {
+            if (window.AudioEvents.includes(window.data[i]['event']) && playedNotifications.indexOf(i) == -1) {
+                playedNotifications.push(i);
                 if (SettingsAudioNotifs == 1) {
                     event_sound.play();
                 }
                 if (SettingsDesktopNotifs == 1) {
-                    if (Date.now() + offset > time1 + 10000) { //if it's been more than 10 seconds since the last notification
+                    if (Date.now() + offset > time1 + 5) { //if it's been more than 5 seconds since the last notification
                         var notification = new Notification("", {
-                            body: "Hey – " + window.data[i]['event'] + " is starting in " + NotifTimer / 60 + " " + (NotifTimer == 60 ? "minute" : "minutes") + "!",
+                            body: "Hey – " + nickname(window.data[i]['event']) + " is starting in " + NotifTimer / 60 + " " + (NotifTimer == 60 ? "minute" : "minutes") + "!",
                             icon: "3457688aa57c4d71ab9d22b04f9160db.png"
                         });
                         time1 = Date.now() + offset;

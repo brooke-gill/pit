@@ -872,7 +872,7 @@
     currentTime = (Date.now() + offset);
     if (DoesStuffExist == true) {
         for (var i = window.HiddenEventCount; i <= window.HiddenEventCount + 3 && i < EventsToLoad; i++) { //thanks Clipi-12!
-            if (window.AudioEvents.includes(window.data[i]['event']) && window.data[i]['timestamp'] - currentTime <= (NotifTimer * 1000 + 1000) && window.data[i]['timestamp'] - currentTime >= (NotifTimer * 1000 - 1000)) {
+            if (window.AudioEvents.includes(window.data[i]['event']) && window.data[i]['timestamp'] - currentTime <= (NotifTimer * 1000 + 1000) && window.data[i]['timestamp'] - currentTime >= (NotifTimer * 1000 - 10000)) {
                 if (SettingsAudioNotifs == 1) {
                     event_sound.play();
                 }

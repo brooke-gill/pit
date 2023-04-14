@@ -875,17 +875,19 @@
         for (var i = window.HiddenEventCount; i <= window.HiddenEventCount + 3 && i < EventsToLoad; i++) { //thanks Clipi-12!
             if (window.AudioEvents.includes(window.data[i]['event']) && playedNotifications.indexOf(i) == -1 && (window.data[i]['timestamp'] - currentTime) <= (NotifTimer * 1000)) {
                 playedNotifications.push(i);
-                if (SettingsAudioNotifs == 1) {
-                    event_sound.play();
-                }
-                if (SettingsDesktopNotifs == 1) {
-                    if (Date.now() + offset > time1 + 5) { //if it's been more than 5 seconds since the last notification
-                        var notification = new Notification("", {
-                            body: "Hey – " + nickname(window.data[i]['event']) + " is starting in " + NotifTimer / 60 + " " + (NotifTimer == 60 ? "minute" : "minutes") + "!",
-                            icon: "3457688aa57c4d71ab9d22b04f9160db.png"
-                        });
-                        time1 = Date.now() + offset;
-                    }
+                if((window.data[i]['timestamp'] - currentTime - NotifTimer * 1000) > -20000) { // if it's been less than 20 seconds since the event notification should've gone off
+                  if (SettingsAudioNotifs == 1) {
+                      event_sound.play();
+                  }
+                  if (SettingsDesktopNotifs == 1) {
+                      if (Date.now() + offset > time1 + 5) { //if it's been more than 5 seconds since the last notification
+                          var notification = new Notification("", {
+                              body: "Hey – " + nickname(window.data[i]['event']) + " is starting in " + NotifTimer / 60 + " " + (NotifTimer == 60 ? "minute" : "minutes") + "!",
+                              icon: "3457688aa57c4d71ab9d22b04f9160db.png"
+                          });
+                          time1 = Date.now() + offset;
+                      }
+                  }
                 }
             }
         }

@@ -1,0 +1,88 @@
+<script src="event_history.js"></script>
+<link rel="stylesheet" href="https://pit.wiki/stylesheet.css">
+<body style="background-color: #1a121a;">
+<div class="box">
+<span class="body" style="font-family: Inter">
+<p><b><span id="count"></span></b> events loaded (<span id="count-minor"></span> minor, <span id="count-major"></span> major)</p>
+<p>Lastest Event: <b><span id="latest"></span></b> <i>(<span id="latest-readable"></span>)</i></p>
+<br>
+<p id="counts"></p>
+<p id="percentages"></p>
+</span>
+
+<style>
+pre {
+    background-color: #111;
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 5px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+</style>
+
+<pre><code id="histogram"></code></pre>
+</span></div>
+</body>
+<script>
+var event_count = all_events.length;
+var latest_event = all_events[event_count - 1]["timestamp"];
+var latest_event_date = new Date(latest_event);
+var minor_count = 0;
+var major_count = 0;
+
+document.getElementById("count").innerHTML = event_count.toLocaleString();
+
+document.getElementById("latest").innerHTML = latest_event;
+document.getElementById("latest-readable").innerHTML = latest_event_date
+
+var events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
+var events_minor = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty"]
+var events_major = ["Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
+var abbreviations_minor = ["M","E","2","C","L","H","A","G","B"];
+
+var colors = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
+
+var event_occurences = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var minor_last = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+var last = 100;
+var minors = [];
+var histogram_minor = [];
+
+for(a = 0; a < event_count; a++) {
+    if(all_events[a]["type"] == "major") major_count += 1;
+    else {
+        minor_count += 1;
+        minors.push(all_events[a]["event"])
+    }
+    event_occurences[events.indexOf(all_events[a]["event"])] += 1;
+}
+
+for(e = 0; e < minors.length; e++) {
+    minor_last[events.indexOf(minors[e])] += 1;
+    if(e >= last) minor_last[events.indexOf(minors[e - last])] -= 1;
+    histogram_minor[e] = "";
+    for(f = 0; f < events_minor.length; f++) {
+        histogram_minor[e] += (`<span style="color: ` + colors[events.indexOf(events_minor[f])] + `">` + (abbreviations_minor[events_minor.indexOf(events[f])]).repeat(minor_last[f]) + `</span>`); 
+    }
+    console.log(minor_last);
+}
+
+for(g = 1; g <= 200; g++) {
+    document.getElementById("histogram").innerHTML += histogram_minor[Math.floor(histogram_minor.length * (200 - g)/200)] + "&nbsp;&nbsp;&nbsp;" + Math.floor(histogram_minor.length * (200 - g)/200) + "<br>";
+}
+
+document.getElementById("count-minor").innerText = minor_count.toLocaleString();
+document.getElementById("count-major").innerText = major_count.toLocaleString();
+
+
+for(b = 0; b < events.length; b++) {
+    document.getElementById("counts").innerHTML += events[b] + " &ndash; <b>" + event_occurences[b] + "</b> / "
+    document.getElementById("percentages").innerHTML += events[b] + " &ndash; <b>" + (event_occurences[b]/event_count * 100).toFixed(2) + "%</b> / "
+}
+
+for(c = 0; c < events.length; c++) {
+
+}
+</script>

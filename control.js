@@ -1,1 +1,1 @@
-var emergency = false;
+var emergency = true;

@@ -15,7 +15,8 @@
   
   <span style="color: #e1b7b7">①</span> Write a <b>title</b> and an <b>author name</b> below.<br>
   <span style="color: #e1dfb7">②</span> Click the boxes to the right of the events to pick <b>colors</b> for events!<br>
-  <span style="color: #b7c7e1">③</span> Scroll to the bottom of the page and copy the content in the purple box.</span>
+  <span style="color: #b7c7e1">③</span> Scroll to the bottom of the page and copy the content in the purple box. Then, go to <a href="https://brookeafk.com" target="_blank">the main page</a>, open the settings (click <span style="font-family: Material">settings</span>), click <b>Custom</b> under <b>Palette</b>, and then click <b>Import</b> and paste in your palette.</span><br>
+  Read more about custom palettes by clicking <a href="help#section-custom-palettes" target="_blank">here</a>.
 </p>
 
 
@@ -83,8 +84,12 @@
 <input type="color" id="color_17">
 
 <p style="background-color: #794978; border-radius: 8px; font-size: 15px; padding: 15px; line-height: 2em;">
+  <b>URL</b><br>
+  <input type="text" id="url" class="output" onclick="this.select()"><br>
+  <b>Use this link to share your palette with your friends!</b><br>
+  
   <b>Code</b><br>
-  <input type="text" id="output" onclick="this.select()"><br>
+  <input type="text" id="output" class="output" onclick="this.select()"><br>
   <b>Copy and input this into brookeafk.com!</b>
 </p>
 <p style="margin: 15px" class="option">Color pickers created with <a href="https://bgrins.github.io/spectrum/" target="_blank">Spectrum</a> by <a href="http://twitter.com/bgrins" target="_blank">bgrins</a>.</p>
@@ -110,7 +115,7 @@ function lightMode() {
     document.getElementById("event_" + x).style.color = normalText;
   }
   document.querySelectorAll('p').forEach(e => e.style.color = normalText);
-  document.getElementById("authorlabel").style.color = normalText
+  document.getElementById("authorlabel").style.color = normalText;
 }
 
 eventIdentification = [["#206dc5","Squads"],["#4f234d","Dragon Egg"],["#c59f20","Pizza"],["#234f48","KOTH"],["#c0c020","Raffle"],["#394f23","KOTL"],["#2323c5","Blockhead"],["#234f2c","2x Rewards"],["#c520c3","Spire"],["#4f3023","Care Package"],["#7320c5","Team Deathmatch"],["#6e5032","Auction"],["#c5c320","Robbery"],["#45234f","Quick Maths"],["#c52320","Rage Pit"],["#35234f","Giant Cake"],["#20c541","Beast"],["#4f4d23","All bounty"]]
@@ -120,6 +125,7 @@ function updateColor(num, col, shouldICallMakeCodeAlso = true) {
   if(shouldICallMakeCodeAlso) makeCode();
 }
 document.getElementById("output").value = "Edit some colors first!"
+document.getElementById("url").value = "Edit some colors first!"
 
 for(a = 0; a < 18; a++) {
   updateColor(a, eventIdentification[a][0], false)
@@ -130,13 +136,15 @@ function uni_b64(str) { // modified version of btoa() provided by MDN Web Docs (
 }
 
 function makeCode() { // hey, that's what i do!
-  encode = "*";
+  encode = "¤";
   for(j = 0; j < 18; j++) {
     encode += ($("#color_" + j).spectrum('get').toHexString()).substring(1);
   }
-  encode += "*" + document.getElementById("title").value + "*" + document.getElementById("author").value
+  encode += "¤" + document.getElementById("title").value + "¤" + document.getElementById("author").value
   document.getElementById("output").value = uni_b64(encode);
+  document.getElementById("url").value = "https://brookeafk.com?palette=" + uni_b64(encode);
 }
+
 
 if(document.getElementById("title").value == "") document.getElementById("title").value = "Palette name"
 if(document.getElementById("author").value == "") document.getElementById("author").value = "Me"
@@ -147,13 +155,15 @@ function textType(selector) {
     document.getElementById("title").style.backgroundClip = "text"
     document.getElementById("title").style.webkitBackgroundClip = "text"
     document.getElementById("title").style.color = "transparent"
-    if(document.getElementById("title").value.indexOf("*") > -1) document.getElementById("title").value = document.getElementById("title").value.replace(/\*/g, "");
+    if(document.getElementById("title").value.indexOf("¤") > -1) document.getElementById("title").value = document.getElementById("title").value.replace(/\¤/g, "");
+    if(document.getElementById("title").value.length >= 400) document.getElementById("title").value = document.getElementById("title").value.substring(0, 400);
   }
   if(selector == "a") {
     document.getElementById("author").style.color = "white"
-    if(document.getElementById("author").value.indexOf("*") > -1) document.getElementById("author").value = document.getElementById("author").value.replace(/\*/g, "");
+    if(document.getElementById("author").value.indexOf("¤") > -1) document.getElementById("author").value = document.getElementById("author").value.replace(/\¤/g, "");
+    if(document.getElementById("author").value.length >= 400) document.getElementById("author").value = document.getElementById("author").value.substring(0, 400);
   }
-
+  makeCode();
 }
 
 $("#color_0").spectrum({
@@ -324,7 +334,7 @@ $("#color_17").spectrum({
       padding-top: 0px;
     }
 
-    #output {
+    .output {
       font-family: "Roboto Mono", ui-monospace, Menlo, "Cascadia Mono", "Segoe UI Mono", "Fira Mono", "Droid Sans Mono", monospace;;
       border: 1px dashed rgb(221, 192, 221);
       background-color: #59475c;

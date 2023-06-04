@@ -17,11 +17,9 @@
     <link rel="manifest" href="favicon_icons/site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="favicon_icons/favicon.ico">
     <title>Hypixel Pit Events Tracker - brookeafk.com</title>
-    <script src="emergency.js?v=4"></script>
-    <script src="control.js?v=4"></script>
     <meta name="theme-color" content="#ffbbff">
     <meta name="description" content="This site allows you to view the upcoming events in the Hypixel Pit in real time."> 
-    <meta http-equiv="refresh" content="0; url=./" />
+    <meta name="keywords" content="Hypixel Pit, Hypixel, Hypixel Pit Events Tracker, Pit Events, BrookeAFK, Pit, brookeafk.com">
   </head>
   
   <body background-color="black" class="unselectable">
@@ -29,15 +27,22 @@
   
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px; display: none;" class="flashtext unselectable" align="center"></div>
   
-  
-    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com">brookeafk.com</span><span class="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span></p>
+    <div><p class="topcontainer"><img src="./3457688aa57c4d71ab9d22b04f9160db.png" width="20" style="position: relative; bottom: 4px;" id="face"><span id="facebreak">&nbsp;</span><span class="wordmark w600" id="brookeafk-com" onclick="funLogo()">brookeafk.com</span><span class="mobilebreak">&nbsp;&nbsp;</span><span id="settings" onclick="SettingsMenu()" class="hand_cursor icon">Settings</span>&nbsp;<span id="help" onclick="Help()" class="hand_cursor icon">Help</span>&nbsp;<span id="palette-generator" onclick="paletteGenerator()" class="hand_cursor icon">Palette</span></p>
     </div>
 
-    <noscript style="font-size: 80px; color: #ce1010"><b>JavaScript is disabled. This site can't function without it.</b></noscript>
+    <p class="palette-announcement" id="palette-announcement" style="display: none">
+      A Pit player would like you to try out their custom palette.<br>
+      <span style="font-size: 15px; font-weight: 600;" id="palette-colors">QM SP AU TN AB GC CP TD RP BE RO RA QM SP AU TN</span><br>
+      <span id="custom-palette-user-assistance-0">Would you like to use it?</span><br>
 
-    
+      <span id="regular-selection"><span class="button" onclick="changeToURLPalette('yes')">Yes!</span>&nbsp;&nbsp;<span class="button" onclick="changeToURLPalette('no')">No</span><br></span>
+      <span id="sneaky-rename" style="display: none"><span class="button button-smooth button-blue"><input type="text" class="button-input" id="custom-palette-name-input" onkeydown="changeToURLPalette('checkevent', event)" placeholder="Enter a name here..."></span>&nbsp;&nbsp;<span class="button button-green" onclick="changeToURLPalette('confirm')">Confirm</span><br></span>
+      <sub><span id="custom-palette-user-assistance-1">Clicking "Yes!" will remove your current custom palette, if any.</sub>
+    </p>
 
-    <div style="background: linear-gradient(90deg, rgba(219,10,240,1) 0%, rgba(173,18,122,1) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="iGetIt()" id="newsite"><b>HEY!</b> To celebrate brookeafk.com's one-year anniversary, I've fixed a bunch of stuff (notifications should work now!) and made the site look a lot prettier with icons and gradients! If you don't like it, you can go back to the old design by <a style="color: #ccc; cursor: pointer;" href="2022"><u>clicking here</u></a>. (Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
+    <noscript><b style="font-size: 80px; color: #ce1010">JavaScript is disabled. This site can't function without it.</b></noscript>
+
+    <div style="background: linear-gradient(90deg, rgb(181, 175, 55) 0%, rgb(18, 129, 173) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="dismissAnnouncement('announcement_1_1_0')" id="announcement_1_1_0" class="announcement"><b>brookeafk.com now supports custom palettes!</b> Make your own by <a style="color: #ccc; cursor: pointer;" href="palette" target="_blank"><u>clicking here</u></a>.<br>(Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
   
     <div id="day-night-border" class="timers dnb"><div id="day-night" style="vertical-align: middle; display: table-cell;" align="center">00:00&nbsp;</div><svg id="day-svg"  xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg>&nbsp; &mdash; &nbsp;<span id="maprot" class="hand_cursor" onclick="mapClick()"></span></div>
 <span class="mobilebreak" id="current-event-mobilebreak"></span>
@@ -46,7 +51,7 @@
   <div id="settings-section"><br>
   <p class="option"><span class="settingsheader">&mdash; Style &mdash;</span></p>
   <p class="option"><span><b>Theme</b>: </span><span id="settings-theme-dark" onclick='changeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='changeTheme("light")'>Light</span></p> 
-  <p class="option"><span><b>Palette</b>: </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span></p>
+  <p class="option" id="option-palette"><span><b>Palette</b>: </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span> / <span id="settings-palette-4" onclick='changePalette(4)' class="hand_cursor">Theme 4</span> / <span id="custom-palette-exists" style="display: none"><span id="settings-palette-custom" onclick='changePalette("Custom")' class="hand_cursor"><span id="settings-palette-custom-name" class="nocolorchange" style="font-style: oblique">Custom</span></span> / </span><span id="settings-palette-create" onclick='changePalette(9999)' class="hand_cursor"><b>Custom</b> <span style="font-family: Material">palette</span></span></p>
   <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
   <p class="option"><span><b>Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
   <p class="option"><span><b>Tab timer</b>: </span><span id="settings-tabtimer-on" class="hand_cursor" onclick='changeTabTimer(1)'>On</span><span> / <span id="settings-tabtimer-off" class="hand_cursor" onclick='changeTabTimer(0)'>Off</span></p>
@@ -106,19 +111,46 @@
 
   <span class="credits">
     <p id="madewithlove">Made with love and tears by <a href="https://brookie.dev" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></p>
+    <p id="current-palette" style="display: none"></p>
     <p id="wikiad"><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</p>
     <p id="special_thanks"></p>
-    <p id="version" class="ver"> </p> <span>&mdash; April 14, 2023</span><br><br>
+    <p id="version" class="ver"></p> <span>&mdash; May 22, 2023</span>
+    <p id="help">Need help using this site? Join the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.
     </span>
   </span>
 </div>
 
   <script>
+  var successfulExternalConnections = [false, false]; // critical brookeafk.com JS files that have loaded (control, emergency)
+
+  function importScript(url) {
+    var script = document.createElement('script');
+    script.src = url;
+    document.head.appendChild(script);
+  }
+  importScript("emergency.js?v=" + Date.now());
+  importScript("control.js?v=" + Date.now());
+
+  function doEverything(loadedSite) {
+    console.log("External API #" + loadedSite + " has loaded!")
+    successfulExternalConnections[loadedSite] = true;
+    if(successfulExternalConnections[0] == true && successfulExternalConnections[1] == true) {
+      data_backup = MakeAPIAndHTML();
+      cycle1();
+      cycle5();
+      cycle25();
+      console.log("The data's been called!");
+      setInterval(cycle1, 40);
+      setInterval(cycle5, 300);
+      setInterval(cycle25, 1000);
+    }
+  }
+
   console.log("The site has loaded.")
 
   var HiddenEventCount = 0; // number of hidden events
   var EventsToLoad = 1; // number of events in the JSON. this is used a LOT!
-  var version_number = `v1.0.0`
+  var version_number = `v1.1.0`
   var counter = 4; // counter that counts up every 40ms
   var settingsOpened = false; // self explanatory
   var mapClicked = false; // whether the user's clicked the map timer to show its spooky extended info
@@ -151,6 +183,8 @@
 
   document.body.style.fontFamily = CorrectFont;
   document.getElementById('version').innerHTML = version_number;
+  var optionPaletteContent = document.getElementById("option-palette").innerHTML; // in case cancelCustomPalette() is called
+  var isCustomSelectorOpen = false; // whether the user's custom palette selector is open
 
   var time1 = 0; // time since last desktop notif
   
@@ -162,7 +196,7 @@
   var AudioEvents = [];
   var visibleEventIds = []; // list of event IDs that are currently visible
 
-  var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`i find your website really useful, specially when i have the game closed`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`]
+  var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`v1.0.0 on feb 27... i mean feb 28... i mean march 11.. i mean march 12... i mean march 13.... nono i mean i mean april 14`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`]
   var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","litphoenix","adjective",`anoxysm`]
   var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/",`https://statsify.net/`]
   //jojo was here
@@ -174,6 +208,10 @@
   var WithoutVar = "";
   var isMapHover = false; // whether the user is hovering over the map timer
   var robot = true; // whether you, the user, are secretly a search engine crawler in disguise!!
+  
+
+  var customPaletteName = "";
+  var placeholderPalette = []; // where to put the palette that the user's popup box is about
 
   var events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"] // the important one.
   var eventsNoSpaces = ["QuickMaths","DragonEgg","2xRewards","CarePackage","KOTL","KOTH","Auction","GiantCake","Allbounty","Squads","Beast","Pizza","RagePit","Spire","Robbery","Blockhead","Raffle","TeamDeathmatch"]
@@ -193,19 +231,7 @@
   var eventsES = ["Matemáticas Rápidas","Huevo de Dragón","2x Recompensas","Paquete Auxiliar","RDLE","RDLC","Subasta","Tarta Gigante","Recompensa","Escuadrones","Bestia","Pizza","Furia Pit","Chapitel","Robo","Blockhead","Raffle","Deathmatch por Equipos"]
   var IsItACountdownES = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡MATEMÁTICAS RÁPIDAS!</span> <span style="color: #AAAAAA;">Los 5 primeros jugadores que respondan recibirán</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #aa00aa; font-family: ` + CorrectBold + `;">HUEVO DE DRAGÓN</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">PAQUETE AUXILIAR</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">SUBASTA!</span> <span style="color: #AAAAAA; font-family:` + CorrectFont + `">Compruebe el subastador o el chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> ¡TODOS RECIBEN UNA RECOMPENSA!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
 
-  var all_text = ["MINOR EVENT!","MAJOR EVENT!","Starting in ","Ending in "]
-
-  /*if(localStorage.getItem("aviduser") == "1") {
-    localStorage.removeItem("aviduser");
-    localStorage.setItem("reloadChances", "1");
-    window.location = "2022";
-  }*/
-
-  if(localStorage.getItem('hide-redesign-banner')) document.getElementById('newsite').style.display = 'none';
-  function iGetIt() {
-    localStorage.setItem('hide-redesign-banner', true);
-    document.getElementById('newsite').style.display = 'none';
-  }
+  var all_text = ["MINOR EVENT!","MAJOR EVENT!","Starting in ","Ending in "];
 
   if(document.body.clientWidth < 800) { // should make the site mobile when needed
     document.getElementById("settings-ts-tue").innerText = "Until Event"
@@ -294,7 +320,7 @@
         CorrectBold = "Inter; font-weight: bold";
       }
     }
-
+    document.documentElement.style.setProperty("--userfont", font);
     document.body.style.fontFamily = CorrectFont;
     SaveSettings('noreload');
   }
@@ -392,6 +418,12 @@
     console.log("Spacing has been set to " + majorStyles + " px");
     SaveSettings('noreload');
   }
+
+  function dismissAnnouncement(announcement_name) { // dismisses an announcement and doesn't let the user see it again
+    localStorage.setItem(announcement_name, "seen")
+    document.getElementById(announcement_name).style.display = "none";
+  }
+  if(localStorage.getItem("announcement_1_1_0") == "seen") document.getElementById("announcement_1_1_0").style.display = "none";
   
   function DayNightCycle() { // i finally optimized it!
     currentTime = Date.now()  + offset;
@@ -465,6 +497,34 @@
       }
     }
     SaveSettings('noreload');
+  }
+
+  function changeToURLPalette(shouldI, event = "N/A") { // eventually moves the palette stored in the URL to localStorage and code
+    if(shouldI == "checkevent") {
+      if(event.key == "Enter") shouldI = "confirm"
+    }
+
+    if(shouldI == "confirm" || shouldI == "no") {
+      if(shouldI == "confirm") {
+        Palette = "Custom";
+        localStorage.setItem("custom-palette", placeholderPalette);
+        customPaletteName = escapeString(document.getElementById("custom-palette-name-input").value)
+        localStorage.setItem("custom-palette-name", customPaletteName);
+        submitCustomPalette(false, true, false);
+      }
+      document.getElementById("palette-announcement").style.display = "none";
+      let here = new URL(window.location.href);
+      here.searchParams.delete("palette");
+      window.location = here;
+    } else if(shouldI == "yes") {
+      document.getElementById("regular-selection").style.display = "none";
+      document.getElementById("sneaky-rename").style.display = "";
+
+      document.getElementById("custom-palette-user-assistance-0").innerHTML = "Enter a name for this palette.";
+      document.getElementById("custom-palette-user-assistance-1").innerHTML = `Clicking "Confirm" will remove your current custom palette, if any.`;
+      document.getElementById("custom-palette-name-input").focus();
+      document.getElementById("custom-palette-name-input").select();
+    }
   }
 
 
@@ -563,6 +623,7 @@
   function changeTheme(themecolor) { // changes the theme from dark to light mode (or vice versa)
     window.theme = themecolor;
     console.log ("Changed theme to " + window.theme);
+    if(isCustomSelectorOpen) cancelCustomPalette(false); // cancel the custom palette menu if it's open
     if(themecolor == "light") {
       NormalText = "#000000";
       document.getElementById('settings-theme-dark').style.color = "#888888";
@@ -575,6 +636,7 @@
       document.getElementById('settings-palette-1').innerHTML = ("Sunset");
       document.getElementById('settings-palette-2').innerHTML = ("Beachside");
       document.getElementById('settings-palette-3').innerHTML = ("Bubblegum");
+      document.getElementById('settings-palette-4').innerHTML = ("Sienna");
       document.getElementById('tut-notif').style.color = "#BD8E02"
     } else if (window.theme == "dark") {
       NormalText = "#FFFFFF";
@@ -588,6 +650,7 @@
       document.getElementById('settings-palette-1').innerHTML = ("Sunrise");
       document.getElementById('settings-palette-2').innerHTML = ("Ocean");
       document.getElementById('settings-palette-3').innerHTML = ("Business");
+      document.getElementById('settings-palette-4').innerHTML = ("Phoenix");
       document.getElementById('tut-notif').style.color = "#FFFF80"
     }
     document.documentElement.style.setProperty("--normaltext", NormalText);
@@ -603,6 +666,7 @@
       changeClock(window.clockStyle);
       changeClassic(window.classicMode);
       changeTabTimer(window.tabTimerVisible);
+      changePalette(window.Palette)
       changeMajorStyle("border", window.majorStyles[0]);
       changeMajorStyle("shadow", window.majorStyles[1]);
       console.log("Stuff exists. Updating event flashes and audio.");
@@ -623,12 +687,12 @@
       }
     }
     if(themecolor == "light") {
-    [...document.querySelectorAll('*')]
+    [...document.querySelectorAll('*:not(.nocolorchange)')]
       .filter(el => getComputedStyle(el).color === 'rgb(255, 255, 255)')
       .forEach(el => el.style.color = '#000000')
     }
     if(themecolor == "dark") {
-    [...document.querySelectorAll('*')]
+    [...document.querySelectorAll('*:not(.nocolorchange)')]
       .filter(el => getComputedStyle(el).color === 'rgb(0, 0, 0)')
       .forEach(el => el.style.color = '#ffffff')
     }
@@ -675,23 +739,149 @@
     SaveSettings('noreload');
   }
   
-  function changePalette(changeThePalette) { // changes the user's palette
+  function changePalette(changeThePalette, justSelecting = false) { // changes the user's palette. justSelecting is in case you don't want to call the extremely load-heavy functions at the bottom
     Palette = changeThePalette;
+    document.getElementById('current-palette').style.display = "none";
     document.getElementById('settings-palette-gradients0').style.color = "#888888";
     document.getElementById('settings-palette-gradients1').style.color = "#888888";
     document.getElementById('settings-palette-0').style.color = "#888888";
     document.getElementById('settings-palette-1').style.color = "#888888";
     document.getElementById('settings-palette-2').style.color = "#888888";
     document.getElementById('settings-palette-3').style.color = "#888888";
-    if(Palette > -100 || Palette == 'gradients0' || Palette == 'gradients1') {
-      document.getElementById('settings-palette-' + Palette).style.color = NormalText;
+    document.getElementById('settings-palette-4').style.color = "#888888";
+    document.getElementById('settings-palette-create').style.color = "#888888";
+    document.getElementById('settings-palette-custom').style.color = "#888888";
+
+    if(Palette == 9999) {
+      Palette = 'gradients0';
+      customPalette();
+    } else {
+      if(Palette > -100 || Palette == 'gradients0' || Palette == 'gradients1') {
+        document.getElementById('settings-palette-' + Palette).style.color = NormalText;
+      }
+      if(Palette == "Custom") {
+        document.getElementById('settings-palette-custom').style.color = NormalText;
+        document.getElementById('current-palette').style.display = "";
+        document.getElementById('current-palette').innerHTML = `Current palette: <b class='groovy' style='font-style: normal'><span id="current-palette-name"></span></b>`;
+        document.getElementById('current-palette-name').innerText = customPaletteName;
+      }
+
+      if(justSelecting == false) {
+        addNamesandImages(window.data);
+        CuteColors(window.data);
+        SaveSettings('noreload');
+      }
+
+    }
+  }
+
+  function customPalette()  { // sets up creation for a custom color palette
+    optionPaletteContent = document.getElementById("option-palette").innerHTML;
+    isCustomSelectorOpen = true;
+    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <a style="color: #45b280" href="palette" target="_blank">Create</a> / <span style="color: #f9e822; cursor: pointer" onclick="importCustomPalette()">Import</span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">Cancel</span>`
+  }
+
+  function importCustomPalette() {
+    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <span id="custom-palette-error">Paste palette here</span> &rarr; <input type="text" onkeypress="reloadWithCustomPalette(event)" id='palette-input' style="font-family: monospace"> / <span style="color: #45e6b2; cursor: pointer" onclick="reloadWithCustomPalette(false ,true)"><b>Submit</b></span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">Cancel</span>`
+    document.getElementById('palette-input').focus();
+    document.getElementById('palette-input').select();
+  }
+
+  function reloadWithCustomPalette(event, bypass = false) { // reloads the page with the custom palette, triggering the pop-up
+    if(bypass || event.key == "Enter") {
+      var userPalette = document.getElementById("palette-input").value;
+      var userPaletteResult = unboxCustomPalette(userPalette);
+      if(unboxCustomPalette(userPalette)[0] == false) document.getElementById("custom-palette-error").innerHTML = userPaletteResult[1];
+      else {
+        let here = new URL(window.location.href);
+        here.searchParams.set("palette", userPalette);
+        window.location = here;
+      }
+    }
+  }
+
+  function unboxCustomPalette(pal) { // converts a base64 palette into an array of human-understandable stuff
+    try {
+        rawUserPalette = pal;
+        userPalette = b64_uni(pal);
+        var splitUserPalette = userPalette.split("¤")
+        if(splitUserPalette.length != 2) {
+          return [false, `<span style="color: #f18080">Invalid input (e0). Please use the <a href="palette" target="_blank">palette creation program</a>.`]
+        }
+        else {
+          var userPaletteColors = (splitUserPalette[1].match(/.{1,6}/g));
+
+          var mover = [13, 1, 7, 9, 5, 3, 11, 15, 17, 0, 16, 2, 14, 8, 12, 6, 4, 10] // in palette.html, the order doesn't match the order in the events variable, so this moves them around to their right spots 
+          userPaletteColorsCopy = userPaletteColors.slice(0);
+          if(userPaletteColorsCopy.length != 18) return([false, `<span style="color: #f18080">Invalid input (e2). Please use the <a href="palette" target="_blank">palette creation program</a>.`])
+          for(aa = 0; aa < 18; aa++) {
+            if(userPaletteColorsCopy[mover[aa]].match(/[0-9a-fA-F]{6}/g) != null) { // makes sure evil user hasn't manipulated the input for an XSS attack
+              userPaletteColors[aa] = "#" + userPaletteColorsCopy[mover[aa]];
+            } else return([false, `<span style="color: #f18080">Invalid input (e3). Please use the <a href="palette" target="_blank">palette creation program</a>.`])
+          }
+
+          return [true, userPaletteColors];
+        }
+      }
+      catch(err) {
+        console.log(err);
+        return [false, `<span style="color: #f18080">Invalid input (e0). Please use the <a href="palette" target="_blank">palette creation program</a>.`]
+      }
     }
 
-    addNamesandImages(window.data);
-    CuteColors(window.data);
-    SaveSettings('noreload');
+  function submitCustomPalette(event, bypass = false, isUserInput = false) {
+    if (bypass || event.key == "Enter") {
+      
+      if(isUserInput == true) var userPalette = document.getElementById("palette-input").value;
+      else var userPalette = localStorage.getItem("custom-palette");
+
+      rawUserPalette = userPalette;
+      var userPaletteResult = unboxCustomPalette(userPalette);
+
+      if(userPaletteResult[0] == false) {
+        if(isUserInput == true) document.getElementById("custom-palette-error").innerHTML = userPaletteResult[1];
+        else console.log(userPaletteResult[1]);
+      }
+      else {
+        localStorage.setItem("custom-palette", rawUserPalette)
+        cancelCustomPalette();
+        document.getElementById("custom-palette-exists").style.display = "";
+        
+        localStorageCustomPaletteName = localStorage.getItem("custom-palette-name");
+        document.getElementById("settings-palette-custom-name").innerText = unescapeString(localStorageCustomPaletteName == null ? "Custom Palette" : localStorageCustomPaletteName);
+
+        if(localStorageCustomPaletteName != null) customPaletteName = localStorageCustomPaletteName;
+
+        darkColorsCustom = userPaletteResult[1];
+        if(isUserInput == true || Palette == "Custom") changePalette("Custom")
+      }
+    }
   }
-  
+
+  function uni_b64(str) { // modified version of btoa() provided by MDN Web Docs (thank you <3<3): #solution_1_%E2%80%93_escaping_the_string_before_encoding_it
+    return btoa(encodeURIComponent(str));
+  }
+
+  function b64_uni(str) {
+    return decodeURIComponent(atob(str));
+  }
+
+  function escapeString(text) { // replaces possible harmful user-inputted text with harmless HTML elements
+    var map = {
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+  }
+
+  function unescapeString(text) {
+    return text.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#039;/g, "'");
+}
+
+  function cancelCustomPalette(changeThemeToo = true) { // user didn't actually want this!! abort!!
+    document.getElementById("option-palette").innerHTML = optionPaletteContent;
+    if(changeThemeToo) changeTheme(theme);
+    isCustomSelectorOpen = false;
+  }
 
   function SelectOnly(event_type) { // allows the user to select certain events, all, or none
     if(event_type == "minor") {
@@ -760,7 +950,7 @@
   
   function TimeOfDay(s) { // gets the local time of day from a Unix timestamp.
     var toffset = (new Date().getTimezoneOffset())*-60000;
-    if(clockStyle == 12) {
+    if(clockStyle == 12) { // if the user is WEIRD and wants a twelve hour time
       var twelvetime = new Date(s + offset);
       var hour = twelvetime.getHours() % 12;
       if(hour == 0) hour = 12;
@@ -770,7 +960,8 @@
     else return new Date(s + toffset + offset).toISOString().slice(-13, -8);
   }
 
-  function autoReload() { if(performance.now() > 43200000 && Math.random() < 0.1) location.reload(); } // automatically reloads the site every twelve hours
+  // reloads the site every 12 hours, or every hour if there's no events
+  function autoReload() { if((noevents == true && performance.now() > 3600000) || (performance.now() > 43200000 && Math.random() < 0.1)) location.reload(); } // automatically reloads the site every twelve hours
 
   function noEvents() { // if there's no events left, show some text explaining this to the user
     if(HiddenEventCount == EventsToLoad || EventsToLoad == 1) { 
@@ -781,14 +972,8 @@
     } else {
       document.getElementById('noevents').style.display = "none";
     }
-    if(counter >= 1400) iGetIt();
     if(counter <= 1400) document.getElementById("dismissalprogress").style.width = (1 - counter / 1400) * 100 + "%";
   }
-
-  // ["Quick Maths","Dragon Egg","2x Rewards","Care Package",
-  // "KOTL","KOTH","Auction","Giant Cake","All bounty",
-  // "Squads","Beast","Pizza","Rage Pit","Spire",
-  // "Robbery","Blockhead","Raffle","Team Deathmatch"];
 
   
   var gradients0 = [["db07eb","2a33a1"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d28b1a","b03737"],["4f73cf","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
@@ -798,24 +983,30 @@
   //gradients0 = [["b961bb","d5c656"],["8e4f75","5d4c98"],["79d976","239eab"],["ce6a6a","aaaf15"],["4c8374","aaaf15"],["8fb5d5","21966b"],["d2d099","d28419"],["d558b8","f3eff2"],["a25656","4144ab"],["4f73cf","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
 
   //var gradients2 = [["4eb743","12743f"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d2b01a","b03737"],["123456","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
-
-  var lightColors0 = ["#D9D2E9","#E9D2E1","#D2E9DD","#E9E2D2","#D2E9D2","#D2E9E8","#E9DDD2","#E9D2D2","#E9E3D2","#8EBAEC","#8EEC94","#ECB38E","#EC8E8E","#EC8EEC","#ECE98E","#9191EC","#ECBD8E","#BA8EEC"]
   var darkColors0 = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
-  
-  var lightColors2 = ["#FFAEBC","#E29CB4","#B4F8C8","#E4D4B4","#F1CBB0","#A0E7E5","#F4F4CC","#C5E3F2","#FBE7C6","#14C2DD","#C7F954","#FCC27C","#FF6F61","#64ABD1","#FDD55E","#5CB7D4","#EEB968","#81599F",]
-  var darkColors2 = ["#003A61","#194475","#2E4180","#323275","#0E2F82","#305B8C","#315F82","#196B82","#02636E","#0ACF87","#2CB8AE","#219CD1","#438BDE","#1B96DE","#2BB5BA","#25AACF","#2D82D6","#4BD6B8",]
+  var lightColors0 = ["#D9D2E9","#E9D2E1","#D2E9DD","#E9E2D2","#D2E9D2","#D2E9E8","#E9DDD2","#E9D2D2","#E9E3D2","#8EBAEC","#8EEC94","#ECB38E","#EC8E8E","#EC8EEC","#ECE98E","#9191EC","#ECBD8E","#BA8EEC"]
   var darkColors1 = ["#4F2561","#3D2C5C","#782C91","#8C3A81","#70287D","#504178","#402459","#AB1B7D","#661563","#DE8F10","#FA9E0A","#DB7821","#D19D49","#E84E3C","#E6C853","#ED7C2B","#CF8D32","#D3CD30",] 
   var lightColors1 = ["#F7E497","#E3DC7B","#D9C755","#EBC86A","#F7C997","#EDD368","#F2B583","#EDD09D","#EB8773","#AB419B","#C2619E","#D93FB7","#B83DB3","#E038A3","#C71C60","#D45BA1","#E84179","#E344E0",]
-  //var darkColors3 = ["#321433","#33142b","#143321","#332314","#1e3314","#143333","#332a14","#261433","#2f3314","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
-  var lightColors3 = ["#FE9FBF","#F2C4CD","#ffaed7","#F2A2C0","#FF9DBB","#FF92B9","#ECAFB7","#FFC6DA","#FEA8C5","#D98FC5","#BF5AA4","#E68DCF","#E08FCA","#E884CC","#C15BA7","#E78CD1","#DC87BE","#CF6EB1"]
+  var darkColors2 = ["#003A61","#194475","#2E4180","#323275","#0E2F82","#305B8C","#315F82","#196B82","#02636E","#0ACF87","#2CB8AE","#219CD1","#438BDE","#1B96DE","#2BB5BA","#25AACF","#2D82D6","#4BD6B8",]
+  var lightColors2 = ["#FFAEBC","#E29CB4","#B4F8C8","#E4D4B4","#F1CBB0","#A0E7E5","#F4F4CC","#C5E3F2","#FBE7C6","#14C2DD","#C7F954","#FCC27C","#FF6F61","#64ABD1","#FDD55E","#5CB7D4","#EEB968","#81599F",]
   var darkColors3 = ["#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222",'#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229',]
-  var darkColors4 = ["#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222","#222222",'#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229','#2A2229',]
+  var lightColors3 = ["#FE9FBF","#F2C4CD","#ffaed7","#F2A2C0","#FF9DBB","#FF92B9","#ECAFB7","#FFC6DA","#FEA8C5","#D98FC5","#BF5AA4","#E68DCF","#E08FCA","#E884CC","#C15BA7","#E78CD1","#DC87BE","#CF6EB1"]
+  var darkColors4 = ["#af3d1f","#c76300","#d04200","#c2071b","#9c693a","#862910","#915a22","#b95300","#9c6507","#f6b647","#d0d251","#fe8b8b","#f99026","#fe86aa","#e5c13e","#ff7b42","#d4ae6e","#ff8080"]
+  var lightColors4 = ["#ffce91","#facad0","#fcbb75","#ffd6ae","#ebc78d","#ffac89","#e2bc98","#ffdcc7","#fcdb84","#f3d618","#82e2ce","#fa7629","#fd5542","#ff9baf","#deb037","#e47451","#e29a45","#de552b"]
+
+  //var darkColors3 = ["#321433","#33142b","#143321","#332314","#1e3314","#143333","#332a14","#261433","#2f3314","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
 
   var darkColorsVermasium = ["#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#606BA6","#8095BF","#394066","#394066","#394066","#394066","#394066","#394066","#394066","#394066","#394066"]
   var darkColorsIDAKOI = ["#1B2440","#BF372A","#453561","#65213C","#19213C","#29314C","#101628","#101D2F","#601F39","#D98943","#E9879E","#C54129","#E6C302","#C54129","#C5A510","#D2A829","#B4971E","#D68941"]
   var darkColorsadjective_n0un = ["#808080","#808080","#808080","#808080","#808080","#808080","#808080","#808080","#808080","#55F","#55F","#55F","#55F","#55F","#55F","#55F","#55F","#55F"]
   var darkColorsswuxx = ["#61123e","#000000","#61123e","#000000","#61123e","#61123e","#61123e","#61123e","#61123e","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000"]
   var darkColorsMaleffect = ["#45234f","#4f234d","#234f2c","#4f3023","#394f23","#234f48","#6e5032","#35234f","#4f4d23","#206dc5","#20c541","#c59f20","#c52320","#c520c3","#c5c320","#2323c5","#c0c020","#7320c5"]
+  var darkColorsCustom = ["#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000"]
+
+    // ["Quick Maths","Dragon Egg","2x Rewards","Care Package",
+  // "KOTL","KOTH","Auction","Giant Cake","All bounty",
+  // "Squads","Beast","Pizza","Rage Pit","Spire",
+  // "Robbery","Blockhead","Raffle","Team Deathmatch"];
 
   if( typeof emergency === 'undefined'){ // if the connection to control.js failed
     console.log("Wah!")
@@ -828,15 +1019,6 @@
     pp_url = ('https://events.mcpqndq.dev'); //stands for "Pit Panda"
     console.log("no emergency here!")
   }
-
-  data_backup = MakeAPIAndHTML();
-  cycle1();
-  cycle5();
-  cycle25();
-  console.log("The data's been called!");
-  setInterval(cycle1, 40);
-  setInterval(cycle5, 200);
-  setInterval(cycle25, 1000);
   
   async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
     if(emergency == true) {
@@ -866,12 +1048,27 @@
       document.getElementById('events').appendChild(div);
   }
   document.getElementById('special_thanks').innerHTML = GeneratePraise();
+  submitCustomPalette(false, true, false) // checks to see if the user made a beautiful custom palette'
+
     changeTheme(theme); //just again to make sure 
     //console.log("Seems like your screen's " + document.body.clientWidth + " pixels wide.");
     DoesStuffExist = true;
     URLToSettings();  
     
     addNamesandImages(window.data);
+  }
+
+  function apz(num, size) { // code from user InfinitiesLoop on Stack Overflow. adds prefix zeroes
+    num = num.toString();
+    while (num.length < size) num = "0" + num;
+    return num;
+}
+
+  function funLogo() { // changes the logo's colors when you click on it
+    document.getElementById("brookeafk-com").style.background = "linear-gradient(90deg, #" + apz(Math.floor(Math.random() * 16777216).toString(16),6) + " 0%, #" + apz(Math.floor(Math.random() * 16777216).toString(16),6) + " 100%)"
+    document.getElementById("brookeafk-com").style.backgroundClip = "text";
+    document.getElementById("brookeafk-com").style.webkitBackgroundClip = "text";
+    document.getElementById("brookeafk-com").style.webkitTextFillColor = "transparent";
   }
   
   function AudioChecker() {
@@ -1107,7 +1304,25 @@
       console.log(majorStyles + " is the major styles") 
 
       changeFont(CorrectFont);
-      changePalette(Palette);
+
+      if(Palette.length > 80) {
+        var unboxResult = unboxCustomPalette(Palette);
+        placeholderPalette = Palette;
+        Palette = "gradients0"
+        console.log("-----------")
+        console.log(unboxResult)
+        if(unboxResult[0] == true) {
+          var paletteColorsFull = ""
+          for(ac = 0; ac < 18; ac++) {
+            paletteColorsFull += ` <span style="background-color: ` + unboxResult[1][ac] + `">&nbsp;` + shortEvents[ac] + `&nbsp;</span> `;
+          }
+          document.getElementById("palette-colors").innerHTML = paletteColorsFull;
+          document.getElementById("palette-announcement").style.display = "";
+        }
+      }
+      else {
+        changePalette(Palette);
+      }
       SetAudio(parseInt(NotifTimer)); //this does not work //then WHY did you add it??
       setFlash(window.EventFlashSec);
       changeIcons(iconsVisible);
@@ -1225,6 +1440,10 @@
 
   function Help() { //redirects the user to the BrookeAFK Help Guide
     window.open("help", '_blank').focus();
+  }
+
+  function paletteGenerator() { //redirects the user to the BrookeAFK Palette Generator
+    window.open("palette", '_blank').focus();
   }
 
   function prefixZero(number, size) { // adds a number of prefix zeroes to a number
@@ -1400,22 +1619,25 @@
 
     }
 
-
     panicevents = [];
   }
   
   function CuteColors(conversion) { //adds cute colors
 
-  if(window.Palette.length > 1 && !(window.Palette.startsWith('gradient'))) {
+  if(window.Palette.length > 1 && !(window.Palette.startsWith('gradient')) && window.Palette != "Custom") {
     document.getElementById('brookeafk-com').innerText = window.Palette + ".com"
     window.theme = "dark";
   }
 
-  if(window.theme == "light") {
-    var TheRightArrayToFindTheColors = window["lightColors" + Palette];
-  }
-  if(window.theme == "dark") {
-    var TheRightArrayToFindTheColors = window["darkColors" + Palette];
+  console.log(window.theme)
+  if(window.Palette == "Custom") var TheRightArrayToFindTheColors = darkColorsCustom;
+  else {
+    if(window.theme == "light") {
+      var TheRightArrayToFindTheColors = window["lightColors" + Palette];
+    }
+    if(window.theme == "dark") {
+      var TheRightArrayToFindTheColors = window["darkColors" + Palette];
+    }
   }
   if(DoesStuffExist == true) {
     console.log(Palette)
@@ -1446,14 +1668,14 @@
   }
   }}
 
-  function cycle1() {
+  function cycle1() { // every 40 ms
     counter += 1;
     window.data = window.data_backup;
     RapidFirst(window.data);
     flipEvents(counter);
   }
 
-  function cycle5() {
+  function cycle5() { // every 200 ms
     UpdateEverything(window.data);
       AudioChecker();
       CurrentEvent();
@@ -1463,13 +1685,13 @@
       updateTabTimer();
   }
 
-  function cycle25() {
+  function cycle25() { // every 1,000 ms
     noEvents();
   }
     </script>
   
   <style>
-    #newsite:hover {
+    .announcement:hover {
       opacity: 0.5;
     }
 
@@ -1501,6 +1723,13 @@
       font-variant-caps: small-caps;
       font-weight: bold;
       font-style: oblique;
+    }
+
+    .groovy {
+      background: linear-gradient(150deg, #e51bbc 0%, #f5d254 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
     .animated {
@@ -1578,6 +1807,45 @@
       z-index: 1;
     }
 
+    .button {
+      text-align: center;
+      border-radius: 5px;
+      transition-duration: 0.2s;
+      cursor: pointer;
+      padding: 12px 25px;
+      background-color: #ad55a9;
+      box-shadow: 4px 4px #ad55a940;
+      border: none;
+      font-size: 18px;
+    }
+
+    .button-blue {
+      background-color: #5574ad;
+      box-shadow: 4px 4px #5574ad40;
+    }
+
+    .button-green {
+      background-color: #55ad7a;
+      box-shadow: 4px 4px #55ad7a40;
+    }
+
+    .button:hover {
+        background-color: #c6a0ad;
+        box-shadow: 8px 8px #c6a0ad40;
+        color: #000;
+    }
+
+    .button-smooth {
+      transition-duration: 0.5s;
+    }
+
+    .button-input {
+      all: initial;
+      font-family: var(--userfont);
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
     .mobileanno {
       height: 0;
       padding: 5px;
@@ -1589,8 +1857,22 @@
       justify-content: center;
       font-size: 14px;
     }
+
+    .palette-announcement {
+      background: linear-gradient(150deg, #4a575b 0%, #cb50ac 100%);
+      border-radius: 8px;
+      font-size: 20px;
+      padding: 18px;
+      line-height: 2em;
+      z-index: 2;
+      width: 600px;
+      position: relative;
+      left: calc(50vw - 300px);
+      box-shadow: 6px 6px 0px #cdc4ce;
+      bottom: 35px;
+    }
   
-    p:not(.credits > p, .option, .settingsheader) {
+    p:not(.credits > p, .option, .settingsheader, .palette-announcement) {
       font-size: 1.5em;
     }
 
@@ -1867,6 +2149,15 @@ a, .icon, div {
   text-decoration: none;
 }
 
+kbd {
+  border: 1px solid #ccc;
+  background-color: #454545;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 4px;
+  font-style: normal;
+}
+
 .credits {
   color: rgba(255, 255, 255, 0.6);
   position: relative;
@@ -1893,7 +2184,7 @@ a, .icon, div {
 }
 
 .ver {
-  background: linear-gradient(140deg, rgb(127, 42, 192) 0%, rgb(43, 188, 214) 100%);
+  background: linear-gradient(140deg, rgb(124, 47, 183) 0%, rgb(43, 214, 174) 100%);
   text-align: center;
   border-radius: 30px;
   display: inline-block;
@@ -1908,6 +2199,7 @@ a, .icon, div {
 
 :root {
   --normaltext: #FFF;
+  --userfont: "Inter";
   --xrot: 0.6;
   --yrot: 2;
   --zrot: 0.8;
@@ -1944,6 +2236,11 @@ a, .icon, div {
   #notifications-major {
     left: 180px;
     top: 10px;
+  }
+  
+  .palette-announcement {
+    width: 80%;
+    left: unset;
   }
 
   #notifications-minor {

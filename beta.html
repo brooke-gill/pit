@@ -31,13 +31,13 @@
     </div>
 
     <p class="palette-announcement" id="palette-announcement" style="display: none">
-      <span id="palette-user">BrookeAFK</span> would like you to try out their custom palette:<br>
-      <span style="font-size: 30px; font-weight: bold; vertical-align: middle" class="groovy"><span id="palette-name">Palette Name</span></span><br>
+      A Pit player would like you to try out their custom palette.<br>
       <span style="font-size: 15px; font-weight: 600;" id="palette-colors">QM SP AU TN AB GC CP TD RP BE RO RA QM SP AU TN</span><br>
-      Would you like to use it?<br>
+      <span id="custom-palette-user-assistance-0">Would you like to use it?</span><br>
 
-      <span class="button" onclick="changeToURLPalette('yes')">Yes!</span>&nbsp;&nbsp;<span class="button" onclick="changeToURLPalette('no')">No</span><br>
-      <sub>Clicking "Yes!" will remove your current custom palette, if any.</sub>
+      <span id="regular-selection"><span class="button" onclick="changeToURLPalette('yes')">Yes!</span>&nbsp;&nbsp;<span class="button" onclick="changeToURLPalette('no')">No</span><br></span>
+      <span id="sneaky-rename" style="display: none"><span class="button button-smooth button-blue"><input type="text" class="button-input" id="custom-palette-name-input" onkeydown="changeToURLPalette('checkevent', event)" placeholder="Enter a name here..."></span>&nbsp;&nbsp;<span class="button button-green" onclick="changeToURLPalette('confirm')">Confirm</span><br></span>
+      <sub><span id="custom-palette-user-assistance-1">Clicking "Yes!" will remove your current custom palette, if any.</sub>
     </p>
 
     <noscript><b style="font-size: 80px; color: #ce1010">JavaScript is disabled. This site can't function without it.</b></noscript>
@@ -51,7 +51,7 @@
   <div id="settings-section"><br>
   <p class="option"><span class="settingsheader">&mdash; Style &mdash;</span></p>
   <p class="option"><span><b>Theme</b>: </span><span id="settings-theme-dark" onclick='changeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='changeTheme("light")'>Light</span></p> 
-  <p class="option" id="option-palette"><span><b>Palette</b>: </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span> / <span id="settings-palette-4" onclick='changePalette(4)' class="hand_cursor">Theme 4</span> / <span id="custom-palette-exists" style="display: none"><span id="settings-palette-custom" onclick='changePalette("Custom")' class="hand_cursor">Custom</span> / </span><span id="settings-palette-create" onclick='changePalette(9999)' class="hand_cursor"><b>Custom</b> <span style="font-family: Material">palette</span></span></p>
+  <p class="option" id="option-palette"><span><b>Palette</b>: </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span> / <span id="settings-palette-4" onclick='changePalette(4)' class="hand_cursor">Theme 4</span> / <span id="custom-palette-exists" style="display: none"><span id="settings-palette-custom" onclick='changePalette("Custom")' class="hand_cursor"><span id="settings-palette-custom-name" class="nocolorchange" style="font-style: oblique">Custom</span></span> / </span><span id="settings-palette-create" onclick='changePalette(9999)' class="hand_cursor"><b>Custom</b> <span style="font-family: Material">palette</span></span></p>
   <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
   <p class="option"><span><b>Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
   <p class="option"><span><b>Tab timer</b>: </span><span id="settings-tabtimer-on" class="hand_cursor" onclick='changeTabTimer(1)'>On</span><span> / <span id="settings-tabtimer-off" class="hand_cursor" onclick='changeTabTimer(0)'>Off</span></p>
@@ -111,7 +111,7 @@
 
   <span class="credits">
     <p id="madewithlove">Made with love and tears by <a href="https://brookie.dev" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></p>
-    <p id="currentpalette" style="display: none"></p>
+    <p id="current-palette" style="display: none"></p>
     <p id="wikiad"><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</p>
     <p id="special_thanks"></p>
     <p id="version" class="ver"></p> <span>&mdash; May 22, 2023</span>
@@ -211,7 +211,6 @@
   
 
   var customPaletteName = "";
-  var customPaletteAuthor = ""; // used for when the user makes a custom palette!
   var placeholderPalette = []; // where to put the palette that the user's popup box is about
 
   var events = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"] // the important one.
@@ -321,7 +320,7 @@
         CorrectBold = "Inter; font-weight: bold";
       }
     }
-
+    document.documentElement.style.setProperty("--userfont", font);
     document.body.style.fontFamily = CorrectFont;
     SaveSettings('noreload');
   }
@@ -500,16 +499,32 @@
     SaveSettings('noreload');
   }
 
-  function changeToURLPalette(shouldI) {
-    if(shouldI == "yes") {
-      Palette = "Custom";
-      localStorage.setItem("custom-palette", placeholderPalette);
-      submitCustomPalette(false, true, false);
+  function changeToURLPalette(shouldI, event = "N/A") { // eventually moves the palette stored in the URL to localStorage and code
+    if(shouldI == "checkevent") {
+      if(event.key == "Enter") shouldI = "confirm"
     }
-    document.getElementById("palette-announcement").style.display = "none";
-    let here = new URL(window.location.href);
-    here.searchParams.delete("palette");
-    window.location = here;
+
+    if(shouldI == "confirm" || shouldI == "no") {
+      if(shouldI == "confirm") {
+        Palette = "Custom";
+        localStorage.setItem("custom-palette", placeholderPalette);
+        customPaletteName = escapeString(document.getElementById("custom-palette-name-input").value)
+        localStorage.setItem("custom-palette-name", customPaletteName);
+        submitCustomPalette(false, true, false);
+      }
+      document.getElementById("palette-announcement").style.display = "none";
+      let here = new URL(window.location.href);
+      here.searchParams.delete("palette");
+      window.location = here;
+    } else if(shouldI == "yes") {
+      document.getElementById("regular-selection").style.display = "none";
+      document.getElementById("sneaky-rename").style.display = "";
+
+      document.getElementById("custom-palette-user-assistance-0").innerHTML = "Enter a name for this palette.";
+      document.getElementById("custom-palette-user-assistance-1").innerHTML = `Clicking "Confirm" will remove your current custom palette, if any.`;
+      document.getElementById("custom-palette-name-input").focus();
+      document.getElementById("custom-palette-name-input").select();
+    }
   }
 
 
@@ -726,7 +741,7 @@
   
   function changePalette(changeThePalette, justSelecting = false) { // changes the user's palette. justSelecting is in case you don't want to call the extremely load-heavy functions at the bottom
     Palette = changeThePalette;
-    document.getElementById('currentpalette').style.display = "none"
+    document.getElementById('current-palette').style.display = "none";
     document.getElementById('settings-palette-gradients0').style.color = "#888888";
     document.getElementById('settings-palette-gradients1').style.color = "#888888";
     document.getElementById('settings-palette-0').style.color = "#888888";
@@ -746,8 +761,9 @@
       }
       if(Palette == "Custom") {
         document.getElementById('settings-palette-custom').style.color = NormalText;
-        document.getElementById('currentpalette').style.display = ""
-        document.getElementById('currentpalette').innerHTML = "Current palette: <b class='groovy' style='font-style: normal'>" + escapeString(customPaletteName) + "</b> by " + escapeString(customPaletteAuthor);
+        document.getElementById('current-palette').style.display = "";
+        document.getElementById('current-palette').innerHTML = `Current palette: <b class='groovy' style='font-style: normal'><span id="current-palette-name"></span></b>`;
+        document.getElementById('current-palette-name').innerText = customPaletteName;
       }
 
       if(justSelecting == false) {
@@ -766,7 +782,22 @@
   }
 
   function importCustomPalette() {
-    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <span id="custom-palette-error">Paste palette here</span> &rarr; <input type="text" onkeypress="submitCustomPalette(event, false, true)" id='palette-input' style="font-family: monospace"> / <span style="color: #45e6b2; cursor: pointer" onclick="submitCustomPalette(false,true, true)"><b>Submit</b></span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">Cancel</span>`
+    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <span id="custom-palette-error">Paste palette here</span> &rarr; <input type="text" onkeypress="reloadWithCustomPalette(event)" id='palette-input' style="font-family: monospace"> / <span style="color: #45e6b2; cursor: pointer" onclick="reloadWithCustomPalette(false ,true)"><b>Submit</b></span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">Cancel</span>`
+    document.getElementById('palette-input').focus();
+    document.getElementById('palette-input').select();
+  }
+
+  function reloadWithCustomPalette(event, bypass = false) { // reloads the page with the custom palette, triggering the pop-up
+    if(bypass || event.key == "Enter") {
+      var userPalette = document.getElementById("palette-input").value;
+      var userPaletteResult = unboxCustomPalette(userPalette);
+      if(unboxCustomPalette(userPalette)[0] == false) document.getElementById("custom-palette-error").innerHTML = userPaletteResult[1];
+      else {
+        let here = new URL(window.location.href);
+        here.searchParams.set("palette", userPalette);
+        window.location = here;
+      }
+    }
   }
 
   function unboxCustomPalette(pal) { // converts a base64 palette into an array of human-understandable stuff
@@ -774,7 +805,7 @@
         rawUserPalette = pal;
         userPalette = b64_uni(pal);
         var splitUserPalette = userPalette.split("¤")
-        if(splitUserPalette.length != 4) {
+        if(splitUserPalette.length != 2) {
           return [false, `<span style="color: #f18080">Invalid input (e0). Please use the <a href="palette" target="_blank">palette creation program</a>.`]
         }
         else {
@@ -789,7 +820,7 @@
             } else return([false, `<span style="color: #f18080">Invalid input (e3). Please use the <a href="palette" target="_blank">palette creation program</a>.`])
           }
 
-          return [true, userPaletteColors, splitUserPalette[2], splitUserPalette[3]];
+          return [true, userPaletteColors];
         }
       }
       catch(err) {
@@ -815,10 +846,13 @@
         localStorage.setItem("custom-palette", rawUserPalette)
         cancelCustomPalette();
         document.getElementById("custom-palette-exists").style.display = "";
-        document.getElementById("settings-palette-custom").innerHTML = "<span style='font-style: oblique' class='nocolorchange'>" + escapeString(userPaletteResult[2]) + "</span>";
+        
+        localStorageCustomPaletteName = localStorage.getItem("custom-palette-name");
+        document.getElementById("settings-palette-custom-name").innerText = unescapeString(localStorageCustomPaletteName == null ? "Custom Palette" : localStorageCustomPaletteName);
+
+        if(localStorageCustomPaletteName != null) customPaletteName = localStorageCustomPaletteName;
+
         darkColorsCustom = userPaletteResult[1];
-        customPaletteName = escapeString(userPaletteResult[2]);
-        customPaletteAuthor = escapeString(userPaletteResult[3]);
         if(isUserInput == true || Palette == "Custom") changePalette("Custom")
       }
     }
@@ -838,6 +872,10 @@
     };
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
   }
+
+  function unescapeString(text) {
+    return text.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#039;/g, "'");
+}
 
   function cancelCustomPalette(changeThemeToo = true) { // user didn't actually want this!! abort!!
     document.getElementById("option-palette").innerHTML = optionPaletteContent;
@@ -1274,8 +1312,6 @@
         console.log("-----------")
         console.log(unboxResult)
         if(unboxResult[0] == true) {
-          document.getElementById("palette-user").innerHTML = escapeString(unboxResult[3]);
-          document.getElementById("palette-name").innerHTML = escapeString(unboxResult[2]);
           var paletteColorsFull = ""
           for(ac = 0; ac < 18; ac++) {
             paletteColorsFull += ` <span style="background-color: ` + unboxResult[1][ac] + `">&nbsp;` + shortEvents[ac] + `&nbsp;</span> `;
@@ -1783,10 +1819,31 @@
       font-size: 18px;
     }
 
+    .button-blue {
+      background-color: #5574ad;
+      box-shadow: 4px 4px #5574ad40;
+    }
+
+    .button-green {
+      background-color: #55ad7a;
+      box-shadow: 4px 4px #55ad7a40;
+    }
+
     .button:hover {
         background-color: #c6a0ad;
         box-shadow: 8px 8px #c6a0ad40;
         color: #000;
+    }
+
+    .button-smooth {
+      transition-duration: 0.5s;
+    }
+
+    .button-input {
+      all: initial;
+      font-family: var(--userfont);
+      padding-top: 15px;
+      padding-bottom: 15px;
     }
 
     .mobileanno {
@@ -2142,6 +2199,7 @@ kbd {
 
 :root {
   --normaltext: #FFF;
+  --userfont: "Inter";
   --xrot: 0.6;
   --yrot: 2;
   --zrot: 0.8;

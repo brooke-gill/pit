@@ -128,6 +128,7 @@
     script.src = url;
     document.head.appendChild(script);
   }
+
   importScript("emergency.js?v=" + Date.now());
   importScript("control.js?v=" + Date.now());
 
@@ -1022,6 +1023,7 @@
   
   async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
     if(emergency == true) {
+      setInterval(newDataDifferent, 36000 /* 00 */); // checks if new data's been added every hour
     document.getElementById('version').innerHTML = (version_number + "e");
     document.getElementById('mcpqndq').style.display = "none"; // i'm evil
     window.data = await window.emergency_data;
@@ -1056,6 +1058,17 @@
     URLToSettings();  
     
     addNamesandImages(window.data);
+  }
+
+  function newDataDifferent(url = "emergency.js") { // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
+    fetch(url + "?v=" + Date.now()).then(e => e.text()).then(txt => {
+      var dataExcerpt = txt.match(/\[.*\]/g);
+      if(dataExcerpt[0] != JSON.stringify(data) && performance.now() > 3600000) { // if the new data doesn't match the data variable
+        console.log("uh oh!!!")
+        window.location.reload();
+      }
+      else console.log("all good :thim busp")
+    })
   }
 
   function apz(num, size) { // code from user InfinitiesLoop on Stack Overflow. adds prefix zeroes
@@ -1107,7 +1120,7 @@
                 }
                 window.HiddenEventCount = window.HiddenEventCount + 1;
                 DemolitionTime = (window.data[HiddenEventCount - 1]['timestamp'] + (VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) // prepares to make the current event visible, depending on how long it should be visible for
-                TimeOfEventStart = Date.now() + offset;
+                TimeOfEventStart = window.data[HiddenEventCount - 1]['timestamp'] //previously: Date.now() + offset;
 
                 checkVisibleEvents();
                 document.getElementById("current-event").style.display = "block";

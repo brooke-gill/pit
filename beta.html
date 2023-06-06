@@ -1063,7 +1063,7 @@
   function newDataDifferent(url = "emergency.js") { // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
     fetch(url + "?v=" + Date.now()).then(e => e.text()).then(txt => {
       var dataExcerpt = txt.match(/\[.*\]/g);
-      if(dataExcerpt[0] != JSON.stringify(data) && performance.now() > 3600000) { // if the new data doesn't match the data variable
+      if(dataExcerpt[0] != JSON.stringify(data) /*&& performance.now() > 3600000 */) { // if the new data doesn't match the data variable
         console.log("uh oh!!!")
         window.location.reload();
       }

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+      <title>Safety check</title>
+      <meta name = "description" content = "why are you here. how did you find this.">
+      <meta name = "author" content = "adjective_n0un">
+      <link rel="icon" href="./favicon/nerd_anim.gif" type="image/gif">
+    </head>
+    <body>
+      <br><br>
+      <div style = "text-align: center">
+      <span class="header">the last time anyone logged onto adj's account was</span><br>
+      <span class="timer">
+      <span id = "h">00:</span><span id = "m">00:</span><span id = "s">00</span> ago
+      </span><br>
+      <span id="localtime"></span>
+      <br>
+      <span id = "milliseconds">Loading...</span><br>
+      <span id="whenapi"></span><br>
+      <span id="substatus"></span><br>
+
+      <span id="ad">Why not read a <a href="https://pit.wiki/Random_Page" target="_blank">Pit Wiki article</a>?</span>
+      </div>
+    </body>
+    <script>
+    function asz(num) { // add starting zero
+      return String(num).padStart(2, '0');
+    }
+
+    var okay; // unix timestamp of when the player can log in again
+    var okaydate; // used for converting timestamp to human date
+    var lastout, lastin; // last logout, last login
+    var lastAPI; // last time the API was called;
+    var datenow; // Date.now();
+
+    function checkAPI(){
+    $.getJSON(
+      "https://api.hypixel.net/player?key=9510951316254db681df506a5916314d&uuid=f4bee4a9c1ca4b929563f4f8148b2968",
+      function (data) {
+        lastAPI = Date.now();
+        lastout = data.player.lastLogout;
+        lastin = data.player.lastLogin;
+        update();
+      }
+    )
+    }
+
+    function update() {
+      datenow = Date.now();
+      okay = lastin;
+      console.log(okay)
+      document.getElementById("whenapi").innerHTML = `<i>Re-checking in ` + Math.floor(30 - ((datenow - lastAPI) / 1000)) + ` seconds</i>`;
+          var timedifference = datenow - lastin;
+          okaydate = new Date(okay);
+          console.log(timedifference)
+            document.getElementById('localtime').innerText = "(" + okaydate.toLocaleTimeString("en-CA") /* our home and native land */ + ")";
+            document.getElementById("milliseconds").innerText = "";
+            document.getElementById("ad").style.display = "inline";
+            var h = Math.floor(timedifference / 3600000);
+            document.getElementById("h").innerText = (asz(h) + ":");
+            var m = Math.floor((timedifference - 3600000 * h) / 60000);
+            document.getElementById("m").innerText = (asz(m) + ":");
+            var s = Math.floor((timedifference - 3600000 * h - 60000 * m) / 1000);
+            document.getElementById("s").innerText = (asz(s));
+            document.title = "[" + asz(h) + ":" + asz(m) + ":" + asz(s) + "] Safety check"
+    }
+
+    checkAPI();
+    setInterval(checkAPI, 30000);
+    setInterval(update, 1000);
+    </script>
+</html>
+<style>
+    body {
+    background-color: #363646;
+}
+
+div {
+    font-family: Inter, sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.header {
+    font-size: 30px;
+}
+
+.timer {
+    font-size: 70px;
+    color: rgba(255, 255, 255, 1);
+    font-variant-numeric: tabular-nums;
+}
+
+#localtime {
+    font-size: 30px;
+}
+
+#safetext {
+    font-size: 20px;
+}
+
+a {
+    transition-duration: 0.2s;
+}
+  
+a:link {
+color: #5abbb7;
+background-color: transparent;
+text-decoration: none;
+}
+
+a:visited {
+color: #4b9b98;
+background-color: transparent;
+text-decoration: none;
+}
+
+a:hover {
+color: #c2edee;
+background-color: transparent;
+text-decoration: underline;
+}
+
+a:active {
+color: #ddf0f0;
+background-color: transparent;
+text-decoration: underline;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("/font/Inter-Regular.ttf");
+}
+</style>

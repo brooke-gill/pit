@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://pit.wiki/stylesheet.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Help with brookeafk.com</title>
 <meta name="description" content="">
@@ -28,6 +27,7 @@
     <b>Table of Contents</b><br><span style="font-weight: 500;">
         &nbsp;&nbsp;&nbsp;&nbsp;<a href="#section-basic">Basic Site Usage</a><br>
         &nbsp;&nbsp;&nbsp;&nbsp;<a href="#section-settings">Settings</a><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="#section-custom-palettes">Custom Palettes</a><br>
         &nbsp;&nbsp;&nbsp;&nbsp;<a href="#section-faq">Frequently Asked Questions</a><br>
         &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://discord.gg/nuUms8r9Ke" target="_blank">Link to Support Discord Server</a></span>
 </div>
@@ -45,9 +45,9 @@
 
 <p>The items are the following:</p>
 <ul>
-    <li><b>Theme</b>: Changes whether the background is black or white. It also changes the palettes!</li>
-    <li><b>Palette</b>: Changes the colors of the events. There's ten of them in total; try clicking each one to see the colors.</li>
-    <li><b>Font</b>: Controls the typeface of everything on the site. The default font is <b>Inter</b>, which is all of this text. <span style="font-family: minecraft"><b>Minecraft</b> is this typeface.</span> <span style="font-family: sans-serif"><b>Sans-serif</b> defaults to the default sans-serif font on your browser (this one). Learn how to change this here: <a href="https://support.mozilla.org/en-US/kb/change-fonts-and-colors-websites-use#w_changing-font" target="_blank">Firefox</a> &ndash; <a href="https://www.maketecheasier.com/change-default-font-chrome/" target="_blank">Chrome</a> &ndash; <a href="https://mcmw.abilitynet.org.uk/changing-fonts-microsoft-edge-windows-10" target="_blank">Edge</a></span>.</li>
+    <li><b>Theme</b>: Changes whether the background is black or white. It also changes the default palettes!</li>
+    <li><b>Palette</b>: Changes the colors of the events. There's twelve default ones in total; try clicking each one to see the colors. However, starting in v1.1.0, you can create a custom palette to use on the site! Read more about it <a href="#section-custom-palettes">here</a>.</li>
+    <li><b>Font</b>: Controls the typeface of everything on the site. The default font is <b>Inter</b>, which is all of this text. <span style="font-family: minecraft"><b>Minecraft</b> is this typeface.</span> <span style="font-family: sans-serif"><b>Sans-serif</b> defaults to the default sans-serif font on your browser (this one).</span> Learn how to change this here: <a href="https://support.mozilla.org/en-US/kb/change-fonts-and-colors-websites-use#w_changing-font" target="_blank">Firefox</a> &ndash; <a href="https://www.maketecheasier.com/change-default-font-chrome/" target="_blank">Chrome</a> &ndash; <a href="https://mcmw.abilitynet.org.uk/changing-fonts-microsoft-edge-windows-10" target="_blank">Edge</a></span>.</li>
     <li><b>Icons</b>: Whether the images of events appear to the left of the events.</li>
     <li><b>Tab timer</b>: Toggles the timer in the tab, displaying a countdown to the next event you have visible. It looks something like this: <b>[🏯] SPI 4m 15s</b>.
     <li><b>Major event effects</b>: Changes the effects that cause major events to stand out. <b>Border</b> adds and removes the white border around major events, and <b>Shadow</b> toggles the shadow effect.</li>
@@ -72,12 +72,21 @@
 <p>If the settings aren't saving for you for some reason, you can just embed the settings in the URL. To do that, just select which settings you want to implement to the site (see below), and add them to the end of the URL with a question mark, such as <code>https://brookeafk.com?palette=3&theme=light</code>. Such settings are below:</p>
 <ul>
   <li><code>theme</code>: <code>dark</code> for the dark theme, <code>light</code> for the light one.</li>
-  <li><code>palette</code>: <code>gradients0</code> for the default gradient color scheme, <code>gradients1</code> for the alternate one, <code>0</code> for the Origins color scheme, <code>1</code> for Sunrise/Sunset, <code>2</code> for Ocean/Beachside, and  <code>3</code> for Business/Bubblegum.</li>
+  <li><code>palette</code>: <code>gradients0</code> for the default gradient color scheme, <code>gradients1</code> for the alternate one, <code>0</code> for the Origins color scheme, <code>1</code> for Sunrise/Sunset, <code>2</code> for Ocean/Beachside, <code>3</code> for Business/Bubblegum, and <code>4</code> for Phoenix/Sienna. If you have a <a href="section-custom-palettes">custom palette</a>, you can input its code here instead.</li>
   <li><code>font</code>: <code>0</code> for Inter, <code>1</code> for <span style="font-family: sans-serif">sans-serif</a>, <code>2</code> for <span style="font-family: Minecraft">Minecraft</a>.</li>
   <li><code>clock</code>: <code>24</code> for 24-hour time, <code>12</code> for 12-hour time.</li>
 </ul>
 <p>Note that it's possible to type in weird things into the URL (e.g. <code>clock=999</code>) that aren't supported. Such items will either not work or completely break the site on your end. To reset these, click the <b style="color: #b35151">Clear Settings and URL</b> button.</p>
 <p>Settings imported from the old version of brookeafk.com also are compatible with the modern version. Settings in the URL will override whatever you have stored in localStorage.</p>
+
+<h2 id="section-custom-palettes">Custom Palettes</h2>
+
+<ul><li>You can create a custom palette by visiting <a href="palette">https://brookeafk.com/palette</a>.</li><li>Create a palette by clicking on the white boxes to the right of the eighteen events.</li><li>Once you're done designing, click on the purple box beneath the events.</li><li>To import the palette, copy the link in the "URL" section at the bottom of the page and paste it into your browser, or copy the code and click the <span style="font-family: Material">Settings</span> gear, <b>Custom</b> under the <b>Palette</b> sub-menu, <b>Import</b>, and then paste the code and press <kbd>Enter</kbd>.</li><li>Palette names shouldn't be longer than 400 characters and may break if they contain <code>¤ U+00A4 CURRENCY SIGN</code>.</li></ul>
+
+<p>You can share a palette by giving your friends the URL from the palette generator. Once they open the link, they'll see something like this (try it yourself <a href="https://brookeafk.com?palette=JUMyJUE0OWRkNTlmNmY3ZjY1NGU2YzRiODI5MmE4Nzk3MDZjYmY3ZTljYmJiNzk0OTBiMGI3N2Y2MjdlYmFiZjljODBhYThmODhiZDk0NzI4ZjkwYjc4NWFhN2I1ODU4NzU4ODZhN2ViZDhiY2NkNmFmJUMyJUE0UGFsZSUyMEZvcmVzdCVDMiVBNGJyb29raWU=" target="_blank">here</a>):</p>
+<img src="/help_images/custom-palette-example.png" width="80%">
+<p>If they select "Yes!", they'll be able to give a name to the palette.</p>
+<p>You can currently only have one custom palette enabled at a time (why would you need more?), but I'll try to fix this later.
 
 <h2 id="section-faq">Frequently Asked Questions<br><span style="font-size: 18px"><i>&#x2e3a; in order of importance &#x2e3a;</i></span></h2>
 
@@ -100,7 +109,7 @@
 <ul><li>The quotes on the bottom were the people who supported me back when brookeafk.com was in its <a href="https://docs.google.com/spreadsheets/d/1pP78ifctBLkuIPH2lg5pzTS2s1pDTXXPMGYVnKgvlug/edit#gid=108982194" target="_blank">archaic spreadsheet phase</a> and didn't have nearly as much support as it does now. I'm currently not looking for more quotes on the bottom of the site&mdash;my apologies.</li></ul>
 
 <h3>Who are you?</h3>
-<ul><li>I'm Brooke! I made this site over a year ago to track when dragon eggs were happening since I was a non and desperately needed the XP it gave. I've also helped make a couple of other things, like <a href="https://pit.wiki" target="_blank">the Pit Wiki</a> and <a href="https://brookeafk.com/tracker" target="_blank">this cool player tracker</a>. I also help with some <a href="https://statsify.net" target="_blank">Statsify</a> development.</li></ul>
+<ul><li>I'm Brooke! I made this site over a year ago to track when dragon eggs were happening since I was a non and desperately needed the XP they gave. I've also helped make a couple of other things, like <a href="https://pit.wiki" target="_blank">the Pit Wiki</a> and <a href="https://brookeafk.com/tracker" target="_blank">this cool player tracker</a>. I also help with some <a href="https://statsify.net" target="_blank">Statsify</a> development.</li></ul>
 
 <h3>Why did you redesign the site, anyway?</h3>
 <ul><li>To me, it looked a bit aged&mdash;the Minecraft font certainly didn't help. I wanted to take an already-existing project and see if I could make it better. The new version also has performance improvements, since there was a <i>lot</i> to improve (the old version of the site tries changing the color of each event twenty-five times a second). In its current state, the new site runs significantly faster than the old one, despite how flashy and new it looks. I think it looks a lot better now, but if you disagree, you can <a href="https://brookeafk.com/2022" target="_blank">always go back</a>.</li></ul>
@@ -119,6 +128,540 @@
 
 </html>
 <style>
+.header {
+  font-size: 30px;
+  color: wheat;
+}
+
+.subheader {
+  font-size: 16px;
+  color: white;
+  font-style: italic;
+}
+
+.body {
+  font-size: 16px;
+  color: #fff;
+}
+
+.section {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1em;
+}
+
+.small {
+  font-size: 12px;
+  font-style: italic;
+  color: #aaa;
+}
+
+.tt {
+  display: inline-block;
+  line-height: 1.5em;
+}
+
+.little {
+  font-size: 14px;
+  font-style: italic;
+  color: #aaa;
+}
+
+.justsmall {
+  font-size: 12px;
+}
+
+.justlittle {
+  font-size: 14px;
+}
+
+.center {
+  text-align: center;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.note {
+  vertical-align: super;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.item {
+  outline: 1px solid white;
+  width: 200px;
+  float: right;
+  margin: 10px;
+  border: 1px solid white;
+}
+
+.item30 {
+  /* 1.5× larger than item */
+  outline: 1px solid white;
+  width: 300px;
+  float: right;
+  margin: 10px;
+  border: 1px solid white;
+}
+
+.tableheader {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+}
+
+table,
+th,
+td {
+  border: 1px solid white;
+  padding: 5px;
+}
+
+.invisible {
+  border: 0px;
+}
+
+.highlighted {
+  border: 2px solid #cc0000aa;
+  background: #cc000055;
+}
+
+.invisible_fill {
+  background-color: var(--bgtp);
+}
+
+.headerbox {
+  background-color: var(--bgtp);
+  width: 80%;
+  padding: 20px 50px 20px;
+  margin: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.75;
+  border-radius: 15px;
+}
+
+.smallbreak {
+  height: 0px;
+  visibility: hidden;
+}
+
+.clickme {
+  cursor: pointer;
+}
+
+.supersecret {
+  cursor: pointer;
+  font-weight: bold;
+  color: #fdf;
+}
+
+#content-error {
+  transition-duration: 0.5s;
+}
+
+.box {
+  background-color: var(--bgtp);
+  width: 80%;
+  padding: 20px 50px 20px;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.75;
+  border-radius: 15px;
+  position: relative;
+  top: 50px;
+}
+
+.bigimage {
+  width: 600px;
+}
+
+@media only screen and (max-width: 800px) {
+  .bigimage {
+    width: 80%;
+  }
+}
+
+.m0 {
+  color: #000;
+}
+.m1 {
+  color: #00a;
+}
+.m2 {
+  color: #0a0;
+}
+.m3 {
+  color: #0aa;
+}
+.m4 {
+  color: #a00;
+}
+.m5 {
+  color: #a0a;
+}
+.m6 {
+  color: #fa0;
+}
+.m7 {
+  color: #aaa;
+}
+.m8 {
+  color: #555;
+}
+.m9 {
+  color: #55f;
+}
+.ma {
+  color: #5f5;
+}
+.mb {
+  color: #5ff;
+}
+.mc {
+  color: #f55;
+}
+.md {
+  color: #f5f;
+}
+.me {
+  color: #ff5;
+}
+.mf {
+  color: #fff;
+}
+.td {
+  color: #caa;
+}
+
+.shadowf {
+  text-shadow: 0px 0px 8px #fff;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.hoverimage {
+  opacity: 0.4;
+  transition-duration: 0.5s;
+}
+
+.hoverimage:hover {
+  opacity: 1;
+}
+
+
+code {
+  font-family: "Roboto Mono", ui-monospace, Menlo, "Cascadia Mono", "Segoe UI Mono", "Fira Mono", "Droid Sans Mono", monospace;
+  color: #cac;
+  background-color: #383838;
+  padding: 2px;
+}
+
+pre > code {
+  background-color: transparent;
+}
+
+a, .headerlist {
+  transition-duration: 0.2s;
+}
+
+a:link {
+  color: #5abbb7;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #4b9b98;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #c2edee;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #ddf0f0;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.tip {
+  position: relative;
+  border-bottom: 1px dotted #ffffff88;
+  cursor: help;
+}
+
+.tip .tiptext {
+  visibility: hidden;
+  word-wrap: break-word;
+  width: 160px;
+  background-color: #000000cc;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: -85px;
+  padding: 10px;
+  font-weight: 400;
+  font-style: oblique;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.tip .tiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #00000088 transparent transparent transparent;
+}
+
+.icon {
+  font-family: Material;
+}
+
+.tip:hover .tiptext, .tip:active .tiptext {
+  visibility: visible;
+}
+
+.tip:hover .tiptext {
+  opacity: 1;
+}
+
+.searchresult {
+  background-color: #3b85a0;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Material;
+  src: url("./font/Material.ttf");
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("./font/InterVariable.ttf");
+}
+
+:root {
+  --mc0: #000;
+  --mc1: #00a;
+  --mc2: #0a0;
+  --mc3: #0aa;
+  --mc4: #a00;
+  --mc5: #a0a;
+  --mc6: #fa0;
+  --mc7: #aaa;
+  --mc8: #555;
+  --mc9: #55f;
+  --mca: #5f5;
+  --mcb: #5ff;
+  --mcc: #f55;
+  --mcd: #f5f;
+  --mce: #ff5;
+  --mcf: #fff;
+  --td: #caa;
+  --bg: #252525;
+  --bgtp: rgba(37, 37, 37, 0.95);
+}
+
+.rainbow_text_animated {
+    background: linear-gradient(to right, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55, #fa0, #ff5, #5f5, #5ff, #f5f, #f55);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 12s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
+
+td img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.anchor {
+  position: absolute;
+  transform: translateY(-100px);
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+ul {
+  list-style-type: square;
+}
+
+.funky {
+  background: linear-gradient(150deg, #f5deb3 0%, #a77b29 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.groovy {
+  background: linear-gradient(150deg, #e51bbc 0%, #f5d254 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#searchBar:focus, .searchbar:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(200, 200, 200, 0.2);
+  position: relative;
+  width: 250px;
+  background-color: #31313a;
+}
+
+/* thank you to Rahul for showing me the power of CSS Masonry: https://w3bits.com/css-masonry/ */
+.homepagecontainer {
+  margin: 1.5em auto;
+  max-width: 1068px;
+  column-gap: 1.5em;
+}
+
+.homepageitem {
+  background: #4c4c4c40;
+  padding: 1em;
+  margin: 0 0 1.5em;
+  break-inside: avoid-column;
+}
+
+kbd {
+  border: 1px solid #ccc;
+  background-color: #454545;
+  border-radius: 4px;
+  font-family: Inter;
+  font-size: 12px;
+  padding: 4px;
+}
+
+.searchitem {
+  border-top: 1px solid #3f3f3f;
+  border-bottom: 1px solid #3f3f3f;
+  margin: 0;
+  padding: 4px;
+}
+
+.searchitem:hover {
+  background-color: #4a6164;
+}
+
+.hamburger {
+  color: #eee;
+}
+
+#aUL {
+  display: none;
+  list-style-type: square;
+  background-color:#363636;
+  border-radius: 15px;
+  padding: 20px 20px 20px 20px;
+  margin: 50px 100px 0px 0px;
+  right: 0px;
+  width: 250px;
+  z-index: 4;
+  position:fixed;
+}
+
+.headerlist {
+  list-style-type: square;
+  background-color:#363636;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 35px 0px 0px calc(15px + 6%);
+  left: 0px;
+  width: 250px;
+  z-index: 4;
+  position: fixed;
+  transform: translate(0px, -24px);
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0px 0px 5px #1d1d1d;
+}
+
+#menuopened:checked ~ .headerlist {
+  transform: translate(0px, 0px);
+  opacity: 1;
+  visibility: visible;
+}
+
+@media only screen and (min-width: 1024px) {
+  .homepagecontainer {
+    column-count: 4;
+  }
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+  .homepagecontainer {
+    column-count: 3;
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 540px) {
+  .homepagecontainer {
+    column-count: 2;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  body {
+    background-image: none;
+    background-color: var(--bg);
+  }
+
+  .box {
+    width: auto;
+    padding: 20px 15px 20px;
+  }
+
+  #aUL {
+    width: 175px;
+  }
+
+  #searchBar {
+    width: 50px;
+  }
+
+  #searchBar:focus {
+    width: 100px;
+  }
+
+  .headerbox {
+    width: 90%;
+  }
+}
+/* stylesheet not updating? */
+
 @font-face {
   font-family: Inter;
   src: url("./font/Inter-Regular.ttf");

@@ -644,7 +644,7 @@
   function mapClick() {
     if(!mapClicked) {
       mapClicked = true;
-      document.getElementById('maprot').innerHTML = `<span style="color: #edbe1f"><b><span class="tip">` + maps[mapid] + `<span class="tiptext">` + languagePack[93] /*The current map.*/ + `</span></span></b></span> &rarr; <span style="color: #2bbddb"><b><span class="tip">` + maps[mod(mapid - 1, 5)] + `<span class="tiptext">` + languagePack[94] /*The upcoming map.*/ + `</span></span></b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 2, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 3, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 4, 5)];
+      document.getElementById('maprot').innerHTML = `<span style="color: #edbe1f"><b><span class="tip">` + maps[mapid] + `<span class="tiptext">` + languagePack[94] /*The current map.*/ + `</span></span></b></span> &rarr; <span style="color: #2bbddb"><b><span class="tip">` + maps[mod(mapid - 1, 5)] + `<span class="tiptext">` + languagePack[95] /*The upcoming map.*/ + `</span></span></b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 2, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 3, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 4, 5)];
     } else {
       mapClicked = false;
     }
@@ -814,11 +814,11 @@
   function customPalette()  { // sets up creation for a custom color palette
     optionPaletteContent = document.getElementById("option-palette").innerHTML;
     isCustomSelectorOpen = true;
-    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <a style="color: #45b280" href="palette" target="_blank">Create</a> / <span style="color: #f9e822; cursor: pointer" onclick="importCustomPalette()">Import</span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">Cancel</span>`
+    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <a style="color: #45b280" href="palette" target="_blank">` + languagePack[20] + `</a> / <span style="color: #f9e822; cursor: pointer" onclick="importCustomPalette()">` + languagePack[21] + `</span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">` + languagePack[22] + `</span>`
   }
 
   function importCustomPalette() {
-    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <span id="custom-palette-error">Paste palette here</span> &rarr; <input type="text" onkeypress="reloadWithCustomPalette(event)" id='palette-input' style="font-family: monospace"> / <span style="color: #45e6b2; cursor: pointer" onclick="reloadWithCustomPalette(false ,true)"><b>Submit</b></span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">Cancel</span>`
+    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <span id="custom-palette-error">` + languagePack[23] + `</span> &rarr; <input type="text" onkeypress="reloadWithCustomPalette(event)" id='palette-input' style="font-family: monospace"> / <span style="color: #45e6b2; cursor: pointer" onclick="reloadWithCustomPalette(false ,true)"><b>` + languagePack[24] + `</b></span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">` + languagePack[22] + `</span>`
     document.getElementById('palette-input').focus();
     document.getElementById('palette-input').select();
   }
@@ -827,7 +827,7 @@
     if(bypass || event.key == "Enter") {
       var userPalette = document.getElementById("palette-input").value;
       var userPaletteResult = unboxCustomPalette(userPalette);
-      if(unboxCustomPalette(userPalette)[0] == false) document.getElementById("custom-palette-error").innerHTML = userPaletteResult[1];
+      if(unboxCustomPalette(userPalette)[0] == false) document.getElementById("custom-palette-error").innerHTML = `<span style="color: #f18080">` + languagePack[25].replace("%%errorcode%%", userPaletteResult[1]) + `</span>`;
       else {
         let here = new URL(window.location.href);
         here.searchParams.set("palette", userPalette);
@@ -842,18 +842,18 @@
         userPalette = b64_uni(pal);
         var splitUserPalette = userPalette.split("¤")
         if(splitUserPalette.length != 2) {
-          return [false, `<span style="color: #f18080">Invalid input (e0). Please use the <a href="palette" target="_blank">palette creation program</a>.`]
+          return [false, 1]
         }
         else {
           var userPaletteColors = (splitUserPalette[1].match(/.{1,6}/g));
 
           var mover = [13, 1, 7, 9, 5, 3, 11, 15, 17, 0, 16, 2, 14, 8, 12, 6, 4, 10] // in palette.html, the order doesn't match the order in the events variable, so this moves them around to their right spots 
           userPaletteColorsCopy = userPaletteColors.slice(0);
-          if(userPaletteColorsCopy.length != 18) return([false, `<span style="color: #f18080">Invalid input (e2). Please use the <a href="palette" target="_blank">palette creation program</a>.`])
+          if(userPaletteColorsCopy.length != 18) return([false, 2])
           for(aa = 0; aa < 18; aa++) {
             if(userPaletteColorsCopy[mover[aa]].match(/[0-9a-fA-F]{6}/g) != null) { // makes sure evil user hasn't manipulated the input for an XSS attack
               userPaletteColors[aa] = "#" + userPaletteColorsCopy[mover[aa]];
-            } else return([false, `<span style="color: #f18080">Invalid input (e3). Please use the <a href="palette" target="_blank">palette creation program</a>.`])
+            } else return([false, 3])
           }
 
           return [true, userPaletteColors];
@@ -861,7 +861,7 @@
       }
       catch(err) {
         console.log(err);
-        return [false, `<span style="color: #f18080">Invalid input (e0). Please use the <a href="palette" target="_blank">palette creation program</a>.`]
+        return [false, 0]
       }
     }
 
@@ -875,7 +875,7 @@
       var userPaletteResult = unboxCustomPalette(userPalette);
 
       if(userPaletteResult[0] == false) {
-        if(isUserInput == true) document.getElementById("custom-palette-error").innerHTML = userPaletteResult[1];
+        if(isUserInput == true) document.getElementById("custom-palette-error").innerHTML = `<span style="color: #f18080">` + languagePack[25].replace("%%errorcode%%", userPaletteResult[1]) + `</span>`;
         else console.log(userPaletteResult[1]);
       }
       else {

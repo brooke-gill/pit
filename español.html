@@ -691,7 +691,8 @@
     document.getElementById('day-svg').style.fill = NormalText;
     document.getElementById('day-night-border').style.color = NormalText;
     if (DoesStuffExist == true) {
-      changeFont(window.font)
+      changeLanguage(window.language);
+      changeFont(window.font);
       setFlash(window.EventFlashSec);
       SetAudio(window.NotifTimer);
       DNotif(window.SettingsDesktopNotifs);
@@ -700,8 +701,8 @@
       changeClock(window.clockStyle);
       changeClassic(window.classicMode);
       changeTabTimer(window.tabTimerVisible);
-      if(language != "en_CA") changeLanguage(window.language);
-      changePalette(window.Palette)
+      changeLanguage(window.language);
+      changePalette(window.Palette);
       changeMajorStyle("border", window.majorStyles[0]);
       changeMajorStyle("shadow", window.majorStyles[1]);
       console.log("Stuff exists. Updating event flashes and audio.");
@@ -1260,8 +1261,8 @@
   }
 
   function getSettings() { // scrapes both URLs and localStorage for settings. URLs get top priority.
-    var defaultSettings = ['262143', '262143', 'gradients0', '111', 'dark', '60', '-10', '0', '0', '0', '1', '24', '0', '1', '11', '5']
-    // 'visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing'
+    var defaultSettings = ['262143', '262143', 'gradients0', '111', 'dark', '60', '-10', '0', '0', '0', '1', '24', '0', '1', '11', '5', 'en_CA']
+    // 'visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing', 'language'
     var site_url = new URL(window.location.href);
     var settingValues = Array(allSettings.length);
 
@@ -1354,7 +1355,7 @@
       console.log(majorStyles + " is the major styles") 
 
       changeFont(CorrectFont);
-      if(language != "en_CA") changeLanguage(language);
+      changeLanguage(language);
 
       if(Palette.length > 80) {
         var unboxResult = unboxCustomPalette(Palette);

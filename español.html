@@ -372,8 +372,10 @@
       nicknames[al] = languagePack[al + 68]; // Quick Maths
       shortEvents[al] = languagePack[al + 153]; // MATH
     }
+    var countdownReplacements = [0, 1, 3, 6, 8]
     for(al = 0; al < 5; al++) {
       maps[al] = languagePack[al + 96]; // Genesis
+      IsItACountdown[countdownReplacements[al]] = languagePack[al + 112] // <span style="color: #ff55ff"><b>QUICK MATHS!</b></span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>
     }
     document.getElementById("custom-palette-name-input").placeholder = languagePack[133]; // Enter a name here...
     if(offset != 0) document.getElementById('view-offset').innerHTML = languagePack[171].replace("%%minutes%%", ("<b>" + Math.floor(offset / 60000) + "</b>")); // Offset set to %%minutes%% minutes – Click here to reset
@@ -814,11 +816,11 @@
   function customPalette()  { // sets up creation for a custom color palette
     optionPaletteContent = document.getElementById("option-palette").innerHTML;
     isCustomSelectorOpen = true;
-    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <a style="color: #45b280" href="palette" target="_blank">` + languagePack[20] + `</a> / <span style="color: #f9e822; cursor: pointer" onclick="importCustomPalette()">` + languagePack[21] + `</span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">` + languagePack[22] + `</span>`
+    document.getElementById("option-palette").innerHTML = `<b>` + languagePack[19] + `</b>: <a style="color: #45b280" href="palette" target="_blank">` + languagePack[20] + `</a> / <span style="color: #f9e822; cursor: pointer" onclick="importCustomPalette()">` + languagePack[21] + `</span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">` + languagePack[22] + `</span>`
   }
 
   function importCustomPalette() {
-    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <span id="custom-palette-error">` + languagePack[23] + `</span> &rarr; <input type="text" onkeypress="reloadWithCustomPalette(event)" id='palette-input' style="font-family: monospace"> / <span style="color: #45e6b2; cursor: pointer" onclick="reloadWithCustomPalette(false ,true)"><b>` + languagePack[24] + `</b></span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">` + languagePack[22] + `</span>`
+    document.getElementById("option-palette").innerHTML = `<b>` + languagePack[19] + `</b>: <span id="custom-palette-error">` + languagePack[23] + `</span> &rarr; <input type="text" onkeypress="reloadWithCustomPalette(event)" id='palette-input' style="font-family: monospace"> / <span style="color: #45e6b2; cursor: pointer" onclick="reloadWithCustomPalette(false ,true)"><b>` + languagePack[24] + `</b></span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">` + languagePack[22] + `</span>`
     document.getElementById('palette-input').focus();
     document.getElementById('palette-input').select();
   }

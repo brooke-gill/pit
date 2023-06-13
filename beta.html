@@ -138,7 +138,6 @@
   var successfulExternalConnections = [false, false]; // critical brookeafk.com JS files that have loaded (control, emergency)
 
   function importScript(url) {
-incrementFunctionCount("importScript");
     var script = document.createElement('script');
     script.src = url;
     document.head.appendChild(script);
@@ -148,7 +147,6 @@ incrementFunctionCount("importScript");
   importScript("control.js?v=" + Date.now());
 
   function doEverything(loadedSite) {
-incrementFunctionCount("doEverything");
     console.log("External API #" + loadedSite + " has loaded!")
     successfulExternalConnections[loadedSite] = true;
     if(successfulExternalConnections[0] == true && successfulExternalConnections[1] == true) {
@@ -273,7 +271,6 @@ incrementFunctionCount("doEverything");
   document.getElementById('settings').style.color = "NormalText";
 
   function MakeFunTimestamps(convertible, currentTime = (Date.now() + offset)) {
-incrementFunctionCount("MakeFunTimestamps");
   if (convertible - currentTime <= 0) {
     convertible = "Passed!"
   }
@@ -289,7 +286,6 @@ incrementFunctionCount("MakeFunTimestamps");
   }
   
   function setFlash(seconds) {
-incrementFunctionCount("setFlash");
     window.EventFlashSec = seconds;
     if(DoesStuffExist == true) {
     for(var i = window.HiddenEventCount; i < EventsToLoad; i++) { 
@@ -313,7 +309,6 @@ incrementFunctionCount("setFlash");
   }
 
   function changeFont(font) {
-incrementFunctionCount("changeFont");
     if(font != undefined) {
     console.log("A request was just sent to change the font to " + font)
     document.getElementById('settings-font-default').style.color = "#888888";
@@ -345,8 +340,7 @@ incrementFunctionCount("changeFont");
   }
 }
 
-  function changeIcons(icons) {
-incrementFunctionCount("changeIcons"); // enables and disables the icons
+  function changeIcons(icons) { // enables and disables the icons
     document.getElementById('settings-icons-on').style.color = "#888888";
     document.getElementById('settings-icons-off').style.color = "#888888";
     iconsVisible = icons;
@@ -358,8 +352,7 @@ incrementFunctionCount("changeIcons"); // enables and disables the icons
     SaveSettings('noreload');
   }
 
-  function changeTabTimer(tabtimer) {
-incrementFunctionCount("changeTabTimer"); // enables and disables the tab timer
+  function changeTabTimer(tabtimer) { // enables and disables the tab timer
     document.getElementById('settings-tabtimer-on').style.color = "#888888";
     document.getElementById('settings-tabtimer-off').style.color = "#888888";
     tabTimerVisible = tabtimer;
@@ -372,7 +365,6 @@ incrementFunctionCount("changeTabTimer"); // enables and disables the tab timer
   }
 
   function changeLanguage(icuLocale) {
-incrementFunctionCount("changeLanguage");
     document.getElementById('settings-language-en_CA').style.color = "#888888";
     document.getElementById('settings-language-es_AR').style.color = "#888888";
     language = icuLocale;
@@ -384,7 +376,6 @@ incrementFunctionCount("changeLanguage");
     for(al = 0; al < languagePackIds.length; al++) {
       var languagePackText = languagePack[al];
       for(am = 0; am < languagePackIds[al].length; am++) {
-        console.log(languagePackIds[al][am])
         if(languagePackIds[al][am] != "skip") document.getElementById(languagePackIds[al][am]).innerHTML = languagePack[al];
       }
     }
@@ -407,8 +398,7 @@ incrementFunctionCount("changeLanguage");
     SaveSettings('noreload');
   }
 
-  function changeClassic(classic) {
-incrementFunctionCount("changeClassic"); // makes the text look like how it did in the older version of brookeafk.com
+  function changeClassic(classic) { // makes the text look like how it did in the older version of brookeafk.com
     document.getElementById('settings-classic-on').style.color = "#888888";
     document.getElementById('settings-classic-off').style.color = "#888888";
     classicMode = classic;  
@@ -421,8 +411,7 @@ incrementFunctionCount("changeClassic"); // makes the text look like how it did 
     SaveSettings('noreload');
   }
 
-  function changeClock(clock) {
-incrementFunctionCount("changeClock"); // changes the clock from 24-hour "17:40" to 12-hour "5:40 pm" or vice versa
+  function changeClock(clock) { // changes the clock from 24-hour "17:40" to 12-hour "5:40 pm" or vice versa
     document.getElementById('settings-clock-24').style.color = "#888888";
     document.getElementById('settings-clock-12').style.color = "#888888";
     clockStyle = clock;
@@ -434,8 +423,7 @@ incrementFunctionCount("changeClock"); // changes the clock from 24-hour "17:40"
     SaveSettings('noreload');
   }
 
-  function changeMajorStyle(style, toggle) {
-incrementFunctionCount("changeMajorStyle"); // toggles whether the major event border and shadow distinguisher are visible
+  function changeMajorStyle(style, toggle) { // toggles whether the major event border and shadow distinguisher are visible
     
     // toggle's either going to be "toggle" or a number.
     if(style == "border") styleId = 0; 
@@ -462,8 +450,7 @@ incrementFunctionCount("changeMajorStyle"); // toggles whether the major event b
     SaveSettings('noreload');
   }
 
-  function changeSpacing(space) {
-incrementFunctionCount("changeSpacing"); // changes the spacing between events
+  function changeSpacing(space) { // changes the spacing between events
     document.getElementById('settings-spacing-0').style.color = "#888888";
     document.getElementById('settings-spacing-3').style.color = "#888888";
     document.getElementById('settings-spacing-5').style.color = "#888888";
@@ -480,8 +467,7 @@ incrementFunctionCount("changeSpacing"); // changes the spacing between events
     SaveSettings('noreload');
   }
 
-  function dismissAnnouncement() {
-incrementFunctionCount("dismissAnnouncement"); // dismisses an announcement and doesn't let the user see it again
+  function dismissAnnouncement() { // dismisses an announcement and doesn't let the user see it again
     localStorage.setItem(announcementName, "seen")
     document.getElementById(announcementName).style.display = "none";
     announcementVisible = false;
@@ -491,8 +477,7 @@ incrementFunctionCount("dismissAnnouncement"); // dismisses an announcement and 
     announcementVisible = false;
   }
   
-  function DayNightCycle() {
-incrementFunctionCount("DayNightCycle"); // i finally optimized it!
+  function DayNightCycle() { // i finally optimized it!
     currentTime = Date.now()  + offset;
     let DayTime = ((currentTime + 10000) % 2160000)/1000; //10-second offset
     if(DayTime < 1440) {
@@ -509,7 +494,6 @@ incrementFunctionCount("DayNightCycle"); // i finally optimized it!
   }
   
   function SetAudio(seconds) {
-incrementFunctionCount("SetAudio");
     window.NotifTimer = seconds;
     console.log("Notification timer set to " + NotifTimer + " seconds.")
     document.getElementById('anotif').style.display = "block"
@@ -550,7 +534,6 @@ incrementFunctionCount("SetAudio");
   }
 
   function ANotif(tog) {
-incrementFunctionCount("ANotif");
     window.SettingsAudioNotifs = tog;
     console.log("Audio notifications setting: " + tog);
     if(tog == 1) {
@@ -568,8 +551,7 @@ incrementFunctionCount("ANotif");
     SaveSettings('noreload');
   }
 
-  function changeToURLPalette(shouldI, event = "N/A") {
-incrementFunctionCount("changeToURLPalette"); // eventually moves the palette stored in the URL to localStorage and code
+  function changeToURLPalette(shouldI, event = "N/A") { // eventually moves the palette stored in the URL to localStorage and code
     if(shouldI == "checkevent") {
       if(event.key == "Enter") shouldI = "confirm"
     }
@@ -598,8 +580,7 @@ incrementFunctionCount("changeToURLPalette"); // eventually moves the palette st
   }
 
 
-  function DNotif(tog) {
-incrementFunctionCount("DNotif"); //Short for "Desktop Notification" and "toggle"
+  function DNotif(tog) { //Short for "Desktop Notification" and "toggle"
     window.SettingsDesktopNotifs = tog;
     console.log("Desktop notifications setting: " + tog);
     if(tog == 1) {
@@ -644,14 +625,12 @@ incrementFunctionCount("DNotif"); //Short for "Desktop Notification" and "toggle
     SaveSettings('noreload');
   }
   
-  function TestAudio() {
-incrementFunctionCount("TestAudio"); // plays the audio. simple!
+  function TestAudio() { // plays the audio. simple!
     event_sound.play();
     event_sound.currentTime = 0;
   }
 
-  function TimestampIt(sec = 0) {
-incrementFunctionCount("TimestampIt"); // creates a timestamp (y, d, h, m, s). used for the map rotation timer
+  function TimestampIt(sec = 0) { // creates a timestamp (y, d, h, m, s). used for the map rotation timer
       if(sec > 31536000) {
         return Math.floor(sec / 31536000) + "y " + Math.floor((sec % 31536000) / 86400) + "d " + Math.floor((sec % 86400) / 3600) + "h " + Math.floor((sec % 3600) / 60) + "m " + Math.floor(sec % 60) + "s"
       } else if(sec > 86400 /*1 day*/) {
@@ -665,13 +644,11 @@ incrementFunctionCount("TimestampIt"); // creates a timestamp (y, d, h, m, s). u
       }
   }
 
-  function mod(n, m) {
-incrementFunctionCount("mod"); // the actual mod operation. why isn't this in vanilla JS
+  function mod(n, m) { // the actual mod operation. why isn't this in vanilla JS
     return ((n % m) + m) % m;
   }
 
-  function mapRotation() {
-incrementFunctionCount("mapRotation"); // calculates and updates the map rotation timer
+  function mapRotation() { // calculates and updates the map rotation timer
     let CurrentUnix = (Date.now()  + offset) / 1000;
     mapid = Math.floor(mod((samplemaprotation - CurrentUnix), 3024000) / 604800);
     
@@ -682,7 +659,6 @@ incrementFunctionCount("mapRotation"); // calculates and updates the map rotatio
   }
 
   function mapClick() {
-incrementFunctionCount("mapClick");
     if(!mapClicked) {
       mapClicked = true;
       document.getElementById('maprot').innerHTML = `<span style="color: #edbe1f"><b><span class="tip">` + maps[mapid] + `<span class="tiptext">` + languagePack[94] /*The current map.*/ + `</span></span></b></span> &rarr; <span style="color: #2bbddb"><b><span class="tip">` + maps[mod(mapid - 1, 5)] + `<span class="tiptext">` + languagePack[95] /*The upcoming map.*/ + `</span></span></b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 2, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 3, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 4, 5)];
@@ -692,17 +668,14 @@ incrementFunctionCount("mapClick");
   }
 
   function changeDefOver(e) {
-incrementFunctionCount("changeDefOver");
     e.target.classList.toggle('opacity-toggle');
   }
 
   function changeDefOut(e) {
-incrementFunctionCount("changeDefOut");
     e.target.classList.toggle('opacity-toggle');
   }
 
-  function changePaletteNames() {
-incrementFunctionCount("changePaletteNames"); // changes the visual display of the palette names. used for ChangeLanguage and stuff
+  function changePaletteNames() { // changes the visual display of the palette names. used for ChangeLanguage and stuff
     var themeSelector;
     if (window.theme == "light") themeSelector = 1;
     else themeSelector = 0;
@@ -711,8 +684,7 @@ incrementFunctionCount("changePaletteNames"); // changes the visual display of t
     }
   }
   
-  function changeTheme(themecolor) {
-incrementFunctionCount("changeTheme"); // changes the theme from dark to light mode (or vice versa)
+  function changeTheme(themecolor) { // changes the theme from dark to light mode (or vice versa)
     window.theme = themecolor;
     console.log ("Changed theme to " + window.theme);
     if(isCustomSelectorOpen) cancelCustomPalette(false); // cancel the custom palette menu if it's open
@@ -787,8 +759,7 @@ incrementFunctionCount("changeTheme"); // changes the theme from dark to light m
   
   changeTheme(theme); // It's called here to load the events in as black to begin with. I don't want to give people seizures.
   
-  function setTimestamps(timestamps, toggler = true) {
-incrementFunctionCount("setTimestamps"); // shows and hides timestamps. "toggler" is whether the event toggles (i.e. swaps the visibility.)
+  function setTimestamps(timestamps, toggler = true) { // shows and hides timestamps. "toggler" is whether the event toggles (i.e. swaps the visibility.)
     if (timestamps == "tod") {
       if((window.showEventToD == false && !toggler) || (window.showEventToD == true && toggler)) {
         document.getElementById('settings-ts-tod').style.color = "#888888";
@@ -825,8 +796,7 @@ incrementFunctionCount("setTimestamps"); // shows and hides timestamps. "toggler
     SaveSettings('noreload');
   }
   
-  function changePalette(changeThePalette, justSelecting = false) {
-incrementFunctionCount("changePalette"); // changes the user's palette. justSelecting is in case you don't want to call the extremely load-heavy functions at the bottom
+  function changePalette(changeThePalette, justSelecting = false) { // changes the user's palette. justSelecting is in case you don't want to call the extremely load-heavy functions at the bottom
     Palette = changeThePalette;
     document.getElementById('current-palette').style.display = "none";
     document.getElementById('settings-palette-gradients0').style.color = "#888888";
@@ -862,22 +832,19 @@ incrementFunctionCount("changePalette"); // changes the user's palette. justSele
     }
   }
 
-  function customPalette()  {
-incrementFunctionCount("customPalette"); // sets up creation for a custom color palette
+  function customPalette()  { // sets up creation for a custom color palette
     optionPaletteContent = document.getElementById("option-palette").innerHTML;
     isCustomSelectorOpen = true;
     document.getElementById("option-palette").innerHTML = `<b>` + languagePack[19] + `</b>: <a style="color: #45b280" href="palette" target="_blank">` + languagePack[20] + `</a> / <span style="color: #f9e822; cursor: pointer" onclick="importCustomPalette()">` + languagePack[21] + `</span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">` + languagePack[22] + `</span>`
   }
 
   function importCustomPalette() {
-incrementFunctionCount("importCustomPalette");
     document.getElementById("option-palette").innerHTML = `<b>` + languagePack[19] + `</b>: <span id="custom-palette-error">` + languagePack[23] + `</span> &rarr; <input type="text" onkeypress="reloadWithCustomPalette(event)" id='palette-input' style="font-family: monospace"> / <span style="color: #45e6b2; cursor: pointer" onclick="reloadWithCustomPalette(false ,true)"><b>` + languagePack[24] + `</b></span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">` + languagePack[22] + `</span>`
     document.getElementById('palette-input').focus();
     document.getElementById('palette-input').select();
   }
 
-  function reloadWithCustomPalette(event, bypass = false) {
-incrementFunctionCount("reloadWithCustomPalette"); // reloads the page with the custom palette, triggering the pop-up
+  function reloadWithCustomPalette(event, bypass = false) { // reloads the page with the custom palette, triggering the pop-up
     if(bypass || event.key == "Enter") {
       var userPalette = document.getElementById("palette-input").value;
       var userPaletteResult = unboxCustomPalette(userPalette);
@@ -890,8 +857,7 @@ incrementFunctionCount("reloadWithCustomPalette"); // reloads the page with the 
     }
   }
 
-  function unboxCustomPalette(pal) {
-incrementFunctionCount("unboxCustomPalette"); // converts a base64 palette into an array of human-understandable stuff
+  function unboxCustomPalette(pal) { // converts a base64 palette into an array of human-understandable stuff
     try {
         rawUserPalette = pal;
         userPalette = b64_uni(pal);
@@ -921,7 +887,6 @@ incrementFunctionCount("unboxCustomPalette"); // converts a base64 palette into 
     }
 
   function submitCustomPalette(event, bypass = false, isUserInput = false) {
-incrementFunctionCount("submitCustomPalette");
     if (bypass || event.key == "Enter") {
       
       if(isUserInput == true) var userPalette = document.getElementById("palette-input").value;
@@ -950,18 +915,15 @@ incrementFunctionCount("submitCustomPalette");
     }
   }
 
-  function uni_b64(str) {
-incrementFunctionCount("uni_b64"); // modified version of btoa() provided by MDN Web Docs (thank you <3<3): #solution_1_%E2%80%93_escaping_the_string_before_encoding_it
+  function uni_b64(str) { // modified version of btoa() provided by MDN Web Docs (thank you <3<3): #solution_1_%E2%80%93_escaping_the_string_before_encoding_it
     return btoa(encodeURIComponent(str));
   }
 
   function b64_uni(str) {
-incrementFunctionCount("b64_uni");
     return decodeURIComponent(atob(str));
   }
 
-  function escapeString(text) {
-incrementFunctionCount("escapeString"); // replaces possible harmful user-inputted text with harmless HTML elements
+  function escapeString(text) { // replaces possible harmful user-inputted text with harmless HTML elements
     var map = {
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
     };
@@ -969,19 +931,16 @@ incrementFunctionCount("escapeString"); // replaces possible harmful user-inputt
   }
 
   function unescapeString(text) {
-incrementFunctionCount("unescapeString");
     return text.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#039;/g, "'");
 }
 
-  function cancelCustomPalette(changeThemeToo = true) {
-incrementFunctionCount("cancelCustomPalette"); // user didn't actually want this!! abort!!
+  function cancelCustomPalette(changeThemeToo = true) { // user didn't actually want this!! abort!!
     document.getElementById("option-palette").innerHTML = optionPaletteContent;
     if(changeThemeToo) changeTheme(theme);
     isCustomSelectorOpen = false;
   }
 
-  function SelectOnly(event_type) {
-incrementFunctionCount("SelectOnly"); // allows the user to select certain events, all, or none
+  function SelectOnly(event_type) { // allows the user to select certain events, all, or none
     if(event_type == "minor") {
     for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
         if (window.data[i]['type'] == "major") {
@@ -1037,8 +996,7 @@ incrementFunctionCount("SelectOnly"); // allows the user to select certain event
     console.log(SettingsSelectedEvents);
   }
   
-  function GeneratePraise() {
-incrementFunctionCount("GeneratePraise"); // generates a quote (used on the bottom of the site)
+  function GeneratePraise() { // generates a quote (used on the bottom of the site)
     const randomElement = [Math.floor(Math.random() * (praise_quotes.length + 4)) - 4]; //adds very slight bias to quote #0
     console.log("Item " + randomElement + " chosen for praise!");
     if(randomElement <= -1) {
@@ -1047,8 +1005,7 @@ incrementFunctionCount("GeneratePraise"); // generates a quote (used on the bott
     return (`"` + praise_quotes[randomElement] + `" &mdash; <a href="` + praise_urls[randomElement] + `" target="_blank">` + praise_names[randomElement] + `</a>`);
   }
   
-  function TimeOfDay(s) {
-incrementFunctionCount("TimeOfDay"); // gets the local time of day from a Unix timestamp.
+  function TimeOfDay(s) { // gets the local time of day from a Unix timestamp.
     var toffset = (new Date().getTimezoneOffset())*-60000;
     if(clockStyle == 12) { // if the user is WEIRD and wants a twelve hour time
       var twelvetime = new Date(s + offset);
@@ -1061,11 +1018,9 @@ incrementFunctionCount("TimeOfDay"); // gets the local time of day from a Unix t
   }
 
   // reloads the site every 12 hours, or every hour if there's no events
-  function autoReload() {
-incrementFunctionCount("autoReload"); if((noevents == true && performance.now() > 3600000) || (performance.now() > 43200000 && Math.random() < 0.1)) location.reload(); } // automatically reloads the site every twelve hours
+  function autoReload() { if((noevents == true && performance.now() > 3600000) || (performance.now() > 43200000 && Math.random() < 0.1)) location.reload(); } // automatically reloads the site every twelve hours
 
-  function noEvents() {
-incrementFunctionCount("noEvents"); // if there's no events left, show some text explaining this to the user
+  function noEvents() { // if there's no events left, show some text explaining this to the user
     if(HiddenEventCount == EventsToLoad || EventsToLoad == 1) { 
       if(!noevents && counter >= 35) {
         document.getElementById('noevents').style.display = "";
@@ -1123,8 +1078,7 @@ incrementFunctionCount("noEvents"); // if there's no events left, show some text
     console.log("no emergency here!")
   }
   
-  async function MakeAPIAndHTML() {
-incrementFunctionCount("MakeAPIAndHTML"); //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
+  async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
     if(emergency == true) {
       setInterval(newDataDifferent, 1800000); // checks if new data's been added every 30 minutes
     document.getElementById('version').innerHTML = (version_number + "e");
@@ -1163,13 +1117,12 @@ incrementFunctionCount("MakeAPIAndHTML"); //Calls the API exactly once (thanks M
     URLToSettings();  
     
     addNamesandImages(window.data);
-    for(a = 0; a < 170; a++) {
+    for(a = 1; a < EventsToLoad; a++) {
       updateEvent(a);
     }
   }
 
-  function newDataDifferent(url = "emergency.js") {
-incrementFunctionCount("newDataDifferent"); // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
+  function newDataDifferent(url = "emergency.js") { // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
     fetch(url + "?v=" + Date.now()).then(e => e.text()).then(txt => {
       var dataExcerpt = txt.match(/\[.*\]/g);
       if(dataExcerpt[0] != JSON.stringify(data) && performance.now() > 3600000) { // if the new data doesn't match the data variable
@@ -1180,15 +1133,13 @@ incrementFunctionCount("newDataDifferent"); // checks if new data loaded from em
     })
   }
 
-  function apz(num, size) {
-incrementFunctionCount("apz"); // code from user InfinitiesLoop on Stack Overflow. adds prefix zeroes
+  function apz(num, size) { // code from user InfinitiesLoop on Stack Overflow. adds prefix zeroes
     num = num.toString();
     while (num.length < size) num = "0" + num;
     return num;
 }
 
-  function funLogo() {
-incrementFunctionCount("funLogo"); // changes the logo's colors when you click on it
+  function funLogo() { // changes the logo's colors when you click on it
     document.getElementById("brookeafk-com").style.background = "linear-gradient(90deg, #" + apz(Math.floor(Math.random() * 16777216).toString(16),6) + " 0%, #" + apz(Math.floor(Math.random() * 16777216).toString(16),6) + " 100%)"
     document.getElementById("brookeafk-com").style.backgroundClip = "text";
     document.getElementById("brookeafk-com").style.webkitBackgroundClip = "text";
@@ -1196,7 +1147,6 @@ incrementFunctionCount("funLogo"); // changes the logo's colors when you click o
   }
   
   function AudioChecker() {
-incrementFunctionCount("AudioChecker");
     currentTime = (Date.now() + offset);
     if (DoesStuffExist == true) {
         for (var i = window.HiddenEventCount; i <= window.HiddenEventCount + 3 && i < EventsToLoad; i++) { //thanks Clipi-12!
@@ -1222,8 +1172,7 @@ incrementFunctionCount("AudioChecker");
     }
 }
   
-  function RapidFirst(transformation) {
-incrementFunctionCount("RapidFirst"); //this plops the stuff in the actual html page
+  function RapidFirst(transformation) { //this plops the stuff in the actual html page
     if (DoesStuffExist == true) {
         HasStuffLoaded = true; //looks like the stuff has loaded
         for(var i = window.HiddenEventCount; i <= window.HiddenEventCount && i < EventsToLoad; i++) {
@@ -1264,8 +1213,7 @@ incrementFunctionCount("RapidFirst"); //this plops the stuff in the actual html 
     document.getElementById('brookeafk-com').classList.add('animated');
   });
 
-  function changeColor() {
-incrementFunctionCount("changeColor"); // changes the color of the top item when time's running out (as described in setFlash or something)
+  function changeColor() { // changes the color of the top item when time's running out (as described in setFlash or something)
     currentTime = (Date.now() + offset);
     timeleft = window.data[HiddenEventCount]['timestamp'] - currentTime;
 
@@ -1275,8 +1223,7 @@ incrementFunctionCount("changeColor"); // changes the color of the top item when
     }
   }
 
-  function flipEvents(g = counter) {
-incrementFunctionCount("flipEvents"); // makes the events flip when you load the page
+  function flipEvents(g = counter) { // makes the events flip when you load the page
     g = g - 10; // adds a delay to prevent the site from trying to flip events while things are loading (bad!)
 
     if(g >= 0 && g <= 200 && visibleEventIds[g] != undefined)
@@ -1289,7 +1236,7 @@ incrementFunctionCount("flipEvents"); // makes the events flip when you load the
 
   function updateEvent(eventId) {
     currentTime = Date.now() + offset;
-    var eventTimestamp = data[eventId].timestamp;
+    var eventTimestamp = data[eventId]["timestamp"];
     var formattedEventTimestamp = MakeFunTimestamps(eventTimestamp, currentTime);
     var timerElement = document.getElementById('timer_' + eventId)
 
@@ -1305,8 +1252,7 @@ incrementFunctionCount("flipEvents"); // makes the events flip when you load the
     else if(formattedEventTimestamp != "Passed!") setTimeout(function() { updateEvent(eventId) }, 40) // if less than a minute before the event starts, update its timer every 0.04 seconds
   }
 
-  function resetOffset() {
-incrementFunctionCount("resetOffset"); // resets the offset, then reloads the page
+  function resetOffset() { // resets the offset, then reloads the page
     localStorage.setItem('offset', 0);
     let here = new URL(window.location.href);
     here.searchParams.delete("offset"); // deletes offset from URL and localStorage
@@ -1314,7 +1260,6 @@ incrementFunctionCount("resetOffset"); // resets the offset, then reloads the pa
   }
   
   function VisibilityToggle(toggle) {
-incrementFunctionCount("VisibilityToggle");
     if (window.VisibleEvents.includes(toggle)) {
       SettingsSelectedEvents = (SettingsSelectedEvents - Math.pow(2, window.events.indexOf(toggle)));
       const index = window.VisibleEvents.indexOf(toggle);
@@ -1348,8 +1293,7 @@ incrementFunctionCount("VisibilityToggle");
     SaveSettings('noreload');
   }
 
-  function getSettings() {
-incrementFunctionCount("getSettings"); // scrapes both URLs and localStorage for settings. URLs get top priority.
+  function getSettings() { // scrapes both URLs and localStorage for settings. URLs get top priority.
     var defaultSettings = ['262143', '262143', 'gradients0', '111', 'dark', '60', '-10', '0', '0', '0', '1', '24', '0', '1', '11', '5', 'en_CA']
     // 'visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing', 'language'
     var site_url = new URL(window.location.href);
@@ -1374,23 +1318,21 @@ incrementFunctionCount("getSettings"); // scrapes both URLs and localStorage for
     return settingValues;
   }
 
-  function checkVisibleEvents() {
-incrementFunctionCount("checkVisibleEvents"); // returns an array with IDs of visible events
-    visibleEventIds = [];
+  function checkVisibleEvents() { // returns an array with IDs of visible events
+    newVisibleEventIds = [];
     for(a = 0; a < EventsToLoad; a++) {
-      if(document.getElementById('event_' + a).style.display != "none") visibleEventIds.push(a);
+      if(document.getElementById('event_' + a).style.display != "none") newVisibleEventIds.push(a);
     }
+    visibleEventIds = newVisibleEventIds.slice(0);
   }
 
   function isRobot() {
-incrementFunctionCount("isRobot");
     if (new RegExp("bot|google|baidu|bing|msn|teoma|slurp|yandex", 'i').test(navigator.userAgent)) return true; // list of robots
     else return false; 
   }
   robot = isRobot();
 
-  function updateTabTimer() {
-incrementFunctionCount("updateTabTimer"); // updates the timer in the tab
+  function updateTabTimer() { // updates the timer in the tab
     if(DoesStuffExist && visibleEventIds.length > 0 && !robot && tabTimerVisible == true) { // if events are real, at least one event is visible, you're not a robot (so it doesn't appear in search engines), and the user has the tab timer setting on. phew
       var firstIndex = events.indexOf(data[visibleEventIds[0]]['event']);
       document.title = "[" + eventsEmoji[firstIndex] + " " +  shortEvents[firstIndex] + " " + MakeFunTimestamps(data[visibleEventIds[0]]['timestamp']) + "] | Hypixel Pit Events Tracker";
@@ -1400,7 +1342,6 @@ incrementFunctionCount("updateTabTimer"); // updates the timer in the tab
   }
   
   function URLToSettings() {
-incrementFunctionCount("URLToSettings");
       siteLoadSettingValues = getSettings();
 
       let here = new URL(window.location.href);
@@ -1502,14 +1443,13 @@ incrementFunctionCount("URLToSettings");
   
       for(var i = 0; i < VisibleEvents.length; i++) { // filter out events that aren't in VisibleEvents
         for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
-        if (window.data[j]["event"].includes(VisibleEvents[i]) && !ok_ids.includes(j)) {
-          document.getElementById('event_' + String(j)).style.display = "block";
-          ok_ids.push(j);
-          console.log(ok_ids)
-            console.log("saved " + window.data[j]["event"])
-          }  
+          if (window.data[j]["event"].includes(VisibleEvents[i]) && !ok_ids.includes(j)) {
+            document.getElementById('event_' + String(j)).style.display = "block";
+            ok_ids.push(j);
+          }
         }
       }
+      console.log(ok_ids)
 
       for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
         if (!ok_ids.includes(j)) {
@@ -1542,8 +1482,7 @@ incrementFunctionCount("URLToSettings");
       if(site_url.searchParams.get("2022") != null) changeToOldDesign();
   }
 
-  function changeToOldDesign() {
-incrementFunctionCount("changeToOldDesign"); // makes the new version look exactly like the old one. problem solved!  :thumbsup:
+  function changeToOldDesign() { // makes the new version look exactly like the old one. problem solved!  :thumbsup:
     changePalette(0);
     changeIcons(0);
     changeMajorStyle("border", 0);
@@ -1554,7 +1493,6 @@ incrementFunctionCount("changeToOldDesign"); // makes the new version look exact
   }
   
   function NotifToggle(toggle) {
-incrementFunctionCount("NotifToggle");
     if (window.AudioEvents.includes(toggle)) {
       SettingsNotifyEvents = (SettingsNotifyEvents - Math.pow(2, window.events.indexOf(toggle)));
       const index = window.AudioEvents.indexOf(toggle);
@@ -1579,25 +1517,21 @@ incrementFunctionCount("NotifToggle");
   }
   
   function AboutMe(variable) {
-incrementFunctionCount("AboutMe");
       var date = new Date(null);
       date.setSeconds(variable / 1000);
       var endpoint = date.toISOString().substr(14, 5);
       return(endpoint); 
   }
 
-  function Help() {
-incrementFunctionCount("Help"); //redirects the user to the BrookeAFK Help Guide
+  function Help() { //redirects the user to the BrookeAFK Help Guide
     window.open("help", '_blank').focus();
   }
 
-  function paletteGenerator() {
-incrementFunctionCount("paletteGenerator"); //redirects the user to the BrookeAFK Palette Generator
+  function paletteGenerator() { //redirects the user to the BrookeAFK Palette Generator
     window.open("palette", '_blank').focus();
   }
 
-  function prefixZero(number, size) {
-incrementFunctionCount("prefixZero"); // adds a number of prefix zeroes to a number
+  function prefixZero(number, size) { // adds a number of prefix zeroes to a number
     number = number.toString();
     while(number.length < size) {
       number = "0" + number;
@@ -1606,12 +1540,10 @@ incrementFunctionCount("prefixZero"); // adds a number of prefix zeroes to a num
   }
 
   function englishEventToTranslated(nameOfEvent, full = true) {
-incrementFunctionCount("englishEventToTranslated");
     return languagePack[events.indexOf(nameOfEvent) + (full?68:135)];
   }
   
   function CurrentEvent() {
-incrementFunctionCount("CurrentEvent");
     currentTime = Date.now() + offset;
   
     if (HiddenEventCount > 0 && DemolitionTime - currentTime >= 0) {
@@ -1650,7 +1582,6 @@ incrementFunctionCount("CurrentEvent");
   }
   
   function SettingsMenu() {
-incrementFunctionCount("SettingsMenu");
     if(settingsOpened == false) {
       settingsOpened = true;
       document.getElementById('settings-section').style.display = "block";
@@ -1663,8 +1594,7 @@ incrementFunctionCount("SettingsMenu");
     let here = new URL(window.location.href);
   }
 
-  function localSave() {
-incrementFunctionCount("localSave"); // saves settings every time you click on something
+  function localSave() { // saves settings every time you click on something
     localStorage.setItem('theme', theme);
       localStorage.setItem('visible', SettingsSelectedEvents);
       localStorage.setItem('notifs', SettingsNotifyEvents);
@@ -1688,15 +1618,13 @@ incrementFunctionCount("localSave"); // saves settings every time you click on s
       localStorage.setItem('settings-version', "14");
   }
 
-  function resetSettings() {
-incrementFunctionCount("resetSettings"); // resets all settings in the localStorage
+  function resetSettings() { // resets all settings in the localStorage
     for(h = 0; h < allSettings.length; h++) {
       localStorage.removeItem(allSettings[h]);
     }
   }
   
-  function SaveSettings(action = false) {
-incrementFunctionCount("SaveSettings");  // save settings, clear settings, reload page
+  function SaveSettings(action = false) {  // save settings, clear settings, reload page
     if(DoesStuffExist) {
     console.log("Saved settings.");
     var annoyingBanner = localStorage.getItem("hide-redesign-banner");
@@ -1720,15 +1648,13 @@ incrementFunctionCount("SaveSettings");  // save settings, clear settings, reloa
   }
 }
 
-  function nickname(name, isPitWikiLink = false) {
-incrementFunctionCount("nickname"); // changes Pit Supporter names ("KOTL") to cooler names ("King of the Ladder"). probably also good for other language support. also good for making links to Pit Wiki
+  function nickname(name, isPitWikiLink = false) { // changes Pit Supporter names ("KOTL") to cooler names ("King of the Ladder"). probably also good for other language support. also good for making links to Pit Wiki
     if(events.indexOf(name) == -1) return "?"
     else if(isPitWikiLink) return "https://pit.wiki/" + pit_wiki_links[events.indexOf(name)];
     else return nicknames[events.indexOf(name)];
   }
 
-  function addNamesandImages(transformation) {
-incrementFunctionCount("addNamesandImages"); // adds names like "King of the Hill" and images to each div
+  function addNamesandImages(transformation) { // adds names like "King of the Hill" and images to each div
     for(var i = window.HiddenEventCount; i < EventsToLoad; i++) {
       var nicknamevent = nickname(transformation[i].event);
       var wikievent = nickname(transformation[i].event, true);
@@ -1756,8 +1682,7 @@ incrementFunctionCount("addNamesandImages"); // adds names like "King of the Hil
     panicevents = [];
   }
   
-  function CuteColors(conversion) {
-incrementFunctionCount("CuteColors"); //adds cute colors
+  function CuteColors(conversion) { //adds cute colors
 
   if(window.Palette.length > 1 && !(window.Palette.startsWith('gradient')) && window.Palette != "Custom") {
     document.getElementById('brookeafk-com').innerText = window.Palette + ".com"
@@ -1804,14 +1729,13 @@ incrementFunctionCount("CuteColors"); //adds cute colors
   }}
 
   flipEvents();
-  function cycle1() {
-incrementFunctionCount("cycle1"); // every 40 ms
+  function cycle1() { // every 40 ms
     counter += 1;
     window.data = window.data_backup;
+    RapidFirst(data);
   }
 
-  function cycle5() {
-incrementFunctionCount("cycle5"); // every 200 ms
+  function cycle5() { // every 200 ms
       AudioChecker();
       CurrentEvent();
       DayNightCycle();
@@ -1820,8 +1744,7 @@ incrementFunctionCount("cycle5"); // every 200 ms
       updateTabTimer();
   }
 
-  function cycle25() {
-incrementFunctionCount("cycle25"); // every 1,000 ms
+  function cycle25() { // every 1,000 ms
     noEvents();
   }
     </script>

@@ -122,19 +122,6 @@
 </div>
 
   <script>
-  var functionCount = [];
-
-  function incrementFunctionCount(fname) {
-    var foundIt = false;
-    for(u = 0; u < functionCount.length; u++) {
-      if(!foundIt && functionCount[u][0] == fname) {
-        functionCount[u][1]++;
-        foundIt = true;
-      }
-    }
-    if(!foundIt) functionCount.push([fname, 1]);
-  }
-
   var successfulExternalConnections = [false, false]; // critical brookeafk.com JS files that have loaded (control, emergency)
 
   function importScript(url) {
@@ -172,6 +159,7 @@
   var NormalText = "#000000"; // what colour text should be
   var EventFlashSec = 60; // how many seconds events flash before starting
   var NotifTimer = -10;
+  var flipsComplete = false; // whether the event animations' initial flips are done
   var DoesStuffExist = false; // if things are loaded and it's safe to start querying event <div>s
   var HasStuffLoaded = false; // an even more strict version of DoesStuffExist.
   var currentTime; // the current unix timestamp
@@ -197,6 +185,7 @@
   var playedNotifications = []; // array of all event IDs of played notifications. [0] is 1-minute, [1] is 3-minute, [2] is 5-minute. in the future. when i'm not busy
   var language = "en_CA"; // the user's language. it's canadian english. you're canadian now
   var languagePack = window["languagePack_" + language];
+  var counterWhenEventsLoaded = -1; // the counter time (intervals of 40ms) when the events loaded in. used for debugging (lag performance) and flipping events
 
   var announcementName = document.getElementsByClassName('update-announcement')[0].id // the name of the annoying banner at the top of the screen
   var announcementVisible = true;
@@ -1101,7 +1090,6 @@
       var div = document.createElement("div");
       console.log("Made an element.");
       div.id = ("event_" + i);
-      div.innerHTML = ("[loading event]");
       div.classList.add('event');
       div.innerHTML = `<span class="timers" id="timer_` + i + `"></span>`;
       document.getElementById('events').appendChild(div);
@@ -1117,7 +1105,7 @@
     URLToSettings();  
     
     addNamesandImages(window.data);
-    for(a = 1; a < EventsToLoad; a++) {
+    for(a = 0; a < EventsToLoad; a++) {
       updateEvent(a);
     }
   }
@@ -1171,36 +1159,6 @@
         }
     }
 }
-  
-  function RapidFirst(transformation) { //this plops the stuff in the actual html page
-    if (DoesStuffExist == true) {
-        HasStuffLoaded = true; //looks like the stuff has loaded
-        for(var i = window.HiddenEventCount; i <= window.HiddenEventCount && i < EventsToLoad; i++) {
-            if(showEventTuE == true) document.getElementById('timer_' + String(i)).innerHTML = MakeFunTimestamps(transformation[i].timestamp);
-            if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) { // if the topmost event's timer ran out
-                for(var j = 0; j <= i; j++) {
-                    document.getElementById('event_' + String(j)).style.display = "none"; // hide it
-                }
-                window.HiddenEventCount = window.HiddenEventCount + 1;
-                DemolitionTime = (window.data[HiddenEventCount - 1]['timestamp'] + (VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) // prepares to make the current event visible, depending on how long it should be visible for
-                TimeOfEventStart = window.data[HiddenEventCount - 1]['timestamp'] //previously: Date.now() + offset;
-
-                checkVisibleEvents();
-                document.getElementById("current-event").style.display = "block";
-                document.getElementById('special_thanks').innerHTML = GeneratePraise(); // updates the praise on the bottom of the site
-            }
-
-            currentTime = (Date.now() + offset);
-            if ((transformation[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (transformation[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "light" || theme == "dark")) {
-                document.getElementById('event_' + String(i)).classList.remove("blinktext-light");
-                document.getElementById('event_' + String(i)).classList.remove("blinktext-dark");
-                document.getElementById('event_' + String(i)).classList.add("blinktext-" + theme);
-                changeColor();
-            }
-        }
-    }
-}
-
 
   document.getElementById('brookeafk-com').addEventListener('animationend', function(e) { // literally just makes the logo do awesome flips when you hover on it. this is the best feature of the website
     document.getElementById('brookeafk-com').classList.remove('animated');
@@ -1223,33 +1181,81 @@
     }
   }
 
-  function flipEvents(g = counter) { // makes the events flip when you load the page
-    g = g - 10; // adds a delay to prevent the site from trying to flip events while things are loading (bad!)
+  function flipEvents() { // makes the events flip when you load the page
+    if(counterWhenEventsLoaded == -1 && HasStuffLoaded) {
+      counterWhenEventsLoaded = counter;
+    }
+    var counterOffset = counter - counterWhenEventsLoaded - 3;
+    if(HasStuffLoaded && counterOffset > -1) {
+      if(counterOffset < visibleEventIds.length) {
+        document.getElementById("event_" + (visibleEventIds[counterOffset])).style.opacity = 1;
+        setTimeout(function() { document.getElementById("event_" + visibleEventIds[counterOffset]).classList.remove("flip"); }, 2500); // remove the flip class after 1 second
+        /*if(counterOffset == 0 || (visibleEventIds[counterOffset] - visibleEventIds[counterOffset - 1]) != 1) {
+          for(a3 = (counterOffset == 0 ? 0 : [counterOffset - 1]); a3 < visibleEventIds[counterOffset]; a3++) { // makes hidden events visible too
+            console.log("also made event #" + a3 + " visible, too")
+            document.getElementById("event_" + a3).style.opacity = 1;
+          }
+        }*/
+        document.getElementById('event_' + (visibleEventIds[counterOffset])).classList.add("flip");
+      } else if(!flipsComplete) {
+        flipsComplete = true;
+        setTimeout(removeFlips, 1000);
+        for(a3 = 0; a3 < EventsToLoad; a3++) {
+          document.getElementById("event_" + a3).style.opacity = 1; // make all the events visible
+        }
+      }
+    }
+    if(!flipsComplete) setTimeout(flipEvents, 40);
+  }
 
-    if(g >= 0 && g <= 200 && visibleEventIds[g] != undefined)
-    if((g != 0 || (data[visibleEventIds[0]].timestamp - Date.now()) > (EventFlashSec * 1000))) {
-      document.getElementById('event_' + (visibleEventIds[g])).classList.add("flip");
-    } 
-    if(g >= 25 && document.getElementById('event_' + (g - 25)) != null) document.getElementById('event_' + (g - 25)).classList.remove("flip");
-    if(g < 500) setTimeout(flipEvents, 40);
+  function removeFlips(item) { // remove the "flip" class from every event
+    for(a3 = 0; a3 < EventsToLoad; a3++) {
+      document.getElementById("event_" + a3).classList.remove("flip");
+    }
   }
 
   function updateEvent(eventId) {
+    //console.log("checking #" + eventId);
     currentTime = Date.now() + offset;
     var eventTimestamp = data[eventId]["timestamp"];
     var formattedEventTimestamp = MakeFunTimestamps(eventTimestamp, currentTime);
-    var timerElement = document.getElementById('timer_' + eventId)
+    var timerElement = document.getElementById('timer_' + eventId);
 
+    //console.log(formattedEventTimestamp);
     if(showEventTuE) timerElement.innerHTML = formattedEventTimestamp;
     if(formattedEventTimestamp == "Passed!" && !!document.getElementById('event_' + eventId) == true) {
       document.getElementById('event_' + eventId).style.display = "none";
-      HiddenEventCount += 1;
+      checkVisibleEvents();
+      console.log("hid " + eventId + "!")
+      if((eventId + 1) == HiddenEventCount) { // if the event's at the top
+      console.log("hid " + eventId + "; it's at the top!")
+        DemolitionTime = (data[HiddenEventCount - 1]['timestamp'] + (VisibilityLength[events.indexOf(data[HiddenEventCount - 1]['event'])]) * 1000) // prepares to make the current event visible, depending on how long it should be visible for
+        TimeOfEventStart = data[HiddenEventCount - 1]['timestamp'] //previously: Date.now() + offset;
+        document.getElementById("current-event").style.display = "block";
+        document.getElementById('special_thanks').innerHTML = GeneratePraise(); // updates the praise on the bottom of the site
+      }
+    }
+
+    if(eventId == HiddenEventCount) {
+      currentTime = (Date.now() + offset);
+      if ((eventTimestamp - currentTime <= (EventFlashSec * 1000) && (eventTimestamp - currentTime) % 1000 > 900) && (theme == "light" || theme == "dark")) {
+        document.getElementById('event_' + eventId).classList.remove("blinktext-light");
+        document.getElementById('event_' + eventId).classList.remove("blinktext-dark");
+        document.getElementById('event_' + eventId).classList.add("blinktext-" + theme);
+        changeColor();
+      }
     }
 
     var timeDifference = eventTimestamp - currentTime; // time, in ms, until the event starts
     if(timeDifference > 3600000) setTimeout(function() { updateEvent(eventId) }, 20_500) // if more than an hour before the event starts, update its timer every 20.5 seconds
     else if(timeDifference > 60000) setTimeout(function() { updateEvent(eventId) }, 250) // if less than an hour before the event starts, update its timer every 0.25 seconds
     else if(formattedEventTimestamp != "Passed!") setTimeout(function() { updateEvent(eventId) }, 40) // if less than a minute before the event starts, update its timer every 0.04 seconds
+  }
+
+  function forceUpdateEvents() { // call in moderation. just updates the text of all the events so that there isn't weird gaping spaces
+    for(a3 = 0; a3 < EventsToLoad; a3++) {
+      if(showEventTuE) document.getElementById('timer_' + a3).innerHTML = MakeFunTimestamps(data[a3]["timestamp"], currentTime);
+    }
   }
 
   function resetOffset() { // resets the offset, then reloads the page
@@ -1320,10 +1326,11 @@
 
   function checkVisibleEvents() { // returns an array with IDs of visible events
     newVisibleEventIds = [];
-    for(a = 0; a < EventsToLoad; a++) {
-      if(document.getElementById('event_' + a).style.display != "none") newVisibleEventIds.push(a);
+    for(aq = 0; aq < EventsToLoad; aq++) {
+      if(document.getElementById('event_' + aq).style.display != "none") newVisibleEventIds.push(aq);
     }
     visibleEventIds = newVisibleEventIds.slice(0);
+    HiddenEventCount = EventsToLoad - visibleEventIds.length; 
   }
 
   function isRobot() {
@@ -1551,8 +1558,7 @@
       document.getElementById("current-event-mobilebreak").style.display = "";
       //console.log(result); // returns time left in event display
       let recentEventData = window.data[HiddenEventCount - 1];
-      let correctColorCode =
-        trueEventColors[events.indexOf(recentEventData["event"])];
+      let correctColorCode = trueEventColors[events.indexOf(recentEventData["event"])];
       if (recentEventData["type"] == "major") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
           //console.log(((VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) /* should return like "480000" (8m) in most cases */ - 180000)
@@ -1680,6 +1686,7 @@
     }
 
     panicevents = [];
+    forceUpdateEvents();
   }
   
   function CuteColors(conversion) { //adds cute colors
@@ -1732,7 +1739,6 @@
   function cycle1() { // every 40 ms
     counter += 1;
     window.data = window.data_backup;
-    RapidFirst(data);
   }
 
   function cycle5() { // every 200 ms
@@ -2121,7 +2127,7 @@
   font-weight: bold;
 }
 
-a, .icon, div {
+a, .icon, div, .event {
   transition-duration: 0.2s;
 }
 
@@ -2148,6 +2154,11 @@ a, .icon, div {
   font-size: 1.5em;
   line-height: 100%;
   margin: 5px;
+  opacity: 0;
+}
+
+.event:hover {
+  padding: 25px;
 }
 
 .tip {

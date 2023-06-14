@@ -204,7 +204,9 @@
   var showEventDNC = true; //Day-night cycle and map timer
   var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
   var AudioEvents = [];
-  var visibleEventIds = []; // list of event IDs that are currently visible
+  var eventOpacities = []; // list of opacities of every event ID (Chrome tends to skip items in arrays??? why????)
+  var visibleEventIds = []; // list of event IDs that are currently visually visible
+  var upcomingEventIds = []; // list of event IDs that could possibly be visible in the future but may or may not be visible due to the user hiding events
 
   var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`v1.0.0 on feb 27... i mean feb 28... i mean march 11.. i mean march 12... i mean march 13.... nono i mean i mean april 14`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`]
   var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","litphoenix","adjective",`anoxysm`]
@@ -219,7 +221,6 @@
   var isMapHover = false; // whether the user is hovering over the map timer
   var robot = true; // whether you, the user, are secretly a search engine crawler in disguise!!
   
-
   var customPaletteName = "";
   var placeholderPalette = []; // where to put the palette that the user's popup box is about
 
@@ -1181,22 +1182,22 @@
     }
   }
 
+  var flipCounter = -2;
   function flipEvents() { // makes the events flip when you load the page
     if(counterWhenEventsLoaded == -1 && HasStuffLoaded) {
       counterWhenEventsLoaded = counter;
+      flipCounter = -1;
     }
-    var counterOffset = counter - counterWhenEventsLoaded - 3;
-    if(HasStuffLoaded && counterOffset > -1) {
-      if(counterOffset < visibleEventIds.length) {
-        document.getElementById("event_" + (visibleEventIds[counterOffset])).style.opacity = 1;
-        setTimeout(function() { document.getElementById("event_" + visibleEventIds[counterOffset]).classList.remove("flip"); }, 2500); // remove the flip class after 1 second
-        /*if(counterOffset == 0 || (visibleEventIds[counterOffset] - visibleEventIds[counterOffset - 1]) != 1) {
-          for(a3 = (counterOffset == 0 ? 0 : [counterOffset - 1]); a3 < visibleEventIds[counterOffset]; a3++) { // makes hidden events visible too
-            console.log("also made event #" + a3 + " visible, too")
-            document.getElementById("event_" + a3).style.opacity = 1;
-          }
-        }*/
-        document.getElementById('event_' + (visibleEventIds[counterOffset])).classList.add("flip");
+
+    if(HasStuffLoaded && flipCounter > -2) {
+      flipCounter += 1;
+      let offsetedEvent = visibleEventIds[flipCounter];
+      
+      if(flipCounter < visibleEventIds.length) {
+        document.getElementById("event_" + (offsetedEvent)).style.opacity = 1;
+        setTimeout(function() { document.getElementById("event_" + offsetedEvent).classList.remove("flip"); }, 2500); // remove the flip class after 1 second
+        eventOpacities[offsetedEvent] = document.getElementById("event_" + offsetedEvent).style.opacity;
+        document.getElementById('event_' + (offsetedEvent)).classList.add("flip");
       } else if(!flipsComplete) {
         flipsComplete = true;
         setTimeout(removeFlips, 1000);
@@ -1326,11 +1327,15 @@
 
   function checkVisibleEvents() { // returns an array with IDs of visible events
     newVisibleEventIds = [];
-    for(aq = 0; aq < EventsToLoad; aq++) {
+    newUpcomingEventIds = [];
+    for(aq = 0; aq < data.length; aq++) {
+      if(data[aq]["timestamp"] > currentTime) newUpcomingEventIds.push(aq);
       if(document.getElementById('event_' + aq).style.display != "none") newVisibleEventIds.push(aq);
     }
+
     visibleEventIds = newVisibleEventIds.slice(0);
-    HiddenEventCount = EventsToLoad - visibleEventIds.length; 
+    upcomingEventIds = newUpcomingEventIds.slice(0);
+    HiddenEventCount = EventsToLoad - upcomingEventIds.length; 
   }
 
   function isRobot() {
@@ -2155,10 +2160,6 @@ a, .icon, div, .event {
   line-height: 100%;
   margin: 5px;
   opacity: 0;
-}
-
-.event:hover {
-  padding: 25px;
 }
 
 .tip {

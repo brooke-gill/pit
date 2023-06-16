@@ -1555,7 +1555,7 @@
     return languagePack[events.indexOf(nameOfEvent) + (full?68:135)];
   }
   
-  function CurrentEvent() {
+  function currentEvent() {
     currentTime = Date.now() + offset;
   
     if (HiddenEventCount > 0 && DemolitionTime - currentTime >= 0) {
@@ -1568,9 +1568,9 @@
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
           //console.log(((VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) /* should return like "480000" (8m) in most cases */ - 180000)
           if (currentTime >= 180000 + TimeOfEventStart) {
-            document.getElementById("current-event").innerHTML = `<b><span style="color: #aa00aa">` + languagePack[109] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"]).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
+            document.getElementById("current-event").innerHTML = `<b><span style="color: #aa00aa">` + languagePack[109] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"], false).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
           } else {
-            document.getElementById("current-event").innerHTML = `<b><span style="color: #aa00aa">` + languagePack[109] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"]).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[110].replace("%%time%%", (`<span style="color: #55ff55;">` + AboutMe(TimeOfEventStart + 180000 - currentTime) + `</span>`));
+            document.getElementById("current-event").innerHTML = `<b><span style="color: #aa00aa">` + languagePack[109] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"], false).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[110].replace("%%time%%", (`<span style="color: #55ff55;">` + AboutMe(TimeOfEventStart + 180000 - currentTime) + `</span>`));
           }
         } else {
           document.getElementById("current-event").innerHTML =
@@ -1579,7 +1579,7 @@
         }
       } else if (recentEventData["type"] == "minor") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") { // if the minor event uses a countdown
-            document.getElementById("current-event").innerHTML = `<b><span style="color: #f5f">` + languagePack[108] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"]).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
+            document.getElementById("current-event").innerHTML = `<b><span style="color: #f5f">` + languagePack[108] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"]).toUpperCase(), false) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
         } else {
           document.getElementById("current-event").innerHTML =
             IsItACountdown[events.indexOf(recentEventData["event"])];
@@ -1748,7 +1748,7 @@
 
   function cycle5() { // every 200 ms
       AudioChecker();
-      CurrentEvent();
+      currentEvent();
       DayNightCycle();
       mapRotation();
       autoReload();

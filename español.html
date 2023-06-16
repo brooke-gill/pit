@@ -59,7 +59,7 @@
   <p class="option"><span><b id="lt-37">Event spacing</b>: </span><span id="settings-spacing-5" class="hand_cursor" onclick='changeSpacing(5)'>Big</span><span> / <span id="settings-spacing-3" class="hand_cursor" onclick='changeSpacing(3)'>Small</span> / <span id="settings-spacing-0" class="hand_cursor" onclick='changeSpacing(0)'>None</span></p>
 
   <p class="option"><span class="settingsheader" id="lt-41">&mdash; Quality of Life &mdash;</span></p>
-  <p class="option"><span><span style="font-family: Material">Language</span> <b id="lt-66">Language</b>: </span><span id="settings-language-en_CA" class="hand_cursor" onclick='changeLanguage("en_CA")'>English</span><span> / <span id="settings-language-es_US" class="hand_cursor" onclick='changeLanguage("es_US")'>Español</span></p>
+  <p class="option"><span><span style="font-family: Material">Language</span> <b id="lt-66">Language</b>: </span><span id="settings-language-en_CA" class="hand_cursor" onclick='changeLanguage("en_CA")'>English</span><span> / <span id="settings-language-es_AR" class="hand_cursor" onclick='changeLanguage("es_AR")'>Español</span></p>
   <p class="option"><span id="tut-notif" style="color: #ffff80"><b id="lt-42">Pre-event notifications</b></span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
   <p id="anotif" class="option"><span>&bullet; <b id="lt-46">Audio notifications</b>: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
   <p id="dnotif" class="option"><span>&bullet; <b id="lt-47">Desktop notifications</b>: </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
@@ -159,6 +159,7 @@
   var NormalText = "#000000"; // what colour text should be
   var EventFlashSec = 60; // how many seconds events flash before starting
   var NotifTimer = -10;
+  var flipsComplete = false; // whether the event animations' initial flips are done
   var DoesStuffExist = false; // if things are loaded and it's safe to start querying event <div>s
   var HasStuffLoaded = false; // an even more strict version of DoesStuffExist.
   var currentTime; // the current unix timestamp
@@ -184,6 +185,7 @@
   var playedNotifications = []; // array of all event IDs of played notifications. [0] is 1-minute, [1] is 3-minute, [2] is 5-minute. in the future. when i'm not busy
   var language = "en_CA"; // the user's language. it's canadian english. you're canadian now
   var languagePack = window["languagePack_" + language];
+  var counterWhenEventsLoaded = -1; // the counter time (intervals of 40ms) when the events loaded in. used for debugging (lag performance) and flipping events
 
   var announcementName = document.getElementsByClassName('update-announcement')[0].id // the name of the annoying banner at the top of the screen
   var announcementVisible = true;
@@ -202,7 +204,9 @@
   var showEventDNC = true; //Day-night cycle and map timer
   var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
   var AudioEvents = [];
-  var visibleEventIds = []; // list of event IDs that are currently visible
+  var eventOpacities = []; // list of opacities of every event ID (Chrome tends to skip items in arrays??? why????)
+  var visibleEventIds = []; // list of event IDs that are currently visually visible
+  var upcomingEventIds = []; // list of event IDs that could possibly be visible in the future but may or may not be visible due to the user hiding events
 
   var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`v1.0.0 on feb 27... i mean feb 28... i mean march 11.. i mean march 12... i mean march 13.... nono i mean i mean april 14`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`]
   var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","litphoenix","adjective",`anoxysm`]
@@ -217,7 +221,6 @@
   var isMapHover = false; // whether the user is hovering over the map timer
   var robot = true; // whether you, the user, are secretly a search engine crawler in disguise!!
   
-
   var customPaletteName = "";
   var placeholderPalette = []; // where to put the palette that the user's popup box is about
 
@@ -257,8 +260,7 @@
   
   document.getElementById('settings').style.color = "NormalText";
 
-  function MakeFunTimestamps(convertible) {
-  currentTime = (Date.now() + offset);
+  function MakeFunTimestamps(convertible, currentTime = (Date.now() + offset)) {
   if (convertible - currentTime <= 0) {
     convertible = "Passed!"
   }
@@ -354,7 +356,7 @@
 
   function changeLanguage(icuLocale) {
     document.getElementById('settings-language-en_CA').style.color = "#888888";
-    document.getElementById('settings-language-es_US').style.color = "#888888";
+    document.getElementById('settings-language-es_AR').style.color = "#888888";
     language = icuLocale;
     languagePack = window["languagePack_" + language];
     document.getElementById("settings-language-" + icuLocale).style.color = NormalText;
@@ -364,7 +366,6 @@
     for(al = 0; al < languagePackIds.length; al++) {
       var languagePackText = languagePack[al];
       for(am = 0; am < languagePackIds[al].length; am++) {
-        console.log(languagePackIds[al][am])
         if(languagePackIds[al][am] != "skip") document.getElementById(languagePackIds[al][am]).innerHTML = languagePack[al];
       }
     }
@@ -1090,11 +1091,11 @@
       var div = document.createElement("div");
       console.log("Made an element.");
       div.id = ("event_" + i);
-      div.innerHTML = ("[loading event]");
       div.classList.add('event');
       div.innerHTML = `<span class="timers" id="timer_` + i + `"></span>`;
       document.getElementById('events').appendChild(div);
   }
+
   
   document.getElementById('special_thanks').innerHTML = GeneratePraise();
   submitCustomPalette(false, true, false) // checks to see if the user made a beautiful custom palette'
@@ -1105,6 +1106,9 @@
     URLToSettings();  
     
     addNamesandImages(window.data);
+    for(a = 0; a < EventsToLoad; a++) {
+      updateEvent(a);
+    }
   }
 
   function newDataDifferent(url = "emergency.js") { // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
@@ -1156,37 +1160,6 @@
         }
     }
 }
-  
-  function RapidFirst(transformation) { //this plops the stuff in the actual html page
-    if (DoesStuffExist == true) {
-        HasStuffLoaded = true; //looks like the stuff has loaded
-        for(var i = window.HiddenEventCount; i <= window.HiddenEventCount && i < EventsToLoad; i++) {
-            if(showEventTuE == true) document.getElementById('timer_' + String(i)).innerHTML = MakeFunTimestamps(transformation[i].timestamp);
-            if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) { // if the topmost event's timer ran out
-                for(var j = 0; j <= i; j++) {
-                    document.getElementById('event_' + String(j)).style.display = "none"; // hide it
-                }
-                window.HiddenEventCount = window.HiddenEventCount + 1;
-                DemolitionTime = (window.data[HiddenEventCount - 1]['timestamp'] + (VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) // prepares to make the current event visible, depending on how long it should be visible for
-                TimeOfEventStart = window.data[HiddenEventCount - 1]['timestamp'] //previously: Date.now() + offset;
-
-                checkVisibleEvents();
-                document.getElementById("current-event").style.display = "block";
-                document.getElementById('special_thanks').innerHTML = GeneratePraise(); // updates the praise on the bottom of the site
-            }
-
-            currentTime = (Date.now() + offset);
-            if ((transformation[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (transformation[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "light" || theme == "dark")) {
-
-                document.getElementById('event_' + String(i)).classList.remove("blinktext-light");
-                document.getElementById('event_' + String(i)).classList.remove("blinktext-dark");
-                document.getElementById('event_' + String(i)).classList.add("blinktext-" + theme);
-                changeColor();
-            }
-        }
-    }
-}
-
 
   document.getElementById('brookeafk-com').addEventListener('animationend', function(e) { // literally just makes the logo do awesome flips when you hover on it. this is the best feature of the website
     document.getElementById('brookeafk-com').classList.remove('animated');
@@ -1209,25 +1182,81 @@
     }
   }
 
-  function flipEvents(g) { // makes the events flip when you load the page
-    g = g - 10; // adds a delay to prevent the site from trying to flip events while things are loading (bad!)
+  var flipCounter = -2;
+  function flipEvents() { // makes the events flip when you load the page
+    if(counterWhenEventsLoaded == -1 && HasStuffLoaded) {
+      counterWhenEventsLoaded = counter;
+      flipCounter = -1;
+    }
 
-    if(g >= 0 && g <= 200 && visibleEventIds[g] != undefined)
-    if((g != 0 || (data[visibleEventIds[0]].timestamp - Date.now()) > (EventFlashSec * 1000))) {
-      document.getElementById('event_' + (visibleEventIds[g])).classList.add("flip");
-    } 
-    if(g >= 25 && document.getElementById('event_' + (g - 25)) != null) document.getElementById('event_' + (g - 25)).classList.remove("flip");
+    if(HasStuffLoaded && flipCounter > -2) {
+      flipCounter += 1;
+      let offsetedEvent = visibleEventIds[flipCounter];
+      
+      if(flipCounter < visibleEventIds.length) {
+        document.getElementById("event_" + (offsetedEvent)).style.opacity = 1;
+        setTimeout(function() { document.getElementById("event_" + offsetedEvent).classList.remove("flip"); }, 2500); // remove the flip class after 1 second
+        eventOpacities[offsetedEvent] = document.getElementById("event_" + offsetedEvent).style.opacity;
+        document.getElementById('event_' + (offsetedEvent)).classList.add("flip");
+      } else if(!flipsComplete) {
+        flipsComplete = true;
+        setTimeout(removeFlips, 1000);
+        for(a3 = 0; a3 < EventsToLoad; a3++) {
+          document.getElementById("event_" + a3).style.opacity = 1; // make all the events visible
+        }
+      }
+    }
+    if(!flipsComplete) setTimeout(flipEvents, 40);
   }
-  
-  function UpdateEverything(transformation) { // this plops the stuff in the actual html page
-    for(var i = window.HiddenEventCount + 1; i < EventsToLoad; i++) {
-      if(showEventTuE == true) document.getElementById('timer_' + String(i)).innerHTML = MakeFunTimestamps(transformation[i].timestamp);
-    if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) { //in an ideal world this should NEVER be called but js can be weird as hell sometimes
-      document.getElementById('timer_' + String(i)).style.display = "none";
-      window.HiddenEventCount = window.HiddenEventCount + 1; 
-      console.log("hey if you see this please let Brooke know as this should Not happen lol");
+
+  function removeFlips(item) { // remove the "flip" class from every event
+    for(a3 = 0; a3 < EventsToLoad; a3++) {
+      document.getElementById("event_" + a3).classList.remove("flip");
     }
   }
+
+  function updateEvent(eventId) {
+    //console.log("checking #" + eventId);
+    currentTime = Date.now() + offset;
+    var eventTimestamp = data[eventId]["timestamp"];
+    var formattedEventTimestamp = MakeFunTimestamps(eventTimestamp, currentTime);
+    var timerElement = document.getElementById('timer_' + eventId);
+
+    //console.log(formattedEventTimestamp);
+    if(showEventTuE) timerElement.innerHTML = formattedEventTimestamp;
+    if(formattedEventTimestamp == "Passed!" && !!document.getElementById('event_' + eventId) == true) {
+      document.getElementById('event_' + eventId).style.display = "none";
+      checkVisibleEvents();
+      console.log("hid " + eventId + "!")
+      if((eventId + 1) == HiddenEventCount) { // if the event's at the top
+      console.log("hid " + eventId + "; it's at the top!")
+        DemolitionTime = (data[HiddenEventCount - 1]['timestamp'] + (VisibilityLength[events.indexOf(data[HiddenEventCount - 1]['event'])]) * 1000) // prepares to make the current event visible, depending on how long it should be visible for
+        TimeOfEventStart = data[HiddenEventCount - 1]['timestamp'] //previously: Date.now() + offset;
+        document.getElementById("current-event").style.display = "block";
+        document.getElementById('special_thanks').innerHTML = GeneratePraise(); // updates the praise on the bottom of the site
+      }
+    }
+
+    if(eventId == HiddenEventCount) {
+      currentTime = (Date.now() + offset);
+      if ((eventTimestamp - currentTime <= (EventFlashSec * 1000) && (eventTimestamp - currentTime) % 1000 > 900) && (theme == "light" || theme == "dark")) {
+        document.getElementById('event_' + eventId).classList.remove("blinktext-light");
+        document.getElementById('event_' + eventId).classList.remove("blinktext-dark");
+        document.getElementById('event_' + eventId).classList.add("blinktext-" + theme);
+        changeColor();
+      }
+    }
+
+    var timeDifference = eventTimestamp - currentTime; // time, in ms, until the event starts
+    if(timeDifference > 3600000) setTimeout(function() { updateEvent(eventId) }, 20_500) // if more than an hour before the event starts, update its timer every 20.5 seconds
+    else if(timeDifference > 60000) setTimeout(function() { updateEvent(eventId) }, 250) // if less than an hour before the event starts, update its timer every 0.25 seconds
+    else if(formattedEventTimestamp != "Passed!") setTimeout(function() { updateEvent(eventId) }, 40) // if less than a minute before the event starts, update its timer every 0.04 seconds
+  }
+
+  function forceUpdateEvents() { // call in moderation. just updates the text of all the events so that there isn't weird gaping spaces
+    for(a3 = 0; a3 < EventsToLoad; a3++) {
+      if(showEventTuE) document.getElementById('timer_' + a3).innerHTML = MakeFunTimestamps(data[a3]["timestamp"], currentTime);
+    }
   }
 
   function resetOffset() { // resets the offset, then reloads the page
@@ -1297,10 +1326,16 @@
   }
 
   function checkVisibleEvents() { // returns an array with IDs of visible events
-    visibleEventIds = [];
-    for(a = 0; a < EventsToLoad; a++) {
-      if(document.getElementById('event_' + a).style.display != "none") visibleEventIds.push(a);
+    newVisibleEventIds = [];
+    newUpcomingEventIds = [];
+    for(aq = 0; aq < data.length; aq++) {
+      if(data[aq]["timestamp"] > currentTime) newUpcomingEventIds.push(aq);
+      if(document.getElementById('event_' + aq).style.display != "none") newVisibleEventIds.push(aq);
     }
+
+    visibleEventIds = newVisibleEventIds.slice(0);
+    upcomingEventIds = newUpcomingEventIds.slice(0);
+    HiddenEventCount = EventsToLoad - upcomingEventIds.length; 
   }
 
   function isRobot() {
@@ -1420,14 +1455,13 @@
   
       for(var i = 0; i < VisibleEvents.length; i++) { // filter out events that aren't in VisibleEvents
         for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
-        if (window.data[j]["event"].includes(VisibleEvents[i]) && !ok_ids.includes(j)) {
-          document.getElementById('event_' + String(j)).style.display = "block";
-          ok_ids.push(j);
-          console.log(ok_ids)
-            console.log("saved " + window.data[j]["event"])
-          }  
+          if (window.data[j]["event"].includes(VisibleEvents[i]) && !ok_ids.includes(j)) {
+            document.getElementById('event_' + String(j)).style.display = "block";
+            ok_ids.push(j);
+          }
         }
       }
+      console.log(ok_ids)
 
       for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
         if (!ok_ids.includes(j)) {
@@ -1521,7 +1555,7 @@
     return languagePack[events.indexOf(nameOfEvent) + (full?68:135)];
   }
   
-  function CurrentEvent() {
+  function currentEvent() {
     currentTime = Date.now() + offset;
   
     if (HiddenEventCount > 0 && DemolitionTime - currentTime >= 0) {
@@ -1529,15 +1563,14 @@
       document.getElementById("current-event-mobilebreak").style.display = "";
       //console.log(result); // returns time left in event display
       let recentEventData = window.data[HiddenEventCount - 1];
-      let correctColorCode =
-        trueEventColors[events.indexOf(recentEventData["event"])];
+      let correctColorCode = trueEventColors[events.indexOf(recentEventData["event"])];
       if (recentEventData["type"] == "major") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
           //console.log(((VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) /* should return like "480000" (8m) in most cases */ - 180000)
           if (currentTime >= 180000 + TimeOfEventStart) {
-            document.getElementById("current-event").innerHTML = `<b><span style="color: #aa00aa">` + languagePack[109] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"]).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
+            document.getElementById("current-event").innerHTML = `<b><span style="color: #aa00aa">` + languagePack[109] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"], false).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
           } else {
-            document.getElementById("current-event").innerHTML = `<b><span style="color: #aa00aa">` + languagePack[109] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"]).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[110].replace("%%time%%", (`<span style="color: #55ff55;">` + AboutMe(TimeOfEventStart + 180000 - currentTime) + `</span>`));
+            document.getElementById("current-event").innerHTML = `<b><span style="color: #aa00aa">` + languagePack[109] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"], false).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[110].replace("%%time%%", (`<span style="color: #55ff55;">` + AboutMe(TimeOfEventStart + 180000 - currentTime) + `</span>`));
           }
         } else {
           document.getElementById("current-event").innerHTML =
@@ -1546,7 +1579,7 @@
         }
       } else if (recentEventData["type"] == "minor") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") { // if the minor event uses a countdown
-            document.getElementById("current-event").innerHTML = `<b><span style="color: #f5f">` + languagePack[108] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"]).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
+            document.getElementById("current-event").innerHTML = `<b><span style="color: #f5f">` + languagePack[108] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"]).toUpperCase(), false) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
         } else {
           document.getElementById("current-event").innerHTML =
             IsItACountdown[events.indexOf(recentEventData["event"])];
@@ -1658,6 +1691,7 @@
     }
 
     panicevents = [];
+    forceUpdateEvents();
   }
   
   function CuteColors(conversion) { //adds cute colors
@@ -1706,17 +1740,15 @@
   }
   }}
 
+  flipEvents();
   function cycle1() { // every 40 ms
     counter += 1;
     window.data = window.data_backup;
-    RapidFirst(window.data);
-    flipEvents(counter);
   }
 
   function cycle5() { // every 200 ms
-    UpdateEverything(window.data);
       AudioChecker();
-      CurrentEvent();
+      currentEvent();
       DayNightCycle();
       mapRotation();
       autoReload();
@@ -2100,7 +2132,7 @@
   font-weight: bold;
 }
 
-a, .icon, div {
+a, .icon, div, .event {
   transition-duration: 0.2s;
 }
 
@@ -2127,6 +2159,7 @@ a, .icon, div {
   font-size: 1.5em;
   line-height: 100%;
   margin: 5px;
+  opacity: 0;
 }
 
 .tip {

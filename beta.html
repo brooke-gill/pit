@@ -97,7 +97,7 @@
     <br><div id="select-major" style="color: #fff;" onclick='SelectOnly("major")' class="hand_cursor">Majors Only</div>
     <div id="select-minor" style="color: #fff;" onclick='SelectOnly("minor")' class="hand_cursor">Minors Only</div>
     <div id="select-none" style="color: #f77;" onclick='SelectOnly("nothing")' class="hand_cursor">Deselect All</div>
-    <br><div id="lt-90" style="color: #aac; font-style: italic;" onclick='SaveSettings()' class="hand_cursor">Settings save<br> automatically!</div><div id="clear-settings" style="color: #f77;" onclick="SaveSettings('clear')" class="hand_cursor">Clear Settings</div><div id="settings-clear-literally-everything" style="color: #b35151; display: none;" onclick="SaveSettings('cleareverything')" class="hand_cursor"><b>Clear Settings and URL</b></div>
+    <br><div id="lt-90" style="color: #aac; font-style: italic;" onclick='SaveSettings()' class="hand_cursor">Settings save<br> automatically!</div><div id="clear-settings" style="color: #f77;" onclick="SaveSettings('clear')" class="hand_cursor">Clear Settings</div><div id="settings-clear-literally-everything" style="color: #b35151; font-weight: bold; display: none;" onclick="SaveSettings('cleareverything')" class="hand_cursor">Clear Settings and URL</div>
   
   </div>
 
@@ -249,7 +249,6 @@
     var mobilebreaks = document.getElementsByClassName('mobilebreak');
     for (var i = 0; i < mobilebreaks.length; i++) {
       var item = mobilebreaks[i];  
-      console.log("one item")
       item.innerHTML = '<br>';
     }
     document.getElementById("current-event").style.width = "90%";
@@ -261,18 +260,17 @@
   document.getElementById('settings').style.color = "NormalText";
 
   function MakeFunTimestamps(convertible, currentTime = (Date.now() + offset)) {
-  if (convertible - currentTime <= 0) {
-    convertible = "Passed!"
-  }
-  if (convertible - currentTime <= 60000) {
-      convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + "s");
-  } else if (convertible - currentTime <= 3600000) {
-      convertible = ((Math.floor(((convertible - currentTime))/60000) + "m" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
-  } else if (convertible - currentTime > 1) {
-      convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
-  }
-  
-  return convertible;
+    if (convertible - currentTime <= 0) {
+      convertible = "Passed!";
+    }
+    if (convertible - currentTime <= 60000) {
+        convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + "s");
+    } else if (convertible - currentTime <= 3600000) {
+        convertible = ((Math.floor(((convertible - currentTime))/60000) + "m" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
+    } else if (convertible - currentTime > 1) {
+        convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
+    }
+    return convertible;
   }
   
   function setFlash(seconds) {
@@ -366,7 +364,7 @@
     for(al = 0; al < languagePackIds.length; al++) {
       var languagePackText = languagePack[al];
       for(am = 0; am < languagePackIds[al].length; am++) {
-        if(languagePackIds[al][am] != "skip") document.getElementById(languagePackIds[al][am]).innerHTML = languagePack[al];
+        document.getElementById(languagePackIds[al][am]).innerHTML = languagePack[al];
       }
     }
     for(al = 0; al < 18; al++) {
@@ -1347,9 +1345,9 @@
   function updateTabTimer() { // updates the timer in the tab
     if(DoesStuffExist && visibleEventIds.length > 0 && !robot && tabTimerVisible == true) { // if events are real, at least one event is visible, you're not a robot (so it doesn't appear in search engines), and the user has the tab timer setting on. phew
       var firstIndex = events.indexOf(data[visibleEventIds[0]]['event']);
-      document.title = "[" + eventsEmoji[firstIndex] + " " +  shortEvents[firstIndex] + " " + MakeFunTimestamps(data[visibleEventIds[0]]['timestamp']) + "] | Hypixel Pit Events Tracker";
+      document.title = "[" + eventsEmoji[firstIndex] + " " +  shortEvents[firstIndex] + " " + MakeFunTimestamps(data[visibleEventIds[0]]['timestamp']) + "] | " + languagePack[0];
     } else {
-      document.title = "Hypixel Pit Events Tracker - brookeafk.com";
+      document.title = languagePack[0] + " - brookeafk.com";
     }
   }
   
@@ -1579,7 +1577,7 @@
         }
       } else if (recentEventData["type"] == "minor") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") { // if the minor event uses a countdown
-            document.getElementById("current-event").innerHTML = `<b><span style="color: #f5f">` + languagePack[108] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"]).toUpperCase(), false) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
+            document.getElementById("current-event").innerHTML = `<b><span style="color: #f5f">` + languagePack[108] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"], false).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
         } else {
           document.getElementById("current-event").innerHTML =
             IsItACountdown[events.indexOf(recentEventData["event"])];
@@ -1672,13 +1670,13 @@
 
       if(classicMode == true) {
         if (showEventToD == true && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + englishEventToTranslated(transformation[i].event, false) + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
         } else if (showEventToD == false && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span>`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + englishEventToTranslated(transformation[i].event, false) + `</a></span>`);
         } else if (showEventToD == true && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + englishEventToTranslated(transformation[i].event, false) + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
         } else if (showEventToD == false && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span>`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + englishEventToTranslated(transformation[i].event, false) + `</a></span>`);
         }
         if(data[i].type == "major") document.getElementById("boldmajor_" + i).style.fontWeight = "bold";
       } else {

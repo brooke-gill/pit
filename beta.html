@@ -412,14 +412,14 @@
     SaveSettings('noreload');
   }
 
-  function changeMajorStyle(style, toggle) { // toggles whether the major event border and shadow distinguisher are visible
-    
-    // toggle's either going to be "toggle" or a number.
-    if(style == "border") styleId = 0; 
-    if(style == "shadow") styleId = 1;
+function changeMajorStyle(style, toggle) { // toggles whether the major event border and shadow distinguisher are visible
 
-    if(toggle == "toggle") {
-    if(majorStyles[styleId] == true) {
+  // toggle's either going to be "toggle" or a number.
+  if (style == "border") styleId = 0;
+  if (style == "shadow") styleId = 1;
+
+  if (toggle == "toggle") {
+    if (majorStyles[styleId] == true) {
       document.getElementById('settings-majorstyle-' + style).style.color = "#888888";
       majorStyles[styleId] = 0;
     } else {
@@ -428,16 +428,16 @@
     }
   } else {
     console.log("toggle isn't 'toggle', it's " + toggle)
-      majorStyles[styleId] = toggle;
-      if(majorStyles[styleId] == true) document.getElementById('settings-majorstyle-' + style).style.color = NormalText;
-      else document.getElementById('settings-majorstyle-' + style).style.color = "#888888";
-    }
-
-    console.log("Major event styles have been set to: " + majorStyles);
-    addNamesandImages(window.data);
-    CuteColors(window.data);
-    SaveSettings('noreload');
+    majorStyles[styleId] = toggle;
+    if (majorStyles[styleId] == true) document.getElementById('settings-majorstyle-' + style).style.color = NormalText;
+    else document.getElementById('settings-majorstyle-' + style).style.color = "#888888";
   }
+
+  console.log("Major event styles have been set to: " + majorStyles);
+  addNamesandImages(window.data);
+  CuteColors(window.data);
+  SaveSettings('noreload');
+}
 
   function changeSpacing(space) { // changes the spacing between events
     document.getElementById('settings-spacing-0').style.color = "#888888";
@@ -1196,13 +1196,12 @@
         document.getElementById("event_" + (offsetedEvent)).style.opacity = 1;
         setTimeout(function() { document.getElementById("event_" + offsetedEvent).classList.remove("flip"); }, 2500); // remove the flip class after 1 second
         eventOpacities[offsetedEvent] = document.getElementById("event_" + offsetedEvent).style.opacity;
+        if(flipCounter == 20) makeAllEventsOpacity1();
         document.getElementById('event_' + (offsetedEvent)).classList.add("flip");
       } else if(!flipsComplete) {
         flipsComplete = true;
         setTimeout(removeFlips, 1000);
-        for(a3 = 0; a3 < EventsToLoad; a3++) {
-          document.getElementById("event_" + a3).style.opacity = 1; // make all the events visible
-        }
+        makeAllEventsOpacity1();
       }
     }
     if(!flipsComplete) setTimeout(flipEvents, 40);
@@ -1211,6 +1210,12 @@
   function removeFlips(item) { // remove the "flip" class from every event
     for(a3 = 0; a3 < EventsToLoad; a3++) {
       document.getElementById("event_" + a3).classList.remove("flip");
+    }
+  }
+
+  function makeAllEventsOpacity1() { // you'll never guess what this function does
+    for(a3 = 0; a3 < EventsToLoad; a3++) {
+      document.getElementById("event_" + a3).style.opacity = 1; // make all the events visible
     }
   }
 
@@ -1299,8 +1304,18 @@
     SaveSettings('noreload');
   }
 
+  function getUserLanguage() {
+    var userBrowserLanguage = navigator.language || navigator.userLanguage;
+    for(l1 = 0; l1 < validLanguages.length; l1++) {
+      for(l2 = 0; l2 < validLanguages[l1].length; l2++) {
+        if(validLanguages[l1][l2] == userBrowserLanguage) return validLanguages[l1][0];
+      }
+    }
+    return "en_CA";
+  }
+
   function getSettings() { // scrapes both URLs and localStorage for settings. URLs get top priority.
-    var defaultSettings = ['262143', '262143', 'gradients0', '111', 'dark', '60', '-10', '0', '0', '0', '1', '24', '0', '1', '11', '5', 'en_CA']
+    var defaultSettings = ['262143', '262143', 'gradients0', '111', 'dark', '60', '-10', '0', '0', '0', '1', '24', '0', '1', '11', '5', getUserLanguage()];
     // 'visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing', 'language'
     var site_url = new URL(window.location.href);
     var settingValues = Array(allSettings.length);
@@ -1535,7 +1550,8 @@
   }
 
   function Help() { //redirects the user to the BrookeAFK Help Guide
-    window.open("help", '_blank').focus();
+    if(language == "es_AR") window.open("help_es", '_blank').focus();
+    else window.open("help", '_blank').focus();
   }
 
   function paletteGenerator() { //redirects the user to the BrookeAFK Palette Generator

@@ -5,3 +5,6 @@ var validLanguages = [["en_CA", "en-CA", "en", "en-001", "en-150", "en-AG", "en-
 gamer = ""
 for(a = 0; a < languagePack_en_CA.length; a++) {gamer += a + "  " + languagePack_en_CA[a] + "   " + languagePack_es_AR[a] + "   " + JSON.stringify(languagePackIds[a]) + "\n"}
 console.log(gamer)
+gamer = ""
+for(a = 0; a < languagePack_en_CA.length; a++) {gamer += a + "  " + languagePack_en_CA[a] + "   " + languagePack_es_AR[a] + "   " + JSON.stringify(languagePackIds[a]) + "\n"}
+console.log(gamer)

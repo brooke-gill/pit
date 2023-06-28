@@ -22,7 +22,7 @@
     <script src="languages.js"></script>
   </head>
   
-  <body background-color="black" class="unselectable">
+  <body class="unselectable">
     <div id="wrapper">
   
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px; display: none;" class="flashtext unselectable" align="center"></div>
@@ -40,7 +40,7 @@
       <sub><span id="custom-palette-user-assistance-1">Clicking "Yes!" will remove your current custom palette, if any.</sub>
     </p>
 
-    <noscript><b style="font-size: 80px; color: #ce1010">JavaScript is disabled. This site can't function without it.</b></noscript>
+    <noscript><b style="font-size: 80px; color: #ce1010">JavaScript is disabled. This site can't function without it.</b><br><span style="font-size: 30px; color: #7d2323">If you think you're seeing this in error, send me a ticket at the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.</span></noscript>
 
     <div style="background: linear-gradient(90deg, rgb(181, 175, 55) 0%, rgb(18, 129, 173) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="dismissAnnouncement()" id="announcement_1_1_0" class="announcement update-announcement"><b>brookeafk.com now supports custom palettes!</b> Make your own by <a style="color: #ccc; cursor: pointer;" href="palette" target="_blank"><u>clicking here</u></a>.<br>(Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
   
@@ -115,7 +115,7 @@
     <p id="current-palette" style="display: none"></p>
     <p><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600" id="wikiad">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span>!</a></p>
     <p id="special_thanks"></p>
-    <p id="version" class="ver"></p> <span>&mdash; June 12, 2023</span>
+    <p id="version" class="ver"></p> <span>&mdash; June 28, 2023</span>
     <p id="need-help">Need help using this site? Join the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.
     </span>
   </span>
@@ -590,14 +590,14 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
                                             }
 
                                             else if (Notification.permission !== "denied") {
-                                              document.getElementById('desktop-on').innerHTML = "Accept notifications!"
+                                              document.getElementById('desktop-on').innerHTML = languagePack[175];
                                               Notification.requestPermission().then(function (permission) {
                                                 if (permission === "granted") {
                                                   console.log("Notifications enabled!")
-                                                  document.getElementById('desktop-on').innerHTML = "On"
+                                                  document.getElementById('desktop-on').innerHTML = languagePack[31];
                                                 }
                                                 else {
-                                                  document.getElementById('desktop-on').innerHTML = "Notifications denied :("
+                                                  document.getElementById('desktop-on').innerHTML = languagePack[176];
                                                   window.SettingsDesktopNotifs = 0;
                                                   tog = 0;
                                                 }
@@ -711,7 +711,6 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
       changeClock(window.clockStyle);
       changeClassic(window.classicMode);
       changeTabTimer(window.tabTimerVisible);
-      changeLanguage(window.language);
       changePalette(window.Palette);
       changeMajorStyle("border", window.majorStyles[0]);
       changeMajorStyle("shadow", window.majorStyles[1]);
@@ -1778,6 +1777,10 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
   <style>
     .announcement:hover {
       opacity: 0.5;
+    }
+
+    .announcement {
+      display: none /* no active announcement. can't spam my dear users too much. that's mean */
     }
 
     .topcontainer {

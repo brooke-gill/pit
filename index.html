@@ -19,9 +19,10 @@
     <meta name="theme-color" content="#ffbbff">
     <meta name="description" content="This site allows you to view the upcoming events in the Hypixel Pit in real time."> 
     <meta name="keywords" content="Hypixel Pit, Hypixel, Hypixel Pit Events Tracker, Pit Events, BrookeAFK, Pit, brookeafk.com">
+    <script src="languages.js"></script>
   </head>
   
-  <body background-color="black" class="unselectable">
+  <body class="unselectable">
     <div id="wrapper">
   
     <div id="current-event" style="position: absolute; top: 35px; font-size: 25px; width: 475px; word-wrap: break-word; left: 35%; vertical-align: middle; padding: 1px; display: none;" class="flashtext unselectable" align="center"></div>
@@ -30,16 +31,16 @@
     </div>
 
     <p class="palette-announcement" id="palette-announcement" style="display: none">
-      A Pit player would like you to try out their custom palette.<br>
+      <span id="lt-126">A Pit player would like you to try out their custom palette.</span><br>
       <span style="font-size: 15px; font-weight: 600;" id="palette-colors"></span><br>
       <span id="custom-palette-user-assistance-0">Would you like to use it?</span><br>
 
-      <span id="regular-selection"><span class="button" onclick="changeToURLPalette('yes')">Yes!</span>&nbsp;&nbsp;<span class="button" onclick="changeToURLPalette('no')">No</span><br></span>
-      <span id="sneaky-rename" style="display: none"><span class="button button-smooth button-blue"><input type="text" class="button-input" id="custom-palette-name-input" onkeydown="changeToURLPalette('checkevent', event)" placeholder="Enter a name here..."></span>&nbsp;&nbsp;<span class="button button-green" onclick="changeToURLPalette('confirm')">Confirm</span><br></span>
+      <span id="regular-selection"><span class="button" onclick="changeToURLPalette('yes')" id="lt-128">Yes!</span>&nbsp;&nbsp;<span class="button" onclick="changeToURLPalette('no')" id="lt-129">No</span><br></span>
+      <span id="sneaky-rename" style="display: none"><span class="button button-smooth button-blue"><input type="text" class="button-input" id="custom-palette-name-input" onkeydown="changeToURLPalette('checkevent', event)" placeholder="Enter a name here..."></span>&nbsp;&nbsp;<span class="button button-green" onclick="changeToURLPalette('confirm')" id="lt-133">Confirm</span><br></span>
       <sub><span id="custom-palette-user-assistance-1">Clicking "Yes!" will remove your current custom palette, if any.</sub>
     </p>
 
-    <noscript><b style="font-size: 80px; color: #ce1010">JavaScript is disabled. This site can't function without it.</b></noscript>
+    <noscript><b style="font-size: 80px; color: #ce1010">JavaScript is disabled. This site can't function without it.</b><br><span style="font-size: 30px; color: #7d2323">If you think you're seeing this in error, send me a ticket at the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.</span></noscript>
 
     <div style="background: linear-gradient(90deg, rgb(181, 175, 55) 0%, rgb(18, 129, 173) 100%); padding: 15px; position: relative; top: -55px; z-index: 5" onclick="dismissAnnouncement()" id="announcement_1_1_0" class="announcement update-announcement"><b>brookeafk.com now supports custom palettes!</b> Make your own by <a style="color: #ccc; cursor: pointer;" href="palette" target="_blank"><u>clicking here</u></a>.<br>(Dismiss this announcement by clicking anywhere else on it.)<div style="width: 100%; background-color: #FFFFFF80; height: 5px; position: relative; top: 5px;" id="dismissalprogress"></div></div>
   
@@ -48,27 +49,27 @@
 <div class="mobileanno" id="mobileanno" style="display: none"></div>
     
   <div id="settings-section"><br>
-  <p class="option"><span class="settingsheader">&mdash; Style &mdash;</span></p>
-  <p class="option"><span><b>Theme</b>: </span><span id="settings-theme-dark" onclick='changeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='changeTheme("light")'>Light</span></p> 
-  <p class="option" id="option-palette"><span><b>Palette</b>: </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span> / <span id="settings-palette-4" onclick='changePalette(4)' class="hand_cursor">Theme 4</span> / <span id="custom-palette-exists" style="display: none"><span id="settings-palette-custom" onclick='changePalette("Custom")' class="hand_cursor"><span id="settings-palette-custom-name" class="nocolorchange" style="font-style: oblique">Custom</span></span> / </span><span id="settings-palette-create" onclick='changePalette(9999)' class="hand_cursor"><b>Custom</b> <span style="font-family: Material">palette</span></span></p>
-  <p class="option"><span><b>Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
-  <p class="option"><span><b>Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
-  <p class="option"><span><b>Tab timer</b>: </span><span id="settings-tabtimer-on" class="hand_cursor" onclick='changeTabTimer(1)'>On</span><span> / <span id="settings-tabtimer-off" class="hand_cursor" onclick='changeTabTimer(0)'>Off</span></p>
-  <p class="option"><span><b>Major event effects</b>: </span><span id="settings-majorstyle-border" class="hand_cursor" onclick='changeMajorStyle("border", "toggle")'>Border</span><span> / <span id="settings-majorstyle-shadow" class="hand_cursor" onclick='changeMajorStyle("shadow", "toggle")'>Shadow</span></p>
-  <p class="option"><span><b>Event spacing</b>: </span><span id="settings-spacing-5" class="hand_cursor" onclick='changeSpacing(5)'>Big</span><span> / <span id="settings-spacing-3" class="hand_cursor" onclick='changeSpacing(3)'>Small</span> / <span id="settings-spacing-0" class="hand_cursor" onclick='changeSpacing(0)'>None</span></p>
+  <p class="option"><span class="settingsheader" id="lt-2">&mdash; Style &mdash;</span></p>
+  <p class="option"><span><b id="lt-3">Theme</b>: </span><span id="settings-theme-dark" onclick='changeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='changeTheme("light")'>Light</span></p> 
+  <p class="option" id="option-palette"><span><b id="lt-6">Palette</b>: </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span> / <span id="settings-palette-4" onclick='changePalette(4)' class="hand_cursor">Theme 4</span> / <span id="custom-palette-exists" style="display: none"><span id="settings-palette-custom" onclick='changePalette("Custom")' class="hand_cursor"><span id="settings-palette-custom-name" class="nocolorchange" style="font-style: oblique">Custom</span></span> / </span><span id="settings-palette-create" onclick='changePalette(9999)' class="hand_cursor"><b id="lt-18">Custom</b> <span style="font-family: Material">palette</span></span></p>
+  <p class="option"><span><b id="lt-26">Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
+  <p class="option"><span><b id="lt-30">Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
+  <p class="option"><span><b id="lt-33">Tab timer</b>: </span><span id="settings-tabtimer-on" class="hand_cursor" onclick='changeTabTimer(1)'>On</span><span> / <span id="settings-tabtimer-off" class="hand_cursor" onclick='changeTabTimer(0)'>Off</span></p>
+  <p class="option"><span><b id="lt-34">Major event font style</b>: </span><span id="settings-majorstyle-border" class="hand_cursor" onclick='changeMajorStyle("border", "toggle")'>Border</span><span> / <span id="settings-majorstyle-shadow" class="hand_cursor" onclick='changeMajorStyle("shadow", "toggle")'>Shadow</span></p>
+  <p class="option"><span><b id="lt-37">Event spacing</b>: </span><span id="settings-spacing-5" class="hand_cursor" onclick='changeSpacing(5)'>Big</span><span> / <span id="settings-spacing-3" class="hand_cursor" onclick='changeSpacing(3)'>Small</span> / <span id="settings-spacing-0" class="hand_cursor" onclick='changeSpacing(0)'>None</span></p>
 
-
-  <p class="option"><span class="settingsheader">&mdash; Quality of Life &mdash;</span></p>
-  <p class="option"><span id="tut-notif" style="color: #ffff80"><b>Pre-event notifications</b></span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
-  <p id="anotif" class="option"><span>&bullet; <b>Audio notifications</b>: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
-  <p id="dnotif" class="option"><span>&bullet; <b>Desktop notifications</b>: </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
+  <p class="option"><span class="settingsheader" id="lt-41">&mdash; Quality of Life &mdash;</span></p>
+  <p class="option"><span><span style="font-family: Material">Language</span> <b id="lt-66">Language</b>: </span><span id="settings-language-en_CA" class="hand_cursor" onclick='changeLanguage("en_CA")'>English</span><span> / <span id="settings-language-es_AR" class="hand_cursor" onclick='changeLanguage("es_AR")'>Español</span></p>
+  <p class="option"><span id="tut-notif" style="color: #ffff80"><b id="lt-42">Pre-event notifications</b></span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
+  <p id="anotif" class="option"><span>&bullet; <b id="lt-46">Audio notifications</b>: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
+  <p id="dnotif" class="option"><span>&bullet; <b id="lt-47">Desktop notifications</b>: </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
   <p class="option"><span id="alert-nobells" style="color: #ff7777; display: none">You're not being reminded for any events!<br>Click the bells in the top-right corner to receive notifications.</span></p>
   <p class="option"><span id="alert-notypes" style="color: #ff7777; display: none">Make sure to turn either "Audio notifications"<br>or "Desktop notifications" on to receive alerts.</span></p>
-  <p class="option"><span><b>Timestamps</b>: </span><span id="settings-ts-tod" onclick='setTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='setTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='setTimestamps("dnc");' class="hand_cursor">Day and Map</span></p>
-  <p class="option" id="setting-clock-style"><span><b>Clock style</b>: </span><span id="settings-clock-24" onclick='changeClock("24");' class="hand_cursor">24-hour</span><span> / </span><span id="settings-clock-12" onclick='changeClock("12");' class="hand_cursor">12-hour</span></p>
-  <p class="option"><span id="settings-flashing"><b>Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='setFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='setFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='setFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='setFlash(-10);' class="hand_cursor">Never</span></span></p>
-  <p class="option"><span><b>Event text</b>: </span><span id="settings-classic-off" class="hand_cursor" onclick='changeClassic(0)'>Modern</span><span> / <span id="settings-classic-on" class="hand_cursor" onclick='changeClassic(1)'>Classic</span></p> 
-  <p class="option"><span><b>Version</b>: </span><span>New</span><span> / </span><span onclick='window.location = "2022"' style="color: #808080; cursor: pointer">Old</span></p> 
+  <p class="option"><span><b id="lt-49">Timestamps</b>: </span><span id="settings-ts-tod" onclick='setTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='setTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='setTimestamps("dnc");' class="hand_cursor">Day and Map</span></p>
+  <p class="option" id="setting-clock-style"><span><b id="lt-53">Clock style</b>: </span><span id="settings-clock-24" onclick='changeClock("24");' class="hand_cursor">24-hour</span><span> / </span><span id="settings-clock-12" onclick='changeClock("12");' class="hand_cursor">12-hour</span></p>
+  <p class="option"><span id="settings-flashing"><b id="lt-56">Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='setFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='setFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='setFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='setFlash(-10);' class="hand_cursor">Never</span></span></p>
+  <p class="option"><span><b id="lt-60">Event text</b>: </span><span id="settings-classic-off" class="hand_cursor" onclick='changeClassic(0)'>Modern</span><span> / <span id="settings-classic-on" class="hand_cursor" onclick='changeClassic(1)'>Classic</span></p> 
+  <p class="option"><span><b id="lt-63">Version</b>: </span><span id="lt-64">New</span><span> / </span><span onclick='window.location = "2022"' style="color: #808080; cursor: pointer" id="lt-65">Old</span></p> 
 
 
   <div id="notifications-major">
@@ -96,25 +97,26 @@
     <br><div id="select-major" style="color: #fff;" onclick='SelectOnly("major")' class="hand_cursor">Majors Only</div>
     <div id="select-minor" style="color: #fff;" onclick='SelectOnly("minor")' class="hand_cursor">Minors Only</div>
     <div id="select-none" style="color: #f77;" onclick='SelectOnly("nothing")' class="hand_cursor">Deselect All</div>
-    <br><div id="save" style="color: #aac;" onclick='SaveSettings()' class="hand_cursor"><i>Settings save<br> automatically!</i></div><div id="save" style="color: #f77;" onclick="SaveSettings('clear')" class="hand_cursor">Clear Settings</div><div id="settings-clear-literally-everything" style="color: #b35151; display: none;" onclick="SaveSettings('cleareverything')" class="hand_cursor"><b>Clear Settings and URL</b></div>
+    <br><div id="lt-90" style="color: #aac; font-style: italic;" onclick='SaveSettings()' class="hand_cursor">Settings save<br> automatically!</div><div id="clear-settings" style="color: #f77;" onclick="SaveSettings('clear')" class="hand_cursor">Clear Settings</div><div id="settings-clear-literally-everything" style="color: #b35151; font-weight: bold; display: none;" onclick="SaveSettings('cleareverything')" class="hand_cursor">Clear Settings and URL</div>
   
   </div>
 
   </div>
 
   <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none; text-align: center;"><br>You don't have any events selected!<br>Click the <span style="font-family: Material">settings</span> gear to open the settings. Then, click the event names in the top-right corner to make some visible.<br>Alternatively, click <span onclick="SelectOnly('everything')" style="cursor: pointer; color: #ae4e8e">here</span> to select all events.</span></p>
-  <span id="noevents" class="bigtext"></span>
+  <span id="noevents" class="bigtext" style="display: none"><br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Wait a few seconds.</li><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://events.mcpqndq.dev" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me using the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord server</a> or <a href="https://github.com/brooke-gill">on GitHub</a>.</li></ul></span>
   <span id="events"></span>
 
   <hr>
 
   <span class="credits">
     <p id="madewithlove">Made with love and tears by <a href="https://brookie.dev" target="_blank" rel="noopener">BrookeAFK</a><span id="mcpqndq"> with help from <a href="https://pitpanda.rocks" target="_blank" rel="noopener">McPqndq</a></p>
+    <p id="translator-credit"></p>
     <p id="current-palette" style="display: none"></p>
-    <p id="wikiad"><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span></a>!</p>
+    <p><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600" id="wikiad">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span>!</a></p>
     <p id="special_thanks"></p>
-    <p id="version" class="ver"></p> <span>&mdash; June 10, 2023</span>
-    <p id="help">Need help using this site? Join the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.
+    <p id="version" class="ver"></p> <span>&mdash; June 28, 2023</span>
+    <p id="need-help">Need help using this site? Join the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.
     </span>
   </span>
 </div>
@@ -150,13 +152,14 @@
 
   var HiddenEventCount = 0; // number of hidden events
   var EventsToLoad = 1; // number of events in the JSON. this is used a LOT!
-  var version_number = `v1.1.0`
+  var version_number = `v1.1.2`
   var counter = 4; // counter that counts up every 40ms
   var settingsOpened = false; // self explanatory
   var mapClicked = false; // whether the user's clicked the map timer to show its spooky extended info
   var NormalText = "#000000"; // what colour text should be
   var EventFlashSec = 60; // how many seconds events flash before starting
   var NotifTimer = -10;
+  var flipsComplete = false; // whether the event animations' initial flips are done
   var DoesStuffExist = false; // if things are loaded and it's safe to start querying event <div>s
   var HasStuffLoaded = false; // an even more strict version of DoesStuffExist.
   var currentTime; // the current unix timestamp
@@ -180,6 +183,10 @@
   var majorStyles = [1, 1] // whether the major event border and shadow distinguisher are visible
   var spacingPx = 5; // spacing between each event in CSS pixels
   var playedNotifications = []; // array of all event IDs of played notifications. [0] is 1-minute, [1] is 3-minute, [2] is 5-minute. in the future. when i'm not busy
+  var language = "en_CA"; // the user's language. it's canadian english. you're canadian now
+  var languagePack = window["languagePack_" + language];
+  var counterWhenEventsLoaded = -1; // the counter time (intervals of 40ms) when the events loaded in. used for debugging (lag performance) and flipping events
+
   var announcementName = document.getElementsByClassName('update-announcement')[0].id // the name of the annoying banner at the top of the screen
   var announcementVisible = true;
 
@@ -191,18 +198,21 @@
   var time1 = 0; // time since last desktop notif
   
   var theme = "dark";
+  var paletteNames = [["Origins", "Sunrise", "Ocean", "Business", "Phoenix"], ["Origins", "Sunset", "Beachside", "Bubblegum", "Sienna"]];
   var showEventToD = true; //Time of Day
   var showEventTuE = true; //Time until Event
   var showEventDNC = true; //Day-night cycle and map timer
   var VisibleEvents = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","KOTL","KOTH","Auction","Giant Cake","All bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"];
   var AudioEvents = [];
-  var visibleEventIds = []; // list of event IDs that are currently visible
+  var eventOpacities = []; // list of opacities of every event ID (Chrome tends to skip items in arrays??? why????)
+  var visibleEventIds = []; // list of event IDs that are currently visually visible
+  var upcomingEventIds = []; // list of event IDs that could possibly be visible in the future but may or may not be visible due to the user hiding events
 
   var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`v1.0.0 on feb 27... i mean feb 28... i mean march 11.. i mean march 12... i mean march 13.... nono i mean i mean april 14`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`]
   var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","litphoenix","adjective",`anoxysm`]
   var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/",`https://statsify.net/`]
   //jojo was here
-  var allSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing'] // all of the settings except for "offset". it's a special case
+  var allSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing', 'language'] // all of the settings except for "offset". it's a special case
   var siteLoadSettingValues = Array(allSettings.length); //  list of the user's settings when the site loads.
   var event_sound = new Audio("event_arriving.mp3"); // everyone's favourite jingle
   event_sound.volume = 0.2;
@@ -211,7 +221,6 @@
   var isMapHover = false; // whether the user is hovering over the map timer
   var robot = true; // whether you, the user, are secretly a search engine crawler in disguise!!
   
-
   var customPaletteName = "";
   var placeholderPalette = []; // where to put the palette that the user's popup box is about
 
@@ -219,7 +228,7 @@
   var eventsNoSpaces = ["QuickMaths","DragonEgg","2xRewards","CarePackage","KOTL","KOTH","Auction","GiantCake","Allbounty","Squads","Beast","Pizza","RagePit","Spire","Robbery","Blockhead","Raffle","TeamDeathmatch"]
   var shortEvents = ["MATH","EGG","2X","CARE","KOTL","KOTH","AUC","CAKE","BNTY","SQD","BST","PZA","RAGE","SPI","ROB","BLK","RAF","TDM"]
   var eventsEmoji = ["🧮", "🐲", "2️⃣\u{FE0F}", "📦", "🪜", "👑", "💵", "🍰", "🪙", "🏳️", "🐻", "🍕", "🥔", "🏯", "💸", "🧱", "🎟️", "🆚"] // for the tab title. i'm not just messing with you... maybe
-  var nicknamesen_CA = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","King of the Ladder","King of the Hill","Auction","Giant Cake","Everyone Gets a Bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
+  var nicknames = ["Quick Maths","Dragon Egg","2x Rewards","Care Package","King of the Ladder","King of the Hill","Auction","Giant Cake","Everyone Gets a Bounty","Squads","Beast","Pizza","Rage Pit","Spire","Robbery","Blockhead","Raffle","Team Deathmatch"]
   var pit_wiki_links = ["Quick_Maths","Dragon_Egg","2x_Rewards","Care_Package","King_of_the_Ladder","King_of_the_Hill","Auction","Giant_Cake","Everyone_Gets_a_Bounty","Squads","Beast","Pizza","Rage_Pit","Spire","Robbery","Blockhead","Raffle","Team_Deathmatch"]
   var trueEventColors = ["#FF55FF","#AA00AA","#00AA00","#FFAA00","#55FF55","#55FFFF","#FFFF55","#FF55FF","#FFAA00","#55FFFF","#55FF55","#FF5555","#FF5555","#AA00AA","#FFAA00","#5555FF","#FFAA00","#AA00AA"]
   
@@ -230,14 +239,8 @@
   var DemolitionTime = 15;
   var TimeOfEventStart = 0;
 
-  var eventsES = ["Matemáticas Rápidas","Huevo de Dragón","2x Recompensas","Paquete Auxiliar","RDLE","RDLC","Subasta","Tarta Gigante","Recompensa","Escuadrones","Bestia","Pizza","Furia Pit","Chapitel","Robo","Blockhead","Raffle","Deathmatch por Equipos"]
-  var IsItACountdownES = [`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡MATEMÁTICAS RÁPIDAS!</span> <span style="color: #AAAAAA;">Los 5 primeros jugadores que respondan recibirán</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>`,`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #aa00aa; font-family: ` + CorrectBold + `;">HUEVO DE DRAGÓN</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">PAQUETE AUXILIAR</span><span style="color: #aaaaaa;"> en </span><span style="color: #ffff55; font-family: ` + CorrectBold + `;">Zona de Pit</span>`,"yes","yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffaa00; font-family: ` + CorrectBold + `;">SUBASTA!</span> <span style="color: #AAAAAA; font-family:` + CorrectFont + `">Compruebe el subastador o el chat!</span>`,"yes",`<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">¡EVENTO MENOR!</span> <span style="color: #ffAA00; font-family: ` + CorrectBold + `;"> ¡TODOS RECIBEN UNA RECOMPENSA!</span>`,"yes","yes","yes","yes","yes","yes","yes","yes","yes"]
-
   var all_text = ["MINOR EVENT!","MAJOR EVENT!","Starting in ","Ending in "];
-
   if(document.body.clientWidth < 800) { // should make the site mobile when needed
-    document.getElementById("settings-ts-tue").innerText = "Until Event"
-    document.getElementById("settings-flashing").innerHTML = "<b>Flash: </b>"
     console.log("busy accommodating to the user's hilariously tiny screen")
     document.getElementById("mobileanno").style.display = "";
     document.getElementById("current-event").setAttribute("id","replacement") // swaps the IDs
@@ -246,7 +249,6 @@
     var mobilebreaks = document.getElementsByClassName('mobilebreak');
     for (var i = 0; i < mobilebreaks.length; i++) {
       var item = mobilebreaks[i];  
-      console.log("one item")
       item.innerHTML = '<br>';
     }
     document.getElementById("current-event").style.width = "90%";
@@ -257,20 +259,18 @@
   
   document.getElementById('settings').style.color = "NormalText";
 
-  function MakeFunTimestamps(convertible) {
-  currentTime = (Date.now() + offset);
-  if (convertible - currentTime <= 0) {
-    convertible = "Passed!"
-  }
-  if (convertible - currentTime <= 60000) {
-      convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + "s");
-  } else if (convertible - currentTime <= 3600000) {
-      convertible = ((Math.floor(((convertible - currentTime))/60000) + "m" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
-  } else if (convertible - currentTime > 1) {
-      convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
-  }
-  
-  return convertible;
+  function MakeFunTimestamps(convertible, currentTime = (Date.now() + offset)) {
+    if (convertible - currentTime <= 0) {
+      convertible = "Passed!";
+    }
+    if (convertible - currentTime <= 60000) {
+        convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + "s");
+    } else if (convertible - currentTime <= 3600000) {
+        convertible = ((Math.floor(((convertible - currentTime))/60000) + "m" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
+    } else if (convertible - currentTime > 1) {
+        convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
+    }
+    return convertible;
   }
   
   function setFlash(seconds) {
@@ -352,6 +352,41 @@
     SaveSettings('noreload');
   }
 
+  function changeLanguage(icuLocale) {
+    document.getElementById('settings-language-en_CA').style.color = "#888888";
+    document.getElementById('settings-language-es_AR').style.color = "#888888";
+    language = icuLocale;
+    languagePack = window["languagePack_" + language];
+    document.getElementById("settings-language-" + icuLocale).style.color = NormalText;
+    if(language == "en_CA") document.getElementById("translator-credit").style.display = "none";
+    else document.getElementById("translator-credit").style.display = "";
+
+    for(al = 0; al < languagePackIds.length; al++) {
+      var languagePackText = languagePack[al];
+      for(am = 0; am < languagePackIds[al].length; am++) {
+        document.getElementById(languagePackIds[al][am]).innerHTML = languagePack[al];
+      }
+    }
+    for(al = 0; al < 18; al++) {
+      nicknames[al] = languagePack[al + 68]; // Quick Maths
+      shortEvents[al] = languagePack[al + 153]; // MATH
+    }
+    for(al = 0; al < 5; al++) {
+      paletteNames[0][al] = languagePack[al + 9];
+      paletteNames[1][al] = (al==0 ? languagePack[9] : languagePack[al + 13]);
+    }
+    changePaletteNames();
+    var countdownReplacements = [0, 1, 3, 6, 8]
+    for(al = 0; al < 5; al++) {
+      maps[al] = languagePack[al + 96]; // Genesis
+      IsItACountdown[countdownReplacements[al]] = languagePack[al + 112] // <span style="color: #ff55ff"><b>QUICK MATHS!</b></span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>
+    }
+    document.getElementById("custom-palette-name-input").placeholder = languagePack[133]; // Enter a name here...
+    if(offset != 0) document.getElementById('view-offset').innerHTML = languagePack[171].replace("%%minutes%%", ("<b>" + Math.floor(offset / 60000) + "</b>")); // Offset set to %%minutes%% minutes – Click here to reset
+    addNamesandImages(window.data);
+    SaveSettings('noreload');
+  }
+
   function changeClassic(classic) { // makes the text look like how it did in the older version of brookeafk.com
     document.getElementById('settings-classic-on').style.color = "#888888";
     document.getElementById('settings-classic-off').style.color = "#888888";
@@ -377,14 +412,14 @@
     SaveSettings('noreload');
   }
 
-  function changeMajorStyle(style, toggle) { // toggles whether the major event border and shadow distinguisher are visible
-    
-    // toggle's either going to be "toggle" or a number.
-    if(style == "border") styleId = 0; 
-    if(style == "shadow") styleId = 1;
+function changeMajorStyle(style, toggle) { // toggles whether the major event border and shadow distinguisher are visible
 
-    if(toggle == "toggle") {
-    if(majorStyles[styleId] == true) {
+  // toggle's either going to be "toggle" or a number.
+  if (style == "border") styleId = 0;
+  if (style == "shadow") styleId = 1;
+
+  if (toggle == "toggle") {
+    if (majorStyles[styleId] == true) {
       document.getElementById('settings-majorstyle-' + style).style.color = "#888888";
       majorStyles[styleId] = 0;
     } else {
@@ -393,16 +428,16 @@
     }
   } else {
     console.log("toggle isn't 'toggle', it's " + toggle)
-      majorStyles[styleId] = toggle;
-      if(majorStyles[styleId] == true) document.getElementById('settings-majorstyle-' + style).style.color = NormalText;
-      else document.getElementById('settings-majorstyle-' + style).style.color = "#888888";
-    }
-
-    console.log("Major event styles have been set to: " + majorStyles);
-    addNamesandImages(window.data);
-    CuteColors(window.data);
-    SaveSettings('noreload');
+    majorStyles[styleId] = toggle;
+    if (majorStyles[styleId] == true) document.getElementById('settings-majorstyle-' + style).style.color = NormalText;
+    else document.getElementById('settings-majorstyle-' + style).style.color = "#888888";
   }
+
+  console.log("Major event styles have been set to: " + majorStyles);
+  addNamesandImages(window.data);
+  CuteColors(window.data);
+  SaveSettings('noreload');
+}
 
   function changeSpacing(space) { // changes the spacing between events
     document.getElementById('settings-spacing-0').style.color = "#888888";
@@ -526,8 +561,8 @@
       document.getElementById("regular-selection").style.display = "none";
       document.getElementById("sneaky-rename").style.display = "";
 
-      document.getElementById("custom-palette-user-assistance-0").innerHTML = "Enter a name for this palette.";
-      document.getElementById("custom-palette-user-assistance-1").innerHTML = `Clicking "Confirm" will remove your current custom palette, if any.`;
+      document.getElementById("custom-palette-user-assistance-0").innerHTML = languagePack[131];
+      document.getElementById("custom-palette-user-assistance-1").innerHTML = languagePack[132];
       document.getElementById("custom-palette-name-input").focus();
       document.getElementById("custom-palette-name-input").select();
     }
@@ -542,10 +577,10 @@
       document.getElementById('desktop-off').style.color = "#888888";
       document.getElementById('alert-notypes').style.display = 'none';
                                             if (!("Notification" in window)) {
-                                              document.getElementById('desktop-on').innerHTML = "Your browser doesn't support this!"
+                                              document.getElementById('desktop-on').innerHTML = languagePack[177];
                                             }
                                             else if (Notification.permission === "denied") {
-                                              document.getElementById('desktop-on').innerHTML = "Notifications denied :("
+                                              document.getElementById('desktop-on').innerHTML = languagePack[176];
                                               window.SettingsDesktopNotifs = 0;
                                               tog = 0;
                                             }
@@ -555,14 +590,14 @@
                                             }
 
                                             else if (Notification.permission !== "denied") {
-                                              document.getElementById('desktop-on').innerHTML = "Accept notifications!"
+                                              document.getElementById('desktop-on').innerHTML = languagePack[175];
                                               Notification.requestPermission().then(function (permission) {
                                                 if (permission === "granted") {
                                                   console.log("Notifications enabled!")
-                                                  document.getElementById('desktop-on').innerHTML = "On"
+                                                  document.getElementById('desktop-on').innerHTML = languagePack[31];
                                                 }
                                                 else {
-                                                  document.getElementById('desktop-on').innerHTML = "Notifications denied :("
+                                                  document.getElementById('desktop-on').innerHTML = languagePack[176];
                                                   window.SettingsDesktopNotifs = 0;
                                                   tog = 0;
                                                 }
@@ -606,13 +641,16 @@
     let CurrentUnix = (Date.now()  + offset) / 1000;
     mapid = Math.floor(mod((samplemaprotation - CurrentUnix), 3024000) / 604800);
     
-    if(!mapClicked) document.getElementById('maprot').innerHTML = "<b>" + maps[mod(mapid - 1, 5)] + "</b> in " + TimestampIt(mod((samplemaprotation - CurrentUnix), 604800));
+    var rawUpdateDayNight = languagePack[117];
+    if(!mapClicked) document.getElementById('maprot').innerHTML = rawUpdateDayNight.replace("%%map%%", "<b>" + maps[mod(mapid - 1, 5)] + "</b>").replace("%%time%%", TimestampIt(mod((samplemaprotation - CurrentUnix), 604800)));
+
+    //if(!mapClicked) document.getElementById('maprot').innerHTML = "<b>" + maps[mod(mapid - 1, 5)] + "</b> in " + TimestampIt(mod((samplemaprotation - CurrentUnix), 604800));
   }
 
   function mapClick() {
     if(!mapClicked) {
       mapClicked = true;
-      document.getElementById('maprot').innerHTML = `<span style="color: #edbe1f"><b><span class="tip">` + maps[mapid] + `<span class="tiptext">The current map.</span></span></b></span> &rarr; <span style="color: #2bbddb"><b><span class="tip">` + maps[mod(mapid - 1, 5)] + `<span class="tiptext">The upcoming map.</span></span></b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 2, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 3, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 4, 5)];
+      document.getElementById('maprot').innerHTML = `<span style="color: #edbe1f"><b><span class="tip">` + maps[mapid] + `<span class="tiptext">` + languagePack[94] /*The current map.*/ + `</span></span></b></span> &rarr; <span style="color: #2bbddb"><b><span class="tip">` + maps[mod(mapid - 1, 5)] + `<span class="tiptext">` + languagePack[95] /*The upcoming map.*/ + `</span></span></b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 2, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 3, 5)] + `</b></span> &rarr; <span style="color: #666"><b>` + maps[mod(mapid - 4, 5)];
     } else {
       mapClicked = false;
     }
@@ -624,6 +662,15 @@
 
   function changeDefOut(e) {
     e.target.classList.toggle('opacity-toggle');
+  }
+
+  function changePaletteNames() { // changes the visual display of the palette names. used for ChangeLanguage and stuff
+    var themeSelector;
+    if (window.theme == "light") themeSelector = 1;
+    else themeSelector = 0;
+    for(a9 = 0; a9 < 5; a9++) {
+        document.getElementById('settings-palette-' + a9).innerHTML = paletteNames[themeSelector][a9];
+    }
   }
   
   function changeTheme(themecolor) { // changes the theme from dark to light mode (or vice versa)
@@ -638,11 +685,6 @@
       document.querySelectorAll('p').forEach(e => e.style.color = "black");
       document.getElementById('settings-theme-dark').classList.add("hand_cursor");
       document.getElementById('settings-theme-light').classList.remove("hand_cursor");
-      document.getElementById('settings-palette-0').innerHTML = ("Origins");
-      document.getElementById('settings-palette-1').innerHTML = ("Sunset");
-      document.getElementById('settings-palette-2').innerHTML = ("Beachside");
-      document.getElementById('settings-palette-3').innerHTML = ("Bubblegum");
-      document.getElementById('settings-palette-4').innerHTML = ("Sienna");
       document.getElementById('tut-notif').style.color = "#BD8E02"
     } else if (window.theme == "dark") {
       NormalText = "#FFFFFF";
@@ -652,18 +694,15 @@
       document.querySelectorAll('p').forEach(e => e.style.color = "white");
       document.getElementById('settings-theme-dark').classList.remove("hand_cursor");
       document.getElementById('settings-theme-light').classList.add("hand_cursor");
-      document.getElementById('settings-palette-0').innerHTML = ("Origins");
-      document.getElementById('settings-palette-1').innerHTML = ("Sunrise");
-      document.getElementById('settings-palette-2').innerHTML = ("Ocean");
-      document.getElementById('settings-palette-3').innerHTML = ("Business");
-      document.getElementById('settings-palette-4').innerHTML = ("Phoenix");
       document.getElementById('tut-notif').style.color = "#FFFF80"
     }
     document.documentElement.style.setProperty("--normaltext", NormalText);
     document.getElementById('day-svg').style.fill = NormalText;
     document.getElementById('day-night-border').style.color = NormalText;
+    changePaletteNames();
     if (DoesStuffExist == true) {
-      changeFont(window.font)
+      changeLanguage(window.language);
+      changeFont(window.font);
       setFlash(window.EventFlashSec);
       SetAudio(window.NotifTimer);
       DNotif(window.SettingsDesktopNotifs);
@@ -672,7 +711,7 @@
       changeClock(window.clockStyle);
       changeClassic(window.classicMode);
       changeTabTimer(window.tabTimerVisible);
-      changePalette(window.Palette)
+      changePalette(window.Palette);
       changeMajorStyle("border", window.majorStyles[0]);
       changeMajorStyle("shadow", window.majorStyles[1]);
       console.log("Stuff exists. Updating event flashes and audio.");
@@ -768,7 +807,7 @@
       if(Palette == "Custom") {
         document.getElementById('settings-palette-custom').style.color = NormalText;
         document.getElementById('current-palette').style.display = "";
-        document.getElementById('current-palette').innerHTML = `Current palette: <b class='groovy' style='font-style: normal'><span id="current-palette-name"></span></b>`;
+        document.getElementById('current-palette').innerHTML = languagePack[173].replace("%%palette%%", `<b class='groovy' style='font-style: normal'><span id="current-palette-name"></span></b>`);
         document.getElementById('current-palette-name').innerText = customPaletteName;
       }
 
@@ -784,11 +823,11 @@
   function customPalette()  { // sets up creation for a custom color palette
     optionPaletteContent = document.getElementById("option-palette").innerHTML;
     isCustomSelectorOpen = true;
-    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <a style="color: #45b280" href="palette" target="_blank">Create</a> / <span style="color: #f9e822; cursor: pointer" onclick="importCustomPalette()">Import</span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">Cancel</span>`
+    document.getElementById("option-palette").innerHTML = `<b>` + languagePack[19] + `</b>: <a style="color: #45b280" href="palette" target="_blank">` + languagePack[20] + `</a> / <span style="color: #f9e822; cursor: pointer" onclick="importCustomPalette()">` + languagePack[21] + `</span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">` + languagePack[22] + `</span>`
   }
 
   function importCustomPalette() {
-    document.getElementById("option-palette").innerHTML = `<b>Custom palette</b>: <span id="custom-palette-error">Paste palette here</span> &rarr; <input type="text" onkeypress="reloadWithCustomPalette(event)" id='palette-input' style="font-family: monospace"> / <span style="color: #45e6b2; cursor: pointer" onclick="reloadWithCustomPalette(false ,true)"><b>Submit</b></span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">Cancel</span>`
+    document.getElementById("option-palette").innerHTML = `<b>` + languagePack[19] + `</b>: <span id="custom-palette-error">` + languagePack[23] + `</span> &rarr; <input type="text" onkeypress="reloadWithCustomPalette(event)" id='palette-input' style="font-family: monospace"> / <span style="color: #45e6b2; cursor: pointer" onclick="reloadWithCustomPalette(false ,true)"><b>` + languagePack[24] + `</b></span> / <span style="color: #e62550; font-weight: bold; cursor: pointer;" onclick="cancelCustomPalette()">` + languagePack[22] + `</span>`
     document.getElementById('palette-input').focus();
     document.getElementById('palette-input').select();
   }
@@ -797,7 +836,7 @@
     if(bypass || event.key == "Enter") {
       var userPalette = document.getElementById("palette-input").value;
       var userPaletteResult = unboxCustomPalette(userPalette);
-      if(unboxCustomPalette(userPalette)[0] == false) document.getElementById("custom-palette-error").innerHTML = userPaletteResult[1];
+      if(unboxCustomPalette(userPalette)[0] == false) document.getElementById("custom-palette-error").innerHTML = `<span style="color: #f18080">` + languagePack[25].replace("%%errorcode%%", userPaletteResult[1]) + `</span>`;
       else {
         let here = new URL(window.location.href);
         here.searchParams.set("palette", userPalette);
@@ -812,18 +851,18 @@
         userPalette = b64_uni(pal);
         var splitUserPalette = userPalette.split("¤")
         if(splitUserPalette.length != 2) {
-          return [false, `<span style="color: #f18080">Invalid input (e0). Please use the <a href="palette" target="_blank">palette creation program</a>.`]
+          return [false, 1]
         }
         else {
           var userPaletteColors = (splitUserPalette[1].match(/.{1,6}/g));
 
           var mover = [13, 1, 7, 9, 5, 3, 11, 15, 17, 0, 16, 2, 14, 8, 12, 6, 4, 10] // in palette.html, the order doesn't match the order in the events variable, so this moves them around to their right spots 
           userPaletteColorsCopy = userPaletteColors.slice(0);
-          if(userPaletteColorsCopy.length != 18) return([false, `<span style="color: #f18080">Invalid input (e2). Please use the <a href="palette" target="_blank">palette creation program</a>.`])
+          if(userPaletteColorsCopy.length != 18) return([false, 2])
           for(aa = 0; aa < 18; aa++) {
             if(userPaletteColorsCopy[mover[aa]].match(/[0-9a-fA-F]{6}/g) != null) { // makes sure evil user hasn't manipulated the input for an XSS attack
               userPaletteColors[aa] = "#" + userPaletteColorsCopy[mover[aa]];
-            } else return([false, `<span style="color: #f18080">Invalid input (e3). Please use the <a href="palette" target="_blank">palette creation program</a>.`])
+            } else return([false, 3])
           }
 
           return [true, userPaletteColors];
@@ -831,7 +870,7 @@
       }
       catch(err) {
         console.log(err);
-        return [false, `<span style="color: #f18080">Invalid input (e0). Please use the <a href="palette" target="_blank">palette creation program</a>.`]
+        return [false, 0]
       }
     }
 
@@ -845,7 +884,7 @@
       var userPaletteResult = unboxCustomPalette(userPalette);
 
       if(userPaletteResult[0] == false) {
-        if(isUserInput == true) document.getElementById("custom-palette-error").innerHTML = userPaletteResult[1];
+        if(isUserInput == true) document.getElementById("custom-palette-error").innerHTML = `<span style="color: #f18080">` + languagePack[25].replace("%%errorcode%%", userPaletteResult[1]) + `</span>`;
         else console.log(userPaletteResult[1]);
       }
       else {
@@ -972,7 +1011,7 @@
   function noEvents() { // if there's no events left, show some text explaining this to the user
     if(HiddenEventCount == EventsToLoad || EventsToLoad == 1) { 
       if(!noevents && counter >= 35) {
-        document.getElementById('noevents').innerHTML = `<br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Wait a few seconds.</li><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://events.mcpqndq.dev" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me using the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord server</a> or <a href="https://github.com/brooke-gill">on GitHub</a>.`
+        document.getElementById('noevents').style.display = "";
         noevents = true;
       } 
     } else {
@@ -1050,11 +1089,11 @@
       var div = document.createElement("div");
       console.log("Made an element.");
       div.id = ("event_" + i);
-      div.innerHTML = ("[loading event]");
       div.classList.add('event');
       div.innerHTML = `<span class="timers" id="timer_` + i + `"></span>`;
       document.getElementById('events').appendChild(div);
   }
+
   
   document.getElementById('special_thanks').innerHTML = GeneratePraise();
   submitCustomPalette(false, true, false) // checks to see if the user made a beautiful custom palette'
@@ -1065,6 +1104,9 @@
     URLToSettings();  
     
     addNamesandImages(window.data);
+    for(a = 0; a < EventsToLoad; a++) {
+      updateEvent(a);
+    }
   }
 
   function newDataDifferent(url = "emergency.js") { // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
@@ -1104,7 +1146,8 @@
                   if (SettingsDesktopNotifs == 1) {
                       if (Date.now() + offset > time1 + 5) { //if it's been more than 5 seconds since the last notification
                           var notification = new Notification("", {
-                              body: "Hey – " + nickname(window.data[i]['event']) + " is starting in " + NotifTimer / 60 + " " + (NotifTimer == 60 ? "minute" : "minutes") + "!",
+
+                              body: languagePack[125].replace("%%name%%", englishEventToTranslated(window.data[i]['event'])).replace("%%time%%", (NotifTimer / 60)),
                               icon: "3457688aa57c4d71ab9d22b04f9160db.png"
                           });
                           time1 = Date.now() + offset;
@@ -1115,37 +1158,6 @@
         }
     }
 }
-  
-  function RapidFirst(transformation) { //this plops the stuff in the actual html page
-    if (DoesStuffExist == true) {
-        HasStuffLoaded = true; //looks like the stuff has loaded
-        for(var i = window.HiddenEventCount; i <= window.HiddenEventCount && i < EventsToLoad; i++) {
-            if(showEventTuE == true) document.getElementById('timer_' + String(i)).innerHTML = MakeFunTimestamps(transformation[i].timestamp);
-            if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) { // if the topmost event's timer ran out
-                for(var j = 0; j <= i; j++) {
-                    document.getElementById('event_' + String(j)).style.display = "none"; // hide it
-                }
-                window.HiddenEventCount = window.HiddenEventCount + 1;
-                DemolitionTime = (window.data[HiddenEventCount - 1]['timestamp'] + (VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) // prepares to make the current event visible, depending on how long it should be visible for
-                TimeOfEventStart = window.data[HiddenEventCount - 1]['timestamp'] //previously: Date.now() + offset;
-
-                checkVisibleEvents();
-                document.getElementById("current-event").style.display = "block";
-                document.getElementById('special_thanks').innerHTML = GeneratePraise(); // updates the praise on the bottom of the site
-            }
-
-            currentTime = (Date.now() + offset);
-            if ((transformation[i]['timestamp'] - currentTime <= (EventFlashSec * 1000) && (transformation[i]['timestamp'] - currentTime) % 1000 > 900) && (theme == "light" || theme == "dark")) {
-
-                document.getElementById('event_' + String(i)).classList.remove("blinktext-light");
-                document.getElementById('event_' + String(i)).classList.remove("blinktext-dark");
-                document.getElementById('event_' + String(i)).classList.add("blinktext-" + theme);
-                changeColor();
-            }
-        }
-    }
-}
-
 
   document.getElementById('brookeafk-com').addEventListener('animationend', function(e) { // literally just makes the logo do awesome flips when you hover on it. this is the best feature of the website
     document.getElementById('brookeafk-com').classList.remove('animated');
@@ -1168,25 +1180,86 @@
     }
   }
 
-  function flipEvents(g) { // makes the events flip when you load the page
-    g = g - 10; // adds a delay to prevent the site from trying to flip events while things are loading (bad!)
+  var flipCounter = -2;
+  function flipEvents() { // makes the events flip when you load the page
+    if(counterWhenEventsLoaded == -1 && HasStuffLoaded) {
+      counterWhenEventsLoaded = counter;
+      flipCounter = -1;
+    }
 
-    if(g >= 0 && g <= 200 && visibleEventIds[g] != undefined)
-    if((g != 0 || (data[visibleEventIds[0]].timestamp - Date.now()) > (EventFlashSec * 1000))) {
-      document.getElementById('event_' + (visibleEventIds[g])).classList.add("flip");
-    } 
-    if(g >= 25 && document.getElementById('event_' + (g - 25)) != null) document.getElementById('event_' + (g - 25)).classList.remove("flip");
+    if(HasStuffLoaded && flipCounter > -2) {
+      flipCounter += 1;
+      let offsetedEvent = visibleEventIds[flipCounter];
+      
+      if(flipCounter < visibleEventIds.length) {
+        document.getElementById("event_" + (offsetedEvent)).style.opacity = 1;
+        setTimeout(function() { document.getElementById("event_" + offsetedEvent).classList.remove("flip"); }, 2500); // remove the flip class after 1 second
+        eventOpacities[offsetedEvent] = document.getElementById("event_" + offsetedEvent).style.opacity;
+        if(flipCounter == 20) makeAllEventsOpacity1();
+        document.getElementById('event_' + (offsetedEvent)).classList.add("flip");
+      } else if(!flipsComplete) {
+        flipsComplete = true;
+        setTimeout(removeFlips, 1000);
+        makeAllEventsOpacity1();
+      }
+    }
+    if(!flipsComplete) setTimeout(flipEvents, 40);
   }
-  
-  function UpdateEverything(transformation) { // this plops the stuff in the actual html page
-    for(var i = window.HiddenEventCount + 1; i < EventsToLoad; i++) {
-      if(showEventTuE == true) document.getElementById('timer_' + String(i)).innerHTML = MakeFunTimestamps(transformation[i].timestamp);
-    if(MakeFunTimestamps(transformation[i].timestamp) == "Passed!" && !!document.getElementById('event_' + String(i)) == true) { //in an ideal world this should NEVER be called but js can be weird as hell sometimes
-      document.getElementById('timer_' + String(i)).style.display = "none";
-      window.HiddenEventCount = window.HiddenEventCount + 1; 
-      console.log("hey if you see this please let Brooke know as this should Not happen lol");
+
+  function removeFlips(item) { // remove the "flip" class from every event
+    for(a3 = 0; a3 < EventsToLoad; a3++) {
+      document.getElementById("event_" + a3).classList.remove("flip");
     }
   }
+
+  function makeAllEventsOpacity1() { // you'll never guess what this function does
+    for(a3 = 0; a3 < EventsToLoad; a3++) {
+      document.getElementById("event_" + a3).style.opacity = 1; // make all the events visible
+    }
+  }
+
+  function updateEvent(eventId) {
+    //console.log("checking #" + eventId);
+    currentTime = Date.now() + offset;
+    var eventTimestamp = data[eventId]["timestamp"];
+    var formattedEventTimestamp = MakeFunTimestamps(eventTimestamp, currentTime);
+    var timerElement = document.getElementById('timer_' + eventId);
+
+    //console.log(formattedEventTimestamp);
+    if(showEventTuE) timerElement.innerHTML = formattedEventTimestamp;
+    if(formattedEventTimestamp == "Passed!" && !!document.getElementById('event_' + eventId) == true) {
+      document.getElementById('event_' + eventId).style.display = "none";
+      checkVisibleEvents();
+      console.log("hid " + eventId + "!")
+      if((eventId + 1) == HiddenEventCount) { // if the event's at the top
+      console.log("hid " + eventId + "; it's at the top!")
+        DemolitionTime = (data[HiddenEventCount - 1]['timestamp'] + (VisibilityLength[events.indexOf(data[HiddenEventCount - 1]['event'])]) * 1000) // prepares to make the current event visible, depending on how long it should be visible for
+        TimeOfEventStart = data[HiddenEventCount - 1]['timestamp'] //previously: Date.now() + offset;
+        document.getElementById("current-event").style.display = "block";
+        document.getElementById('special_thanks').innerHTML = GeneratePraise(); // updates the praise on the bottom of the site
+      }
+    }
+
+    if(eventId == HiddenEventCount) {
+      currentTime = (Date.now() + offset);
+      if ((eventTimestamp - currentTime <= (EventFlashSec * 1000) && (eventTimestamp - currentTime) % 1000 > 900) && (theme == "light" || theme == "dark")) {
+        document.getElementById('event_' + eventId).classList.remove("blinktext-light");
+        document.getElementById('event_' + eventId).classList.remove("blinktext-dark");
+        document.getElementById('event_' + eventId).classList.add("blinktext-" + theme);
+        changeColor();
+      }
+    }
+
+    var timeDifference = eventTimestamp - currentTime; // time, in ms, until the event starts
+    if(timeDifference > 3600000) setTimeout(function() { updateEvent(eventId) }, 20_500) // if more than an hour before the event starts, update its timer every 20.5 seconds
+    else if(timeDifference > 60000) setTimeout(function() { updateEvent(eventId) }, 250) // if less than an hour before the event starts, update its timer every 0.25 seconds
+    else if(formattedEventTimestamp != "Passed!") setTimeout(function() { updateEvent(eventId) }, 40) // if less than a minute before the event starts, update its timer every 0.04 seconds
+  }
+
+  function forceUpdateEvents() { // call in moderation. just updates the text of all the events so that there isn't weird gaping spaces
+    for(a3 = 0; a3 < EventsToLoad; a3++) {
+      if(showEventTuE) document.getElementById('timer_' + a3).innerHTML = MakeFunTimestamps(data[a3]["timestamp"], currentTime);
+    }
   }
 
   function resetOffset() { // resets the offset, then reloads the page
@@ -1230,9 +1303,19 @@
     SaveSettings('noreload');
   }
 
+  function getUserLanguage() {
+    var userBrowserLanguage = navigator.language || navigator.userLanguage;
+    for(l1 = 0; l1 < validLanguages.length; l1++) {
+      for(l2 = 0; l2 < validLanguages[l1].length; l2++) {
+        if(validLanguages[l1][l2] == userBrowserLanguage) return validLanguages[l1][0];
+      }
+    }
+    return "en_CA";
+  }
+
   function getSettings() { // scrapes both URLs and localStorage for settings. URLs get top priority.
-    var defaultSettings = ['262143', '262143', 'gradients0', '111', 'dark', '60', '-10', '0', '0', '0', '1', '24', '0', '1', '11', '5']
-    // 'visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing'
+    var defaultSettings = ['262143', '262143', 'gradients0', '111', 'dark', '60', '-10', '0', '0', '0', '1', '24', '0', '1', '11', '5', getUserLanguage()];
+    // 'visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing', 'language'
     var site_url = new URL(window.location.href);
     var settingValues = Array(allSettings.length);
 
@@ -1256,10 +1339,16 @@
   }
 
   function checkVisibleEvents() { // returns an array with IDs of visible events
-    visibleEventIds = [];
-    for(a = 0; a < EventsToLoad; a++) {
-      if(document.getElementById('event_' + a).style.display != "none") visibleEventIds.push(a);
+    newVisibleEventIds = [];
+    newUpcomingEventIds = [];
+    for(aq = 0; aq < data.length; aq++) {
+      if(data[aq]["timestamp"] > currentTime) newUpcomingEventIds.push(aq);
+      if(document.getElementById('event_' + aq).style.display != "none") newVisibleEventIds.push(aq);
     }
+
+    visibleEventIds = newVisibleEventIds.slice(0);
+    upcomingEventIds = newUpcomingEventIds.slice(0);
+    HiddenEventCount = EventsToLoad - upcomingEventIds.length; 
   }
 
   function isRobot() {
@@ -1271,9 +1360,9 @@
   function updateTabTimer() { // updates the timer in the tab
     if(DoesStuffExist && visibleEventIds.length > 0 && !robot && tabTimerVisible == true) { // if events are real, at least one event is visible, you're not a robot (so it doesn't appear in search engines), and the user has the tab timer setting on. phew
       var firstIndex = events.indexOf(data[visibleEventIds[0]]['event']);
-      document.title = "[" + eventsEmoji[firstIndex] + " " +  shortEvents[firstIndex] + " " + MakeFunTimestamps(data[visibleEventIds[0]]['timestamp']) + "] | Hypixel Pit Events Tracker";
+      document.title = "[" + eventsEmoji[firstIndex] + " " +  shortEvents[firstIndex] + " " + MakeFunTimestamps(data[visibleEventIds[0]]['timestamp']) + "] | " + languagePack[0];
     } else {
-      document.title = "Hypixel Pit Events Tracker - brookeafk.com";
+      document.title = languagePack[0] + " - brookeafk.com";
     }
   }
   
@@ -1287,7 +1376,7 @@
       }
       if(localStorage.getItem('offset') !== null) offset = localStorage.getItem('offset') * 60000;
 
-      if(offset != 0) document.getElementById('view-offset').innerHTML = "Offset set to <b>" + Math.floor(offset / 60000) + "</b> minutes &mdash; Click here to reset";
+      if(offset != 0) document.getElementById('view-offset').innerHTML = languagePack[171].replace("%%minutes%%", ("<b>" + Math.floor(offset / 60000) + "</b>"));
       else document.getElementById('view-offset').innerHTML = "<br>"
 
           // 'visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock'
@@ -1316,6 +1405,7 @@
       clockStyle = parseInt(siteLoadSettingValues[11]);
       classicMode = parseInt(siteLoadSettingValues[12]);
       spacingPx = parseInt(siteLoadSettingValues[15]);
+      language = siteLoadSettingValues[16];
       
       console.log(siteLoadSettingValues + " is the major styles")
       for(ae = 0; ae < siteLoadSettingValues[14].length; ae++) {
@@ -1324,6 +1414,7 @@
       console.log(majorStyles + " is the major styles") 
 
       changeFont(CorrectFont);
+      changeLanguage(language);
 
       if(Palette.length > 80) {
         var unboxResult = unboxCustomPalette(Palette);
@@ -1377,14 +1468,13 @@
   
       for(var i = 0; i < VisibleEvents.length; i++) { // filter out events that aren't in VisibleEvents
         for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
-        if (window.data[j]["event"].includes(VisibleEvents[i]) && !ok_ids.includes(j)) {
-          document.getElementById('event_' + String(j)).style.display = "block";
-          ok_ids.push(j);
-          console.log(ok_ids)
-            console.log("saved " + window.data[j]["event"])
-          }  
+          if (window.data[j]["event"].includes(VisibleEvents[i]) && !ok_ids.includes(j)) {
+            document.getElementById('event_' + String(j)).style.display = "block";
+            ok_ids.push(j);
+          }
         }
       }
+      console.log(ok_ids)
 
       for(var j = window.HiddenEventCount; j < EventsToLoad; j++) {
         if (!ok_ids.includes(j)) {
@@ -1459,7 +1549,8 @@
   }
 
   function Help() { //redirects the user to the BrookeAFK Help Guide
-    window.open("help", '_blank').focus();
+    if(language == "es_AR") window.open("help_es", '_blank').focus();
+    else window.open("help", '_blank').focus();
   }
 
   function paletteGenerator() { //redirects the user to the BrookeAFK Palette Generator
@@ -1473,8 +1564,12 @@
     }
     return number;
   }
+
+  function englishEventToTranslated(nameOfEvent, full = true) {
+    return languagePack[events.indexOf(nameOfEvent) + (full?68:135)];
+  }
   
-  function CurrentEvent() {
+  function currentEvent() {
     currentTime = Date.now() + offset;
   
     if (HiddenEventCount > 0 && DemolitionTime - currentTime >= 0) {
@@ -1482,30 +1577,14 @@
       document.getElementById("current-event-mobilebreak").style.display = "";
       //console.log(result); // returns time left in event display
       let recentEventData = window.data[HiddenEventCount - 1];
-      let correctColorCode =
-        trueEventColors[events.indexOf(recentEventData["event"])];
+      let correctColorCode = trueEventColors[events.indexOf(recentEventData["event"])];
       if (recentEventData["type"] == "major") {
         if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
           //console.log(((VisibilityLength[events.indexOf(window.data[HiddenEventCount - 1]['event'])]) * 1000) /* should return like "480000" (8m) in most cases */ - 180000)
           if (currentTime >= 180000 + TimeOfEventStart) {
-            document.getElementById("current-event").innerHTML =
-              `<span style="color: #aa00aa; font-family: ` + CorrectBold + `;">` + all_text[1] + `</span> <span style="color:` +
-              correctColorCode +
-              `; font-family: ` + CorrectBold + `;">` +
-              window.data[HiddenEventCount - 1]["event"].toUpperCase() +
-              `!</span> <span style="color: #aaaaaa;">` + all_text[3] + `<span style="color: #55ff55;">` +
-              AboutMe(DemolitionTime - currentTime) +
-              `</span></span>`;
+            document.getElementById("current-event").innerHTML = `<b><span style="color: #aa00aa">` + languagePack[109] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"], false).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
           } else {
-            document.getElementById("current-event").innerHTML =
-              `<span style="color: #aa00aa; font-family: ` + CorrectBold + `;">` + all_text[1] + `</span> <span style="color:` +
-              correctColorCode +
-              `; font-family: ` + CorrectBold + `;">` +
-              window.data[HiddenEventCount - 1]["event"].toUpperCase() +
-              `!</span> <span style="color: #aaaaaa;">` + all_text[2] + `<span style="color: #55ff55;">` +
-              AboutMe(TimeOfEventStart + 180000 - currentTime) +
-              `</span></span>`;
-            //console.log("major + countdown");
+            document.getElementById("current-event").innerHTML = `<b><span style="color: #aa00aa">` + languagePack[109] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"], false).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[110].replace("%%time%%", (`<span style="color: #55ff55;">` + AboutMe(TimeOfEventStart + 180000 - currentTime) + `</span>`));
           }
         } else {
           document.getElementById("current-event").innerHTML =
@@ -1513,16 +1592,8 @@
           console.log("bro??");
         }
       } else if (recentEventData["type"] == "minor") {
-        if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") {
-          document.getElementById("current-event").innerHTML =
-            `<span style="color: #ff55ff; font-family: ` + CorrectBold + `;">` + all_text[0] + `</span> <span style="color:` +
-            correctColorCode +
-            `; font-family: ` + CorrectBold + `;">` +
-            window.data[HiddenEventCount - 1]["event"].toUpperCase() +
-            `!</span> <span style="color: #aaaaaa;">` + all_text[3] + `<span style="color: #55ff55;">` +
-            result +
-            `</span></span>`;
-          //console.log("minor + countdown");
+        if (IsItACountdown[events.indexOf(recentEventData["event"])] == "yes") { // if the minor event uses a countdown
+            document.getElementById("current-event").innerHTML = `<b><span style="color: #f5f">` + languagePack[108] + `</span> <span style="color: ` + correctColorCode + `">` + languagePack[172].replace("%%item%%", englishEventToTranslated(window.data[HiddenEventCount - 1]["event"], false).toUpperCase()) + `</span></b> <span style="color: #aaaaaa;">` + languagePack[111].replace("%%time%%", (`<span style="color: #55ff55;">` + result + `</span>`));
         } else {
           document.getElementById("current-event").innerHTML =
             IsItACountdown[events.indexOf(recentEventData["event"])];
@@ -1567,8 +1638,9 @@
       if(CorrectFont == 'minecraft') localStorage.setItem('font', '2');
       localStorage.setItem('spacing', spacingPx);
       localStorage.setItem('majorstyle', majorStyles[0].toString() + majorStyles[1].toString())
+      localStorage.setItem('language', language);
 
-      localStorage.setItem('settings-version', "13");
+      localStorage.setItem('settings-version', "14");
   }
 
   function resetSettings() { // resets all settings in the localStorage
@@ -1604,7 +1676,7 @@
   function nickname(name, isPitWikiLink = false) { // changes Pit Supporter names ("KOTL") to cooler names ("King of the Ladder"). probably also good for other language support. also good for making links to Pit Wiki
     if(events.indexOf(name) == -1) return "?"
     else if(isPitWikiLink) return "https://pit.wiki/" + pit_wiki_links[events.indexOf(name)];
-    else return nicknamesen_CA[events.indexOf(name)];
+    else return nicknames[events.indexOf(name)];
   }
 
   function addNamesandImages(transformation) { // adds names like "King of the Hill" and images to each div
@@ -1614,25 +1686,18 @@
 
       if(classicMode == true) {
         if (showEventToD == true && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + englishEventToTranslated(transformation[i].event, false) + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
         } else if (showEventToD == false && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span>`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span class="timers" id="timer_` + i + `"></span>: ` + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + englishEventToTranslated(transformation[i].event, false) + `</a></span>`);
         } else if (showEventToD == true && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + englishEventToTranslated(transformation[i].event, false) + `</a></span> (` + TimeOfDay(transformation[i].timestamp) + `)`);
         } else if (showEventToD == false && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + transformation[i].event + `</a></span>`);
+          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<span id="boldmajor_` + i + `"><a class="blanklink" id="name_` + i + `" target="_blank" href="` + wikievent + `">` + englishEventToTranslated(transformation[i].event, false) + `</a></span>`);
         }
         if(data[i].type == "major") document.getElementById("boldmajor_" + i).style.fontWeight = "bold";
       } else {
-        if (showEventToD == true && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" id="name_` + i + `"  target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span> &mdash; ` + TimeOfDay(transformation[i].timestamp));
-        } else if (showEventToD == false && showEventTuE == true) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" id="name_` + i + `"  target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> in <span class="timers" id="timer_` + i + `"></span>`);
-        } else if (showEventToD == true && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" id="name_` + i + `"  target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b> at ` + TimeOfDay(transformation[i].timestamp));
-        } else if (showEventToD == false && showEventTuE == false) {
-          document.getElementById('event_' + String(i)).innerHTML = ((parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"") + `<b><a class="blanklink" id="name_` + i + `"  target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b>`);
-        }
+        var currentEventPack = languagePack[101 + !showEventToD + 2 * !showEventTuE];
+        document.getElementById('event_' + String(i)).innerHTML = currentEventPack.replace("%%icon%%", (parseInt(iconsVisible)?(`<img src="./event_icons/`+ transformation[i].event.toLowerCase().replaceAll(' ','_') + `.png" class="eventicon">&nbsp;&nbsp;`):"")).replace("%%event%%",`<b><a class="blanklink" id="name_` + i + `"  target="_blank" href="` + wikievent + `">` + nicknamevent + `</a></b>`).replace("%%duration%%", `<span class="timers" id="timer_` + i + `"></span>`).replace("%%timestamp%%", TimeOfDay(transformation[i].timestamp));
       }
 
       if(transformation[i]['type'] == "major" && majorStyles[1] == true) document.getElementById('name_' + String(i)).classList.add("majorshadow");
@@ -1640,6 +1705,7 @@
     }
 
     panicevents = [];
+    forceUpdateEvents();
   }
   
   function CuteColors(conversion) { //adds cute colors
@@ -1688,17 +1754,15 @@
   }
   }}
 
+  flipEvents();
   function cycle1() { // every 40 ms
     counter += 1;
     window.data = window.data_backup;
-    RapidFirst(window.data);
-    flipEvents(counter);
   }
 
   function cycle5() { // every 200 ms
-    UpdateEverything(window.data);
       AudioChecker();
-      CurrentEvent();
+      currentEvent();
       DayNightCycle();
       mapRotation();
       autoReload();
@@ -1713,6 +1777,10 @@
   <style>
     .announcement:hover {
       opacity: 0.5;
+    }
+
+    .announcement {
+      display: none /* no active announcement. can't spam my dear users too much. that's mean */
     }
 
     .topcontainer {
@@ -2082,7 +2150,7 @@
   font-weight: bold;
 }
 
-a, .icon, div {
+a, .icon, div, .event {
   transition-duration: 0.2s;
 }
 
@@ -2109,6 +2177,7 @@ a, .icon, div {
   font-size: 1.5em;
   line-height: 100%;
   margin: 5px;
+  opacity: 0;
 }
 
 .tip {
@@ -2157,11 +2226,11 @@ a, .icon, div {
 }
 
 #notifications-major {
-  display: block; position: absolute; top: -50px; right: 200px; text-align: right; font-size: 15px; color: #FFFFFF;
+  display: block; position: absolute; top: -50px; right: 200px; text-align: right; font-size: 15px; color: #FFFFFF; max-width: 150px;
 }
 
 #notifications-minor {
-  display: block; position: absolute; top: -50px; right: 50px; text-align: right; font-size: 15px; color: #FFFFFF;
+  display: block; position: absolute; top: -50px; right: 50px; text-align: right; font-size: 15px; color: #FFFFFF;  max-width: 150px;
 }
 
 .blanklink {

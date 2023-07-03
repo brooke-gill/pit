@@ -1066,7 +1066,7 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
   // "Robbery","Blockhead","Raffle","Team Deathmatch"];
 
   if( typeof emergency === 'undefined'){ // if the connection to control.js failed
-    console.log("Wah!")
+    console.log("the control.js connection failed, but somehow this script is running! totally messed up!")
     emergency = false; // this is essentially the "emergency" for the emergency variable. Ridiculous.
   }
   var pp_url = ""
@@ -1074,13 +1074,13 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
   emergency = false;
   // REMOVE when this site's out of beta!
 
-  if(emergency == false) {
-    pp_url = ("https://raw.githubusercontent.com/BrookeAFK/brookeafk-api/main/events.js"); //stands for "Pit Panda"
+  if(true) {
+    pp_url = ("https://raw.githubusercontent.com/BrookeAFK/brookeafk-api/main/events.js"); //stands for "Pit Panda" but i don't use that API anymore
     console.log("no emergency here!")
   }
   
   async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
-    if(emergency == true) {
+    if(false) {
       setInterval(newDataDifferent, 1800000); // checks if new data's been added every 30 minutes
     document.getElementById('version').innerHTML = (version_number + "e");
     document.getElementById('mcpqndq').style.display = "none"; // i'm evil
@@ -1090,7 +1090,7 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
       emergency = false;
     }*/
     }
-    if(emergency == false) {
+    if(true) {
     const response = await fetch(pp_url);
     window.data = await response.json();
     console.log(data);

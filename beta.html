@@ -642,7 +642,7 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
     let CurrentUnix = (Date.now()  + offset) / 1000;
     mapid = Math.floor(mod((samplemaprotation - CurrentUnix), 3024000) / 604800);
     
-    var rawUpdateDayNight = languagePack[117];
+    var rawUpdateDayNight = languagePack[117] + " &mdash; " + ((currentTime - performance.timeOrigin)/60000).toFixed(2) + "m";
     if(!mapClicked) document.getElementById('maprot').innerHTML = rawUpdateDayNight.replace("%%map%%", "<b>" + maps[mod(mapid - 1, 5)] + "</b>").replace("%%time%%", TimestampIt(mod((samplemaprotation - CurrentUnix), 604800)));
 
     //if(!mapClicked) document.getElementById('maprot').innerHTML = "<b>" + maps[mod(mapid - 1, 5)] + "</b> in " + TimestampIt(mod((samplemaprotation - CurrentUnix), 604800));
@@ -1081,7 +1081,6 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
   
   async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
     if(false) {
-      setInterval(newDataDifferent, 1800000); // checks if new data's been added every 30 minutes
     document.getElementById('version').innerHTML = (version_number + "e");
     document.getElementById('mcpqndq').style.display = "none"; // i'm evil
     window.data = await window.emergency_data;
@@ -1103,6 +1102,8 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
 
     console.log("wheeeeeeee")
     }
+    setInterval(newDataDifferent, 180000); // checks if new data's been added every 30 (3, thanks beta) minutes
+
     window.data_backup = window.data;
     window.EventsToLoad = Object.keys(window.data).length
     console.log("Loading events: " + window.EventsToLoad);
@@ -1131,10 +1132,10 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
     }
   }
 
-  function newDataDifferent(url = "https://raw.githubusercontent.com/BrookeAFK/brookeafk-api/main/events.js") { // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
+  function newDataDifferent(url = ("https://raw.githubusercontent.com/BrookeAFK/brookeafk-api/main/events.js?v=" + currentTime)) { // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
     fetch(url + "?v=" + Date.now()).then(e => e.text()).then(txt => {
       var dataExcerpt = txt.match(/\[.*\]/g);
-      if(dataExcerpt[0] != JSON.stringify(data) && performance.now() > 3600000) { // if the new data doesn't match the data variable
+      if(dataExcerpt[0] != JSON.stringify(data) /*&& performance.now() > 3600000*/) { // if the new data doesn't match the data variable . remove when out of beta
         console.log("uh oh!!!")
         window.location.reload();
       }

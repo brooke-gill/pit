@@ -1102,7 +1102,7 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
 
     console.log("wheeeeeeee")
     }
-    setInterval(newDataDifferent, 180000); // checks if new data's been added every 30 (3, thanks beta) minutes
+    setInterval(newDataDifferent, 1800000); // checks if new data's been added every 30 minutes
 
     window.data_backup = window.data;
     window.EventsToLoad = Object.keys(window.data).length
@@ -1135,7 +1135,7 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
   function newDataDifferent(url = ("https://raw.githubusercontent.com/BrookeAFK/brookeafk-api/main/events.js?v=" + currentTime)) { // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
     fetch(url + "?v=" + Date.now()).then(e => e.text()).then(txt => {
       var dataExcerpt = txt.match(/\[.*\]/g);
-      if(dataExcerpt[0] != JSON.stringify(data) /*&& performance.now() > 3600000*/) { // if the new data doesn't match the data variable . remove when out of beta
+      if(dataExcerpt[0] != JSON.stringify(data) && performance.now() > 3600000) { // if the new data doesn't match the data variable.
         console.log("uh oh!!!")
         window.location.reload();
       }

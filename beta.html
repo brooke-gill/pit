@@ -104,7 +104,7 @@
   </div>
 
   <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none; text-align: center;"><br>You don't have any events selected!<br>Click the <span style="font-family: Material">settings</span> gear to open the settings. Then, click the event names in the top-right corner to make some visible.<br>Alternatively, click <span onclick="SelectOnly('everything')" style="cursor: pointer; color: #ae4e8e">here</span> to select all events.</span></p>
-  <span id="noevents" class="bigtext" style="display: none"><br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Wait a few seconds.</li><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://events.mcpqndq.dev" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me using the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord server</a> or <a href="https://github.com/brooke-gill">on GitHub</a>.</li></ul></span>
+  <span id="noevents" class="bigtext" style="display: none"><br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Wait a few seconds.</li><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Test <a href="https://raw.githubusercontent.com/BrookeAFK/brookeafk-api/main/events.js" target="blank">this link</a> to see if the site has any events or text on it. If it doesn't (or if you get an error), the site's down. Contact me using the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord server</a> or <a href="https://github.com/brooke-gill">on GitHub</a>.</li></ul></span>
   <span id="events"></span>
 
   <hr>
@@ -115,7 +115,7 @@
     <p id="current-palette" style="display: none"></p>
     <p><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600" id="wikiad">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span>!</a></p>
     <p id="special_thanks"></p>
-    <p id="version" class="ver"></p> <span>&mdash; June 28, 2023</span>
+    <p id="version" class="ver"></p> <span>&mdash; July 2, 2023</span>
     <p id="need-help">Need help using this site? Join the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.
     </span>
   </span>
@@ -152,7 +152,7 @@
 
   var HiddenEventCount = 0; // number of hidden events
   var EventsToLoad = 1; // number of events in the JSON. this is used a LOT!
-  var version_number = `v1.1.2`
+  var version_number = `v1.1.3`
   var counter = 4; // counter that counts up every 40ms
   var settingsOpened = false; // self explanatory
   var mapClicked = false; // whether the user's clicked the map timer to show its spooky extended info
@@ -186,6 +186,7 @@
   var language = "en_CA"; // the user's language. it's canadian english. you're canadian now
   var languagePack = window["languagePack_" + language];
   var counterWhenEventsLoaded = -1; // the counter time (intervals of 40ms) when the events loaded in. used for debugging (lag performance) and flipping events
+  var securityError = false; // whether the events page didn't load due to a security error
 
   var announcementName = document.getElementsByClassName('update-announcement')[0].id // the name of the annoying banner at the top of the screen
   var announcementVisible = true;
@@ -1012,6 +1013,7 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
     if(HiddenEventCount == EventsToLoad || EventsToLoad == 1) { 
       if(!noevents && counter >= 35) {
         document.getElementById('noevents').style.display = "";
+        document.getElementById("noevents").innerHTML = languagePack[(securityError ? 178 : 174)]
         noevents = true;
       } 
     } else {
@@ -1021,6 +1023,15 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
     else if(announcementVisible) dismissAnnouncement();
   }
 
+  function dataValidation(checkedItem) { // attempts to mitigate data tampering
+    for(a0 = 0; a0 < checkedItem.length; a0++) {
+      if(events.indexOf(checkedItem[a0]["event"]) == -1 || typeof(checkedItem[a0]["timestamp"]) != "number" || (checkedItem[a0]["type"] != "major" && checkedItem[a0]["type"] != "minor")) {
+        console.log("Data not loaded due to possible data tampering. " + a0)
+        return false;
+      }
+    }
+    return true;
+  }
   
   var gradients0 = [["db07eb","2a33a1"],["d11db0","990e4f"],["0d9121","b9d29e"],["d79e35","aec839"],["6ec97c","dfe424"],["60d0c8","3574a8"],["d4983a","d4e7a2"],["cb49cd","e3bfe6"],["d28b1a","b03737"],["4f73cf","72c79a"],["3bbd40","b1fb70"],["cc4c4c","ac3ca7"],["991e1e","c26e26"],["9621b8","1f8fa6"],["d5ac1d","dadd38"],["1b57c8","97cae9"],["d7ad17","dae398"],["8617d7","bb167e"]];
 
@@ -1055,20 +1066,21 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
   // "Robbery","Blockhead","Raffle","Team Deathmatch"];
 
   if( typeof emergency === 'undefined'){ // if the connection to control.js failed
-    console.log("Wah!")
+    console.log("the control.js connection failed, but somehow this script is running! totally messed up!")
     emergency = false; // this is essentially the "emergency" for the emergency variable. Ridiculous.
   }
   var pp_url = ""
-  console.log(emergency)
+  console.log(emergency + " (OVERRIDED to false)");
+  emergency = false;
+  // REMOVE when this site's out of beta!
 
-  if(emergency == false) {
-    pp_url = ('https://events.mcpqndq.dev'); //stands for "Pit Panda"
+  if(true) {
+    pp_url = ("https://raw.githubusercontent.com/BrookeAFK/brookeafk-api/main/events.js"); //stands for "Pit Panda" but i don't use that API anymore
     console.log("no emergency here!")
   }
   
   async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
-    if(emergency == true) {
-      setInterval(newDataDifferent, 1800000); // checks if new data's been added every 30 minutes
+    if(false) {
     document.getElementById('version').innerHTML = (version_number + "e");
     document.getElementById('mcpqndq').style.display = "none"; // i'm evil
     window.data = await window.emergency_data;
@@ -1077,10 +1089,29 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
       emergency = false;
     }*/
     }
-    if(emergency == false) {
+    if(true) {
     const response = await fetch(pp_url);
-    window.data = await response.json();
+    try { window.data = await response.json(); }
+    catch { 
+      window.data = await window.emergency_data; 
+      console.warn("something went really wrong! emergency data it is...")
     }
+    console.log(data);
+    if(!dataValidation(data)) {
+      //document.getElementById("brookeafk-com").innerHTML = "help me"
+      console.error("Blocked events due to security error.");
+      securityError = true;
+      window.data = "";
+    }
+    if(data[data.length - 1]["timestamp"] < Date.now()) {
+      window.data = await window.emergency_data; // if all the data's passed, use the emergency data
+      console.warn("using emergency data since everything's outdated!")
+    }
+
+    console.log("wheeeeeeee")
+    }
+    setInterval(newDataDifferent, 1800000); // checks if new data's been added every 30 minutes
+
     window.data_backup = window.data;
     window.EventsToLoad = Object.keys(window.data).length
     console.log("Loading events: " + window.EventsToLoad);
@@ -1109,10 +1140,10 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
     }
   }
 
-  function newDataDifferent(url = "emergency.js") { // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
+  function newDataDifferent(url = ("https://raw.githubusercontent.com/BrookeAFK/brookeafk-api/main/events.js?v=" + currentTime)) { // checks if new data loaded from emergency.js is different than the already-existing data in the "data" variable
     fetch(url + "?v=" + Date.now()).then(e => e.text()).then(txt => {
       var dataExcerpt = txt.match(/\[.*\]/g);
-      if(dataExcerpt[0] != JSON.stringify(data) && performance.now() > 3600000) { // if the new data doesn't match the data variable
+      if(dataExcerpt[0] != JSON.stringify(data) && performance.now() > 3600000) { // if the new data doesn't match the data variable.
         console.log("uh oh!!!")
         window.location.reload();
       }

@@ -1070,17 +1070,15 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
     emergency = false; // this is essentially the "emergency" for the emergency variable. Ridiculous.
   }
   var pp_url = ""
-  console.log(emergency + " (OVERRIDED to false)");
-  emergency = false;
-  // REMOVE when this site's out of beta!
+  console.log(emergency);
 
-  if(true) {
+  if(emergency == false) {
     pp_url = ("https://raw.githubusercontent.com/BrookeAFK/brookeafk-api/main/events.js"); //stands for "Pit Panda" but i don't use that API anymore
     console.log("no emergency here!")
   }
   
   async function MakeAPIAndHTML() { //Calls the API exactly once (thanks McPqndq for pointing out that i do not have to call apis more than once)
-    if(false) {
+    if(emergency == true) {
     document.getElementById('version').innerHTML = (version_number + "e");
     document.getElementById('mcpqndq').style.display = "none"; // i'm evil
     window.data = await window.emergency_data;
@@ -1089,7 +1087,7 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
       emergency = false;
     }*/
     }
-    if(true) {
+    if(emergency == false) {
     const response = await fetch(pp_url);
     try { window.data = await response.json(); }
     catch { 
@@ -1098,7 +1096,6 @@ function changeMajorStyle(style, toggle) { // toggles whether the major event bo
     }
     console.log(data);
     if(!dataValidation(data)) {
-      //document.getElementById("brookeafk-com").innerHTML = "help me"
       console.error("Blocked events due to security error.");
       securityError = true;
       window.data = "";

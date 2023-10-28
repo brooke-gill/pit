@@ -53,8 +53,8 @@
 <p class="option"><span><b id="lt-3">Theme</b>: </span><span id="settings-theme-dark" onclick='changeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='changeTheme("light")'>Light</span></p> 
 <p class="option" id="option-palette"><span><b id="lt-6">Palette</b>: </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span> / <span id="settings-palette-4" onclick='changePalette(4)' class="hand_cursor">Theme 4</span> / <span id="custom-palette-exists" style="display: none"><span id="settings-palette-custom" onclick='changePalette("Custom")' class="hand_cursor"><span id="settings-palette-custom-name" class="nocolorchange" style="font-style: oblique">Custom</span></span> / </span><span id="settings-palette-create" onclick='changePalette(9999)' class="hand_cursor"><b id="lt-18">Custom</b> <span style="font-family: Material">palette</span></span></p>
 <p class="option"><span><b id="lt-26">Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
-<p class="option"><span><b id="lt-30">Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
-<p class="option"><span><b id="lt-33">Tab timer</b>: </span><span id="settings-tabtimer-on" class="hand_cursor" onclick='changeTabTimer(1)'>On</span><span> / <span id="settings-tabtimer-off" class="hand_cursor" onclick='changeTabTimer(0)'>Off</span></p>
+<p class="option"><span><b id="lt-30">Icons:</b> </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
+<p class="option"><span><b id="lt-33">Tab timer:</b> </span><span id="settings-tabtimer-on" class="hand_cursor" onclick='changeTabTimer(1)'>On</span><span> / <span id="settings-tabtimer-off" class="hand_cursor" onclick='changeTabTimer(0)'>Off</span></p>
 <p class="option"><span><b id="lt-34">Major event font style</b>: </span><span id="settings-majorstyle-border" class="hand_cursor" onclick='changeMajorStyle("border", "toggle")'>Border</span><span> / <span id="settings-majorstyle-shadow" class="hand_cursor" onclick='changeMajorStyle("shadow", "toggle")'>Shadow</span></p>
 <p class="option"><span><b id="lt-37">Event spacing</b>: </span><span id="settings-spacing-5" class="hand_cursor" onclick='changeSpacing(5)'>Big</span><span> / <span id="settings-spacing-3" class="hand_cursor" onclick='changeSpacing(3)'>Small</span> / <span id="settings-spacing-0" class="hand_cursor" onclick='changeSpacing(0)'>None</span></p>
 
@@ -115,7 +115,7 @@
   <p id="current-palette" style="display: none"></p>
   <p><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600" id="wikiad">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span>!</a></p>
   <p id="special_thanks"></p>
-  <p id="version" class="ver"></p> <span>&mdash; July 6, 2023</span>
+  <p id="version" class="ver"></p> <span>&mdash; October 27, 2023</span>
   <p id="need-help">Need help using this site? Join the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.
   </span>
 </span>
@@ -152,7 +152,7 @@ console.log("The site has loaded.")
 
 var HiddenEventCount = 0; // number of hidden events
 var EventsToLoad = 1; // number of events in the JSON. this is used a LOT!
-var version_number = `v1.1.3`
+var version_number = `v1.1.5`
 var counter = 4; // counter that counts up every 40ms
 var settingsOpened = false; // self explanatory
 var mapClicked = false; // whether the user's clicked the map timer to show its spooky extended info
@@ -270,9 +270,9 @@ function MakeFunTimestamps(convertible, currentTime = (Date.now() + offset)) {
   if (convertible - currentTime <= 60000) {
       convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + timeAbbs[3]);
   } else if (convertible - currentTime <= 3600000) {
-      convertible = ((Math.floor(((convertible - currentTime))/60000) + timeAbbs[2] + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/1000) % 60) + timeAbbs[3]));
+      convertible = ((Math.floor(((convertible - currentTime))/60000) + separatedTimeAbbs[2] + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/1000) % 60) + timeAbbs[3]));
   } else if (convertible - currentTime > 1) {
-      convertible = ((Math.floor(((convertible - currentTime))/3600000) + timeAbbs[1] + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/60000) % 60) + timeAbbs[2]));
+      convertible = ((Math.floor(((convertible - currentTime))/3600000) + separatedTimeAbbs[1] + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/60000) % 60) + timeAbbs[2]));
   }
   return convertible;
 }
@@ -390,6 +390,7 @@ function changeLanguage(icuLocale) {
   document.getElementById("custom-palette-name-input").placeholder = languagePack[133]; // Enter a name here...
   for(al = 0; al < 4; al++) {
     timeAbbs[al] = languagePack[118 + al];
+    separatedTimeAbbs[al] = languagePack[182 + al];
   }
   if(offset != 0) document.getElementById('view-offset').innerHTML = languagePack[171].replace("%%minutes%%", ("<b>" + Math.floor(offset / 60000) + "</b>")); // Offset set to %%minutes%% minutes – Click here to reset
   addNamesandImages(window.data);
@@ -630,13 +631,13 @@ function TestAudio() { // plays the audio. simple!
 
 function TimestampIt(sec = 0) { // creates a timestamp (y, d, h, m, s). used for the map rotation timer
     if(sec > 31536000) {
-      return Math.floor(sec / 31536000) + "y " + Math.floor((sec % 31536000) / 86400) + timeAbbs[0] + Math.floor((sec % 86400) / 3600) + timeAbbs[1] + Math.floor((sec % 3600) / 60) + timeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
+      return Math.floor(sec / 31536000) + "y " + Math.floor((sec % 31536000) / 86400) + separatedTimeAbbs[0] + Math.floor((sec % 86400) / 3600) + separatedTimeAbbs[1] + Math.floor((sec % 3600) / 60) + separatedTimeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
     } else if(sec > 86400 /*1 day*/) {
-      return Math.floor(sec / 86400) + timeAbbs[0] + Math.floor((sec % 86400) / 3600) + timeAbbs[1] + Math.floor((sec % 3600) / 60) + timeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
+      return Math.floor(sec / 86400) + separatedTimeAbbs[0] + Math.floor((sec % 86400) / 3600) + separatedTimeAbbs[1] + Math.floor((sec % 3600) / 60) + separatedTimeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
     } else if(sec > 3600) {
-      return Math.floor((sec % 86400) / 3600) + timeAbbs[1] + Math.floor((sec % 3600) / 60) + timeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
+      return Math.floor((sec % 86400) / 3600) + separatedTimeAbbs[1] + Math.floor((sec % 3600) / 60) + separatedTimeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
     } else if(sec > 60) {
-      return Math.floor((sec % 3600) / 60) + timeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
+      return Math.floor((sec % 3600) / 60) + separatedTimeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
     } else {
       return Math.floor(sec % 60) + timeAbbs[3]
     }
@@ -2184,6 +2185,24 @@ font-weight: 400;
 font-family: minecraft;
 src: url("./font/MinecraftBold.otf");
 font-weight: bold;
+}
+
+@font-face {
+  font-family: Cubic11;
+  src: url("./font/Cubic11.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+    font-family: 'NotoSansTC';
+    src: url("./font/NotoSansTC-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'NotoSansTC';
+    src: url("./font/NotoSansTC-Bold.ttf");
+    font-weight: bold;
 }
 
 a, .icon, div, .event {

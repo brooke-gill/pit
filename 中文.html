@@ -105,6 +105,8 @@
 
 <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none; text-align: center;"><br>You don't have any events selected!<br>Click the <span style="font-family: Material">settings</span> gear to open the settings. Then, click the event names in the top-right corner to make some visible.<br>Alternatively, click <span onclick="SelectOnly('everything')" style="cursor: pointer; color: #ae4e8e">here</span> to select all events.</span></p>
 <span id="noevents" class="bigtext" style="display: none"><br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Wait a few seconds.</li><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Contact me using the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord server</a> or <a href="https://github.com/brooke-gill">on GitHub</a>.</li></ul></span>
+
+<div style="background: linear-gradient(90deg, rgb(181, 175, 55) 0%, rgb(18, 129, 173) 100%); padding: 15px; position: relative; top: -55px; z-index: 5"><b>你好！</b> 点击：<b onclick="document.body.style.fontFamily = 'NotoSansTC'">Noto Sans</b> &bullet; <b onclick="document.body.style.fontFamily = 'Cubic11'">Cubic 11</b> &bullet; <b onclick="document.body.style.fontFamily = 'SimKai'">SimKai</b> &bullet; <b onclick="document.body.style.fontFamily = 'Inter'">默认</b> 以选择不同的字体。</div>
 <span id="events"></span>
 
 <hr>
@@ -177,7 +179,7 @@ var classicMode = 0; // whether the user uses the older timestamps for the site
 var clockStyle = 24; // number of hours in a day if you're strange and American
 var noevents = false; // if there's no events
 var offset = 0; // offset, in minutes, of a person's clock. useful for people with really weird OSes that can't set their clocks for some reason
-var samplemaprotation = 1661832000; // used for the map rotation timer. stolen from pit.wiki
+var samplemaprotation = 1661835600; // used for the map rotation timer. stolen from pit.wiki
 var maps = ["Genesis","Corals","Castle","Elements","Four Seasons"] // for map rotation
 var mapid = 0; // id of the current map
 var majorStyles = [1, 1] // whether the major event border and shadow distinguisher are visible
@@ -2153,38 +2155,38 @@ text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.4);
 }
 
 @font-face {
-font-family: Inter;
-src: url("./font/Inter-Regular.ttf");
-font-weight: regular;
+    font-family: Inter;
+    src: url("./font/Inter-Regular.ttf");
+    font-weight: regular;
 }
 
 @font-face {
-font-family: Inter;
-src: url("./font/Inter-Bold.ttf");
-font-weight: bold;
+    font-family: Inter;
+    src: url("./font/Inter-Bold.ttf");
+    font-weight: bold;
 }
 
 @font-face {
-font-family: Inter;
-src: url("./font/Inter-SemiBold.ttf");
-font-weight: 600;
+    font-family: Inter;
+    src: url("./font/Inter-SemiBold.ttf");
+    font-weight: 600;
 }
 
 @font-face {
-font-family: Material;
-src: url("./font/Material.ttf");
+    font-family: Material;
+    src: url("./font/Material.ttf");
 }
 
 @font-face {
-font-family: minecraft;
-src: url("./font/MinecraftRegular.otf");
-font-weight: 400;
+    font-family: minecraft;
+    src: url("./font/MinecraftRegular.otf");
+    font-weight: 400;
 }
 
 @font-face {
-font-family: minecraft;
-src: url("./font/MinecraftBold.otf");
-font-weight: bold;
+    font-family: minecraft;
+    src: url("./font/MinecraftBold.otf");
+    font-weight: bold;
 }
 
 @font-face {
@@ -2203,6 +2205,11 @@ font-weight: bold;
     font-family: 'NotoSansTC';
     src: url("./font/NotoSansTC-Bold.ttf");
     font-weight: bold;
+}
+
+@font-face {
+    font-family: 'SimKai';
+    src: url("./font/SimKai.ttf");
 }
 
 a, .icon, div, .event {

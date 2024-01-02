@@ -106,7 +106,6 @@
 <p class="option"><span id="alert-noevents" style="color: #ff7777; display: none; text-align: center;"><br>You don't have any events selected!<br>Click the <span style="font-family: Material">settings</span> gear to open the settings. Then, click the event names in the top-right corner to make some visible.<br>Alternatively, click <span onclick="SelectOnly('everything')" style="cursor: pointer; color: #ae4e8e">here</span> to select all events.</span></p>
 <span id="noevents" class="bigtext" style="display: none"><br><b>Hey, where'd all the events go?</b><br>It looks like the site ran out of events. This shouldn't happen anymore!<br>Try the following things in order:<ul><li>Wait a few seconds.</li><li>Reload the page by using <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>.</li><li>Contact me using the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord server</a> or <a href="https://github.com/brooke-gill">on GitHub</a>.</li></ul></span>
 
-<div style="background: linear-gradient(90deg, rgb(181, 175, 55) 0%, rgb(18, 129, 173) 100%); padding: 15px; position: relative; top: -55px; z-index: 5"><b>你好！</b> 点击：<b onclick="document.body.style.fontFamily = 'NotoSansTC'">Noto Sans</b> &bullet; <b onclick="document.body.style.fontFamily = 'Cubic11'">Cubic 11</b> &bullet; <b onclick="document.body.style.fontFamily = 'SimKai'">SimKai</b> &bullet; <b onclick="document.body.style.fontFamily = 'Inter'">默认</b> 以选择不同的字体。</div>
 <span id="events"></span>
 
 <hr>
@@ -117,7 +116,7 @@
   <p id="current-palette" style="display: none"></p>
   <p><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600" id="wikiad">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span>!</a></p>
   <p id="special_thanks"></p>
-  <p id="version" class="ver"></p> <span>&mdash; October 27, 2023</span>
+  <p id="version" class="ver"></p> <span>&mdash; January 1, 2024</span>
   <p id="need-help">Need help using this site? Join the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.
   </span>
 </span>
@@ -311,8 +310,13 @@ function changeFont(font) {
 
   if(font == "minecraft") {
     document.getElementById('settings-font-minecraft').style.color = NormalText;
-    CorrectFont = "minecraft";
-    CorrectBold = "minecraft; font-weight: bold";
+    if(language == "zh_Hans" || language == "zh_Hant") {
+      CorrectFont = "Cubic11";
+      CorrectBold = "Cubic11; font-weight: bold";
+    } else {
+      CorrectFont = "minecraft";
+      CorrectBold = "minecraft; font-weight: bold";
+    }
     document.getElementById("brookeafk-com").style.fontWeight = "400";
   }
   else {
@@ -1674,7 +1678,7 @@ function localSave() { // saves settings every time you click on something
     localStorage.setItem('tabtimer', tabTimerVisible);
     if(CorrectFont == 'Inter') localStorage.setItem('font', '0');
     if(CorrectFont == 'sans-serif') localStorage.setItem('font', '1');
-    if(CorrectFont == 'minecraft') localStorage.setItem('font', '2');
+    if(CorrectFont == 'minecraft' || CorrectFont == 'Cubic11') localStorage.setItem('font', '2');
     localStorage.setItem('spacing', spacingPx);
     localStorage.setItem('majorstyle', majorStyles[0].toString() + majorStyles[1].toString())
     localStorage.setItem('language', language);
@@ -2195,7 +2199,7 @@ text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.4);
   font-weight: bold;
 }
 
-@font-face {
+/*@font-face {
     font-family: 'NotoSansTC';
     src: url("./font/NotoSansTC-Regular.ttf");
     font-weight: 400;
@@ -2210,7 +2214,7 @@ text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.4);
 @font-face {
     font-family: 'SimKai';
     src: url("./font/SimKai.ttf");
-}
+}*/
 
 a, .icon, div, .event {
 transition-duration: 0.2s;

@@ -19,7 +19,7 @@
   <meta name="theme-color" content="#ffbbff">
   <meta name="description" content="This site allows you to view the upcoming events in the Hypixel Pit in real time."> 
   <meta name="keywords" content="Hypixel Pit, Hypixel, Hypixel Pit Events Tracker, Pit Events, BrookeAFK, Pit, brookeafk.com">
-  <script src="languages.js?v=1"></script>
+  <script src="languages.js?v=202401020"></script>
 </head>
 
 <body class="unselectable">
@@ -50,26 +50,26 @@
   
 <div id="settings-section"><br>
 <p class="option"><span class="settingsheader" id="lt-2">&mdash; Style &mdash;</span></p>
-<p class="option"><span><b id="lt-3">Theme</b>: </span><span id="settings-theme-dark" onclick='changeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='changeTheme("light")'>Light</span></p> 
-<p class="option" id="option-palette"><span><b id="lt-6">Palette</b>: </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span> / <span id="settings-palette-4" onclick='changePalette(4)' class="hand_cursor">Theme 4</span> / <span id="custom-palette-exists" style="display: none"><span id="settings-palette-custom" onclick='changePalette("Custom")' class="hand_cursor"><span id="settings-palette-custom-name" class="nocolorchange" style="font-style: oblique">Custom</span></span> / </span><span id="settings-palette-create" onclick='changePalette(9999)' class="hand_cursor"><b id="lt-18">Custom</b> <span style="font-family: Material">palette</span></span></p>
-<p class="option"><span><b id="lt-26">Font</b>: </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
-<p class="option"><span><b id="lt-30">Icons</b>: </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
-<p class="option"><span><b id="lt-33">Tab timer</b>: </span><span id="settings-tabtimer-on" class="hand_cursor" onclick='changeTabTimer(1)'>On</span><span> / <span id="settings-tabtimer-off" class="hand_cursor" onclick='changeTabTimer(0)'>Off</span></p>
-<p class="option"><span><b id="lt-34">Major event font style</b>: </span><span id="settings-majorstyle-border" class="hand_cursor" onclick='changeMajorStyle("border", "toggle")'>Border</span><span> / <span id="settings-majorstyle-shadow" class="hand_cursor" onclick='changeMajorStyle("shadow", "toggle")'>Shadow</span></p>
-<p class="option"><span><b id="lt-37">Event spacing</b>: </span><span id="settings-spacing-5" class="hand_cursor" onclick='changeSpacing(5)'>Big</span><span> / <span id="settings-spacing-3" class="hand_cursor" onclick='changeSpacing(3)'>Small</span> / <span id="settings-spacing-0" class="hand_cursor" onclick='changeSpacing(0)'>None</span></p>
+<p class="option"><span><b id="lt-3">Theme:</b> </span><span id="settings-theme-dark" onclick='changeTheme("dark")'>Dark</span><span> / </span><span id="settings-theme-light" onclick='changeTheme("light")'>Light</span></p> 
+<p class="option" id="option-palette"><span><b id="lt-6">Palette:</b> </span><span id="settings-palette-gradients0" onclick="changePalette('gradients0')" class="hand_cursor">Gradient</span> <span id="settings-palette-gradients1" onclick="changePalette('gradients1')" class="hand_cursor">(alt)</span> / <span id="settings-palette-0" onclick='changePalette(0)' class="hand_cursor">Theme 0</span> / <span id="settings-palette-1" onclick='changePalette(1)' class="hand_cursor">Theme 1</span> / <span id="settings-palette-2" onclick='changePalette(2)' class="hand_cursor">Theme 2</span> / <span id="settings-palette-3" onclick='changePalette(3)' class="hand_cursor">Theme 3</span> / <span id="settings-palette-4" onclick='changePalette(4)' class="hand_cursor">Theme 4</span> / <span id="custom-palette-exists" style="display: none"><span id="settings-palette-custom" onclick='changePalette("Custom")' class="hand_cursor"><span id="settings-palette-custom-name" class="nocolorchange" style="font-style: oblique">Custom</span></span> / </span><span id="settings-palette-create" onclick='changePalette(9999)' class="hand_cursor"><b id="lt-18">Custom</b> <span style="font-family: Material">palette</span></span></p>
+<p class="option"><span><b id="lt-26">Font:</b> </span><span id="settings-font-default" class="hand_cursor" onclick='changeFont("Inter")'>Default</span><span> / <span id="settings-font-minecraft" class="hand_cursor" onclick='changeFont("minecraft")'>Minecraft</span><span> / </span><span id="settings-font-sans-serif" class="hand_cursor" onclick='changeFont("sans-serif")'>Sans-serif</span></p> 
+<p class="option"><span><b id="lt-30">Icons:</b> </span><span id="settings-icons-on" class="hand_cursor" onclick='changeIcons(1)'>On</span><span> / <span id="settings-icons-off" class="hand_cursor" onclick='changeIcons(0)'>Off</span></p> 
+<p class="option"><span><b id="lt-33">Tab timer:</b> </span><span id="settings-tabtimer-on" class="hand_cursor" onclick='changeTabTimer(1)'>On</span><span> / <span id="settings-tabtimer-off" class="hand_cursor" onclick='changeTabTimer(0)'>Off</span></p>
+<p class="option"><span><b id="lt-34">Major event font style:</b> </span><span id="settings-majorstyle-border" class="hand_cursor" onclick='changeMajorStyle("border", "toggle")'>Border</span><span> / <span id="settings-majorstyle-shadow" class="hand_cursor" onclick='changeMajorStyle("shadow", "toggle")'>Shadow</span></p>
+<p class="option"><span><b id="lt-37">Event spacing:</b> </span><span id="settings-spacing-5" class="hand_cursor" onclick='changeSpacing(5)'>Big</span><span> / <span id="settings-spacing-3" class="hand_cursor" onclick='changeSpacing(3)'>Small</span> / <span id="settings-spacing-0" class="hand_cursor" onclick='changeSpacing(0)'>None</span></p>
 
 <p class="option"><span class="settingsheader" id="lt-41">&mdash; Quality of Life &mdash;</span></p>
-<p class="option"><span><span style="font-family: Material">Language</span> <b id="lt-66">Language</b>: </span><span id="settings-language-en_CA" class="hand_cursor" onclick='changeLanguage("en_CA")'>English</span><span> / <span id="settings-language-es_AR" class="hand_cursor" onclick='changeLanguage("es_AR")'>Español</span></p>
-<p class="option"><span id="tut-notif" style="color: #ffff80"><b id="lt-42">Pre-event notifications</b></span><span>: </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
-<p id="anotif" class="option"><span>&bullet; <b id="lt-46">Audio notifications</b>: </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
-<p id="dnotif" class="option"><span>&bullet; <b id="lt-47">Desktop notifications</b>: </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
+<p class="option"><span><span style="font-family: Material">Language</span> <b id="lt-66">Language:</b> </span><span id="settings-language-en_CA" class="hand_cursor" onclick='changeLanguage("en_CA")'>English</span><span> / <span id="settings-language-es_AR" class="hand_cursor" onclick='changeLanguage("es_AR")'>Español</span> / <span id="settings-language-zh_Hans" class="hand_cursor" onclick='changeLanguage("zh_Hans")'>简体中文</span> / <span id="settings-language-zh_Hant" class="hand_cursor" onclick='changeLanguage("zh_Hant")'>繁體中文</span></p>
+<p class="option"><span id="tut-notif" style="color: #ffff80"><b id="lt-42">Pre-event notifications:</b></span><span> </span><span id="settings-audio"><span id="audio-300" onclick='SetAudio(300);' class="hand_cursor">5m</span><span> / </span><span id="audio-180" onclick='SetAudio(180);' class="hand_cursor">3m</span><span> / </span><span id="audio-60" onclick='SetAudio(60);' class="hand_cursor">1m</span><span> / </span><span id="audio-0" onclick='SetAudio(-10);' class="hand_cursor">Never</span></span></p>
+<p id="anotif" class="option"><span>&bullet; <b id="lt-46">Audio notifications:</b> </span><span id="desktop-notifs"><span id="audio-on" onclick='ANotif(1);' class="hand_cursor">On</span><span> / </span><span id="audio-off" onclick='ANotif(0);' class="hand_cursor">Off</span></span></p>
+<p id="dnotif" class="option"><span>&bullet; <b id="lt-47">Desktop notifications:</b> </span><span id="desktop-notifs"><span id="desktop-on" onclick='DNotif(1);' class="hand_cursor">On</span><span> / </span><span id="desktop-off" onclick='DNotif(0);' class="hand_cursor">Off</span></span></p>
 <p class="option"><span id="alert-nobells" style="color: #ff7777; display: none">You're not being reminded for any events!<br>Click the bells in the top-right corner to receive notifications.</span></p>
 <p class="option"><span id="alert-notypes" style="color: #ff7777; display: none">Make sure to turn either "Audio notifications"<br>or "Desktop notifications" on to receive alerts.</span></p>
-<p class="option"><span><b id="lt-49">Timestamps</b>: </span><span id="settings-ts-tod" onclick='setTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='setTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='setTimestamps("dnc");' class="hand_cursor">Day and Map</span></p>
-<p class="option" id="setting-clock-style"><span><b id="lt-53">Clock style</b>: </span><span id="settings-clock-24" onclick='changeClock("24");' class="hand_cursor">24-hour</span><span> / </span><span id="settings-clock-12" onclick='changeClock("12");' class="hand_cursor">12-hour</span></p>
-<p class="option"><span id="settings-flashing"><b id="lt-56">Flashing text</b>: </span><span id="settings-flash"><span id="settings-flash-60" onclick='setFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='setFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='setFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='setFlash(-10);' class="hand_cursor">Never</span></span></p>
-<p class="option"><span><b id="lt-60">Event text</b>: </span><span id="settings-classic-off" class="hand_cursor" onclick='changeClassic(0)'>Modern</span><span> / <span id="settings-classic-on" class="hand_cursor" onclick='changeClassic(1)'>Classic</span></p> 
-<p class="option"><span><b id="lt-63">Version</b>: </span><span id="lt-64">New</span><span> / </span><span onclick='window.location = "2022"' style="color: #808080; cursor: pointer" id="lt-65">Old</span></p> 
+<p class="option"><span><b id="lt-49">Timestamps:</b> </span><span id="settings-ts-tod" onclick='setTimestamps("tod");' class="hand_cursor">Time of Day</span><span> / </span><span id="settings-ts-tue" onclick='setTimestamps("tue");' class="hand_cursor">Time Until Event</span> / <span id="settings-ts-dnc" onclick='setTimestamps("dnc");' class="hand_cursor">Day and Map</span></p>
+<p class="option" id="setting-clock-style"><span><b id="lt-53">Clock style:</b> </span><span id="settings-clock-24" onclick='changeClock("24");' class="hand_cursor">24-hour</span><span> / </span><span id="settings-clock-12" onclick='changeClock("12");' class="hand_cursor">12-hour</span></p>
+<p class="option"><span id="settings-flashing"><b id="lt-56">Flashing text:</b> </span><span id="settings-flash"><span id="settings-flash-60" onclick='setFlash(60);' class="hand_cursor">60s</span><span> / </span><span id="settings-flash-30" onclick='setFlash(30);' class="hand_cursor">30s</span><span> / </span><span id="settings-flash-10" onclick='setFlash(10);' class="hand_cursor">10s</span><span> / </span><span id="settings-flash-0" onclick='setFlash(-10);' class="hand_cursor">Never</span></span></p>
+<p class="option"><span><b id="lt-60">Event text:</b> </span><span id="settings-classic-off" class="hand_cursor" onclick='changeClassic(0)'>Modern</span><span> / <span id="settings-classic-on" class="hand_cursor" onclick='changeClassic(1)'>Classic</span></p> 
+<p class="option"><span><b id="lt-63">Version:</b> </span><span id="lt-64">New</span><span> / </span><span onclick='window.location = "2022"' style="color: #808080; cursor: pointer" id="lt-65">Old</span></p> 
 
 
 <div id="notifications-major">
@@ -115,7 +115,7 @@
   <p id="current-palette" style="display: none"></p>
   <p><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600" id="wikiad">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span>!</a></p>
   <p id="special_thanks"></p>
-  <p id="version" class="ver"></p> <span>&mdash; July 6, 2023</span>
+  <p id="version" class="ver"></p> <span>&mdash; January 2, 2024</span>
   <p id="need-help">Need help using this site? Join the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.
   </span>
 </span>
@@ -152,7 +152,7 @@ console.log("The site has loaded.")
 
 var HiddenEventCount = 0; // number of hidden events
 var EventsToLoad = 1; // number of events in the JSON. this is used a LOT!
-var version_number = `v1.1.3`
+var version_number = `v1.1.5`
 var counter = 4; // counter that counts up every 40ms
 var settingsOpened = false; // self explanatory
 var mapClicked = false; // whether the user's clicked the map timer to show its spooky extended info
@@ -209,6 +209,9 @@ var eventOpacities = []; // list of opacities of every event ID (Chrome tends to
 var visibleEventIds = []; // list of event IDs that are currently visually visible
 var upcomingEventIds = []; // list of event IDs that could possibly be visible in the future but may or may not be visible due to the user hiding events
 
+var timeAbbs = ["d", "h", "m", "s"] // abbreviations for the units of time
+var separatedTimeAbbs = ["d ", "h ", "m ", "s "];
+
 var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`v1.0.0 on feb 27... i mean feb 28... i mean march 11.. i mean march 12... i mean march 13.... nono i mean i mean april 14`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`,`cool website`]
 var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","litphoenix","adjective",`anoxysm`,`Nqnook`]
 var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/",`https://statsify.net/`,`https://hypixel.net/members/nqnook.4469672/`,]
@@ -264,12 +267,12 @@ function MakeFunTimestamps(convertible, currentTime = (Date.now() + offset)) {
   if (convertible - currentTime <= 0) {
     convertible = "Passed!";
   }
-  if (convertible - currentTime <= 60000) {
-      convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + "s");
+  if (convertible - currentTime <= 60000) { // Probably significantly more efficient to just use (if language == "en_CA") etc. Whatever. Will do someday(?)
+      convertible = (((Math.floor(((convertible - currentTime)*100))/100000).toFixed(2)) + timeAbbs[3]);
   } else if (convertible - currentTime <= 3600000) {
-      convertible = ((Math.floor(((convertible - currentTime))/60000) + "m" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/1000) % 60) + "s"));
+      convertible = ((Math.floor(((convertible - currentTime))/60000) + separatedTimeAbbs[2] + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/1000) % 60) + timeAbbs[3]));
   } else if (convertible - currentTime > 1) {
-      convertible = ((Math.floor(((convertible - currentTime))/3600000) + "h" + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/60000) % 60) + "m"));
+      convertible = ((Math.floor(((convertible - currentTime))/3600000) + separatedTimeAbbs[1] + (classicMode == false?" ":"") + (Math.floor(((convertible - currentTime))/60000) % 60) + timeAbbs[2]));
   }
   return convertible;
 }
@@ -306,8 +309,13 @@ function changeFont(font) {
 
   if(font == "minecraft") {
     document.getElementById('settings-font-minecraft').style.color = NormalText;
-    CorrectFont = "minecraft";
-    CorrectBold = "minecraft; font-weight: bold";
+    if(language == "zh_Hans" || language == "zh_Hant") {
+      CorrectFont = "Cubic11";
+      CorrectBold = "Cubic11; font-weight: bold";
+    } else {
+      CorrectFont = "minecraft";
+      CorrectBold = "minecraft; font-weight: bold";
+    }
     document.getElementById("brookeafk-com").style.fontWeight = "400";
   }
   else {
@@ -356,9 +364,11 @@ function changeTabTimer(tabtimer) { // enables and disables the tab timer
 function changeLanguage(icuLocale) {
   document.getElementById('settings-language-en_CA').style.color = "#888888";
   document.getElementById('settings-language-es_AR').style.color = "#888888";
+  document.getElementById('settings-language-zh_Hans').style.color = "#888888";
+  document.getElementById('settings-language-zh_Hant').style.color = "#888888";
   language = icuLocale;
   languagePack = window["languagePack_" + language];
-  document.getElementById("settings-language-" + icuLocale).style.color = NormalText;
+  if(icuLocale != "empty") document.getElementById("settings-language-" + icuLocale).style.color = NormalText;
   if(language == "en_CA") document.getElementById("translator-credit").style.display = "none";
   else document.getElementById("translator-credit").style.display = "";
 
@@ -383,6 +393,10 @@ function changeLanguage(icuLocale) {
     IsItACountdown[countdownReplacements[al]] = languagePack[al + 112] // <span style="color: #ff55ff"><b>QUICK MATHS!</b></span> <span style="color: #AAAAAA;">First 5 players to answer gain</span> <span style="color: #55ffff;">+250XP</span> <span style="color: #ffaa00;">+500g</span>
   }
   document.getElementById("custom-palette-name-input").placeholder = languagePack[133]; // Enter a name here...
+  for(al = 0; al < 4; al++) {
+    timeAbbs[al] = languagePack[118 + al];
+    separatedTimeAbbs[al] = languagePack[182 + al];
+  }
   if(offset != 0) document.getElementById('view-offset').innerHTML = languagePack[171].replace("%%minutes%%", ("<b>" + Math.floor(offset / 60000) + "</b>")); // Offset set to %%minutes%% minutes – Click here to reset
   addNamesandImages(window.data);
   SaveSettings('noreload');
@@ -622,15 +636,15 @@ function TestAudio() { // plays the audio. simple!
 
 function TimestampIt(sec = 0) { // creates a timestamp (y, d, h, m, s). used for the map rotation timer
     if(sec > 31536000) {
-      return Math.floor(sec / 31536000) + "y " + Math.floor((sec % 31536000) / 86400) + "d " + Math.floor((sec % 86400) / 3600) + "h " + Math.floor((sec % 3600) / 60) + "m " + Math.floor(sec % 60) + "s"
+      return Math.floor(sec / 31536000) + "y " + Math.floor((sec % 31536000) / 86400) + separatedTimeAbbs[0] + Math.floor((sec % 86400) / 3600) + separatedTimeAbbs[1] + Math.floor((sec % 3600) / 60) + separatedTimeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
     } else if(sec > 86400 /*1 day*/) {
-      return Math.floor(sec / 86400) + "d " + Math.floor((sec % 86400) / 3600) + "h " + Math.floor((sec % 3600) / 60) + "m " + Math.floor(sec % 60) + "s"
+      return Math.floor(sec / 86400) + separatedTimeAbbs[0] + Math.floor((sec % 86400) / 3600) + separatedTimeAbbs[1] + Math.floor((sec % 3600) / 60) + separatedTimeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
     } else if(sec > 3600) {
-      return Math.floor((sec % 86400) / 3600) + "h " + Math.floor((sec % 3600) / 60) + "m " + Math.floor(sec % 60) + "s"
+      return Math.floor((sec % 86400) / 3600) + separatedTimeAbbs[1] + Math.floor((sec % 3600) / 60) + separatedTimeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
     } else if(sec > 60) {
-      return Math.floor((sec % 3600) / 60) + "m " + Math.floor(sec % 60) + "s"
+      return Math.floor((sec % 3600) / 60) + separatedTimeAbbs[2] + Math.floor(sec % 60) + timeAbbs[3]
     } else {
-      return Math.floor(sec % 60) + "s"
+      return Math.floor(sec % 60) + timeAbbs[3]
     }
 }
 
@@ -1663,7 +1677,7 @@ function localSave() { // saves settings every time you click on something
     localStorage.setItem('tabtimer', tabTimerVisible);
     if(CorrectFont == 'Inter') localStorage.setItem('font', '0');
     if(CorrectFont == 'sans-serif') localStorage.setItem('font', '1');
-    if(CorrectFont == 'minecraft') localStorage.setItem('font', '2');
+    if(CorrectFont == 'minecraft' || CorrectFont == 'Cubic11') localStorage.setItem('font', '2');
     localStorage.setItem('spacing', spacingPx);
     localStorage.setItem('majorstyle', majorStyles[0].toString() + majorStyles[1].toString())
     localStorage.setItem('language', language);
@@ -2144,38 +2158,44 @@ text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.4);
 }
 
 @font-face {
-font-family: Inter;
-src: url("./font/Inter-Regular.ttf");
-font-weight: regular;
+    font-family: Inter;
+    src: url("./font/Inter-Regular.ttf");
+    font-weight: regular;
 }
 
 @font-face {
-font-family: Inter;
-src: url("./font/Inter-Bold.ttf");
-font-weight: bold;
+    font-family: Inter;
+    src: url("./font/Inter-Bold.ttf");
+    font-weight: bold;
 }
 
 @font-face {
-font-family: Inter;
-src: url("./font/Inter-SemiBold.ttf");
-font-weight: 600;
+    font-family: Inter;
+    src: url("./font/Inter-SemiBold.ttf");
+    font-weight: 600;
 }
 
 @font-face {
-font-family: Material;
-src: url("./font/Material.ttf");
+    font-family: Material;
+    src: url("./font/Material.ttf");
 }
 
 @font-face {
-font-family: minecraft;
-src: url("./font/MinecraftRegular.otf");
-font-weight: 400;
+    font-family: minecraft;
+    src: url("./font/MinecraftRegular.otf");
+    font-weight: 400;
 }
 
 @font-face {
-font-family: minecraft;
-src: url("./font/MinecraftBold.otf");
-font-weight: bold;
+    font-family: minecraft;
+    src: url("./font/MinecraftBold.otf");
+    font-weight: bold;
+}
+
+@font-face {
+  font-family: Cubic11;
+  src: url("./font/Cubic11.ttf");
+  font-weight: bold;
 }
 
 a, .icon, div, .event {

@@ -1,0 +1,258 @@
+<head>
+    <title>Word Clock</title>
+    </head>
+    <body>
+    <div class="container">
+    <div class="wrapper">
+        <svg class="progress-ring" width="500" height="500" style="position: absolute;">
+            <path class="progress-ring-circle" id="progress-ring" d="M 11, 11
+                 L 489, 11
+                 L 489, 489
+                 L 11, 489
+                 L 11, 11" style="stroke-dashoffset: 80px;"></path>
+        </svg>
+    <table id="word_clock"><tr><td class="cell heart"><span id="cell_0" class="celltext">❤</span></td><td class="cell"><span id="cell_1" class="celltext">P</span></td><td class="cell"><span id="cell_2" class="celltext">F</span></td><td class="cell"><span id="cell_3" class="celltext">U</span></td><td class="cell"><span id="cell_4" class="celltext">S</span></td><td class="cell"><span id="cell_5" class="celltext">I</span></td><td class="cell"><span id="cell_6" class="celltext">X</span></td><td class="cell"><span id="cell_7" class="celltext">T</span></td><td class="cell"><span id="cell_8" class="celltext">W</span></td><td class="cell"><span id="cell_9" class="celltext">E</span></td><td class="cell"><span id="cell_10" class="celltext">L</span></td><td class="cell"><span id="cell_11" class="celltext">V</span></td><td class="cell"><span id="cell_12" class="celltext">E</span></td><tr><td class="cell"><span id="cell_13" class="celltext">T</span></td><td class="cell"><span id="cell_14" class="celltext">W</span></td><td class="cell"><span id="cell_15" class="celltext">O</span></td><td class="cell"><span id="cell_16" class="celltext">N</span></td><td class="cell"><span id="cell_17" class="celltext">E</span></td><td class="cell"><span id="cell_18" class="celltext">I</span></td><td class="cell"><span id="cell_19" class="celltext">G</span></td><td class="cell"><span id="cell_20" class="celltext">H</span></td><td class="cell"><span id="cell_21" class="celltext">T</span></td><td class="cell"><span id="cell_22" class="celltext">H</span></td><td class="cell"><span id="cell_23" class="celltext">R</span></td><td class="cell"><span id="cell_24" class="celltext">E</span></td><td class="cell"><span id="cell_25" class="celltext">E</span></td><tr><td class="cell"><span id="cell_26" class="celltext">A</span></td><td class="cell"><span id="cell_27" class="celltext">G</span></td><td class="cell"><span id="cell_28" class="celltext">U</span></td><td class="cell"><span id="cell_29" class="celltext">F</span></td><td class="cell"><span id="cell_30" class="celltext">I</span></td><td class="cell"><span id="cell_31" class="celltext">V</span></td><td class="cell"><span id="cell_32" class="celltext">E</span></td><td class="cell"><span id="cell_33" class="celltext">L</span></td><td class="cell"><span id="cell_34" class="celltext">E</span></td><td class="cell"><span id="cell_35" class="celltext">V</span></td><td class="cell"><span id="cell_36" class="celltext">E</span></td><td class="cell"><span id="cell_37" class="celltext">N</span></td><td class="cell"><span id="cell_38" class="celltext">B</span></td><tr><td class="cell"><span id="cell_39" class="celltext">Z</span></td><td class="cell"><span id="cell_40" class="celltext">S</span></td><td class="cell"><span id="cell_41" class="celltext">R</span></td><td class="cell"><span id="cell_42" class="celltext">K</span></td><td class="cell"><span id="cell_43" class="celltext">S</span></td><td class="cell"><span id="cell_44" class="celltext">E</span></td><td class="cell"><span id="cell_45" class="celltext">V</span></td><td class="cell"><span id="cell_46" class="celltext">E</span></td><td class="cell"><span id="cell_47" class="celltext">N</span></td><td class="cell"><span id="cell_48" class="celltext">I</span></td><td class="cell"><span id="cell_49" class="celltext">N</span></td><td class="cell"><span id="cell_50" class="celltext">E</span></td><td class="cell"><span id="cell_51" class="celltext">R</span></td><tr><td class="cell"><span id="cell_52" class="celltext">T</span></td><td class="cell"><span id="cell_53" class="celltext">H</span></td><td class="cell"><span id="cell_54" class="celltext">I</span></td><td class="cell"><span id="cell_55" class="celltext">R</span></td><td class="cell"><span id="cell_56" class="celltext">T</span></td><td class="cell"><span id="cell_57" class="celltext">Y</span></td><td class="cell"><span id="cell_58" class="celltext">T</span></td><td class="cell"><span id="cell_59" class="celltext">W</span></td><td class="cell"><span id="cell_60" class="celltext">E</span></td><td class="cell"><span id="cell_61" class="celltext">N</span></td><td class="cell"><span id="cell_62" class="celltext">T</span></td><td class="cell"><span id="cell_63" class="celltext">Y</span></td><td class="cell"><span id="cell_64" class="celltext">O</span></td><tr><td class="cell"><span id="cell_65" class="celltext">F</span></td><td class="cell"><span id="cell_66" class="celltext">I</span></td><td class="cell"><span id="cell_67" class="celltext">F</span></td><td class="cell"><span id="cell_68" class="celltext">T</span></td><td class="cell"><span id="cell_69" class="celltext">Y</span></td><td class="cell"><span id="cell_70" class="celltext">O</span></td><td class="cell"><span id="cell_71" class="celltext">H</span></td><td class="cell"><span id="cell_72" class="celltext">F</span></td><td class="cell"><span id="cell_73" class="celltext">O</span></td><td class="cell"><span id="cell_74" class="celltext">R</span></td><td class="cell"><span id="cell_75" class="celltext">T</span></td><td class="cell"><span id="cell_76" class="celltext">Y</span></td><td class="cell"><span id="cell_77" class="celltext">O</span></td><tr><td class="cell"><span id="cell_78" class="celltext">T</span></td><td class="cell"><span id="cell_79" class="celltext">H</span></td><td class="cell"><span id="cell_80" class="celltext">I</span></td><td class="cell"><span id="cell_81" class="celltext">R</span></td><td class="cell"><span id="cell_82" class="celltext">T</span></td><td class="cell"><span id="cell_83" class="celltext">E</span></td><td class="cell"><span id="cell_84" class="celltext">E</span></td><td class="cell"><span id="cell_85" class="celltext">N</span></td><td class="cell"><span id="cell_86" class="celltext">C</span></td><td class="cell"><span id="cell_87" class="celltext">L</span></td><td class="cell"><span id="cell_88" class="celltext">O</span></td><td class="cell"><span id="cell_89" class="celltext">C</span></td><td class="cell"><span id="cell_90" class="celltext">K</span></td><tr><td class="cell"><span id="cell_91" class="celltext">W</span></td><td class="cell"><span id="cell_92" class="celltext">N</span></td><td class="cell"><span id="cell_93" class="celltext">I</span></td><td class="cell"><span id="cell_94" class="celltext">N</span></td><td class="cell"><span id="cell_95" class="celltext">E</span></td><td class="cell"><span id="cell_96" class="celltext">T</span></td><td class="cell"><span id="cell_97" class="celltext">E</span></td><td class="cell"><span id="cell_98" class="celltext">E</span></td><td class="cell"><span id="cell_99" class="celltext">N</span></td><td class="cell"><span id="cell_100" class="celltext">Q</span></td><td class="cell"><span id="cell_101" class="celltext">D</span></td><td class="cell"><span id="cell_102" class="celltext">O</span></td><td class="cell"><span id="cell_103" class="celltext">E</span></td><tr><td class="cell"><span id="cell_104" class="celltext">E</span></td><td class="cell"><span id="cell_105" class="celltext">F</span></td><td class="cell"><span id="cell_106" class="celltext">I</span></td><td class="cell"><span id="cell_107" class="celltext">F</span></td><td class="cell"><span id="cell_108" class="celltext">T</span></td><td class="cell"><span id="cell_109" class="celltext">E</span></td><td class="cell"><span id="cell_110" class="celltext">E</span></td><td class="cell"><span id="cell_111" class="celltext">N</span></td><td class="cell"><span id="cell_112" class="celltext">J</span></td><td class="cell"><span id="cell_113" class="celltext">T</span></td><td class="cell"><span id="cell_114" class="celltext">E</span></td><td class="cell"><span id="cell_115" class="celltext">N</span></td><td class="cell"><span id="cell_116" class="celltext">L</span></td><tr><td class="cell"><span id="cell_117" class="celltext">L</span></td><td class="cell"><span id="cell_118" class="celltext">S</span></td><td class="cell"><span id="cell_119" class="celltext">I</span></td><td class="cell"><span id="cell_120" class="celltext">X</span></td><td class="cell"><span id="cell_121" class="celltext">T</span></td><td class="cell"><span id="cell_122" class="celltext">E</span></td><td class="cell"><span id="cell_123" class="celltext">E</span></td><td class="cell"><span id="cell_124" class="celltext">N</span></td><td class="cell"><span id="cell_125" class="celltext">T</span></td><td class="cell"><span id="cell_126" class="celltext">H</span></td><td class="cell"><span id="cell_127" class="celltext">R</span></td><td class="cell"><span id="cell_128" class="celltext">E</span></td><td class="cell"><span id="cell_129" class="celltext">E</span></td><tr><td class="cell"><span id="cell_130" class="celltext">V</span></td><td class="cell"><span id="cell_131" class="celltext">F</span></td><td class="cell"><span id="cell_132" class="celltext">O</span></td><td class="cell"><span id="cell_133" class="celltext">U</span></td><td class="cell"><span id="cell_134" class="celltext">R</span></td><td class="cell"><span id="cell_135" class="celltext">T</span></td><td class="cell"><span id="cell_136" class="celltext">E</span></td><td class="cell"><span id="cell_137" class="celltext">E</span></td><td class="cell"><span id="cell_138" class="celltext">N</span></td><td class="cell"><span id="cell_139" class="celltext">T</span></td><td class="cell"><span id="cell_140" class="celltext">W</span></td><td class="cell"><span id="cell_141" class="celltext">O</span></td><td class="cell"><span id="cell_142" class="celltext">V</span></td><tr><td class="cell"><span id="cell_143" class="celltext">E</span></td><td class="cell"><span id="cell_144" class="celltext">S</span></td><td class="cell"><span id="cell_145" class="celltext">E</span></td><td class="cell"><span id="cell_146" class="celltext">V</span></td><td class="cell"><span id="cell_147" class="celltext">E</span></td><td class="cell"><span id="cell_148" class="celltext">N</span></td><td class="cell"><span id="cell_149" class="celltext">T</span></td><td class="cell"><span id="cell_150" class="celltext">E</span></td><td class="cell"><span id="cell_151" class="celltext">E</span></td><td class="cell"><span id="cell_152" class="celltext">N</span></td><td class="cell"><span id="cell_153" class="celltext">M</span></td><td class="cell"><span id="cell_154" class="celltext">A</span></td><td class="cell"><span id="cell_155" class="celltext">E</span></td><tr><td class="cell"><span id="cell_156" class="celltext">E</span></td><td class="cell"><span id="cell_157" class="celltext">I</span></td><td class="cell"><span id="cell_158" class="celltext">G</span></td><td class="cell"><span id="cell_159" class="celltext">H</span></td><td class="cell"><span id="cell_160" class="celltext">T</span></td><td class="cell"><span id="cell_161" class="celltext">E</span></td><td class="cell"><span id="cell_162" class="celltext">E</span></td><td class="cell"><span id="cell_163" class="celltext">N</span></td><td class="cell"><span id="cell_164" class="celltext">F</span></td><td class="cell"><span id="cell_165" class="celltext">I</span></td><td class="cell"><span id="cell_166" class="celltext">V</span></td><td class="cell"><span id="cell_167" class="celltext">E</span></td><td class="cell"><span id="cell_168" class="celltext">N</span></td></table>
+    </div>
+</div>
+    <!-- <p id="below">&mdash; WORD CLOCK &mdash;</p> -->
+    
+    
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: black;
+            font-family: Gabarito;
+        }
+    
+        .wrapper {
+            position: relative;
+            text-align: center;
+        }
+    
+        #word_clock {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            cursor: default;
+        }
+    
+        #below {
+            color: #ffffff20;
+            letter-spacing: 3px;
+            transition-duration: 0.5s;
+            text-align: center;
+            margin: 0;
+        }
+    
+        #below:hover {
+            color: #ffffffb0;
+        }
+    
+        .cell {
+            height: 30px;
+            width: 30px;
+        }
+    
+        .celltext {
+            font-size: 22px;
+            color: #ffffff20;
+            transition-duration: 1s;
+        }
+
+        .heart {
+            transition-duration: 0.5s;
+        }
+
+        .heart:hover {
+            transform: rotate(10deg) scale(1.2);
+            cursor: pointer;
+        }
+
+        .heart > span:hover {
+            color: #e88a8a;
+        }
+    
+        @font-face {
+            font-family: Gabarito;
+            font-weight: regular;
+            src: url(font/Gabarito-Regular.ttf);
+        }
+    
+        @font-face {
+            font-family: Gabarito;
+            font-weight: bold;
+            src: url(font/Gabarito-Bold.ttf);
+        }
+    
+      .progress-ring {
+        /*width: 100%;
+        height: 100%;*/
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    
+      .progress-ring-circle {
+        transition-duration: 0.5s;
+        fill: transparent;
+        stroke-width: 6;
+        stroke-dasharray: 1912;
+        stroke-dashoffset: 0;
+        stroke: #2d2d2d;
+        transform-origin: center;
+      }
+    </style>    
+    <script>
+        var combinations = {
+            "h1": [15,16,17],
+            "h2": [13,14,15],
+            "h3": [21,22,23,24,25],
+            "h4": [2,15,28,41],
+            "h5": [29,30,31,32],
+            "h6": [4,5,6],
+            "h7": [43,44,45,46,47],
+            "h8": [17,18,19,20,21],
+            "h9": [47,48,49,50],
+            "h10": [21,34,47],
+            "h11": [32,33,34,35,36,37],
+            "h12": [7,8,9,10,11,12],
+            "oclock": [73,86,87,88,89,90],
+            "oh": [70, 71],
+            "1": [102,115,128],
+            "2": [139,140,141],
+            "3": [125,126,127,128,129],
+            "4": [131,132,133,134],
+            "5": [164,165,166,167],
+            "6": [118,119,120],
+            "7": [144,145,146,147,148],
+            "8": [156,157,158,159,160],
+            "9": [92,93,94,95],
+            "10": [113,114,115],
+            "11": [103,116,129,142,155,168],
+            "12": [78,91,104,117,130,143],
+            "13": [78,79,80,81,82,83,84,85],
+            "14": [131,132,133,134,135,136,137,138],
+            "15": [105,106,107,108,109,110,111],
+            "16": [118,119,120,121,122,123,124],
+            "17": [144,145,146,147,148,149,150,151,152],
+            "18": [156,157,158,159,160,161,162,163],
+            "19": [92,93,94,95,96,97,98,99],
+            "20": [58,59,60,61,62,63,],
+            "30": [52,53,54,55,56,57],
+            "40": [72,73,74,75,76],
+            "50": [65,66,67,68,69],
+            "logo": [38,51,64,77,90,103,0],
+            "all": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168],
+        }
+    
+        var availableColours = ["#f895eb","#a6aeeb","#7beceb","#7bec7c","#eeea94","#edc0a0","#f35656","#e15d9e"];
+        var usedColours = [];
+        var currentMinute, lastMinute = [-1,-1];
+    
+        function timeToCombinations(hours, minutes) {
+            if(minutes == -1) return [];
+            let totalCombinations = [];
+    
+            if(hours != undefined && minutes != undefined) {
+                var dateHours = hours;
+                var dateMinutes = minutes;
+            } else {
+                var newDate = new Date;
+                var dateHours = newDate.getHours();
+                var dateMinutes = newDate.getMinutes();
+            }
+    
+            totalCombinations.push("h" + ((((dateHours - 1) % 12 + 12) % 12) + 1).toString());
+    
+            if(dateMinutes == 0) totalCombinations.push("oclock");
+            else if(dateMinutes <= 20) {
+                if(dateMinutes <= 9) totalCombinations.push("oh");
+                totalCombinations.push(dateMinutes.toString());
+            } else {
+                totalCombinations.push((Math.floor(dateMinutes / 10) * 10).toString());
+                if(dateMinutes % 10 != 0) totalCombinations.push((dateMinutes % 10).toString());
+            }
+            
+            return totalCombinations;
+        }
+    
+        function illuminate(type, colour) {
+            console.log(type);
+            let cellsToLight = combinations[type];
+            console.log(combinations[type]);
+            console.log(cellsToLight);
+            for(a = 0; a < cellsToLight.length; a++) {
+                document.getElementById("cell_" + cellsToLight[a]).style.color = colour;
+                document.getElementById("cell_" + cellsToLight[a]).style.textShadow = `0 0 15px ${colour}, 0 0 20px ${colour}, 0 0 30px ${colour}`;
+            }
+        }
+    
+        function deilluminate(type) {
+            let cellsToDim = combinations[type];
+            for(a = 0; a < cellsToDim.length; a++) {
+                document.getElementById("cell_" + cellsToDim[a]).style.color = "";
+                document.getElementById("cell_" + cellsToDim[a]).style.textShadow = "";
+            }
+        }
+    
+        function deilluminateAll() {
+            for(b = 0; b < 169; b++) {
+                document.getElementById("cell_" + b).style.color = "";
+                document.getElementById("cell_" + b).style.textShadow = "";
+            }
+        }
+    
+        function randomFill() {
+            document.getElementById("cell_" + Math.floor(Math.random() * 169)).style.color = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
+            document.getElementById("cell_" + Math.floor(Math.random() * 169)).style.color = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
+        }
+    
+        function updateClock() {
+            currentTime = new Date();
+            currentMinute = [currentTime.getHours(), currentTime.getMinutes()];
+            if(lastMinute[1] != currentMinute[1]) {
+                console.warn("new minute");
+                console.warn(lastMinute, currentMinute);
+    
+                var removeCombinations = (timeToCombinations(lastMinute[0], lastMinute[1]).filter(c => !(timeToCombinations(currentMinute[0], currentMinute[1])).includes(c)));
+                var addCombinations = (timeToCombinations(currentMinute[0], currentMinute[1]).filter(c => !(timeToCombinations(lastMinute[0], lastMinute[1])).includes(c)));
+                console.warn(removeCombinations);
+                console.warn(addCombinations);
+    
+                for(d = 0; d < removeCombinations.length; d++) {
+                    deilluminate(removeCombinations[d]);
+                }
+    
+                for(e = 0; e < addCombinations.length; e++) {
+                    console.log(addCombinations[e]);
+                    illuminate(addCombinations[e], availableColours[Math.floor(Math.random() * availableColours.length)]);
+                }
+    
+                lastMinute = [...currentMinute];
+            }
+            setProgress(currentTime.getMinutes() * 60 + currentTime.getSeconds());
+            setTimeout(updateClock, 1000);
+        }
+    
+        function setProgress(s) {
+            const totalLength = 1912;  // This is the total length of the square path
+            const path = document.getElementById('progress-ring');
+    
+            const progress = totalLength * s / 60;
+            path.style.strokeDashoffset = totalLength - progress;
+        } 
+    
+        setProgress(72);  // Set the progress to 72%
+    
+        updateClock();
+    </script>
+    </body>

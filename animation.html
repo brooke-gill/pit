@@ -1,0 +1,48 @@
+<p id="square">
+</p>
+
+<ol>
+    <li>Press and hold the Shift key for three seconds until the square has stopped moving (right side of the page)</li>
+    <li>Release the Shift key to make the square start to move to the left</li>
+    <li>Press and hold the Shift key before the square stops moving (0&ndash;2 seconds after releasing)</li>
+</ol>
+<p><strong>Bug</strong>: On Firefox, after completing step 3, the square will instantly snap to the right instead of slowly moving to the right</p>
+
+
+<script>
+document.addEventListener('keydown', function() {
+    if (event.key === "Shift") {
+        document.getElementById("square").classList.add("move");
+    }
+});
+document.addEventListener('keyup', function() {
+    if (event.key === "Shift") {
+        document.getElementById("square").classList.remove("move");
+    }
+});
+</script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#square {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    transition-duration: 3s;
+}
+
+.move {
+    transform: translateX(calc(100vw - 100px));
+}
+
+ol {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+</style>

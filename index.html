@@ -115,7 +115,7 @@
   <p id="current-palette" style="display: none"></p>
   <p><a href="https://pit.wiki" target="_blank" rel="noopener noreferrer"><span style="color: #ae55c3; font-weight: 600" id="wikiad">Check out the <span style="color: #da85a7">Hypixel Pit Wiki</span>!</a></p>
   <p id="special_thanks"></p>
-  <p id="version" class="ver"></p> <span>&mdash; January 2, 2024</span>
+  <p id="version" class="ver"></p> <span>&mdash; August 18, 2024</span>
   <p id="need-help">Need help using this site? Join the <a href="https://discord.gg/nuUms8r9Ke" target="_blank">Pit Resource Support Discord Server</a>.
   </span>
 </span>
@@ -152,7 +152,7 @@ console.log("The site has loaded.")
 
 var HiddenEventCount = 0; // number of hidden events
 var EventsToLoad = 1; // number of events in the JSON. this is used a LOT!
-var version_number = `v1.1.5`
+var version_number = `v1.1.6`
 var counter = 4; // counter that counts up every 40ms
 var settingsOpened = false; // self explanatory
 var mapClicked = false; // whether the user's clicked the map timer to show its spooky extended info
@@ -212,9 +212,9 @@ var upcomingEventIds = []; // list of event IDs that could possibly be visible i
 var timeAbbs = ["d", "h", "m", "s"] // abbreviations for the units of time
 var separatedTimeAbbs = ["d ", "h ", "m ", "s "];
 
-var praise_quotes = [`You're crazy.`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`v1.0.0 on feb 27... i mean feb 28... i mean march 11.. i mean march 12... i mean march 13.... nono i mean i mean april 14`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`,`cool website`]
-var praise_names = ["Andrew","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","litphoenix","adjective",`anoxysm`,`Nqnook`]
-var praise_urls = ["http://deviantart.com/hextant","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/",`https://statsify.net/`,`https://hypixel.net/members/nqnook.4469672/`,]
+var praise_quotes = [`you're like ai the way you're coming for my job`,"So good brooke.","Cool but seek help please","Brookeafk.com so good","she's insane in the head","brooke your so smart in my opnion","brooke is such a good pit player","your site is incredible","this is actually amazing wtf","brooke is awesome","great site, I get to see every event I love happen while I'm at school!","omg brooke i am so big fan of u hi","ty for ur amazing website &#10084;","best pit website","the site looks good.","brooke is poger","i lvoe bgorokecrazfft.com",`v1.0.0 on feb 27... i mean feb 28... i mean march 11.. i mean march 12... i mean march 13.... nono i mean i mean april 14`,"Your website is quite useful actually","wow this is such a good website i love brookeafk.","brooke is so talented","The storm in my heart clears when I open the brookeafk website","the site looks very cool btw","Brooke is one of the smartest, kindest, most talented people I have ever met. She is not holding me at gunpoint to say this.",`BrookeAFK.com fixed my marriage!`,`cool website`]
+var praise_names = ["Chloe","Ellie","oSnapL","1Mad","Emma","catweapon","Twen","C4PS","vnmm","Vermasium","Stampy_fan2","swux","TheSKYeagle","julikabum","McPqndq","clouby","Brano","Ticha","Working","SAVANN4H","IDAKOI","faelicia","litphoenix","adjective",`anoxysm`,`Nqnook`]
+var praise_urls = ["https://github.com/niqumu","https://twitter.com/ellwixd","https://twitter.com/oSnapLLL","https://youtu.be/dQw4w9WgXcQ","https://twitter.com/cutekitty271","https://namemc.com/profile/354aa68a43694ba29ff23c705dfc11e6","https://twitter.com/KinderFissa","https://twitter.com/c4pshypixel","https://vnmm.dev/","https://namemc.com/profile/9f65cdd1-81d7-49f3-8d41-fef76a7a8768","https://hypixel.net/members/probot.1901786/","https://www.tiktok.com/@swuxify_","https://twitter.com/leskyeagle","https://twitter.com/julikabum_0","https://pitpanda.rocks","https://brookeafk.com","https://twitter.com/branodon","https://pitpanda.rocks/players/18fe5844ce244d11ad3435c96435900f","https://twitter.com/WorkingMC","https://namemc.com/profile/343c717bb51d4dc3a9341d0908ee02e7","https://discord.gg/rebel","https://namemc.com/profile/9a259d6e408742819a2f901a91db9111","https://hypixel.net/members/litphoenix.533148/","https://adjectiven0un.github.io/holeinthewall/",`https://statsify.net/`,`https://hypixel.net/members/nqnook.4469672/`,]
 //jojo was here
 var allSettings = ['visible','notifs','palette','timestamps','theme','flashing','reminder','desktop','audio','font','icons', 'clock', 'classic', 'tabtimer', 'majorstyle', 'spacing', 'language'] // all of the settings except for "offset". it's a special case
 var siteLoadSettingValues = Array(allSettings.length); //  list of the user's settings when the site loads.
@@ -242,6 +242,8 @@ var IsItACountdown = [`<span style="color: #ff55ff"><b>QUICK MATHS!</b></span> <
 
 var DemolitionTime = 15;
 var TimeOfEventStart = 0;
+
+let prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 var all_text = ["MINOR EVENT!","MAJOR EVENT!","Starting in ","Ending in "];
 if(document.body.clientWidth < 800) { // should make the site mobile when needed
@@ -1230,6 +1232,11 @@ function flipEvents() { // makes the events flip when you load the page
   }
 
   if(HasStuffLoaded && flipCounter > -2) {
+
+    if (prefersReducedMotion) {
+      makeAllEventsOpacity1();
+      flipsComplete = true;
+    }
     flipCounter += 1;
     let offsetedEvent = visibleEventIds[flipCounter];
     
@@ -1797,6 +1804,7 @@ if(conversion[i]['type'] == "major" && majorStyles[0] == true) {
 }}
 
 flipEvents();
+
 function cycle1() { // every 40 ms
   counter += 1;
   window.data = window.data_backup;
@@ -1817,6 +1825,20 @@ function cycle25() { // every 1,000 ms
   </script>
 
 <style>
+  :root {
+    --transition10: 1s;
+    --transition5: 0.5s;
+    --transition2: 0.2s;
+  }
+
+  @media(prefers-reduced-motion: reduce) {
+    :root {
+      --transition10: 0s;
+      --transition5: 0s;
+      --transition2: 0s;
+    }
+  }
+
   .announcement:hover {
     opacity: 0.5;
   }
@@ -1863,11 +1885,11 @@ function cycle25() { // every 1,000 ms
   }
 
   .animated {
-    animation: rotate 1s;
+    animation: rotate var(--transition10);
   }
 
   .flip {
-    animation: flip_ 1s;
+    animation: flip_ var(--transition10);
     animation-timing-function: ease-in-out;
   }
 
@@ -1940,7 +1962,7 @@ function cycle25() { // every 1,000 ms
   .button {
     text-align: center;
     border-radius: 5px;
-    transition-duration: 0.2s;
+    transition-duration: var(--transition2);
     cursor: pointer;
     padding: 12px 25px;
     background-color: #ad55a9;
@@ -1966,7 +1988,7 @@ function cycle25() { // every 1,000 ms
   }
 
   .button-smooth {
-    transition-duration: 0.5s;
+    transition-duration: var(--transition5);
   }
 
   .button-input {
@@ -2018,27 +2040,27 @@ function cycle25() { // every 1,000 ms
   
   .blinktext-light {
   background-color: #f00;
-  -webkit-animation: blink-text-light 1000ms linear infinite;
-  -moz-animation: blink-text-light 1000ms linear infinite;
-  -ms-animation: blink-text-light 1000ms linear infinite;
-  -o-animation: blink-text-light 1000ms linear infinite;
-  animation: blink-text-light 1000ms linear infinite;
+  -webkit-animation: blink-text-light var(--transition10) linear infinite;
+  -moz-animation: blink-text-light var(--transition10) linear infinite;
+  -ms-animation: blink-text-light var(--transition10) linear infinite;
+  -o-animation: blink-text-light var(--transition10) linear infinite;
+  animation: blink-text-light var(--transition10) linear infinite;
 }
 
 .blinktext-dark {
   background-color: #f00;
-  -webkit-animation: blink-text-dark 1000ms linear infinite;
-  -moz-animation: blink-text-dark 1000ms linear infinite;
-  -ms-animation: blink-text-dark 1000ms linear infinite;
-  -o-animation: blink-text-dark 1000ms linear infinite;
-  animation: blink-text-dark 1000ms linear infinite;
+  -webkit-animation: blink-text-dark var(--transition10) linear infinite;
+  -moz-animation: blink-text-dark var(--transition10) linear infinite;
+  -ms-animation: blink-text-dark var(--transition10) linear infinite;
+  -o-animation: blink-text-dark var(--transition10) linear infinite;
+  animation: blink-text-dark var(--transition10) linear infinite;
 }
 .flashtext {
-  -webkit-animation: flash-text 1000ms linear infinite;
-  -moz-animation: flash-text 1000ms linear infinite;
-  -ms-animation: flash-text 1000ms linear infinite;
-  -o-animation: flash-text 1000ms linear infinite;
-  animation: flash-text 1000ms linear infinite;
+  -webkit-animation: flash-text var(--transition10) linear infinite;
+  -moz-animation: flash-text var(--transition10) linear infinite;
+  -ms-animation: flash-text var(--transition10) linear infinite;
+  -o-animation: flash-text var(--transition10) linear infinite;
+  animation: flash-text var(--transition10) linear infinite;
 }
 @keyframes blink-text-light {
   0% { color: #ff0000; opacity: 1; }
@@ -2199,7 +2221,7 @@ text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.4);
 }
 
 a, .icon, div, .event {
-transition-duration: 0.2s;
+transition-duration: var(--transition2);
 }
 
 .option {
@@ -2212,10 +2234,11 @@ font-smooth: never; /* !!! */
 }
 
 .eventicon {
-width: 32px;
-position: relative;
-float: left;
-bottom: 4px;
+  width: 32px;
+  position: relative;
+  float: left;
+  bottom: 4px;
+  image-rendering: pixelated;
 }
 
 .event {

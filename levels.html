@@ -38,7 +38,7 @@
     }
 
     const levelColor = levelColorIds[Math.floor(workingLevel / 10)]
-    const prestigeColor = prestigeColor(workingPrestige);
+    const presColor = prestigeColor(workingPrestige);
 
     if (data_type == 2) {
       return workingPrestige;
@@ -55,7 +55,7 @@
       if (data_type == 0) {
         return "[" + convertNumberToRoman(workingPrestige) + "-" + workingLevel + "]"
       } else {
-        return `<span class="m` + prestigeColor + `">[<span class="me">` + convertNumberToRoman(workingPrestige) + `</span>-<span class="m` + levelColor + `">` + workingLevel + `</span>]</span>`
+        return `<span class="m` + presColor + `">[<span class="me">` + convertNumberToRoman(workingPrestige) + `</span>-<span class="m` + levelColor + `">` + workingLevel + `</span>]</span>`
       }
     }
   }
